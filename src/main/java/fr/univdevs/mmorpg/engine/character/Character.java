@@ -15,6 +15,12 @@ public abstract class Character {
     private int money;
     private Inventory inventory;
 
+    public Character(String chosenName, String chosenType){
+        this.name = chosenName;
+        this.type = chosenType;
+        this.inventory = new Inventory();
+    }
+
     public int getMoney() {
         return money;
     }
