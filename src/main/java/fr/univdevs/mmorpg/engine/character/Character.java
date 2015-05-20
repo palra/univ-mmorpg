@@ -13,7 +13,7 @@ public abstract class Character {
     private double resistance;
     private int speed;
     private int money;
-    private Inventory inventory;
+    // TODO : private Inventory inventory;
 
     public int getMoney() {
         return money;
@@ -120,9 +120,9 @@ public abstract class Character {
         this.setSpeed(this.getSpeed()-speed);
     }
 
-    public Inventory getInventory(){
+    /* TODO : public Inventory getInventory(){
         return this.inventory;
-    }
+    } */
 
 
 }

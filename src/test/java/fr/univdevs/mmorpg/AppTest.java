@@ -1,6 +1,4 @@
-package fr.univdevs.mmorpg
-
--devs.mmorpg;
+package fr.univdevs.mmorpg;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
