@@ -1,7 +1,8 @@
 package fr.univdevs.commander;
 
 /**
- * Class used in order to represent the result of a parser interpretation.
+ * Encapsulates the return values of the `CommandParser` `parse` method
+ * @author Loïc Payol
  */
 public class ParserResult {
     private final String[] parsedInput;

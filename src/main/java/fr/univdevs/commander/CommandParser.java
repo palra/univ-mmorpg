@@ -7,6 +7,11 @@ import java.util.Map;
 /* TODO : import fr.univdevs.mmorpg.engine.common.commander.userworld.ListCommand;
 import fr.univdevs.mmorpg.engine.common.commander.userworld.ManCommand; */
 
+/**
+ * Registers Command instances and parses an user input, in order to call a registered command.
+ *
+ * @author Loïc Payol
+ */
 public class CommandParser {
     private Map<String, Command> commands = new HashMap<String, Command>();
 
@@ -28,6 +33,17 @@ public class CommandParser {
         for (Command command : commands) {
             this.add(command);
         }
+    }
+
+    /**
+     * Splits the given input in arguments
+     *
+     * @param input The user input to split
+     * @return Parsed input
+     */
+    public static String[] parseInputString(String input) {
+        String regex = "\\s+";
+        return input.split(regex);
     }
 
     /**
@@ -81,7 +97,7 @@ public class CommandParser {
      * @throws Exception
      */
     public ParserResult parse(String input) throws Exception {
-        String[] parsed = this.parseInputString(input);
+        String[] parsed = CommandParser.parseInputString(input);
         // Check if any command is passed
         if (parsed.length < 1) {
             throw new EmptyCommandException();
@@ -120,14 +136,4 @@ public class CommandParser {
         return this.commands.values().toArray(new Command[this.commands.size()]);
     }
 
-    /**
-     * Splits the given input in arguments
-     *
-     * @param input The user input to split
-     * @return Parsed input
-     */
-    protected String[] parseInputString(String input) {
-        String regex = "\\s+";
-        return input.split(regex);
-    }
 }
