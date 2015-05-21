@@ -1,7 +1,9 @@
 package fr.univdevs.mmorpg.engine.character;
 
 /**
- * Created by drattak on 20/05/15.
+ * @class Character
+ * The Character object. This is the character played by a player
+ * It a
  */
 public abstract class Character {
     private final static int MAX_HEALTH = 100;
@@ -21,111 +23,221 @@ public abstract class Character {
         this.inventory = new Inventory();
     }
 
+    /**
+     * Returns the money the Character has
+     *
+     * @return\tint
+     */
     public int getMoney() {
         return money;
     }
 
+    /**
+     * Private method to change money Value
+     * @param money how much money we give
+     */
     private void setMoney(int money) {
         this.money = money;
     }
 
+    /**
+     * Public method to add Money
+     * @param money the amount of money we want to add
+     */
     public void addMoney(int money){
         this.setMoney(this.getMoney()+money);
     }
 
+    /**
+     * Public method to remove Money
+     * @param money the amount of money we want to remove
+     */
     public void removeMoney(int money){
         this.setMoney(this.getMoney()-money);
     }
 
+    /**
+     * Public mehod to get the type (category) of the character
+     * @return String
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Public method to return the name of the Character
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Public method to return the XP of the Character
+     * @return int
+     */
     public int getExperience() {
         return experience;
     }
 
+    /**
+     * Private method to change XP of the Character
+     * @param experience    amount of experience we want to give
+     */
     private void setExperience(int experience) {
 
         this.experience = experience;
     }
 
-    public void addEpxerience(int experience){
+    /**
+     * Public method to add experience to the Character
+     *
+     * @param experience amount of experience we want to add
+     */
+    public void addExperience(int experience){
         this.setExperience(this.getExperience()+experience);
     }
 
+    /**
+     * Public method to remove experience to the Character
+     * @param experience    amout of experience we want to remove
+     */
     public void removeExperience(int experience){
         this.setExperience(this.getExperience()-experience);
     }
 
+    /**
+     * Public method to return the Action Points of the Character
+     * @return int
+     */
     public int getAction() {
         return action;
     }
 
+    /**
+     * Private method to give Action Points
+     * @param action    amount of Action Points to give
+     */
     private void setAction(int action) {
         this.action = action;
     }
 
+    /**
+     * Public method to add Action Points
+     * @param action    amount of Action Points to add
+     */
     public void addAction(int action){
         this.setAction(this.getAction()+action);
     }
 
+    /**
+     * Public method to remove Action Points
+     * @param action    amount of Action Points to remove
+     */
     public void removeAction(int action){
         this.setAction(this.getAction()-action);
     }
 
+    /**
+     * Public method to return Health Point
+     * @return int
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Private method to give Health Point
+     * @param health    amount of health points to give
+     */
     private void setHealth(int health) {
         this.health = health;
     }
 
+    /**
+     * Public method to add Health Point
+     * @param health    amount of health points to add
+     */
     public void addHealth(int health){
         this.setHealth(this.getHealth()+health);
     }
 
+    /**
+     * Public method to remove Health Point
+     * @param health    amount of health points to remove
+     */
     public void removeHealth(int health){
         this.setHealth(this.getHealth()+health);
     }
 
+    /**
+     * Public method to return resistance of a Character
+     * @return double
+     */
     public double getResistance() {
         return resistance;
     }
 
+    /**
+     * Private method to give resistance to a character
+     * @param resistance    coefficient to set
+     */
     private void setResistance(double resistance) {
         this.resistance = resistance;
     }
 
+    /**
+     * Public method to add resistance to a character
+     * @param resistance    coefficient to add
+     */
     public void addResistance(double resistance){
         this.setResistance(this.getResistance()+resistance);
     }
 
+    /**
+     * Public method to remove resistance
+     * @param resistance    coefficient to remove
+     */
     public void removeResistance(double resistance){
         this.setResistance(this.getResistance()-resistance);
     }
 
+    /**
+     * Public method to return the speed of a character
+     * @return int
+     */
     public int getSpeed() {
         return speed;
     }
 
+    /**
+     * Private method to set the speed of a Character
+     * @param speed
+     */
     private void setSpeed(int speed) {
         this.speed = speed;
     }
 
+    /**
+     * Public method to add speed to a character
+     * @param speed amount of speed we want to add
+     */
     public void addSpeed(int speed){
         this.setSpeed(this.getSpeed()+speed);
     }
 
+    /**
+     * Public method to remove speed to a character
+     * @param speed amount of speed we want to remove
+     */
     public void removeSpeed(int speed){
         this.setSpeed(this.getSpeed()-speed);
     }
 
+    /**
+     * Public method to return the inventory of a character
+     * @return Inventory
+     */
     public Inventory getInventory(){
         return this.inventory;
     }
