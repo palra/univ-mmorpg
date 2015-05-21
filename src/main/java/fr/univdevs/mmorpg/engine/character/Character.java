@@ -17,6 +17,12 @@ public abstract class Character {
     private int money;
     private Inventory inventory;
 
+    /**
+     * Character constructor
+     *
+     * @param chosenName Name chosen for the character, can't change
+     * @param chosenType Type chosen for the character, can't change
+     */
     public Character(String chosenName, String chosenType){
         this.name = chosenName;
         this.type = chosenType;

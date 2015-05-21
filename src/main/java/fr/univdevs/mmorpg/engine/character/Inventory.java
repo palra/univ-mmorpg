@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * Created by drattak on 20/05/15.
+ * @class Inventory
+ * The inventory containing items
+ *
  */
 public class Inventory {
     private HashMap<String, Item> items;
