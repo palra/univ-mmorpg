@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.character.mocks.Bow;
 import fr.univdevs.mmorpg.engine.character.mocks.Potion;
+import fr.univdevs.mmorpg.engine.character.mocks.SuperPotion;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,7 +21,19 @@ public class InventoryTest {
     public void testAdd() throws Exception {
         Potion p = new Potion("potion","cure",9,9,34);
         inventory.add(p);
-        ;
+    }
+
+    @Test
+    public void testGetByType() throws Exception {
+        Potion p = new Potion("potion", "cure", 9, 9, 34);
+        SuperPotion sp = new SuperPotion("supotion", "cure", 9, 9, 34);
+        Bow bow = new Bow("bow", "weapon", 10, 3, 4);
+        inventory.add(p);
+        inventory.add(sp);
+        inventory.add(bow);
+        for (int i = 0; i < inventory.getByType("cure").length; i++) {
+            System.out.println(inventory.getByType("cure")[i].getName());
+        }
 
     }
 }

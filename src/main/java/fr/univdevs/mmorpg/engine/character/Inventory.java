@@ -50,7 +50,7 @@ public class Inventory {
         Iterator i = this.items.entrySet().iterator();
         for(Item value : this.items.values()){
                 if (value.getCategory().equals(category)) {
-                    selectedItems.add(this.items.get(i));
+                    selectedItems.add(value);
                 }
         }
         return selectedItems.toArray(new Item[selectedItems.size()]);

@@ -1,6 +1,5 @@
-package fr.univdevs.mmorpg
+package fr.univdevs.mmorpg;
 
--devs.mmorpg;
 
 /**
  * Hello world!
