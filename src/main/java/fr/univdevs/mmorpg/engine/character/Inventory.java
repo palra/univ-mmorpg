@@ -9,15 +9,19 @@ import java.util.Iterator;
  * Created by drattak on 20/05/15.
  */
 public class Inventory {
-    public Inventory(){}
-    public HashMap<String,Item> items;
+    private HashMap<String, Item> items;
+
+    protected Inventory() {
+        this.items = new HashMap<String, Item>();
+    }
+
 
     /**
      *
      * @return  Item collection
      */
     public Item[] getItems(){
-        return (Item[]) items.values().toArray();
+        return items.values().toArray(new Item[this.size()]);
     }
 
     /**
@@ -49,7 +53,7 @@ public class Inventory {
                     selectedItems.add(this.items.get(i));
                 }
         }
-        return (Item[]) selectedItems.toArray();
+        return selectedItems.toArray(new Item[selectedItems.size()]);
     }
 
     /**
@@ -84,38 +88,23 @@ public class Inventory {
      * @param name  selected name
      * @return  matching items
      */
-    public Item[] getByName(String name){
-        ArrayList<Item> selectedItems = new ArrayList<Item>();
-        Iterator i = this.items.entrySet().iterator();
-        for(Item value : this.items.values()){
-            if (value.getCategory().equals(name)) {
-                selectedItems.add(this.items.get(i));
-            }
-        }
-        return (Item[]) selectedItems.toArray();
+    public Item getByName(String name) {
+        return this.items.get(name);
     }
 
     /**
      *
      * @param item  idem to be added
      */
-    public Item[] add(Item item){
-        Item[] addedItem = new Item[1];
-        if (this.items.values().add(item))
-            addedItem[0] = item;
-
-        return addedItem;
+    public Item add(Item item) {
+        return this.items.put(item.getName(), item);
     }
 
     /**
      *
      * @param item  item to be removed
      */
-    public Item[] remove(Item item){
-        Item[] itemRemoved = new Item[1];
-        if (this.items.values().remove(item)){
-            itemRemoved[0] = item;
-        }
-        return itemRemoved;
+    public Item remove(Item item) {
+        return this.items.remove(item.getName());
     }
 }
