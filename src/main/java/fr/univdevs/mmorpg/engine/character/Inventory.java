@@ -11,7 +11,7 @@ import java.util.Iterator;
  *
  */
 public class Inventory {
-    private HashMap<String, Item> items;
+    private HashMap<String, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
 
     /**
      * Inventory constructor
@@ -21,7 +21,6 @@ public class Inventory {
     protected Inventory() {
         this.items = new HashMap<String, Item>();
     }
-
 
     /**
      *

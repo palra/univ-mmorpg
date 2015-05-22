@@ -3,7 +3,8 @@ package fr.univdevs.mmorpg.engine.character.mocks;
 import fr.univdevs.mmorpg.engine.character.Weapon;
 
 /**
- * Created by drattak on 21/05/15.
+ * Testclass Bow
+ * A Bow
  */
 public class Bow extends Weapon {
     public Bow(String bowName, String bowCategory, int bowCost, int bowWeight, int bowPower) {
