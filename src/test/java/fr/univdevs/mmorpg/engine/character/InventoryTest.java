@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by drattak on 21/05/15.
+ * Test class for all inventory-relative objects
  */
 public class InventoryTest {
     private Inventory inventory;

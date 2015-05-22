@@ -37,7 +37,7 @@ public abstract class Cure extends Item{
 
     /**
      * Public method to return the amount of points resotred by the cure
-     * @return
+     * @return int
      */
     public int getRestoredPoints() {
         return restoredPoints;

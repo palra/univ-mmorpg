@@ -10,7 +10,17 @@ public class Potion extends Cure{
         super(potionName,potionCategory,potionCost,potionWeight,potionPoints);
     }
 
-    public void onRegister(String Character){}
+    /**
+     * function to specify the action of the potion
+     *
+     * @param Character on which character the potion will be applied
+     */
+    public void onRegister(String Character) {
+    }
 
+    /**
+     * function to specify the action of the potion
+     * @param Character on which character the potion will be applied
+     */
     public void onUnregister(String Character){}
 }
