@@ -13,6 +13,11 @@ import java.util.Iterator;
 public class Inventory {
     private HashMap<String, Item> items;
 
+    /**
+     * Inventory constructor
+     * A HashMap is a couple string, item here
+     * The string is the key (the name of the item)
+     */
     protected Inventory() {
         this.items = new HashMap<String, Item>();
     }

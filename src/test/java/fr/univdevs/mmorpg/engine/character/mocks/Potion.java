@@ -3,7 +3,9 @@ package fr.univdevs.mmorpg.engine.character.mocks;
 import fr.univdevs.mmorpg.engine.character.Cure;
 
 /**
- * Created by drattak on 20/05/15.
+ * Potion testclass
+ * A Potion is a kind of cure, therefore it extends to it
+ * A Potion restore 10 points
  */
 public class Potion extends Cure{
     public Potion(String potionName, String potionCategory, int potionCost, int potionWeight, int potionPoints){
