@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.engine.character.mocks;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
+import fr.univdevs.mmorpg.engine.character.utils.Pair;
+import fr.univdevs.mmorpg.engine.world.Entity;
 
 /**
  * Created by drattak on 21/05/15.
@@ -29,6 +31,7 @@ public class SuperPotion extends Cure {
     }
 
     public void setY(int y) {
+        ;
 
     }
 
@@ -38,5 +41,9 @@ public class SuperPotion extends Cure {
 
     public boolean isCollidable() {
         return false;
+    }
+
+    public Pair getPair() {
+        return new Pair(0, 0);
     }
 }

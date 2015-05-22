@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.engine.character.mocks;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
+import fr.univdevs.mmorpg.engine.character.utils.Pair;
 
 /**
  * Potion testclass
@@ -49,4 +50,10 @@ public class Potion extends Cure{
     public boolean isCollidable() {
         return false;
     }
+
+    public Pair getPair() {
+        return new Pair(0, 0);
+    }
 }
+
+
