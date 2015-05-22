@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.world.MovableEntity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,10 +1,13 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.world.Entity;
+import fr.univdevs.mmorpg.engine.world.MovableEntity;
+
 /**
  * Item class
  * An item is any object that can be wore
  */
-public abstract class Item {
+public abstract class Item implements MovableEntity {
     private String name;
     private String category;
     private int cost;

@@ -1,7 +1,8 @@
 package fr.univdevs.mmorpg.engine.world;
 
 /**
- * Created by drattak on 19/05/15.
+ * Public interface MovableEntity
+ * This interface declare as movable any entity that implements it
  */
 public interface MovableEntity extends Entity {
     public void setX(int x);

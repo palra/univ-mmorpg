@@ -25,4 +25,28 @@ public class Potion extends Cure{
      * @param Character on which character the potion will be applied
      */
     public void onUnregister(String Character){}
+
+    public int getX() {
+        return 0;
+    }
+
+    public void setX(int x) {
+
+    }
+
+    public int getY() {
+        return 0;
+    }
+
+    public void setY(int y) {
+
+    }
+
+    public String getDisplay() {
+        return null;
+    }
+
+    public boolean isCollidable() {
+        return false;
+    }
 }

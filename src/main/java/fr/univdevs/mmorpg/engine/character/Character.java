@@ -1,11 +1,14 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.world.Entity;
+import fr.univdevs.mmorpg.engine.world.MovableEntity;
+
 /**
  * @class Character
  * The Character object. This is the character played by a player
  * It a
  */
-public abstract class Character {
+public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
     private String type;
     private String name;
