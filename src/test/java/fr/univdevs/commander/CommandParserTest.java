@@ -31,7 +31,7 @@ public final class CommandParserTest {
         parser.add(new GreeterCommand());
         output = parser.parse(input).getOutput();
 
-        assertEquals(output, expected);
+        assertEquals(expected, output);
     }
 
     @Test(expected = NonExistingCommandException.class)
@@ -42,6 +42,16 @@ public final class CommandParserTest {
     @Test(expected = EmptyCommandException.class)
     public final void testEmptyCommand() throws Exception {
         parser.parse(" \t\r");
+    }
+
+    @Test(expected = EmptyCommandException.class)
+    public final void testBlankCommand() throws Exception {
+        parser.parse("");
+    }
+
+    @Test(expected = EmptyCommandException.class)
+    public final void testBlankCommand2() throws Exception {
+        parser.parse("     ");
     }
 
     @Test(expected = Exception.class)

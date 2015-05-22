@@ -97,16 +97,17 @@ public class CommandParser {
      * @throws Exception
      */
     public ParserResult parse(String input) throws Exception {
+        input = input.trim();
         String[] parsed = CommandParser.parseInputString(input);
         // Check if any command is passed
-        if (parsed.length < 1) {
+        if (parsed.length < 1 || input.isEmpty()) {
             throw new EmptyCommandException();
         }
 
         // Check if the command exists
         String cmdName = parsed[0];
         if (!this.has(cmdName)) {
-            throw new NonExistingCommandException(cmdName, true);
+            throw new NonExistingCommandException();
         }
 
         // Extract the arguments from the input
