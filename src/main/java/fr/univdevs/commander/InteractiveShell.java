@@ -1,5 +1,7 @@
 package fr.univdevs.commander;
 
+import fr.univdevs.commander.userworld.ExitCommand;
+
 import java.util.Scanner;
 
 /**
@@ -28,32 +30,6 @@ public class InteractiveShell {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public static class ExitCommand implements Command {
-
-        private boolean closed = false;
-
-        public String execute(String[] args) throws Exception {
-            this.setClosed(true);
-            return null;
-        }
-
-        public String getArgumentsDescription() {
-            return this.getName();
-        }
-
-        public String getName() {
-            return "exit";
-        }
-
-        public boolean isClosed() {
-            return this.closed;
-        }
-
-        public void setClosed(boolean closed) {
-            this.closed = closed;
         }
     }
 
