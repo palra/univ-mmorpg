@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.character.mocks;
+package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
 import fr.univdevs.mmorpg.engine.character.utils.Pair;
@@ -8,8 +8,8 @@ import fr.univdevs.mmorpg.engine.world.Entity;
  * Created by drattak on 21/05/15.
  */
 public class SuperPotion extends Cure {
-    public SuperPotion(String superPotionName, String superPotionCategory, int superPotionCost, int superPotionWeight, int superPotionPoints) {
-        super(superPotionName, superPotionCategory, superPotionCost, superPotionWeight, superPotionPoints);
+    public SuperPotion(String superPotionName, String superPotionCategory, int superPotionCost, int superPotionWeight) {
+        super(superPotionName, superPotionCategory, superPotionCost, superPotionWeight, 20);
     }
 
     public void onRegister(String Character) {

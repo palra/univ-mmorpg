@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.character.mocks;
+package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.character.Weapon;
 import fr.univdevs.mmorpg.engine.character.utils.Pair;

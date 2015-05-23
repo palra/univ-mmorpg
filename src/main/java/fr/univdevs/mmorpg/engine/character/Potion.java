@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.character.mocks;
+package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
 import fr.univdevs.mmorpg.engine.character.utils.Pair;
@@ -9,8 +9,8 @@ import fr.univdevs.mmorpg.engine.character.utils.Pair;
  * A Potion restore 10 points
  */
 public class Potion extends Cure{
-    public Potion(String potionName, String potionCategory, int potionCost, int potionWeight, int potionPoints){
-        super(potionName,potionCategory,potionCost,potionWeight,potionPoints);
+    public Potion(String potionName, String potionCategory, int potionCost, int potionWeight) {
+        super(potionName, potionCategory, potionCost, potionWeight, 10);
     }
 
     /**

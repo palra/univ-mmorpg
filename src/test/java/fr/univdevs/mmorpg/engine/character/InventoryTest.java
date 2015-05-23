@@ -1,14 +1,9 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.character.mocks.Bow;
-import fr.univdevs.mmorpg.engine.character.mocks.Potion;
-import fr.univdevs.mmorpg.engine.character.mocks.SuperPotion;
-import fr.univdevs.mmorpg.engine.character.mocks.Warrior;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Test class for all inventory-relative objects
@@ -22,14 +17,14 @@ public class InventoryTest {
 
     @Test
     public void testAdd() throws Exception {
-        Potion p = new Potion("potion","cure",9,9,34);
+        Potion p = new Potion("potion", "cure", 9, 9);
         inventory.add(p);
     }
 
     @Test
     public void testGetByType() throws Exception {
-        Potion p = new Potion("potion", "cure", 9, 9, 34);
-        SuperPotion sp = new SuperPotion("supotion", "cure", 9, 9, 34);
+        Potion p = new Potion("potion", "cure", 9, 9);
+        SuperPotion sp = new SuperPotion("supotion", "cure", 9, 9);
         Bow bow = new Bow("bow", "weapon", 10, 3, 4);
         inventory.add(p);
         inventory.add(sp);
@@ -54,8 +49,8 @@ public class InventoryTest {
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
         Character c = new Warrior("dratwarrior");
-        Potion p = new Potion("potion", "Potion", 20, 20, 10);
-        SuperPotion sp = new SuperPotion("superpotion", "SuperPotion", 30, 30, 20);
+        Potion p = new Potion("potion", "Potion", 20, 20);
+        SuperPotion sp = new SuperPotion("superpotion", "SuperPotion", 30, 30);
         drattak.setCharacter(c);
 
         drattak.getCharacter().getInventory().add(p);
