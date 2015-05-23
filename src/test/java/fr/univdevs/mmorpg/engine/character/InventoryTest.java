@@ -40,8 +40,11 @@ public class InventoryTest {
 
     @Test
     public void testTilemap() throws Exception {
-        char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '#', '#', '\n', '#', '#', '\n'};
+        char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '\n'};
         Tilemap t = new Tilemap(c);
+        t.render();
+        System.out.println(t.getSize());
+        t.setTile(1, 5, 'f');
         t.render();
     }
 }
