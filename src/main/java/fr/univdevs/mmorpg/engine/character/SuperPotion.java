@@ -5,11 +5,13 @@ import fr.univdevs.mmorpg.engine.character.utils.Pair;
 import fr.univdevs.mmorpg.engine.world.Entity;
 
 /**
- * Created by drattak on 21/05/15.
+ * SuperPotion Class
+ * A super potion is a kind of cure,
+ * A super potion restore 20 points
  */
 public class SuperPotion extends Cure {
-    public SuperPotion(String superPotionName, String superPotionCategory, int superPotionCost, int superPotionWeight) {
-        super(superPotionName, superPotionCategory, superPotionCost, superPotionWeight, 20);
+    public SuperPotion(String superPotionName, int superPotionCost, int superPotionWeight) {
+        super(superPotionName, "SuperPotion", superPotionCost, superPotionWeight, 20);
     }
 
     public void onRegister(String Character) {

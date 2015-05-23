@@ -24,7 +24,7 @@ public class InventoryTest {
     @Test
     public void testGetByType() throws Exception {
         Potion p = new Potion("potion", "cure", 9, 9);
-        SuperPotion sp = new SuperPotion("supotion", "cure", 9, 9);
+        SuperPotion sp = new SuperPotion("supotion", 9, 9);
         Bow bow = new Bow("bow", "weapon", 10, 3, 4);
         inventory.add(p);
         inventory.add(sp);
@@ -50,7 +50,7 @@ public class InventoryTest {
         Player drattak = new Player("drattak");
         Character c = new Warrior("dratwarrior");
         Potion p = new Potion("potion", "Potion", 20, 20);
-        SuperPotion sp = new SuperPotion("superpotion", "SuperPotion", 30, 30);
+        SuperPotion sp = new SuperPotion("superpotion", 30, 30);
         drattak.setCharacter(c);
 
         drattak.getCharacter().getInventory().add(p);

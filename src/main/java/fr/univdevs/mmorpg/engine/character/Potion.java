@@ -4,7 +4,7 @@ import fr.univdevs.mmorpg.engine.character.Cure;
 import fr.univdevs.mmorpg.engine.character.utils.Pair;
 
 /**
- * Potion testclass
+ * Potion class
  * A Potion is a kind of cure, therefore it extends to it
  * A Potion restore 10 points
  */

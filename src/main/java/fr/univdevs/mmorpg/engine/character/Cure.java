@@ -42,4 +42,8 @@ public abstract class Cure extends Item{
     public int getRestoredPoints() {
         return restoredPoints;
     }
+
+    public String toString() {
+        return "categorie = " + this.getCategory() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
+    }
 }
