@@ -40,6 +40,10 @@ public abstract class Item implements MovableEntity {
         this.cost = itemCost;
     }
 
+    public String toString() {
+        return "name = " + this.getName() + "\n" + "category = " + this.getCategory() + "\n" + "cost = " + this.getCost() + "\n";
+    }
+
     /**
      * Public method to return the name of the item
      * @return

@@ -24,6 +24,14 @@ public class Inventory {
         this.items = new HashMap<String, Item>();
     }
 
+    public String toString() {
+        String charac = new String();
+        for (int i = 0; i < this.getItems().length; i++) {
+            charac += this.getItems()[i].toString() + '\n';
+        }
+        return charac;
+    }
+
     /**
      *
      * @return  Item collection

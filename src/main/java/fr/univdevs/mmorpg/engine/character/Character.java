@@ -32,6 +32,12 @@ public abstract class Character implements MovableEntity {
         this.inventory = new Inventory();
     }
 
+    public String toString() {
+        String charac = new String();
+        charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.action + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
+        return charac;
+    }
+
     /**
      * Returns the money the Character has
      *

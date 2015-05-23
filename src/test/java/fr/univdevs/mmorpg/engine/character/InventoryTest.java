@@ -1,8 +1,10 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.mocks.Bow;
 import fr.univdevs.mmorpg.engine.character.mocks.Potion;
 import fr.univdevs.mmorpg.engine.character.mocks.SuperPotion;
+import fr.univdevs.mmorpg.engine.character.mocks.Warrior;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,9 +34,9 @@ public class InventoryTest {
         inventory.add(p);
         inventory.add(sp);
         inventory.add(bow);
-        for (int i = 0; i < inventory.getByType("cure").length; i++) {
+        /*for (int i = 0; i < inventory.getByType("cure").length; i++) {
             System.out.println(inventory.getByType("cure")[i].getName());
-        }
+        }*/
 
     }
 
@@ -42,9 +44,22 @@ public class InventoryTest {
     public void testTilemap() throws Exception {
         char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '\n'};
         Tilemap t = new Tilemap(c);
-        t.render();
-        System.out.println(t.getSize());
+        //t.render();
+        //System.out.println(t.getSize());
         t.setTile(1, 5, 'f');
-        t.render();
+        //t.render();
+    }
+
+    @Test
+    public void testCharacter() throws Exception {
+        Player drattak = new Player("drattak");
+        Character c = new Warrior("dratwarrior");
+        Potion p = new Potion("potion", "Potion", 20, 20, 10);
+        SuperPotion sp = new SuperPotion("superpotion", "SuperPotion", 30, 30, 20);
+        drattak.setCharacter(c);
+
+        drattak.getCharacter().getInventory().add(p);
+        drattak.getCharacter().getInventory().add(sp);
+        System.out.println(drattak.getCharacter().toString());
     }
 }
