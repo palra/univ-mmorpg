@@ -2,7 +2,7 @@ package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
-import fr.univdevs.mmorpg.engine.skills.ActionResult;
+import fr.univdevs.mmorpg.engine.action.ActionResult;
 
 /**
  * Public class Action

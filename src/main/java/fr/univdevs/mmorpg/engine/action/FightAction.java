@@ -2,7 +2,7 @@ package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Weapon;
-import fr.univdevs.mmorpg.engine.skills.ActionResult;
+import fr.univdevs.mmorpg.engine.action.ActionResult;
 
 /**
  * FightAction class
@@ -29,6 +29,6 @@ public class FightAction extends Action {
     @Override
     public ActionResult execute() {
         this.getTarget().removeHealth(this.weapon.getPower());
-        return ActionResult.Attacked;
+        return ActionResult.ATTACKED;
     }
 }
