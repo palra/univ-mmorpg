@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 
 /**
@@ -13,7 +12,7 @@ public abstract class Character implements MovableEntity {
     private String type;
     private String name;
     private int experience;
-    private int action;
+    private int actionPoints;
     private int health;
     private double resistance;
     private int speed;
@@ -34,7 +33,7 @@ public abstract class Character implements MovableEntity {
 
     public String toString() {
         String charac = new String();
-        charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.action + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
+        charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.actionPoints + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
         return charac;
     }
 
@@ -125,32 +124,32 @@ public abstract class Character implements MovableEntity {
      * Public method to return the Action Points of the Character
      * @return int
      */
-    public int getAction() {
-        return action;
+    public int getActionPoints() {
+        return actionPoints;
     }
 
     /**
      * Private method to give Action Points
-     * @param action    amount of Action Points to give
+     * @param chosenActionPoints    amount of Action Points to give
      */
-    private void setAction(int action) {
-        this.action = action;
+    private void setActionPoints(int chosenActionPoints) {
+        this.actionPoints = chosenActionPoints;
     }
 
     /**
      * Public method to add Action Points
-     * @param action    amount of Action Points to add
+     * @param actionPoints    amount of Action Points to add
      */
-    public void addAction(int action){
-        this.setAction(this.getAction()+action);
+    public void addActionPoints(int actionPoints) {
+        this.setActionPoints(this.getActionPoints() + actionPoints);
     }
 
     /**
      * Public method to remove Action Points
      * @param action    amount of Action Points to remove
      */
-    public void removeAction(int action){
-        this.setAction(this.getAction()-action);
+    public void removeActionPoints(int action) {
+        this.setActionPoints(this.getActionPoints() - action);
     }
 
     /**

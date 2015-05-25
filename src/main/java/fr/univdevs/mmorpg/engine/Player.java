@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
+import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 
@@ -10,6 +11,7 @@ import fr.univdevs.mmorpg.engine.character.Character;
 public class Player {
     private String name;
     private Character character = null;
+    private Action action;
 
 
     public Player(String chosenName) {
@@ -30,5 +32,13 @@ public class Player {
         return chosenCharacter;
     }
 
+    public Action setNextAction(Action chosenAction) {
+        this.action = chosenAction;
+        return chosenAction;
+    }
+
+    public Action getNextAction() {
+        return this.action;
+    }
 
 }

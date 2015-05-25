@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.mmorpg.engine.skills.ActionResult;
 
 /**
  * Public class Action
@@ -38,5 +39,9 @@ public abstract class Action {
      *
      * @return the Action executed
      */
-    public abstract Action execute();
+    public abstract ActionResult execute();
+
+    public String toString() {
+        return "Cible = " + this.target.getName() + '\n' + "Acteur = " + this.subject.getName();
+    }
 }

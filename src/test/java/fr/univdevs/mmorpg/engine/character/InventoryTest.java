@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.action.FightAction;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,12 +50,15 @@ public class InventoryTest {
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
         Character c = new Warrior("dratwarrior");
+        Character d = new Warrior("enemy");
         Potion p = new Potion("potion", "Potion", 20, 20);
         SuperPotion sp = new SuperPotion("superpotion", 30, 30);
         drattak.setCharacter(c);
+        FightAction f = new FightAction(c, d);
 
         drattak.getCharacter().getInventory().add(p);
         drattak.getCharacter().getInventory().add(sp);
-        System.out.println(drattak.getCharacter().toString());
+        drattak.setNextAction(f);
+        System.out.println(drattak.getNextAction().toString());
     }
 }
