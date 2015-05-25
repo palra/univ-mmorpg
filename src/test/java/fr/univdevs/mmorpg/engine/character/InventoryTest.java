@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.action.FightAction;
+import fr.univdevs.mmorpg.engine.Player;;
+import fr.univdevs.mmorpg.engine.action.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,10 +55,16 @@ public class InventoryTest {
         SuperPotion sp = new SuperPotion("superpotion", 30, 30);
         drattak.setCharacter(c);
         FightAction f = new FightAction(c, d);
+        CureAction cure = new CureAction(c, c);
+        cure.setAction(p);  //Indispensable pour executer l'action
 
         drattak.getCharacter().getInventory().add(p);
         drattak.getCharacter().getInventory().add(sp);
-        drattak.setNextAction(f);
+        drattak.setNextAction(cure);
+        drattak.getCharacter().addHealth(22);
+        System.out.println(drattak.getCharacter().getHealth());
         System.out.println(drattak.getNextAction().toString());
+        cure.execute();
+        System.out.println(drattak.getCharacter().getHealth());
     }
 }

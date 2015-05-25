@@ -1,7 +1,8 @@
 package fr.univdevs.mmorpg.engine.action;
 
 /**
- * Created by drattak on 19/05/15.
+ * Enumeration
+ * Resume all results to any action
  */
 public enum ActionResult {
     NOT_ENOUGH_AP,

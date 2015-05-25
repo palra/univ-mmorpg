@@ -39,9 +39,9 @@ public abstract class Action {
      *
      * @return the Action executed
      */
-    public abstract ActionResult execute();
+    public abstract ActionResult execute() throws Exception;
 
     public String toString() {
-        return "Cible = " + this.target.getName() + '\n' + "Acteur = " + this.subject.getName();
+        return "Cible = " + this.target.getName() + '\n' + "Acteur = " + this.subject.getName() + '\n';
     }
 }
