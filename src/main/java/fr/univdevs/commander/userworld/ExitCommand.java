@@ -47,7 +47,7 @@ public class ExitCommand implements Command {
      * {@inheritDoc}
      */
     public String getName() {
-        return "exit";
+        return this.cmdName;
     }
 
     /**

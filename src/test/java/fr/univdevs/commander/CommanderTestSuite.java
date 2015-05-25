@@ -1,11 +1,13 @@
 package fr.univdevs.commander;
 
+import fr.univdevs.commander.userworld.ExitCommandTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    CommandParserTest.class
+    CommandParserTest.class,
+    ExitCommandTest.class
 })
 
 /**
