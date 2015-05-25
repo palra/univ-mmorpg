@@ -60,10 +60,6 @@ public class CommandParser {
             );
         }
 
-        /* TODO : if(command instanceof CommandParserAware) {
-            ((CommandParserAware)command).setCommandParser(this);
-        }*/
-
         this.commands.put(command.getName(), command);
     }
 

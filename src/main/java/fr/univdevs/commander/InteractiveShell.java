@@ -1,6 +1,7 @@
 package fr.univdevs.commander;
 
 import fr.univdevs.commander.userworld.ExitCommand;
+import fr.univdevs.commander.userworld.HelpCommand;
 
 import java.util.Scanner;
 
@@ -13,9 +14,13 @@ public class InteractiveShell {
 
     public static void main(String[] args) {
         CommandParser parser = new CommandParser();
+
         ExitCommand exit = new ExitCommand();
+        HelpCommand help = new HelpCommand();
+        help.setCommandParser(parser);
+
         parser.add(exit);
-        parser.add(new HelpCommand(parser));
+        parser.add(help);
 
         Scanner sc = new Scanner(System.in);
 
@@ -30,39 +35,6 @@ public class InteractiveShell {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public static class HelpCommand implements Command {
-
-        private CommandParser parser;
-
-        public HelpCommand(CommandParser parser) {
-            this.parser = parser;
-        }
-
-        public String execute(String[] args) throws Exception {
-            String out = "";
-            boolean showDesc = args.length > 1 && args[0].matches("with-desc");
-
-            for (Command cmd : parser.getCommands()) {
-                if (showDesc)
-                    out += cmd.getArgumentsDescription();
-                else
-                    out += cmd.getName();
-
-                out += "\n";
-            }
-
-            return out;
-        }
-
-        public String getArgumentsDescription() {
-            return this.getName() + "[ --with-desc ]";
-        }
-
-        public String getName() {
-            return "help";
         }
     }
 }

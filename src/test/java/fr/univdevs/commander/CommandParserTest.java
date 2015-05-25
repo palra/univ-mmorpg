@@ -34,6 +34,16 @@ public final class CommandParserTest {
         assertEquals(expected, output);
     }
 
+    @Test
+    public void testGetParsedOutput() throws Exception {
+        parser.add(new GreeterCommand());
+        String[] parsed = parser.parse("say-hello a b\tc dd    ").getParsedInput();
+
+        assertArrayEquals(new String[]{
+            "say-hello", "a", "b", "c", "dd"
+        }, parsed);
+    }
+
     @Test(expected = NonExistingCommandException.class)
     public final void testNonExistant() throws Exception {
         parser.parse("say-hello world");
