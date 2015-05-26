@@ -66,5 +66,6 @@ public class InventoryTest {
         System.out.println(drattak.getNextAction().toString());
         cure.execute();
         System.out.println(drattak.getCharacter().getHealth());
+        cure.execute(); //Test présence inventaire
     }
 }
