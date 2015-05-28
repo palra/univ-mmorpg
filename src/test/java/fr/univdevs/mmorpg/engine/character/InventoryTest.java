@@ -30,7 +30,7 @@ public class InventoryTest {
     public void testGetByType() throws Exception {
         Potion p = new Potion("potion", "cure", 9, 9);
         SuperPotion sp = new SuperPotion("supotion", 9, 9);
-        Bow bow = new Bow("bow", "weapon", 10, 3, 4);
+        Bow bow = new Bow("bow", "weapon", 10, 3);
         inventory.add(p);
         inventory.add(sp);
         inventory.add(bow);
@@ -53,31 +53,37 @@ public class InventoryTest {
     @Test
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
-        Character c = new Warrior("dratwarrior");
-        Character d = new Warrior("enemy");
-        Potion p = new Potion("potion", "Potion", 20, 20);
-        SuperPotion sp = new SuperPotion("superpotion", 30, 30);
-        drattak.setCharacter(c);
-        FightAction f = new FightAction(c, d);
-        CureAction cure = new CureAction(c, c);
-        //cure.setAction(p);  //Indispensable pour executer l'action
+        Player palra = new Player("drattak");
 
-        drattak.getCharacter().getInventory().add(p);
-        drattak.getCharacter().getInventory().add(sp);
-        drattak.setNextAction(cure);
-        System.out.println(drattak.getCharacter().getHealth());
-        try {
-        System.out.println(drattak.getNextAction().toString());
-        cure.execute();
-        } catch (NullPointerException e) {
-            System.out.println("Pas de cure sélectionnée");
-        }
-        System.out.println(drattak.getCharacter().getHealth());
-        try {
-            cure.execute(); /*Test présence inventaire*/
-        } catch (NullPointerException e) {
-            System.out.println("Pas dans l'inventaire");
-        }
+        Character c = new Warrior("dratwarrior");
+        Character d = new Warrior("palwarrior");
+
+        Potion potion1 = new Potion("potion", "Potion", 20, 20);
+        Potion potion2 = new Potion("potion2", "Potion", 20, 20);
+
+        Bow bow1 = new Bow("bow1", "Bow", 20, 20);
+        Bow bow2 = new Bow("bow2", "Bow", 20, 20);
+
+        drattak.setCharacter(c);
+        palra.setCharacter(d);
+
+        drattak.getCharacter().getInventory().add(potion1);
+        drattak.getCharacter().getInventory().add(bow1);
+        palra.getCharacter().getInventory().add(potion2);
+        palra.getCharacter().getInventory().add(bow2);
+
+
+        FightAction fight1 = new FightAction(drattak.getCharacter(), palra.getCharacter());
+        CureAction cure = new CureAction(drattak.getCharacter(), drattak.getCharacter());
+
+
+        cure.setAction(potion1);  //Indispensable pour executer l'action
+
+
+        fight1.setWeapon(bow1);
+        fight1.execute();
+
+        System.out.println(palra.getCharacter().toString()); //on vérifie que le perso de palra a perdu des points
 
     }
 }

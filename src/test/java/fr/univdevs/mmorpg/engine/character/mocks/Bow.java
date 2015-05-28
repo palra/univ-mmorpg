@@ -7,8 +7,8 @@ import fr.univdevs.mmorpg.engine.character.Weapon;
  * A Bow
  */
 public class Bow extends Weapon {
-    public Bow(String bowName, String bowCategory, int bowCost, int bowWeight, int bowPower) {
-        super(bowName, bowCategory, bowCost, bowWeight, bowPower);
+    public Bow(String bowName, String bowCategory, int bowCost, int bowWeight) {
+        super(bowName, bowCategory, bowCost, bowWeight, 20);
     }
 
     @Override

@@ -100,6 +100,7 @@ public class Inventory {
         return totalWeight;
     }
 
+
     /**
      *
      * @param name  selected name
