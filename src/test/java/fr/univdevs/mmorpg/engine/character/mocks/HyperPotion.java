@@ -1,5 +1,6 @@
-package fr.univdevs.mmorpg.engine.character;
+package fr.univdevs.mmorpg.engine.character.mocks;
 
+import fr.univdevs.mmorpg.engine.character.Cure;
 import fr.univdevs.mmorpg.engine.utils.Vector2D;
 
 /**

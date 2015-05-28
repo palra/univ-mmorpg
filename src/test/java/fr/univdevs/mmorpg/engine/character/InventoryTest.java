@@ -2,6 +2,10 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;;
 import fr.univdevs.mmorpg.engine.action.*;
+import fr.univdevs.mmorpg.engine.character.mocks.Bow;
+import fr.univdevs.mmorpg.engine.character.mocks.Potion;
+import fr.univdevs.mmorpg.engine.character.mocks.SuperPotion;
+import fr.univdevs.mmorpg.engine.character.mocks.Warrior;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,16 +60,25 @@ public class InventoryTest {
         drattak.setCharacter(c);
         FightAction f = new FightAction(c, d);
         CureAction cure = new CureAction(c, c);
-        cure.setAction(p);  //Indispensable pour executer l'action
+        //cure.setAction(p);  //Indispensable pour executer l'action
 
         drattak.getCharacter().getInventory().add(p);
         drattak.getCharacter().getInventory().add(sp);
         drattak.setNextAction(cure);
         drattak.getCharacter().addHealth(22);
         System.out.println(drattak.getCharacter().getHealth());
+        try {
         System.out.println(drattak.getNextAction().toString());
         cure.execute();
+        } catch (NullPointerException e) {
+            System.out.println("Pas de cure sélectionnée");
+        }
         System.out.println(drattak.getCharacter().getHealth());
-        cure.execute(); //Test présence inventaire
+        try {
+            cure.execute(); /*Test présence inventaire*/
+        } catch (NullPointerException e) {
+            System.out.println("Pas dans l'inventaire");
+        }
+
     }
 }

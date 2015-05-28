@@ -27,7 +27,7 @@ public class CureAction extends Action {
 
     @Override
     public ActionResult execute() throws Exception {
-        if (this.cure == null) throw new Exception("Pas de potion sélectionnée!");
+        //if (this.cure == null) throw new Exception("Pas de potion sélectionnée!");
         if (getSubject().getInventory().getByName(cure.getName()) == null) throw new Exception("Pas dans l'inventaire");
         getTarget().addHealth(this.cure.getRestoredPoints());
         getSubject().getInventory().remove(this.cure);
