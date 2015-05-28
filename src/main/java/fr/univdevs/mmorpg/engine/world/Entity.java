@@ -1,15 +1,18 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
+import fr.univdevs.mmorpg.engine.utils.Pair;
 
 /**
  * Public interface Entity, declare any object to an entity, that can be displayed in the map
  */
 public interface Entity {
-    public int getX();
-    public int getY();
-    public String getDisplay();
-    public boolean isCollidable();
+    int getX();
 
-    public Pair getPair();
+    int getY();
+
+    String getDisplay();
+
+    boolean isCollidable();
+
+    Pair getPair();
 }

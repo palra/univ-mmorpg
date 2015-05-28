@@ -1,8 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.Cure;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-import fr.univdevs.mmorpg.engine.world.Entity;
+import fr.univdevs.mmorpg.engine.utils.Pair;
 
 /**
  * SuperPotion Class
@@ -33,7 +31,6 @@ public class SuperPotion extends Cure {
     }
 
     public void setY(int y) {
-        ;
 
     }
 

@@ -1,7 +1,6 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-import fr.univdevs.mmorpg.engine.world.Entity;
+import fr.univdevs.mmorpg.engine.utils.Pair;
 
 import java.util.HashMap;
 

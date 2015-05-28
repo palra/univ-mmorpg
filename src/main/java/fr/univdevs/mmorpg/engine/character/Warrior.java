@@ -1,8 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.*;
-import fr.univdevs.mmorpg.engine.character.Character;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
+import fr.univdevs.mmorpg.engine.utils.Pair;
 
 /**
  * Created by drattak on 23/05/15.
