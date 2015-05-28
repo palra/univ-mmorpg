@@ -65,7 +65,6 @@ public class InventoryTest {
         drattak.getCharacter().getInventory().add(p);
         drattak.getCharacter().getInventory().add(sp);
         drattak.setNextAction(cure);
-        drattak.getCharacter().addHealth(22);
         System.out.println(drattak.getCharacter().getHealth());
         try {
         System.out.println(drattak.getNextAction().toString());

@@ -28,6 +28,7 @@ public abstract class Character implements MovableEntity {
         this.name = chosenName;
         this.type = chosenType;
         this.inventory = new Inventory();
+        this.health = 100;
     }
 
     public String toString() {
@@ -163,7 +164,9 @@ public abstract class Character implements MovableEntity {
      * Private method to give Health Point
      * @param health    amount of health points to give
      */
-    private void setHealth(int health) {
+    private void setHealth(int chosenHealth) {
+        if (chosenHealth < 0 || chosenHealth > MAX_HEALTH)
+            this.health = this.health;
         this.health = health;
     }
 
