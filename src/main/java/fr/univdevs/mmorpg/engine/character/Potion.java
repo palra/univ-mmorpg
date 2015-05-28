@@ -1,8 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.Cure;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-
 /**
  * Potion class
  * A Potion is a kind of cure, therefore it extends to it
@@ -49,10 +46,6 @@ public class Potion extends Cure{
 
     public boolean isCollidable() {
         return false;
-    }
-
-    public Pair getPair() {
-        return new Pair(0, 0);
     }
 }
 

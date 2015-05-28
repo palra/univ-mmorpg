@@ -1,7 +1,6 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-import fr.univdevs.mmorpg.engine.world.Entity;
+import fr.univdevs.mmorpg.engine.utils.Vector2D;
 
 import java.util.HashMap;
 
@@ -11,24 +10,23 @@ import java.util.HashMap;
  */
 public class World {
 
-    private HashMap<Pair<Integer, Integer>, Entity> entities;
+    private HashMap<Vector2D<Integer, Integer>, Entity> entities;
 
     /**
      * World constructor
      */
     public World() {
-        entities = new HashMap<Pair<Integer, Integer>, Entity>();
+        entities = new HashMap<Vector2D<Integer, Integer>, Entity>();
     }
 
     /**
      * Public method addEntity to add an Entity to the world
      *
      * @param e the Entity we want to add
-     * @param p the positon of this Entity
      * @return the Entity we just added
      */
-    public Entity addEntity(Entity e, Pair<Integer, Integer> p) {
-        this.entities.put(p, e);
+    public Entity addEntity(Entity e) {
+        this.entities.put(new Vector2D<Integer, Integer>(e.getX(), e.getY()), e);
         return e;
     }
 

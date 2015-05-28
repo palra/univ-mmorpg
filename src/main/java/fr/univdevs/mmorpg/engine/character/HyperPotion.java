@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
+import fr.univdevs.mmorpg.engine.utils.Vector2D;
 
 /**
  * HyperPotion class
@@ -47,7 +47,7 @@ public class HyperPotion extends Cure {
         return false;
     }
 
-    public Pair getPair() {
+    public Vector2D getPosition() {
         return null;
     }
 

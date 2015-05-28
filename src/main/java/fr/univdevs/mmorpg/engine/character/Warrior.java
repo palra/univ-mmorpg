@@ -1,8 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.*;
-import fr.univdevs.mmorpg.engine.character.Character;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
+import fr.univdevs.mmorpg.engine.utils.Vector2D;
 
 /**
  * Created by drattak on 23/05/15.
@@ -36,7 +34,7 @@ public class Warrior extends Character {
         return true;
     }
 
-    public Pair getPair() {
+    public Vector2D getPosition() {
         return null;
     }
 }

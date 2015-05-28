@@ -1,9 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.Cure;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-import fr.univdevs.mmorpg.engine.world.Entity;
-
 /**
  * SuperPotion Class
  * A super potion is a kind of cure,
@@ -33,7 +29,6 @@ public class SuperPotion extends Cure {
     }
 
     public void setY(int y) {
-        ;
 
     }
 
@@ -43,9 +38,5 @@ public class SuperPotion extends Cure {
 
     public boolean isCollidable() {
         return false;
-    }
-
-    public Pair getPair() {
-        return new Pair(0, 0);
     }
 }

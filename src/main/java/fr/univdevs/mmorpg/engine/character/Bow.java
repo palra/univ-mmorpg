@@ -1,8 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.character.Weapon;
-import fr.univdevs.mmorpg.engine.character.utils.Pair;
-
 /**
  * Testclass Bow
  * A Bow
@@ -44,9 +41,5 @@ public class Bow extends Weapon {
 
     public boolean isCollidable() {
         return false;
-    }
-
-    public Pair getPair() {
-        return new Pair(0, 0);
     }
 }
