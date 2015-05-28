@@ -3,6 +3,7 @@ package fr.univdevs.commander.userworld;
 import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.commander.CommandParserAware;
+import fr.univdevs.util.Strings;
 
 /**
  * Command that lists all the commands in a given CommandParser
@@ -40,8 +41,9 @@ public class HelpCommand implements Command, CommandParserAware {
         String out = "";
         for (Command c : parser.getCommands()) {
             out += c.getName();
-            if (withDesc)
-                out += " : " + c.getArgumentsDescription();
+            String desc = c.getArgumentsDescription();
+            if (withDesc && !Strings.isNullOrEmpty(desc))
+                out += " : " + Strings.nullToEmpty(desc);
 
             out += "\n";
         }
