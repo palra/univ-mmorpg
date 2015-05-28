@@ -3,7 +3,6 @@ package fr.univdevs.mmorpg.engine.character;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 
 /**
- * @class Character
  * The Character object. This is the character played by a player
  * It a
  */
@@ -32,7 +31,7 @@ public abstract class Character implements MovableEntity {
     }
 
     public String toString() {
-        String charac = new String();
+        String charac = "";
         charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.actionPoints + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
         return charac;
     }
@@ -40,7 +39,7 @@ public abstract class Character implements MovableEntity {
     /**
      * Returns the money the Character has
      *
-     * @return\tint
+     * @return int
      */
     public int getMoney() {
         return money;
@@ -226,7 +225,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Private method to set the speed of a Character
-     * @param speed
+     * @param speed the speed of the character
      */
     private void setSpeed(int speed) {
         this.speed = speed;
