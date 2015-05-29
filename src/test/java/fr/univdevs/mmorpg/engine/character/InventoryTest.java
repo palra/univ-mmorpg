@@ -2,10 +2,7 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;;
 import fr.univdevs.mmorpg.engine.action.*;
-import fr.univdevs.mmorpg.engine.character.mocks.Bow;
-import fr.univdevs.mmorpg.engine.character.mocks.Potion;
-import fr.univdevs.mmorpg.engine.character.mocks.SuperPotion;
-import fr.univdevs.mmorpg.engine.character.mocks.Warrior;
+import fr.univdevs.mmorpg.engine.character.mocks.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +61,8 @@ public class InventoryTest {
         Bow bow1 = new Bow("bow1", "Bow", 20, 20);
         Bow bow2 = new Bow("bow2", "Bow", 20, 20);
 
+        LittleSpell ls = new LittleSpell("Spell", "LittleSpell");
+
         drattak.setCharacter(c);
         palra.setCharacter(d);
 
@@ -72,18 +71,29 @@ public class InventoryTest {
         palra.getCharacter().getInventory().add(potion2);
         palra.getCharacter().getInventory().add(bow2);
 
+        drattak.getCharacter().getInventory().add(ls);
+
 
         FightAction fight1 = new FightAction(drattak.getCharacter(), palra.getCharacter());
         CureAction cure = new CureAction(drattak.getCharacter(), drattak.getCharacter());
-
+        SpellAction spell = new SpellAction(drattak.getCharacter(), palra.getCharacter());
 
         cure.setAction(potion1);  //Indispensable pour executer l'action
+        spell.setSpell(ls);
 
 
         fight1.setWeapon(bow1);
-        fight1.execute();
 
-        System.out.println(palra.getCharacter().toString()); //on vérifie que le perso de palra a perdu des points
+        MoveAction m = new MoveAction(drattak.getCharacter());
+        //m.execute();
+        System.out.println(palra.getCharacter().getHealth());
+        try {
+            spell.execute();
+        } catch (NullPointerException e) {
+            System.out.println("Pas de sort choisi!");
+        }
+
+        System.out.println(palra.getCharacter().getHealth()); //on vérifie que le perso de palra a perdu des points
 
     }
 }
