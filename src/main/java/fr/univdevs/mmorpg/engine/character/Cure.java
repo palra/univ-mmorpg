@@ -8,6 +8,7 @@ package fr.univdevs.mmorpg.engine.character;
 public abstract class Cure extends Item{
     private int restoredPoints;
 
+
     /**
      * Cure constructor
      *
@@ -22,6 +23,7 @@ public abstract class Cure extends Item{
         this.restoredPoints = restoredPoints;
     }
 
+
     /**
      * Cure constructor
      *
@@ -30,6 +32,7 @@ public abstract class Cure extends Item{
      * @param cureCost       the cost of the cure
      * @param restoredPoints amounts of points restored by the cure
      */
+
     public Cure(String cureName, String cureCategory, int cureCost, int restoredPoints) {
         super(cureName, cureCategory, cureCost);
         this.restoredPoints = restoredPoints;

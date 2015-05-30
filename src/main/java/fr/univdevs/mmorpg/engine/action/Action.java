@@ -34,6 +34,15 @@ public abstract class Action {
     }
 
     /**
+     * Public method to return the subject of the action
+     *
+     * @return the subject
+     */
+    public Character getSubject() {
+        return this.subject;
+    }
+
+    /**
      * Abstract method to execute the action
      * Will describe the impact of the action on the targert
      *

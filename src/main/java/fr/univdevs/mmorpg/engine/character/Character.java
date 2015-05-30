@@ -28,6 +28,7 @@ public abstract class Character implements MovableEntity {
         this.name = chosenName;
         this.type = chosenType;
         this.inventory = new Inventory();
+        this.health = 100;
     }
 
     public String toString() {
@@ -161,10 +162,13 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Private method to give Health Point
-     * @param health    amount of health points to give
+     * @param chosenHealth    amount of health points to give
      */
-    private void setHealth(int health) {
-        this.health = health;
+    private void setHealth(int chosenHealth) {
+        if (chosenHealth < 0 || chosenHealth > MAX_HEALTH) {
+            this.health = this.health;
+        }
+        this.health = chosenHealth;
     }
 
     /**
@@ -177,10 +181,10 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to remove Health Point
-     * @param health    amount of health points to remove
+     * @param chosenHealth    amount of health points to remove
      */
-    public void removeHealth(int health){
-        this.setHealth(this.getHealth()+health);
+    public void removeHealth(int chosenHealth) {
+        this.setHealth(this.health - chosenHealth);
     }
 
     /**

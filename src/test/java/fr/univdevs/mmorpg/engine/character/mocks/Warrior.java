@@ -1,11 +1,12 @@
-package fr.univdevs.mmorpg.engine.character;
+package fr.univdevs.mmorpg.engine.character.mocks;
 
+import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.utils.Vector2D;
 
 /**
  * Created by drattak on 23/05/15.
  */
-public class Warrior extends Character {
+public class Warrior extends fr.univdevs.mmorpg.engine.character.Character {
     public Warrior(String name) {
         super(name, "Warrior");
     }

@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;;
 import fr.univdevs.mmorpg.engine.action.*;
+import fr.univdevs.mmorpg.engine.character.mocks.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class InventoryTest {
     public void testGetByType() throws Exception {
         Potion p = new Potion("potion", "cure", 9, 9);
         SuperPotion sp = new SuperPotion("supotion", 9, 9);
-        Bow bow = new Bow("bow", "weapon", 10, 3, 4);
+        Bow bow = new Bow("bow", "weapon", 10, 3);
         inventory.add(p);
         inventory.add(sp);
         inventory.add(bow);
@@ -49,22 +50,50 @@ public class InventoryTest {
     @Test
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
-        Character c = new Warrior("dratwarrior");
-        Character d = new Warrior("enemy");
-        Potion p = new Potion("potion", "Potion", 20, 20);
-        SuperPotion sp = new SuperPotion("superpotion", 30, 30);
-        drattak.setCharacter(c);
-        FightAction f = new FightAction(c, d);
-        CureAction cure = new CureAction(c, c);
-        cure.setAction(p);  //Indispensable pour executer l'action
+        Player palra = new Player("drattak");
 
-        drattak.getCharacter().getInventory().add(p);
-        drattak.getCharacter().getInventory().add(sp);
-        drattak.setNextAction(cure);
-        drattak.getCharacter().addHealth(22);
-        System.out.println(drattak.getCharacter().getHealth());
-        System.out.println(drattak.getNextAction().toString());
-        cure.execute();
-        System.out.println(drattak.getCharacter().getHealth());
+        Character c = new Warrior("dratwarrior");
+        Character d = new Warrior("palwarrior");
+
+        Potion potion1 = new Potion("potion", "Potion", 20, 20);
+        Potion potion2 = new Potion("potion2", "Potion", 20, 20);
+
+        Bow bow1 = new Bow("bow1", "Bow", 20, 20);
+        Bow bow2 = new Bow("bow2", "Bow", 20, 20);
+
+        LittleSpell ls = new LittleSpell("Spell", "LittleSpell");
+
+        drattak.setCharacter(c);
+        palra.setCharacter(d);
+
+        drattak.getCharacter().getInventory().add(potion1);
+        drattak.getCharacter().getInventory().add(bow1);
+        palra.getCharacter().getInventory().add(potion2);
+        palra.getCharacter().getInventory().add(bow2);
+
+        drattak.getCharacter().getInventory().add(ls);
+
+
+        FightAction fight1 = new FightAction(drattak.getCharacter(), palra.getCharacter());
+        CureAction cure = new CureAction(drattak.getCharacter(), drattak.getCharacter());
+        SpellAction spell = new SpellAction(drattak.getCharacter(), palra.getCharacter());
+
+        cure.setAction(potion1);  //Indispensable pour executer l'action
+        spell.setSpell(ls);
+
+
+        fight1.setWeapon(bow1);
+
+        MoveAction m = new MoveAction(drattak.getCharacter());
+        //m.execute();
+        System.out.println(palra.getCharacter().getHealth());
+        try {
+            spell.execute();
+        } catch (NullPointerException e) {
+            System.out.println("Pas de sort choisi!");
+        }
+
+        System.out.println(palra.getCharacter().getHealth()); //on vérifie que le perso de palra a perdu des points
+
     }
 }

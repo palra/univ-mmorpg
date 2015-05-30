@@ -20,7 +20,7 @@ public class Inventory {
      * A HashMap is a couple string, item here
      * The string is the key (the name of the item)
      */
-    protected Inventory() {
+    public Inventory() {
         this.items = new HashMap<String, Item>();
     }
 
@@ -31,6 +31,7 @@ public class Inventory {
         }
         return charac;
     }
+
 
     /**
      *
@@ -99,6 +100,7 @@ public class Inventory {
         return totalWeight;
     }
 
+
     /**
      *
      * @param name  selected name
@@ -115,6 +117,18 @@ public class Inventory {
     public Item add(Item item) {
         return this.items.put(item.getName(), item);
     }
+
+
+    public boolean has(Item item) {
+
+        return this.items.containsValue(item);
+    }
+
+    public boolean has(String name) {
+        return this.items.containsKey(name);
+    }
+
+
 
     /**
      *
