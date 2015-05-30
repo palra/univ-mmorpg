@@ -1,8 +1,11 @@
 package fr.univdevs.mmorpg.engine.character.skills;
 
 /**
- * Created by drattak on 19/05/15.
+ * Interface representing the ability to put spells on other characters
+ *
+ * @author Vincent Emile
+ * @author Loïc Payol
  */
 public interface CanSpell {
-    public void Spell(Character c, String spellName);
+    void putSpell(Character c, String spellName);
 }
