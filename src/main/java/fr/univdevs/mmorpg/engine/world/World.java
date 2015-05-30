@@ -23,21 +23,21 @@ public class World {
      * Public method addEntity to add an Entity to the world
      *
      * @param e the Entity we want to add
-     * @return the Entity we just added
+     * @return null if no entity was at this place, the old entity otherwise
      */
     public Entity addEntity(Entity e) {
-        this.entities.put(new Vector2D<Integer, Integer>(e.getX(), e.getY()), e);
-        return e;
+        return this.entities.put(new Vector2D<Integer, Integer>(e.getX(), e.getY()), e);
     }
 
     /**
      * Public method to return an Entity
      *
-     * @param e the Entity we want to get
-     * @return the entity got
+     * @param x the horizontal position of the entity you want to get
+     * @param y the vertical position of the entity you want to get
+     * @return the entity, if exists
      */
-    public Entity getEntity(Entity e) {
-        return this.entities.get(e);
+    public Entity getEntity(int x, int y) {
+        return this.entities.get(new Vector2D<Integer, Integer>(x, y));
     }
 
 
