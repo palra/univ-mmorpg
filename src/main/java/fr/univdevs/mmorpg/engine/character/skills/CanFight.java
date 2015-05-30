@@ -1,8 +1,10 @@
 package fr.univdevs.mmorpg.engine.character.skills;
 
 /**
- * Created by drattak on 19/05/15.
+ * Interface representing the ability to fight with other characters
+ *
+ * @author Vincent Emile
  */
 public interface CanFight {
-    public void attack(Character target, String weaponName);
+    void attack(Character target, String weaponName);
 }

@@ -1,8 +1,10 @@
 package fr.univdevs.mmorpg.engine.character.skills;
 
 /**
- * Created by drattak on 19/05/15.
+ * Interface representing the ability to cure other characters
+ *
+ * @author Vincent Emile
  */
 public interface CanCure {
-    public void cure(Character c, String cureName);
+    void cure(Character c, String cureName);
 }
