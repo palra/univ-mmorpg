@@ -1,4 +1,6 @@
-package fr.univdevs.mmorpg.engine.character;
+package fr.univdevs.mmorpg.engine.character.mocks;
+
+import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
  * Created by drattak on 20/05/15.

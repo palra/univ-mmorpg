@@ -1,7 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.Player;;
-import fr.univdevs.mmorpg.engine.action.*;
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.mocks.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
@@ -65,7 +64,7 @@ public class InventoryTest {
 
         drattak.setCharacter(c);
         palra.setCharacter(d);
-
+/*
         drattak.getCharacter().getInventory().add(potion1);
         drattak.getCharacter().getInventory().add(bow1);
         palra.getCharacter().getInventory().add(potion2);
@@ -94,6 +93,6 @@ public class InventoryTest {
         }
 
         System.out.println(palra.getCharacter().getHealth()); //on vérifie que le perso de palra a perdu des points
-
+        */
     }
 }

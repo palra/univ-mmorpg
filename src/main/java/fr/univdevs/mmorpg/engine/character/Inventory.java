@@ -1,14 +1,12 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.world.MovableEntity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * @class Inventory
+ * Inventory
  * The inventory containing items
  *
  */
@@ -25,7 +23,7 @@ public class Inventory {
     }
 
     public String toString() {
-        String charac = new String();
+        String charac = "";
         for (int i = 0; i < this.getItems().length; i++) {
             charac += this.getItems()[i].toString() + '\n';
         }
@@ -83,8 +81,8 @@ public class Inventory {
         for(Item value : this.items.values()){
             types.add(value.getCategory());
         }
-        String[] typeString = (String[])types.toArray();
-        return typeString;
+
+        return (String[]) types.toArray();
     }
 
     /**
@@ -136,5 +134,16 @@ public class Inventory {
      */
     public Item remove(Item item) {
         return this.items.remove(item.getName());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Inventory)) return false;
+
+        Inventory inventory = (Inventory) o;
+
+        return items.equals(inventory.items);
+
     }
 }

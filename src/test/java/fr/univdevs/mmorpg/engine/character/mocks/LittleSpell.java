@@ -1,7 +1,5 @@
 package fr.univdevs.mmorpg.engine.character.mocks;
 
-import fr.univdevs.mmorpg.engine.character.Weapon;
-
 /**
  * Created by drattak on 29/05/15.
  */
