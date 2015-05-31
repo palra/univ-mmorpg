@@ -165,7 +165,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Private method to give Health Point
-     * @param chosenHealth    amount of health points to give
+     * @param chosenHealth The new healh point value
      */
     private void setHealth(int chosenHealth) {
         this.health = Numbers.clamp(chosenHealth, 0, MAX_HEALTH);
