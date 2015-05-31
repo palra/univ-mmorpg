@@ -78,7 +78,7 @@ public class InventoryTest {
         CureAction cure = new CureAction(drattak.getCharacter(), drattak.getCharacter());
         SpellAction spell = new SpellAction(drattak.getCharacter(), palra.getCharacter());
 
-        cure.setAction(potion1);  //Indispensable pour executer l'action
+        cure.setCure(potion1);  //Indispensable pour executer l'action
         spell.setSpell(ls);
 
 

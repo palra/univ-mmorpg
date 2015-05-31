@@ -11,6 +11,12 @@ public class Tilemap {
 
     private char[] tiles;
 
+    /**
+     * Tilemap Constructor
+     * a TileMap is map by string
+     *
+     * @param chosenTiles the String representing the tiles
+     */
     public Tilemap(char[] chosenTiles) {
         tiles = chosenTiles;
     }

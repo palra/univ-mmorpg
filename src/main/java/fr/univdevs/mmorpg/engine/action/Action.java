@@ -50,6 +50,11 @@ public abstract class Action {
      */
     public abstract ActionResult execute() throws Exception;
 
+    /**
+     * Redefinition of toString
+     *
+     * @return the generated String
+     */
     public String toString() {
         return "Cible = " + this.target.getName() + '\n' + "Acteur = " + this.subject.getName() + '\n';
     }

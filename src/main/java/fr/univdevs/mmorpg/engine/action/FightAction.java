@@ -2,7 +2,6 @@ package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Weapon;
-import fr.univdevs.mmorpg.engine.action.ActionResult;
 
 /**
  * FightAction class
@@ -22,11 +21,21 @@ public class FightAction extends Action {
         super(chosenSubject, chosenTarget);
     }
 
-    public void setWeapon(Weapon chosenWeapon) {
+    /**
+     * Public method to pick a weapon in order to attack
+     *
+     * @param chosenWeapon the weapon we want to use
+     * @return chosenWeapon the same weapon
+     */
+    public Weapon setWeapon(Weapon chosenWeapon) {
         this.weapon = chosenWeapon;
+        return chosenWeapon;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     public ActionResult execute() {
         this.getTarget().removeHealth(this.weapon.getPower());
         return ActionResult.ATTACKED;

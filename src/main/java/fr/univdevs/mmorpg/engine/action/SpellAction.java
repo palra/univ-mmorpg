@@ -9,6 +9,13 @@ import fr.univdevs.mmorpg.engine.character.Character;
 public class SpellAction extends Action {
     private Weapon spell;
 
+    /**
+     * SpellAction constructor
+     * This is the action to cast a spell
+     *
+     * @param subject The attacking Character
+     * @param target  the attacked one
+     */
     public SpellAction(Character subject, Character target) {
         super(subject, target);
     }
