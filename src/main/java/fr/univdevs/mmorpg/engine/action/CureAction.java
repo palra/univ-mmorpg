@@ -20,12 +20,22 @@ public class CureAction extends Action {
         super(subject, target);
     }
 
-    public Cure setAction(Cure chosenCure) {
+    /**
+     * Public method to add a Cure to the action
+     *
+     * @param chosenCure the Cure we want to use
+     * @return the same cure
+     */
+    public Cure setCure(Cure chosenCure) {
         this.cure = chosenCure;
         return chosenCure;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     * @return
+     * @throws Exception
+     */
     public ActionResult execute() throws Exception {
         //if (this.cure == null) throw new Exception("Pas de potion sélectionnée!");
         if (getSubject().getInventory().getByName(cure.getName()) == null) throw new Exception("Pas dans l'inventaire");
@@ -34,6 +44,11 @@ public class CureAction extends Action {
         return ActionResult.ATTACKED; //To be changed //TODO Game manager
     }
 
+    /**
+     * Redefinition of toString
+     * @return the generated String
+     * @throws NullPointerException if there's no cure to describe
+     */
     public String toString() throws NullPointerException {
         if (this.cure == null) throw new NullPointerException("Pas de cure disponible");
         return super.toString() + "Nombre de points restaurés = " + this.cure.getRestoredPoints();

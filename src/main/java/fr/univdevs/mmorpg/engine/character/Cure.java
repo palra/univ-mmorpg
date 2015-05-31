@@ -32,7 +32,6 @@ public abstract class Cure extends Item{
      * @param cureCost       the cost of the cure
      * @param restoredPoints amounts of points restored by the cure
      */
-
     public Cure(String cureName, String cureCategory, int cureCost, int restoredPoints) {
         super(cureName, cureCategory, cureCost);
         this.restoredPoints = restoredPoints;
@@ -46,6 +45,11 @@ public abstract class Cure extends Item{
         return restoredPoints;
     }
 
+    /**
+     * Redefinition of toString
+     *
+     * @return the generated String
+     */
     public String toString() {
         return "categorie = " + this.getCategory() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
     }

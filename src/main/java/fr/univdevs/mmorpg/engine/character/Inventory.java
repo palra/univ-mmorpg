@@ -24,6 +24,11 @@ public class Inventory {
         this.items = new HashMap<String, Item>();
     }
 
+    /**
+     * Redefinition of toString
+     *
+     * @return the generated String
+     */
     public String toString() {
         String charac = new String();
         for (int i = 0; i < this.getItems().length; i++) {
@@ -31,7 +36,6 @@ public class Inventory {
         }
         return charac;
     }
-
 
     /**
      *
@@ -118,16 +122,24 @@ public class Inventory {
         return this.items.put(item.getName(), item);
     }
 
-
+    /**
+     * Public method to check if the inventory the param Item
+     * @param item  the item we want to check
+     * @return true if the inventory contains the selected item
+     */
     public boolean has(Item item) {
 
         return this.items.containsValue(item);
     }
 
+    /**
+     * Public method to check if the inventory has an item
+     * @param name  We check the presence by the name
+     * @return true if the inventory has the selected item
+     */
     public boolean has(String name) {
         return this.items.containsKey(name);
     }
-
 
 
     /**

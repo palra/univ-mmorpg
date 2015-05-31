@@ -12,6 +12,12 @@ public class MoveAction extends Action {
     private int x = -100000;
     private int y = -100000;
 
+    /**
+     * MoveAction constructor
+     * This represents the action of moving in a place
+     *
+     * @param target the Character who moves
+     */
     public MoveAction(Character target) {
         super(target, target);
     }
