@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 
 /**
@@ -14,6 +13,6 @@ public class NoOpAction extends Action {
 
     @Override
     public ActionResult execute() throws Exception {
-        return ActionResult.ATTACKED;
+        return ActionResult.NOTHING;
     }
 }

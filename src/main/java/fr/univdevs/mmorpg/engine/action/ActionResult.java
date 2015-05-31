@@ -9,5 +9,6 @@ public enum ActionResult {
     FROZEN,
     ATTACKED,
     CURED,
-    BEWITCHED;
+    BEWITCHED,
+    NOTHING
 }
