@@ -1,13 +1,13 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.mmorpg.engine.Player;
 
 /**
  * NoOpAction class
  * When a character does nothing
  */
 public class NoOpAction extends Action {
-    public NoOpAction(Character subject, Character target) {
+    public NoOpAction(Player subject, Player target) {
         super(subject, target);
     }
 

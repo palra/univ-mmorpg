@@ -1,8 +1,6 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.character.*;
-import fr.univdevs.mmorpg.engine.character.Character;
-import fr.univdevs.mmorpg.engine.action.ActionResult;
+import fr.univdevs.mmorpg.engine.Player;
 
 /**
  * Public class Action
@@ -10,16 +8,15 @@ import fr.univdevs.mmorpg.engine.action.ActionResult;
  * The action is done by a subject to a target
  */
 public abstract class Action {
-    private Character subject;
-    private Character target;
+    private Player subject;
+    private Player target;
 
     /**
      * Action constructor
-     *
-     * @param chosenSubject the Character who execute the action
+     *  @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
-    public Action(Character chosenSubject, Character chosenTarget) {
+    public Action(Player chosenSubject, Player chosenTarget) {
         this.subject = chosenSubject;
         this.target = chosenTarget;
     }
@@ -29,7 +26,7 @@ public abstract class Action {
      *
      * @return the target
      */
-    public Character getTarget() {
+    public Player getTarget() {
         return this.target;
     }
 
@@ -38,7 +35,7 @@ public abstract class Action {
      *
      * @return the subject
      */
-    public Character getSubject() {
+    public Player getSubject() {
         return this.subject;
     }
 

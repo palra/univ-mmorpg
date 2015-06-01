@@ -39,6 +39,17 @@ public class GameManager {
     }
 
     /**
+     * Registers a new player
+     *
+     * @param player The new player
+     * @return The old player with the same name, if exists, null otherwise
+     */
+    public Player addPlayer(Player player) {
+        return this.players.put(player.getName(), player);
+    }
+
+
+    /**
      * Sets the player comparator, in order to change priority of a player on another.
      *
      * @param comparator The comparator object

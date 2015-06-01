@@ -43,7 +43,7 @@ public class Player {
         this.name = chosenName;
     }
 
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -68,4 +68,16 @@ public class Player {
         return this.action;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+
+        Player player = (Player) o;
+
+        if (!name.equals(player.name)) return false;
+        if (!character.equals(player.character)) return false;
+        return !(action != null ? !action.equals(player.action) : player.action != null);
+
+    }
 }

@@ -8,7 +8,9 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     InventoryTest.class,
-    NoOpActionTest.class
+    NoOpActionTest.class,
+    GameManagerTest.class,
+    PlayerTest.class
 })
 
 /**
