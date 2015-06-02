@@ -5,7 +5,7 @@ import fr.univdevs.commander.Command;
 /**
  * @author Loïc Payol
  */
-public class OMGDuplicateNameCommand implements Command {
+public class OMGDuplicateNameCommand extends Command {
     public String execute(String[] args) {
         return null;
     }

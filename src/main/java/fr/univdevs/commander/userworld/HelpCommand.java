@@ -1,8 +1,6 @@
 package fr.univdevs.commander.userworld;
 
 import fr.univdevs.commander.Command;
-import fr.univdevs.commander.CommandParser;
-import fr.univdevs.commander.CommandParserAware;
 import fr.univdevs.util.Strings;
 
 /**
@@ -10,11 +8,10 @@ import fr.univdevs.util.Strings;
  *
  * @author Loïc Payol
  */
-public class HelpCommand implements Command, CommandParserAware {
+public class HelpCommand extends Command {
     private static final String DEFAULT_NAME = "help";
     private static final String WITH_DESC_OPT = "--with-desc";
     private final String cmdName;
-    private CommandParser parser;
 
     /**
      * Default constructor, setting the command name to the default one.
@@ -37,13 +34,13 @@ public class HelpCommand implements Command, CommandParserAware {
      * {@inheritDoc}
      */
     public String execute(String[] args) throws Exception {
-        boolean withDesc = args.length > 1 && args[0].equals(WITH_DESC_OPT);
+        boolean withDesc = args.length >= 1 && args[0].equals(WITH_DESC_OPT);
         String out = "";
-        for (Command c : parser.getCommands()) {
+        for (Command c : this.getCommandParser().getCommands()) {
             out += c.getName();
             String desc = c.getSynopsis();
             if (withDesc && !Strings.isNullOrEmpty(desc))
-                out += " : " + Strings.nullToEmpty(desc);
+                out += " " + desc;
 
             out += "\n";
         }
@@ -63,12 +60,5 @@ public class HelpCommand implements Command, CommandParserAware {
      */
     public String getName() {
         return this.cmdName;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setCommandParser(CommandParser parser) {
-        this.parser = parser;
     }
 }

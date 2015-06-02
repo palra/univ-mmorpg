@@ -5,7 +5,7 @@ import fr.univdevs.commander.Command;
 /**
  * @author Loïc Payol
  */
-public class ThrowingExceptionCommand implements Command {
+public class ThrowingExceptionCommand extends Command {
     public String execute(String[] args) throws Exception {
         throw new Exception("NEINEINEINEIN");
     }

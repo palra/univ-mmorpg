@@ -7,7 +7,7 @@ import fr.univdevs.commander.Command;
  *
  * @author Loïc Payol
  */
-public class ExitCommand implements Command {
+public class ExitCommand extends Command {
     private static final String DEFAULT_NAME = "exit";
     private final String cmdName;
     private boolean closed = false;
@@ -34,13 +34,6 @@ public class ExitCommand implements Command {
     public String execute(String[] args) throws Exception {
         this.setClosed(true);
         return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String getSynopsis() {
-        return this.getName();
     }
 
     /**

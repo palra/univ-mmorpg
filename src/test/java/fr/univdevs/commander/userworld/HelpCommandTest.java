@@ -7,14 +7,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by palra on 25/05/15.
+ * HelpCommandTest
  */
 public class HelpCommandTest {
     @Test
     public void testHelp() throws Exception {
         HelpCommand help = new HelpCommand();
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
-        help.setCommandParser(parser);
 
         String out = parser.parse("help").getOutput();
         assertEquals("help\nexit\n", out);
@@ -25,17 +24,15 @@ public class HelpCommandTest {
         String altName = "foo";
         HelpCommand help = new HelpCommand(altName);
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
-        help.setCommandParser(parser);
 
         String out = parser.parse(altName).getOutput();
-        assertEquals("help\nexit\n", out);
+        assertEquals("foo\nexit\n", out);
     }
 
     @Test
     public void testWithDescription() throws Exception {
         HelpCommand help = new HelpCommand();
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
-        help.setCommandParser(parser);
 
         String out = parser.parse("help --with-desc").getOutput();
         assertEquals("help [--with-desc]\nexit\n", out);

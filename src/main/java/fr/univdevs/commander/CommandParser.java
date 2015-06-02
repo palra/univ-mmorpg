@@ -60,6 +60,7 @@ public class CommandParser {
             );
         }
 
+        command.setCommandParser(this); // Injecting ourself
         this.commands.put(command.getName(), command);
     }
 

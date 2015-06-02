@@ -2,7 +2,7 @@ package fr.univdevs.commander.mocks;
 
 import fr.univdevs.commander.Command;
 
-public class GreeterCommand implements Command {
+public class GreeterCommand extends Command {
 
     public String execute(String[] args) {
         String out = "";
