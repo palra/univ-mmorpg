@@ -20,7 +20,10 @@ public abstract class Command implements CommandParserAware {
     public abstract String execute(String[] args) throws Exception;
 
     /**
-     * Returns a description of the correct way to wall the command.
+     * Returns a description of the correct way to call the command.
+     * The synopsis should be a short description of the syntax of the arguments.
+     * Please refer to <a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap12.html">this syntax</a>
+     * for your argument description.
      *
      * @return The synopsis of the command
      */
