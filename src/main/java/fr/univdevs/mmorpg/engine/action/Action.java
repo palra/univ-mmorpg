@@ -1,15 +1,18 @@
 package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.logger.Logger;
+import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
 
 /**
  * Public class Action
  * An action is any thing that can do the character
  * The action is done by a subject to a target
  */
-public abstract class Action {
+public abstract class Action implements LoggerAwareInterface {
     private Player subject;
     private Player target;
+    private Logger logger;
 
     /**
      * Action constructor
@@ -37,6 +40,13 @@ public abstract class Action {
      */
     public Player getSubject() {
         return this.subject;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 
     /**
