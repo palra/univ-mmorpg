@@ -10,7 +10,7 @@ public class OMGDuplicateNameCommand implements Command {
         return null;
     }
 
-    public String getArgumentsDescription() {
+    public String getSynopsis() {
         return null;
     }
 

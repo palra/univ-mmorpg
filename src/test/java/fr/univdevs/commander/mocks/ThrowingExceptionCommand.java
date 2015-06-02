@@ -10,7 +10,7 @@ public class ThrowingExceptionCommand implements Command {
         throw new Exception("NEINEINEINEIN");
     }
 
-    public String getArgumentsDescription() {
+    public String getSynopsis() {
         return null;
     }
 

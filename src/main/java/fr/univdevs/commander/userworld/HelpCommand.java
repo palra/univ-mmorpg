@@ -41,7 +41,7 @@ public class HelpCommand implements Command, CommandParserAware {
         String out = "";
         for (Command c : parser.getCommands()) {
             out += c.getName();
-            String desc = c.getArgumentsDescription();
+            String desc = c.getSynopsis();
             if (withDesc && !Strings.isNullOrEmpty(desc))
                 out += " : " + Strings.nullToEmpty(desc);
 
@@ -54,7 +54,7 @@ public class HelpCommand implements Command, CommandParserAware {
     /**
      * {@inheritDoc}
      */
-    public String getArgumentsDescription() {
+    public String getSynopsis() {
         return "[" + WITH_DESC_OPT + "]";
     }
 

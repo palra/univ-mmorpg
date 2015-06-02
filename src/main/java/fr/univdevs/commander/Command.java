@@ -15,13 +15,11 @@ public interface Command {
     String execute(String[] args) throws Exception;
 
     /**
-     * Returns a description of the expected argument.
-     * Each element of the array describe an argument, or a group of arguments
-     * if the command accepts a varying number of arguments.
+     * Returns a description of the correct way to wall the command.
      *
-     * @return The String array describing the expected arguments
+     * @return The synopsis of the command
      */
-    String getArgumentsDescription();
+    String getSynopsis();
 
     /**
      * Returns the name of the command.

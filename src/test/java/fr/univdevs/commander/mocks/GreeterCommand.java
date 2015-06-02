@@ -13,7 +13,7 @@ public class GreeterCommand implements Command {
         return out;
     }
 
-    public String getArgumentsDescription() {
+    public String getSynopsis() {
         return this.getName() + " <persons...>\n"
             + "- persons : all the persons you want to say `Hello`.";
     }

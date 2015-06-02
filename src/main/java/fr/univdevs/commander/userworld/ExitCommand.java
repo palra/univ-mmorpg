@@ -39,7 +39,7 @@ public class ExitCommand implements Command {
     /**
      * {@inheritDoc}
      */
-    public String getArgumentsDescription() {
+    public String getSynopsis() {
         return this.getName();
     }
 
