@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.character._mocks;
 
-import fr.univdevs.mmorpg.engine.utils.Vector2D;
+import fr.univdevs.util.Vector2D;
 
 /**
  * Created by drattak on 23/05/15.

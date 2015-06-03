@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.utils;
+package fr.univdevs.util;
 
 /**
  * Utility class containing static helper methods about number manipulation

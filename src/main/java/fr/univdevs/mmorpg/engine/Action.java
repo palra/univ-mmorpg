@@ -1,6 +1,5 @@
-package fr.univdevs.mmorpg.engine.action;
+package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
 

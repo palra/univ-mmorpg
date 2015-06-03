@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine._mocks;
 
+import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.SubjectEvent;
 

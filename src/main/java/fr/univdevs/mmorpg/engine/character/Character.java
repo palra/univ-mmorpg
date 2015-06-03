@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.utils.Numbers;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
+import fr.univdevs.util.Numbers;
 
 /**
  * The Character object. This is the character played by a player
@@ -112,7 +112,7 @@ public abstract class Character implements MovableEntity {
      * @param experience amount of experience we want to add
      */
     public void addExperience(int experience){
-        this.setExperience(this.getExperience()+experience);
+        this.setExperience(this.getExperience() + experience);
     }
 
     /**

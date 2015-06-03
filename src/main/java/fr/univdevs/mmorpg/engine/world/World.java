@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import fr.univdevs.mmorpg.engine.utils.Vector2D;
+import fr.univdevs.util.Vector2D;
 
 import java.util.HashMap;
 

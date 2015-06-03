@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.character._mocks;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
-import fr.univdevs.mmorpg.engine.utils.Vector2D;
+import fr.univdevs.util.Vector2D;
 
 /**
  * HyperPotion class

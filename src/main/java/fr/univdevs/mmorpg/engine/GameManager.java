@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.world.World;
 

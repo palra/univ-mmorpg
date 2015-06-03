@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.character.Character;
 
 import java.util.Comparator;

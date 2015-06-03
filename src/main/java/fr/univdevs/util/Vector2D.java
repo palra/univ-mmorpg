@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.utils;
+package fr.univdevs.util;
 
 /**
  * Class Vector2D to represent a two dimenstionnal math vector.
