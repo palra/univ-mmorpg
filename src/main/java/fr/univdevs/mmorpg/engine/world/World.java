@@ -10,13 +10,13 @@ import java.util.HashMap;
  */
 public class World {
 
-    private HashMap<Vector2D<Integer, Integer>, Entity> entities;
+    private HashMap<Vector2D<Integer>, Entity> entities;
 
     /**
      * World constructor
      */
     public World() {
-        entities = new HashMap<Vector2D<Integer, Integer>, Entity>();
+        entities = new HashMap<Vector2D<Integer>, Entity>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class World {
      * @return null if no entity was at this place, the old entity otherwise
      */
     public Entity addEntity(Entity e) {
-        return this.entities.put(new Vector2D<Integer, Integer>(e.getX(), e.getY()), e);
+        return this.entities.put(new Vector2D<Integer>(e.getX(), e.getY()), e);
     }
 
     /**
@@ -37,7 +37,7 @@ public class World {
      * @return the entity, if exists
      */
     public Entity getEntity(int x, int y) {
-        return this.entities.get(new Vector2D<Integer, Integer>(x, y));
+        return this.entities.get(new Vector2D<Integer>(x, y));
     }
 
 

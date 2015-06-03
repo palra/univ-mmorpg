@@ -5,7 +5,7 @@ package fr.univdevs.util;
  *
  * @author Loïc Payol
  */
-public class Strings {
+public abstract class Strings {
 
     /**
      * Takes a string and return the string if not null, and an empty string if null

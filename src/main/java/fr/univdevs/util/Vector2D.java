@@ -6,18 +6,18 @@ package fr.univdevs.util;
  * @author Vincent Emile
  * @author Loïc Payol
  */
-public class Vector2D<X extends Number, Y extends Number> {
+public class Vector2D<T extends Number> {
     /**
      * First element of the vector
      */
-    public final X x;
+    public final T x;
 
     /**
      * Second element of the vector
      */
-    public final Y y;
+    public final T y;
 
-    public Vector2D(X x, Y y) {
+    public Vector2D(T x, T y) {
         this.x = x;
         this.y = y;
     }
@@ -27,7 +27,7 @@ public class Vector2D<X extends Number, Y extends Number> {
      *
      * @return the first element of the vector
      */
-    public X getX() {
+    public T getX() {
         return x;
     }
 
@@ -36,7 +36,7 @@ public class Vector2D<X extends Number, Y extends Number> {
      *
      * @return the second element of the vector
      */
-    public Y getY() {
+    public T getY() {
         return y;
     }
 
@@ -45,16 +45,9 @@ public class Vector2D<X extends Number, Y extends Number> {
         if (this == o) return true;
         if (!(o instanceof Vector2D)) return false;
 
-        Vector2D<?, ?> vector2D = (Vector2D<?, ?>) o;
+        Vector2D<?> vector2D = (Vector2D<?>) o;
 
         return !(x != null ? !x.equals(vector2D.x) : vector2D.x != null) && !(y != null ? !y.equals(vector2D.y) : vector2D.y != null);
 
-    }
-
-    @Override
-    public int hashCode() {
-        int result = x != null ? x.hashCode() : 0;
-        result = 31 * result + (y != null ? y.hashCode() : 0);
-        return result;
     }
 }
