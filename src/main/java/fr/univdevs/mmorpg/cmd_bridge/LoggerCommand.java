@@ -26,7 +26,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
     private Logger logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
     private String logFormat = "[%s] <%s.%s>: %s";
-    private Date lastConsultation = null;
+    private Date lastDate = null;
 
     public LoggerCommand() {
         this.setName("log");
@@ -64,7 +64,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         boolean dumpAll = args.length >= 1 && args[0].equals(ALL_FLAG);
         boolean sinceLast = !dumpAll || (args.length >= 1 && args[0].equals(SINCE_LAST_FLAG));
 
-        if (lastConsultation == null) {
+        if (lastDate == null) {
             dumpAll = true;
             sinceLast = false;
         }
@@ -74,26 +74,23 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         if (dumpAll) {
             lst = this.logger.getEvents();
         } else {
-            lst = this.logger.getEventsAfterDate(lastConsultation);
+            lst = this.logger.getEventsAfterDate(lastDate);
         }
 
         String out = "";
         DateFormat df = new SimpleDateFormat(dateFormat);
 
-        if (lst.size() > 0)
-            for (Event e : lst) {
-                out += String.format(
-                    logFormat,
-                    df.format(e.getCreatedAt()),
-                    e.getTopic(),
-                    e.getName(),
-                    e.getDescription()
-                ) + "\n";
-            }
-        else
-            out += "\n";
+        for (Event e : lst) {
+            out += String.format(
+                logFormat,
+                df.format(e.getCreatedAt()),
+                e.getTopic(),
+                e.getName(),
+                e.getDescription()
+            ) + "\n";
+        }
 
-        this.lastConsultation = new Date();
+        this.lastDate = new Date();
         return out;
     }
 }
