@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.engine.logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Event dispatcher, keeping a trace of each event.
@@ -13,20 +15,8 @@ public class Logger {
      *
      * @return All the events
      */
-    public Event[] getEvents() {
-        return events.toArray(new Event[events.size()]);
-    }
-
-    /**
-     * Returns all the event, sorted according to a given Comparator
-     *
-     * @param cmp The comparator used to sort
-     * @return The sorted array of all events.
-     */
-    public Event[] getEvents(Comparator<Event> cmp) {
-        Event[] evts = this.getEvents();
-        Arrays.sort(evts, cmp);
-        return evts;
+    public List<Event> getEvents() {
+        return events;
     }
 
     /**
@@ -35,7 +25,7 @@ public class Logger {
      * @param date The limit date
      * @return All the events occured before the given date.
      */
-    public Event[] getEventsBeforeDate(final Date date) {
+    public List<Event> getEventsBeforeDate(final Date date) {
         return _reduce(new FilterRunnable() {
             @Override
             protected boolean canAdd(Event e) {
@@ -50,7 +40,7 @@ public class Logger {
      * @param date The limit date
      * @return All the events occured after the given date.
      */
-    public Event[] getEventsAfterDate(final Date date) {
+    public List<Event> getEventsAfterDate(final Date date) {
         return _reduce(new FilterRunnable() {
             @Override
             protected boolean canAdd(Event e) {
@@ -75,14 +65,14 @@ public class Logger {
      * @param filter The criteria to add an event to the subset
      * @return The filtered subset of events
      */
-    private Event[] _reduce(FilterRunnable filter) {
+    private List<Event> _reduce(FilterRunnable filter) {
         List<Event> evts = new ArrayList<Event>();
         for (Event e : events) {
             if (filter.canAdd(e))
                 evts.add(e);
         }
 
-        return evts.toArray(new Event[evts.size()]);
+        return evts;
     }
 
     private abstract static class FilterRunnable {

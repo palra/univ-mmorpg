@@ -5,6 +5,8 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.SubjectEvent;
 
+import java.util.Date;
+
 /**
  * Actions that does nothing, neither on the subject nor the target.
  *
@@ -27,12 +29,16 @@ public class NoOpAction extends Action {
 
     public static class NoOpEvent extends SubjectEvent<Player> {
         public NoOpEvent(Player subject) {
-            super("action", "noop", subject);
+            this(new Date(), subject);
+        }
+
+        public NoOpEvent(Date date, Player subject) {
+            super("action", "noop", date, subject);
         }
 
         @Override
-        public String toString() {
-            return this.getSubject().getName() + "passe son tour";
+        public String getDescription() {
+            return this.getSubject().getName() + " passe son tour";
         }
     }
 }
