@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.character.mocks.*;
+import fr.univdevs.mmorpg.engine.character._mocks.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import org.junit.Before;
 import org.junit.Test;

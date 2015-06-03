@@ -60,12 +60,12 @@ public class Logger {
     }
 
     /**
-     * Adds an event to log.
+     * Logs an event.
      *
-     * @param e The event to add
+     * @param e The event to log
      * @return the return value of List.add
      */
-    public boolean add(Event e) {
+    public boolean log(Event e) {
         return this.events.add(e);
     }
 

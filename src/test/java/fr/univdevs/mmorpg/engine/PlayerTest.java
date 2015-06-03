@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.character.mocks.Warrior;
+import fr.univdevs.mmorpg.engine.character._mocks.Warrior;
 import org.junit.Test;
 
 import java.util.ArrayList;

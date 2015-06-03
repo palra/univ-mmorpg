@@ -15,8 +15,8 @@ public abstract class Event {
             return -SORT_BY_DATE_ASC.compare(event, t1);
         }
     };
-    private String subject;
-    private String key;
+    private String topic;
+    private String name;
     private Date createdAt;
     /**
      * Compares two events according to their creation date. The older is the first.
@@ -31,25 +31,32 @@ public abstract class Event {
     /**
      * Constructs an event, with a given subject and the date initialized to now.
      *
-     * @param subject The subject of the event
-     * @param key     The event name.
+     * @param topic The topic of the event
+     * @param name The event name.
      */
-    public Event(String subject, String key) {
-        this(subject, key, new Date());
+    public Event(String topic, String name) {
+        this(topic, name, new Date());
     }
 
-    public Event(String subject, String key, Date date) {
-        this.subject = subject;
-        this.key = key;
+    /**
+     * Constructs an event, with a given topic, name and date
+     *
+     * @param topic The topic of the event
+     * @param name  The event name.
+     * @param date  The date of the event
+     */
+    public Event(String topic, String name, Date date) {
+        this.topic = topic;
+        this.name = name;
         this.createdAt = date;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getTopic() {
+        return topic;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
     public Date getCreatedAt() {

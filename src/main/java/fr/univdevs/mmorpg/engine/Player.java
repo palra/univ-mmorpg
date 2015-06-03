@@ -1,8 +1,9 @@
 package fr.univdevs.mmorpg.engine;
 
 import fr.univdevs.mmorpg.engine.action.Action;
-import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
+
+import java.util.Comparator;
 
 /**
  * Public class player
@@ -11,6 +12,14 @@ import fr.univdevs.mmorpg.engine.character.Character;
 public class Player {
     private String name;
     private Character character = null;
+    /**
+     * Compares two players according to their character's speed. The greatest speed is the greatest player.
+     */
+    public static Comparator<Player> SORT_BY_SPEED_DESC = new Comparator<Player>() {
+        public int compare(Player p1, Player p2) {
+            return -Double.compare(p1.getCharacter().getSpeed(), p2.getCharacter().getSpeed());
+        }
+    };
     private Action action;
 
     /**
@@ -24,10 +33,23 @@ public class Player {
     }
 
     /**
+     * Player Constructor
+     * A player represents the human
+     *
+     * @param chosenName the name we want to give to the player
+     * @param character The character associated to the player
+     */
+    public Player(String chosenName, Character character) {
+        this(chosenName);
+        this.character = character;
+    }
+
+
+    /**
      * Protected method to get the name of the player
      * @return the name of the player
      */
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 

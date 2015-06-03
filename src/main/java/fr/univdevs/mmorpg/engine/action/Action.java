@@ -42,6 +42,15 @@ public abstract class Action implements LoggerAwareInterface {
         return this.subject;
     }
 
+
+    /**
+     * Returns the logger.
+     * @return The logger
+     */
+    public Logger getLogger() {
+        return logger;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -52,17 +61,6 @@ public abstract class Action implements LoggerAwareInterface {
     /**
      * Abstract method to execute the action
      * Will describe the impact of the action on the targert
-     *
-     * @return the Action executed
      */
-    public abstract ActionResult execute() throws Exception;
-
-    /**
-     * Redefinition of toString
-     *
-     * @return the generated String
-     */
-    public String toString() {
-        return "Cible = " + this.target.getName() + '\n' + "Acteur = " + this.subject.getName() + '\n';
-    }
+    public abstract void execute() throws Exception;
 }
