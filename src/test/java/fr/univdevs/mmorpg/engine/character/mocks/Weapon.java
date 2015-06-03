@@ -1,10 +1,12 @@
-package fr.univdevs.mmorpg.engine.character;
+package fr.univdevs.mmorpg.engine.character.mocks;
+
+import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
  * Abstract class weapon
  * Each character has the ability to own one or more weapons in its inventory
  */
-public abstract class Weapon extends Item{
+public abstract class Weapon extends Item {
     private int power;
 
     /**

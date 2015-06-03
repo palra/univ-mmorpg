@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 
 /**
@@ -87,4 +86,18 @@ public abstract class Item implements MovableEntity {
      * @param character on which character it will be applied
      */
     public abstract void onUnregister(String character);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item)) return false;
+
+        Item item = (Item) o;
+
+        if (cost != item.cost) return false;
+        if (weight != item.weight) return false;
+        if (!name.equals(item.name)) return false;
+        return category.equals(item.category);
+
+    }
 }

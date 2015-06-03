@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.utils.Numbers;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 
 /**
@@ -17,6 +18,8 @@ public abstract class Character implements MovableEntity {
     private int speed;
     private int money;
     private Inventory inventory;
+    private int x;
+    private int y;
 
     /**
      * Character constructor
@@ -162,13 +165,10 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Private method to give Health Point
-     * @param chosenHealth    amount of health points to give
+     * @param chosenHealth The new healh point value
      */
     private void setHealth(int chosenHealth) {
-        if (chosenHealth < 0 || chosenHealth > MAX_HEALTH) {
-            this.health = this.health;
-        }
-        this.health = chosenHealth;
+        this.health = Numbers.clamp(chosenHealth, 0, MAX_HEALTH);
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class Character implements MovableEntity {
      * @param health    amount of health points to add
      */
     public void addHealth(int health){
-        this.setHealth(this.getHealth()+health);
+        this.setHealth(this.getHealth() + health);
     }
 
     /**
@@ -208,7 +208,7 @@ public abstract class Character implements MovableEntity {
      * @param resistance    coefficient to add
      */
     public void addResistance(double resistance){
-        this.setResistance(this.getResistance()+resistance);
+        this.setResistance(this.getResistance() + resistance);
     }
 
     /**
@@ -216,7 +216,7 @@ public abstract class Character implements MovableEntity {
      * @param resistance    coefficient to remove
      */
     public void removeResistance(double resistance){
-        this.setResistance(this.getResistance()-resistance);
+        this.setResistance(this.getResistance() - resistance);
     }
 
     /**
@@ -240,7 +240,7 @@ public abstract class Character implements MovableEntity {
      * @param speed amount of speed we want to add
      */
     public void addSpeed(int speed){
-        this.setSpeed(this.getSpeed()+speed);
+        this.setSpeed(this.getSpeed() + speed);
     }
 
     /**
@@ -248,16 +248,65 @@ public abstract class Character implements MovableEntity {
      * @param speed amount of speed we want to remove
      */
     public void removeSpeed(int speed){
-        this.setSpeed(this.getSpeed()-speed);
+        this.setSpeed(this.getSpeed() - speed);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getY() {
+        return this.y;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 
     /**
      * Public method to return the inventory of a character
      * @return Inventory
      */
+
     public Inventory getInventory(){
         return this.inventory;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Character)) return false;
+        Character character = (Character) o;
 
+        if (experience != character.experience) return false;
+        if (actionPoints != character.actionPoints) return false;
+        if (health != character.health) return false;
+        if (Double.compare(character.resistance, resistance) != 0) return false;
+        if (speed != character.speed) return false;
+        if (money != character.money) return false;
+        if (!type.equals(character.type)) return false;
+        if (!name.equals(character.name)) return false;
+        if (x != character.x) return false;
+        if (y != character.y) return false;
+        if (!getDisplay().equals(character.getDisplay())) return false;
+        if (isCollidable() != character.isCollidable()) return false;
+        return inventory.equals(character.inventory);
+
+    }
 }
