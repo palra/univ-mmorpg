@@ -23,7 +23,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>fr.univdevs.commander.InteractiveShell</mainClass>
+                            <mainClass>fr.univdevs.mmorpg.game.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

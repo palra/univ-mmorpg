@@ -1,8 +1,9 @@
 package fr.univdevs.commander;
 
-import fr.univdevs.commander.userworld.ExitCommand;
-import fr.univdevs.commander.userworld.HelpCommand;
+import fr.univdevs.util.Strings;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -10,31 +11,54 @@ import java.util.Scanner;
  *
  * @author Loïc Payol
  */
-public class InteractiveShell {
+public class InteractiveShell implements CommandParserAware {
+    private CommandParser commandParser;
+    private String inviteString = "msh> ";
 
-    public static void main(String[] args) {
-        CommandParser parser = new CommandParser();
+    private InputStream in = System.in;
+    private PrintStream out = System.out;
 
-        ExitCommand exit = new ExitCommand();
-        HelpCommand help = new HelpCommand();
-        help.setCommandParser(parser);
+    /**
+     * Returns the command parser
+     *
+     * @return the command parser
+     */
+    public CommandParser getCommandParser() {
+        return commandParser;
+    }
 
-        parser.add(exit);
-        parser.add(help);
+    /**
+     * {@inheritDoc}
+     */
+    public void setCommandParser(CommandParser parser) {
+        this.commandParser = parser;
+    }
 
-        Scanner sc = new Scanner(System.in);
+    public String getInviteString() {
+        return inviteString;
+    }
 
-        while (!exit.isClosed()) {
-            System.out.print("msh> ");
+    public void setInviteString(String inviteString) {
+        this.inviteString = inviteString;
+    }
+
+    public ParserResult nextResult() {
+        Scanner sc = new Scanner(this.in);
+
+        ParserResult res = null;
+
+        while (res == null) {
+            this.out.print(this.inviteString);
             String in = sc.nextLine();
-            ParserResult res;
 
             try {
-                res = parser.parse(in);
-                System.out.print((res.getOutput() == null) ? "" : res.getOutput());
+                res = this.getCommandParser().parse(in);
+                this.out.print(Strings.nullToEmpty(res.getOutput()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        return res;
     }
 }

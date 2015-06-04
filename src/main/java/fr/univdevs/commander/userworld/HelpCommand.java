@@ -10,7 +10,7 @@ import fr.univdevs.util.Strings;
  */
 public class HelpCommand extends Command {
     private static final String DEFAULT_NAME = "help";
-    private static final String WITH_DESC_OPT = "--with-desc";
+    private static final String WITHOUT_DESC_OPT = "--without-desc";
     private final String cmdName;
 
     /**
@@ -34,12 +34,12 @@ public class HelpCommand extends Command {
      * {@inheritDoc}
      */
     public String execute(String[] args) throws Exception {
-        boolean withDesc = args.length >= 1 && args[0].equals(WITH_DESC_OPT);
+        boolean withoutDesc = args.length >= 1 && args[0].equals(WITHOUT_DESC_OPT);
         String out = "";
         for (Command c : this.getCommandParser().getCommands()) {
             out += c.getName();
             String desc = c.getSynopsis();
-            if (withDesc && !Strings.isNullOrEmpty(desc))
+            if (!withoutDesc && !Strings.isNullOrEmpty(desc))
                 out += " " + desc;
 
             out += "\n";
@@ -52,7 +52,7 @@ public class HelpCommand extends Command {
      * {@inheritDoc}
      */
     public String getSynopsis() {
-        return "[" + WITH_DESC_OPT + "]";
+        return "[" + WITHOUT_DESC_OPT + "]";
     }
 
     /**
