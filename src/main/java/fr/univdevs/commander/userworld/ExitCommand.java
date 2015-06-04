@@ -28,6 +28,11 @@ public class ExitCommand extends Command {
         this.cmdName = cmdName;
     }
 
+    @Override
+    public String getSynopsis() {
+        return "";
+    }
+
     /**
      * {@inheritDoc}
      */

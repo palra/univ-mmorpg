@@ -27,9 +27,7 @@ public abstract class Command implements CommandParserAware {
      *
      * @return The synopsis of the command
      */
-    public String getSynopsis() {
-        return null;
-    }
+    public abstract String getSynopsis();
 
     /**
      * Returns the name of the command.

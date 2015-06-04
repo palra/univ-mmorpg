@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.cmd_bridge;
+package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.Command;
 import fr.univdevs.mmorpg.engine.logger.Event;
@@ -92,5 +92,10 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
 
         this.lastDate = new Date();
         return out;
+    }
+
+    @Override
+    public String getSynopsis() {
+        return "[--all|--since-last]";
     }
 }

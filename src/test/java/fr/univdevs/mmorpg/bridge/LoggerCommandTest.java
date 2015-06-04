@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.cmd_bridge;
+package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
  * Created by palra on 03/06/15.
  */
 public class LoggerCommandTest {
+    private CommandParser parser;
     private LoggerCommand lc;
     private Logger l;
 
@@ -23,6 +24,8 @@ public class LoggerCommandTest {
         lc = new LoggerCommand();
         lc.setLogger(l);
         lc.setLogFormat("<%2$s.%3$s>: %4$s");
+
+        parser = new CommandParser(new Command[]{lc});
     }
 
     @Test
@@ -30,7 +33,6 @@ public class LoggerCommandTest {
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
-        CommandParser parser = new CommandParser(new Command[]{lc});
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n", parser.parse("log --all").getOutput());
 
@@ -47,7 +49,6 @@ public class LoggerCommandTest {
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
-        CommandParser parser = new CommandParser(new Command[]{lc});
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n", parser.parse("log").getOutput());
 
