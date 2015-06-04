@@ -1,10 +1,10 @@
-package fr.univdevs.mmorpg.game;
+package fr.univdevs.mmorpg.engine.character.item;
 
+import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
- * Created by drattak on 20/05/15.
- * TODO : document
+ * Item representing a character's protection
  */
 public abstract class Protection extends Item {
     private double robustness;
@@ -30,6 +30,20 @@ public abstract class Protection extends Item {
      */
     public double getRobustness(){
         return this.robustness;
+    }
+
+    @Override
+    public void onRegister(Character c) {
+        c.setResistance(
+            c.getResistance() + this.robustness
+        );
+    }
+
+    @Override
+    public void onUnregister(Character c) {
+        c.setResistance(
+            c.getResistance() - this.robustness
+        );
     }
 
 }

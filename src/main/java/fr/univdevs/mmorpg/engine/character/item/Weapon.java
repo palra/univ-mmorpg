@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.game;
+package fr.univdevs.mmorpg.engine.character.item;
 
 import fr.univdevs.mmorpg.engine.character.Item;
 

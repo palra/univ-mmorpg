@@ -1,13 +1,15 @@
-package fr.univdevs.mmorpg.engine.character;
+package fr.univdevs.mmorpg.engine.character.item;
+
+import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
  * Abstract class Cure
  * Represents all the cures
  * A Cure can cure a Character from 10 to MAX
  */
-public abstract class Cure extends Item{
+public abstract class Cure extends Item {
     private int restoredPoints;
-
 
     /**
      * Cure constructor
@@ -52,5 +54,14 @@ public abstract class Cure extends Item{
      */
     public String toString() {
         return "categorie = " + this.getCategory() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
+    }
+
+    /**
+     * Cures the given character
+     *
+     * @param c The character to cure
+     */
+    public void apply(Character c) {
+        c.setHealth(c.getHealth() + restoredPoints);
     }
 }

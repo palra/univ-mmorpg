@@ -1,4 +1,7 @@
-package fr.univdevs.mmorpg.game;
+package fr.univdevs.mmorpg.game.item.weapon;
+
+import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.mmorpg.engine.character.item.Weapon;
 
 /**
  * Testclass Bow
@@ -10,33 +13,15 @@ public class Bow extends Weapon {
     }
 
     @Override
-    public void onRegister(String character) {
-
+    public void onRegister(Character character) {
     }
 
     @Override
-    public void onUnregister(String character) {
-
-    }
-
-    public int getX() {
-        return 0;
-    }
-
-    public void setX(int x) {
-
-    }
-
-    public int getY() {
-        return 0;
-    }
-
-    public void setY(int y) {
-
+    public void onUnregister(Character character) {
     }
 
     public String getDisplay() {
-        return null;
+        return "↗";
     }
 
     public boolean isCollidable() {

@@ -12,6 +12,9 @@ public abstract class Item implements MovableEntity {
     private int cost;
     private int weight;
 
+    private int x;
+    private int y;
+
     /**
      * Item Constructor
      *
@@ -45,7 +48,7 @@ public abstract class Item implements MovableEntity {
 
     /**
      * Public method to return the name of the item
-     * @return
+     * @return The name
      */
     public String getName() {
         return name;
@@ -53,7 +56,7 @@ public abstract class Item implements MovableEntity {
 
     /**
      * Public method to return the category of the item
-     * @return
+     * @return The category
      */
     public String getCategory() {
         return category;
@@ -61,7 +64,7 @@ public abstract class Item implements MovableEntity {
 
     /**
      * Public method to return the price of the item
-     * @return
+     * @return The cost of the item
      */
     public int getCost() {
         return cost;
@@ -69,23 +72,55 @@ public abstract class Item implements MovableEntity {
 
     /**
      * Public method to return the weight of the Item
-     * @return
+     * @return The weight of the item
      */
     public int getWeight() {
         return weight;
     }
 
     /**
-     * Public abstract method to indicate how the item will affect the character
+     * Public method to indicate how the item will affect the character
+     * By default, it does nothing.
      * @param character on which character it will be applied
      */
-    public abstract void onRegister(String character);
+    public void onRegister(Character character) {
+    }
 
     /**
-     * Public abstract method to indicate how the item will affect the character
+     * Public method to indicate how the item will affect the character
+     * By default, it does nothing.
      * @param character on which character it will be applied
      */
-    public abstract void onUnregister(String character);
+    public void onUnregister(Character character) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
 
     @Override
     public boolean equals(Object o) {

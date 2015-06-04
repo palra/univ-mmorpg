@@ -50,27 +50,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to change money Value
+     * Public method to change money Value
      * @param money how much money we give
      */
-    private void setMoney(int money) {
+    public void setMoney(int money) {
         this.money = money;
-    }
-
-    /**
-     * Public method to add Money
-     * @param money the amount of money we want to add
-     */
-    public void addMoney(int money){
-        this.setMoney(this.getMoney()+money);
-    }
-
-    /**
-     * Public method to remove Money
-     * @param money the amount of money we want to remove
-     */
-    public void removeMoney(int money){
-        this.setMoney(this.getMoney()-money);
     }
 
     /**
@@ -98,29 +82,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to change XP of the Character
+     * Public method to change XP of the Character
      * @param experience    amount of experience we want to give
      */
-    private void setExperience(int experience) {
-
-        this.experience = experience;
-    }
-
-    /**
-     * Public method to add experience to the Character
-     *
-     * @param experience amount of experience we want to add
-     */
-    public void addExperience(int experience){
-        this.setExperience(this.getExperience() + experience);
-    }
-
-    /**
-     * Public method to remove experience to the Character
-     * @param experience    amout of experience we want to remove
-     */
-    public void removeExperience(int experience){
-        this.setExperience(this.getExperience()-experience);
+    public void setExperience(int experience) {
+        this.experience = Numbers.clamp(experience, 0, Integer.MAX_VALUE);
     }
 
     /**
@@ -132,27 +98,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to give Action Points
+     * Public method to give Action Points
      * @param chosenActionPoints    amount of Action Points to give
      */
-    private void setActionPoints(int chosenActionPoints) {
+    public void setActionPoints(int chosenActionPoints) {
         this.actionPoints = chosenActionPoints;
-    }
-
-    /**
-     * Public method to add Action Points
-     * @param actionPoints    amount of Action Points to add
-     */
-    public void addActionPoints(int actionPoints) {
-        this.setActionPoints(this.getActionPoints() + actionPoints);
-    }
-
-    /**
-     * Public method to remove Action Points
-     * @param action    amount of Action Points to remove
-     */
-    public void removeActionPoints(int action) {
-        this.setActionPoints(this.getActionPoints() - action);
     }
 
     /**
@@ -164,27 +114,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to give Health Point
+     * Public method to give Health Point
      * @param chosenHealth The new healh point value
      */
-    private void setHealth(int chosenHealth) {
+    public void setHealth(int chosenHealth) {
         this.health = Numbers.clamp(chosenHealth, 0, MAX_HEALTH);
-    }
-
-    /**
-     * Public method to add Health Point
-     * @param health    amount of health points to add
-     */
-    public void addHealth(int health){
-        this.setHealth(this.getHealth() + health);
-    }
-
-    /**
-     * Public method to remove Health Point
-     * @param chosenHealth    amount of health points to remove
-     */
-    public void removeHealth(int chosenHealth) {
-        this.setHealth(this.health - chosenHealth);
     }
 
     /**
@@ -196,27 +130,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to give resistance to a character
-     * @param resistance    coefficient to set
+     * Public method to give resistance to a character
+     * @param resistance    coefficient to set, must be greater than 1
      */
-    private void setResistance(double resistance) {
-        this.resistance = resistance;
-    }
-
-    /**
-     * Public method to add resistance to a character
-     * @param resistance    coefficient to add
-     */
-    public void addResistance(double resistance){
-        this.setResistance(this.getResistance() + resistance);
-    }
-
-    /**
-     * Public method to remove resistance
-     * @param resistance    coefficient to remove
-     */
-    public void removeResistance(double resistance){
-        this.setResistance(this.getResistance() - resistance);
+    public void setResistance(double resistance) {
+        this.resistance = Numbers.clamp(resistance, 1, Double.MAX_VALUE);
     }
 
     /**
@@ -228,27 +146,11 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Private method to set the speed of a Character
+     * Public method to set the speed of a Character
      * @param speed the speed of the character
      */
-    private void setSpeed(int speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    /**
-     * Public method to add speed to a character
-     * @param speed amount of speed we want to add
-     */
-    public void addSpeed(int speed){
-        this.setSpeed(this.getSpeed() + speed);
-    }
-
-    /**
-     * Public method to remove speed to a character
-     * @param speed amount of speed we want to remove
-     */
-    public void removeSpeed(int speed){
-        this.setSpeed(this.getSpeed() - speed);
     }
 
     /**

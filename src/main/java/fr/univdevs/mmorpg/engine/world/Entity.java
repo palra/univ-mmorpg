@@ -23,7 +23,7 @@ public interface Entity {
      * Returns the String that represents the entity on the map.
      * Note that it could be a char, as it MUST be rendered as a char on the screen, but we assume that you know it, so
      * make sure your string is rendered as a single character on the terminal, if you use ANSI Colors
-     * <p/>
+     *
      * TODO : make a class in order to make sure that a single character will be printed and add the possibility to add some colors
      *
      * @return The display "string"

@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.game;
+package fr.univdevs.mmorpg.game.character;
 
 import fr.univdevs.util.Vector2D;
 

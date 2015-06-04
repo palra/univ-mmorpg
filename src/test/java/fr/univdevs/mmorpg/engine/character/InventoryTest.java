@@ -1,15 +1,9 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.world.Tilemap;
-import fr.univdevs.mmorpg.game.*;
-import org.junit.Before;
-import org.junit.Test;
-
 /**
  * Test class for all inventory-relative objects
  */
-public class InventoryTest {
+public class InventoryTest {/*
     private Inventory inventory;
     @Before
     public void setUp() throws Exception {
@@ -32,7 +26,7 @@ public class InventoryTest {
         inventory.add(bow);
         /*for (int i = 0; i < inventory.getByType("cure").length; i++) {
             System.out.println(inventory.getByType("cure")[i].getName());
-        }*/
+        }
 
     }
 
@@ -60,7 +54,7 @@ public class InventoryTest {
         Bow bow1 = new Bow("bow1", "Bow", 20, 20);
         Bow bow2 = new Bow("bow2", "Bow", 20, 20);
 
-        LittleSpell ls = new LittleSpell("Spell", "LittleSpell");
+        //LittleSpell ls = new LittleSpell("Spell", "LittleSpell");
 
         drattak.setCharacter(c);
         palra.setCharacter(d);
@@ -93,6 +87,6 @@ public class InventoryTest {
         }
 
         System.out.println(palra.getCharacter().getHealth()); //on vérifie que le perso de palra a perdu des points
-        */
-    }
+
+    }*/
 }

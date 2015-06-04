@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.game.Warrior;
+import fr.univdevs.mmorpg.game.character.Warrior;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ public class PlayerTest {
         Player palra = new Player("palra", new Warrior("tamaman"));
         Player p3 = new Player("player3", new Warrior("tonpapa"));
 
-        drattak.getCharacter().addSpeed(150);
-        p3.getCharacter().addSpeed(120);
-        palra.getCharacter().addSpeed(25);
+        drattak.getCharacter().setSpeed(150);
+        p3.getCharacter().setSpeed(120);
+        palra.getCharacter().setSpeed(25);
 
         players.add(drattak);
         players.add(palra);
