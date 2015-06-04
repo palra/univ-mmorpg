@@ -1,8 +1,8 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.game.*;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
+import fr.univdevs.mmorpg.game.*;
 import org.junit.Before;
 import org.junit.Test;
 

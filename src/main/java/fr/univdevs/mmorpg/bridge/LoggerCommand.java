@@ -7,7 +7,6 @@ import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
     private Logger logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
     private String logFormat = "[%s] <%s.%s>: %s";
-    private Date lastDate = null;
+    private int lastIdx = 0;
 
     public LoggerCommand() {
         this.setName("log");
@@ -64,7 +63,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         boolean dumpAll = args.length >= 1 && args[0].equals(ALL_FLAG);
         boolean sinceLast = !dumpAll || (args.length >= 1 && args[0].equals(SINCE_LAST_FLAG));
 
-        if (lastDate == null) {
+        if (lastIdx == 0) {
             dumpAll = true;
             sinceLast = false;
         }
@@ -74,7 +73,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         if (dumpAll) {
             lst = this.logger.getEvents();
         } else {
-            lst = this.logger.getEventsAfterDate(lastDate);
+            lst = this.logger.getEventsAfterIndex(lastIdx);
         }
 
         String out = "";
@@ -88,9 +87,9 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
                 e.getName(),
                 e.getDescription()
             ) + "\n";
+            this.lastIdx++;
         }
 
-        this.lastDate = new Date();
         return out;
     }
 

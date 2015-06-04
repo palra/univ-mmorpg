@@ -43,7 +43,6 @@ public class LoggerCommandTest {
             "<action.noop>: drattak passe son tour\n", parser.parse("log --all").getOutput());
     }
 
-
     @Test
     public void testSinceLast() throws Exception {
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));

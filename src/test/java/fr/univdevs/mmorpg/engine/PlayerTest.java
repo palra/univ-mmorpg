@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.game.Warrior;
+import fr.univdevs.mmorpg.game.Warrior;
 import org.junit.Test;
 
 import java.util.ArrayList;

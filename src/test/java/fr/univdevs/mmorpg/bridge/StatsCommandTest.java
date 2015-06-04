@@ -4,7 +4,7 @@ import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.character._mocks.Warrior;
+import fr.univdevs.mmorpg.game.Warrior;
 import org.junit.Before;
 import org.junit.Test;
 

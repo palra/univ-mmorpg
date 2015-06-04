@@ -1,9 +1,10 @@
-package fr.univdevs.mmorpg.engine.game;
+package fr.univdevs.mmorpg.game;
 
 import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
  * Created by drattak on 20/05/15.
+ * TODO : document
  */
 public abstract class Protection extends Item {
     private double robustness;

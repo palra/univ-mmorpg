@@ -1,9 +1,10 @@
-package fr.univdevs.mmorpg.engine.game;
+package fr.univdevs.mmorpg.game;
 
 import fr.univdevs.util.Vector2D;
 
 /**
  * Created by drattak on 23/05/15.
+ * TODO : document
  */
 public class Warrior extends fr.univdevs.mmorpg.engine.character.Character {
     public Warrior(String name) {

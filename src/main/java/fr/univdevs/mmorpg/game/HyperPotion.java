@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.game;
+package fr.univdevs.mmorpg.game;
 
 import fr.univdevs.mmorpg.engine.character.Cure;
 import fr.univdevs.util.Vector2D;

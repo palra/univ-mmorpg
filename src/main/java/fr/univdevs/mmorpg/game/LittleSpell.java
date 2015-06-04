@@ -1,7 +1,8 @@
-package fr.univdevs.mmorpg.engine.game;
+package fr.univdevs.mmorpg.game;
 
 /**
  * Created by drattak on 29/05/15.
+ * TODO : document (think about @inheritDoc)
  */
 public class LittleSpell extends Weapon {
     /**

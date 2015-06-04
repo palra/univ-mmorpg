@@ -1,7 +1,6 @@
 package fr.univdevs.mmorpg.engine.logger;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,34 +18,15 @@ public class Logger {
         return events;
     }
 
-    /**
-     * Returns all the events occured before a given date.
-     *
-     * @param date The limit date
-     * @return All the events occured before the given date.
-     */
-    public List<Event> getEventsBeforeDate(final Date date) {
-        return _reduce(new FilterRunnable() {
-            @Override
-            protected boolean canAdd(Event e) {
-                return e.getCreatedAt().before(date);
-            }
-        });
-    }
 
     /**
      * Returns all the events occured after a given date.
      *
-     * @param date The limit date
+     * @param index The limit date
      * @return All the events occured after the given date.
      */
-    public List<Event> getEventsAfterDate(final Date date) {
-        return _reduce(new FilterRunnable() {
-            @Override
-            protected boolean canAdd(Event e) {
-                return e.getCreatedAt().after(date);
-            }
-        });
+    public List<Event> getEventsAfterIndex(final int index) {
+        return this.events.subList(index, this.events.size());
     }
 
     /**

@@ -2,7 +2,7 @@ package fr.univdevs.mmorpg;
 
 
 import fr.univdevs.mmorpg.engine.character.Inventory;
-import fr.univdevs.mmorpg.engine.game.Potion;
+import fr.univdevs.mmorpg.game.Potion;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
