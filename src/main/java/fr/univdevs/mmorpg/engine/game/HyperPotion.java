@@ -1,12 +1,17 @@
-package fr.univdevs.mmorpg.engine.character._mocks;
+package fr.univdevs.mmorpg.engine.game;
+
+import fr.univdevs.mmorpg.engine.character.Cure;
+import fr.univdevs.util.Vector2D;
 
 /**
- * Testclass Bow
- * A Bow
+ * HyperPotion class
+ * An hyperpotion is a kind of cure
+ * An hyperpotion restore 50 points
  */
-public class Bow extends Weapon {
-    public Bow(String bowName, String bowCategory, int bowCost, int bowWeight) {
-        super(bowName, bowCategory, bowCost, bowWeight, 20);
+public class HyperPotion extends Cure {
+
+    public HyperPotion(String chosenName) {
+        super(chosenName, "HyperPotion", 50, 50);
     }
 
     @Override
@@ -42,4 +47,10 @@ public class Bow extends Weapon {
     public boolean isCollidable() {
         return false;
     }
+
+    public Vector2D getPosition() {
+        return null;
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.character._mocks;
+package fr.univdevs.mmorpg.engine.game;
 
 /**
  * Created by drattak on 29/05/15.

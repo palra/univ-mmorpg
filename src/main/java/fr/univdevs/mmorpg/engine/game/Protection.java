@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.character._mocks;
+package fr.univdevs.mmorpg.engine.game;
 
 import fr.univdevs.mmorpg.engine.character.Item;
 
