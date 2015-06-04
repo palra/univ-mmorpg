@@ -5,7 +5,6 @@ import fr.univdevs.util.Numbers;
 
 /**
  * The Character object. This is the character played by a player
- * It a
  */
 public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
