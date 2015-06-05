@@ -59,17 +59,34 @@ public class World {
      * @param nb  The number of cases to move, must be positive
      * @return true if a collision occured, false otherwise.
      */
-    public boolean move(Entity e, Direction dir, int nb) {
+    public boolean move(MovableEntity e, Direction dir, int nb) {
         if (nb <= 0)
             return false;
 
-        int up_disp = (dir == Direction.UP) ? 1 : (dir == Direction.DOWN) ? -1 : 0;
-        int right_disp = (dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0;
-
         int i = 0;
+        boolean collision = false;
+        int up_dir = (dir == Direction.UP) ? 1 : (dir == Direction.DOWN) ? -1 : 0;
+        int right_dir = (dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0;
 
-        // TODO : finish it
-        return false;
+        while (i < nb && !collision) {
+            collision = isCollidableAt(e.getX(), e.getY());
+
+            e.setX(e.getX() + up_dir);
+            e.setY(e.getY() + right_dir);
+            i++;
+        }
+
+        if (collision) {
+            e.setX(e.getX() - up_dir);
+            e.setY(e.getY() - right_dir);
+        }
+
+        return collision;
+    }
+
+    public boolean isCollidableAt(int x, int y) {
+        Entity e = getEntity(x, y);
+        return e != null && e.isCollidable();
     }
 
     public enum Direction {
