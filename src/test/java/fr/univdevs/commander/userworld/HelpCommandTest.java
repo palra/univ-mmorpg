@@ -4,7 +4,7 @@ import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * HelpCommandTest
@@ -16,7 +16,9 @@ public class HelpCommandTest {
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
 
         String out = parser.parse("help").getOutput();
-        assertEquals("help\nexit\n", out);
+        assertTrue(out.contains("help [--without-desc]"));
+        assertTrue(out.contains("exit"));
+        assertEquals(2, out.split("\n").length);
     }
 
     @Test
@@ -26,7 +28,9 @@ public class HelpCommandTest {
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
 
         String out = parser.parse(altName).getOutput();
-        assertEquals("foo\nexit\n", out);
+        assertTrue(out.contains("foo [--without-desc]"));
+        assertTrue(out.contains("exit"));
+        assertEquals(2, out.split("\n").length);
     }
 
     @Test
@@ -34,7 +38,10 @@ public class HelpCommandTest {
         HelpCommand help = new HelpCommand();
         CommandParser parser = new CommandParser(new Command[]{help, new ExitCommand()});
 
-        String out = parser.parse("help --with-desc").getOutput();
-        assertEquals("help [--with-desc]\nexit\n", out);
+        String out = parser.parse("help --without-desc").getOutput();
+        assertTrue(out.contains("help"));
+        assertFalse(out.contains("help [--without-desc]"));
+        assertTrue(out.contains("exit"));
+        assertEquals(2, out.split("\n").length);
     }
 }
