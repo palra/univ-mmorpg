@@ -11,12 +11,28 @@ import java.util.Scanner;
  *
  * @author Loïc Payol
  */
-public class InteractiveShell implements CommandParserAware {
+public class InteractiveShell {
     private CommandParser commandParser;
     private String inviteString = "msh> ";
 
     private InputStream in = System.in;
     private PrintStream out = System.out;
+
+    /**
+     * Default constructor
+     */
+    public InteractiveShell() {
+        this(new CommandParser());
+    }
+
+    /**
+     * Constructs an InteractiveShell, with a given CommandParser
+     *
+     * @param commandParser The command parser
+     */
+    public InteractiveShell(CommandParser commandParser) {
+        this.commandParser = commandParser;
+    }
 
     /**
      * Returns the command parser
@@ -25,13 +41,6 @@ public class InteractiveShell implements CommandParserAware {
      */
     public CommandParser getCommandParser() {
         return commandParser;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setCommandParser(CommandParser parser) {
-        this.commandParser = parser;
     }
 
     public String getInviteString() {
@@ -60,5 +69,40 @@ public class InteractiveShell implements CommandParserAware {
         }
 
         return res;
+    }
+
+    /**
+     * @see CommandParser#add(Command)
+     */
+    public void add(Command command) {
+        commandParser.add(command);
+    }
+
+    /**
+     * @see CommandParser#has(String)
+     */
+    public boolean has(String command) {
+        return commandParser.has(command);
+    }
+
+    /**
+     * @see CommandParser#has(Command)
+     */
+    public boolean has(Command command) {
+        return commandParser.has(command);
+    }
+
+    /**
+     * @see CommandParser#get(String)
+     */
+    public Command get(String name) {
+        return commandParser.get(name);
+    }
+
+    /**
+     * @see CommandParser#getCommands()
+     */
+    public Command[] getCommands() {
+        return commandParser.getCommands();
     }
 }

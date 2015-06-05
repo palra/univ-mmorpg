@@ -4,6 +4,7 @@ import fr.univdevs.commander.CommandParser;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
+import fr.univdevs.mmorpg.engine.GameManager;
 
 /**
  * The main application
@@ -11,7 +12,15 @@ import fr.univdevs.commander.userworld.HelpCommand;
  * @author Loïc Payol
  */
 public class App {
+    private static GameManager gameManager;
+
+    private static void configureGame() {
+        gameManager = new GameManager();
+    }
+
     public static void main(String[] args) {
+        App.configureGame();
+
         // CommandParser
         CommandParser parser = new CommandParser();
 
@@ -24,22 +33,14 @@ public class App {
 
         // help
         HelpCommand help = new HelpCommand();
-        help.setCommandParser(parser);
-
-
-        // -- registering them all
-        parser.add(exit);
-        parser.add(help);
-
-
-
 
 
         /*=======================
                  Shell
          =======================*/
         InteractiveShell shell = new InteractiveShell();
-        shell.setCommandParser(parser);
+        shell.add(exit);
+        shell.add(help);
 
         // The main loop
         while (!exit.isClosed()) {
