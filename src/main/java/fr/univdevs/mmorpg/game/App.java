@@ -38,7 +38,11 @@ public class App {
         /*=======================
                  Shell
          =======================*/
-        InteractiveShell shell = new InteractiveShell();
+        InteractiveShell shell = new InteractiveShell("Welcome to MMORPG Shell [version 0.0.0172]\n" +
+                "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
+                " (" + System.getProperty("os.arch") + ")\n"
+        );
+
         shell.add(exit);
         shell.add(help);
 

@@ -35,6 +35,16 @@ public class InteractiveShell {
     }
 
     /**
+     * Constructs an InteractiveShell, and outputs the MOTD immediately on the output.
+     *
+     * @param motd The Message of the Day
+     */
+    public InteractiveShell(String motd) {
+        this();
+        out.println(motd);
+    }
+
+    /**
      * Returns the command parser
      *
      * @return the command parser
