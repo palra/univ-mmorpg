@@ -15,11 +15,11 @@ public class World {
     /**
      * World constructor
      *
-     * @param dimension The dimensions of the world
+     * @param tilemap The tilemap
      */
-    public World(int dimension) {
-        entities = new HashMap<Vector2D<Integer>, Entity>();
-        tilemap = new Tilemap(dimension);
+    public World(Tilemap tilemap) {
+        this.entities = new HashMap<Vector2D<Integer>, Entity>();
+        this.tilemap = tilemap;
     }
 
     /**
@@ -69,6 +69,7 @@ public class World {
         int i = 0;
 
         // TODO : finish it
+        return false;
     }
 
     public enum Direction {

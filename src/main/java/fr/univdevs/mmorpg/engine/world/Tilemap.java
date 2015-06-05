@@ -12,11 +12,18 @@ public class Tilemap {
 
     private static char EMPTY_CHAR = ' ';
     private char[] tiles;
-    private int dimension;
+    private int width;
+    private int height;
 
     public Tilemap(int dimension) {
         this.tiles = new char[dimension * dimension];
-        this.dimension = dimension;
+        this.width = this.height = dimension;
+    }
+
+    public Tilemap(int width, int height) {
+        this.tiles = new char[width * height];
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -24,9 +31,13 @@ public class Tilemap {
      *
      * @param chosenTiles the char array representing the tiles, assuming its length is a square number.
      */
-    public Tilemap(char[] chosenTiles) {
+    public Tilemap(char[] chosenTiles, int width, int height) {
         tiles = chosenTiles;
-        dimension = (int) Math.sqrt(tiles.length);
+        if (width * height != tiles.length)
+            throw new IllegalArgumentException("Width and height does not correspond to the given array");
+
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -44,10 +55,11 @@ public class Tilemap {
      * @param out The ourput print stream
      */
     public void render(PrintStream out) {
-        for (int i = 0; i < this.tiles.length; i++) {
-            out.print(this.tiles[i]);
-            if (i % dimension == 0 && i != 0)
-                out.println();
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                out.print(getCharAt(col, row));
+            }
+            out.println();
         }
     }
 
@@ -59,7 +71,7 @@ public class Tilemap {
      * @return true if the position is valid, false otherwise
      */
     public boolean isValidPosition(int x, int y) {
-        return (x >= 0 && x < dimension && y >= 0 && y < dimension);
+        return (x >= 0 && x < width && y >= 0 && y < height);
     }
 
     /**
@@ -71,7 +83,7 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public char getCharAt(int x, int y) {
-        return this.tiles[x * dimension + y];
+        return this.tiles[y * width + x];
     }
 
     /**
@@ -111,15 +123,15 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public void setTile(int x, int y, char c) {
-        this.tiles[x * dimension + y] = c;
+        this.tiles[y * width + x] = c;
     }
 
-    /**
-     * Returns the length of a side of the tilemap
-     * @return The dimension
-     */
-    public int getDimension() {
-        return dimension;
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public static class Tile implements Entity {
