@@ -9,7 +9,7 @@ import java.util.*;
  * Manages a game instance.
  */
 public class GameManager {
-    private World world = new World();
+    private World world = new World(2);
     private Map<String, Player> players = new HashMap<String, Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
     private Logger logger = new Logger();

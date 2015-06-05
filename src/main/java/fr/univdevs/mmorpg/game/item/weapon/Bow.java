@@ -4,12 +4,12 @@ import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
 
 /**
- * Testclass Bow
+ * Class Bow
  * A Bow
  */
 public class Bow extends Weapon {
-    public Bow(String bowName, String bowCategory, int bowCost, int bowWeight) {
-        super(bowName, bowCategory, bowCost, bowWeight, 20);
+    public Bow(String bowCategory, int bowCost, int bowWeight) {
+        super(bowCategory, bowCost, bowWeight, 20);
     }
 
     @Override

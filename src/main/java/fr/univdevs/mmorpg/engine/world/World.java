@@ -52,6 +52,7 @@ public class World {
         return this.entities.get(new Vector2D<Integer>(x, y));
     }
 
+
     /**
      * Moves a given entity to nb cases from `dir` direction
      *
@@ -69,6 +70,7 @@ public class World {
         int i = 0;
 
         // TODO : finish it
+        return true;
     }
 
     public enum Direction {

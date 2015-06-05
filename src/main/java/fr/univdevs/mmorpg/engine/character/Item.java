@@ -2,12 +2,16 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Item class
  * An item is any object that can be wore
  */
 public abstract class Item implements MovableEntity {
-    private String name;
+    private static ArrayList<Integer> ids = new ArrayList<Integer>();
+    private int ID;
     private String category;
     private int cost;
     private int weight;
@@ -18,40 +22,36 @@ public abstract class Item implements MovableEntity {
     /**
      * Item Constructor
      *
-     * @param itemName     name of the item, cannot be changed
      * @param itemCategory category of the item, cannot be changed
      * @param itemCost     price of the item
      * @param itemWeight   weight of the item, cannot be changed
      */
-    public Item(String itemName, String itemCategory, int itemCost, int itemWeight){
-        this.name = itemName;
+    public Item(String itemCategory, int itemCost, int itemWeight) {
         this.category = itemCategory;
         this.cost = itemCost;
         this.weight = itemWeight;
+        do {
+            this.ID = new Random().nextInt();
+            this.ids.add(this.ID);
+        } while (!this.ids.contains(this.ID));
     }
 
     /**
      * Item Constructor
-     * @param itemName  name of the item, cannot be changed
      * @param itemCategory  category of the item, cannot be changed
      * @param itemCost  price of the item
      */
-    public Item(String itemName, String itemCategory, int itemCost) {
-        this.name = itemName;
+    public Item(String itemCategory, int itemCost) {
         this.category = itemCategory;
         this.cost = itemCost;
     }
 
-    public String toString() {
-        return "name = " + this.getName() + "\n" + "category = " + this.getCategory() + "\n" + "cost = " + this.getCost() + "\n";
+    public static ArrayList<Integer> getIds() {
+        return ids;
     }
 
-    /**
-     * Public method to return the name of the item
-     * @return The name
-     */
-    public String getName() {
-        return name;
+    public String toString() {
+        return "id = " + this.getID() + '\n' + "category = " + this.getCategory() + "\n" + "cost = " + this.getCost() + "\n";
     }
 
     /**
@@ -122,6 +122,16 @@ public abstract class Item implements MovableEntity {
         this.y = y;
     }
 
+    /**
+     * Public getter for ID
+     *
+     * @return the ID of the object
+     */
+    public int getID() {
+        return this.ID;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,7 +141,6 @@ public abstract class Item implements MovableEntity {
 
         if (cost != item.cost) return false;
         if (weight != item.weight) return false;
-        if (!name.equals(item.name)) return false;
         return category.equals(item.category);
 
     }

@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,7 +12,7 @@ import java.util.Iterator;
  *
  */
 public class Inventory {
-    private HashMap<String, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
+    private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
 
     /**
      * Inventory constructor
@@ -19,7 +20,7 @@ public class Inventory {
      * The string is the key (the name of the item)
      */
     public Inventory() {
-        this.items = new HashMap<String, Item>();
+        this.items = new HashMap<Integer, Item>();
     }
 
     /**
@@ -66,7 +67,6 @@ public class Inventory {
      */
     public Item[] getByType(String category){
         ArrayList<Item> selectedItems = new ArrayList<Item>();
-        Iterator i = this.items.entrySet().iterator();
         for(Item value : this.items.values()){
                 if (value.getCategory().equals(category)) {
                     selectedItems.add(value);
@@ -103,21 +103,14 @@ public class Inventory {
     }
 
 
-    /**
-     *
-     * @param name  selected name
-     * @return  matching items
-     */
-    public Item getByName(String name) {
-        return this.items.get(name);
-    }
+
 
     /**
      *
      * @param item  idem to be added
      */
     public Item add(Item item) {
-        return this.items.put(item.getName(), item);
+        return this.items.put(item.getID(), item);
     }
 
     /**
@@ -132,11 +125,11 @@ public class Inventory {
 
     /**
      * Public method to check if the inventory has an item
-     * @param name  We check the presence by the name
+     * @param key  We check the presence by the id
      * @return true if the inventory has the selected item
      */
-    public boolean has(String name) {
-        return this.items.containsKey(name);
+    public boolean has(int key) {
+        return this.items.containsKey(key);
     }
 
 
@@ -145,7 +138,7 @@ public class Inventory {
      * @param item  item to be removed
      */
     public Item remove(Item item) {
-        return this.items.remove(item.getName());
+        return this.items.remove(item.getID());
     }
 
     @Override
@@ -157,5 +150,13 @@ public class Inventory {
 
         return items.equals(inventory.items);
 
+    }
+
+    public ArrayList<Integer> getIds() {
+        ArrayList<Integer> results = new ArrayList<Integer>();
+        for (Integer key : items.keySet()) {
+            results.add(key);
+        }
+        return results;
     }
 }

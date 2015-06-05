@@ -14,14 +14,13 @@ public abstract class Cure extends Item {
     /**
      * Cure constructor
      *
-     * @param cureName       the name of the cure, can't be changed
      * @param cureCategory   the category of the cure, can't be changed
      * @param cureCost       the cost of the cure
      * @param cureWeight     the weight of the cure, can't be changed
      * @param restoredPoints amounts of points restored by the cure
      */
-    public Cure(String cureName, String cureCategory, int cureCost, int cureWeight, int restoredPoints) {
-        super(cureName, cureCategory, cureCost, cureWeight);
+    public Cure(String cureCategory, int cureCost, int cureWeight, int restoredPoints) {
+        super(cureCategory, cureCost, cureWeight);
         this.restoredPoints = restoredPoints;
     }
 
@@ -29,13 +28,12 @@ public abstract class Cure extends Item {
     /**
      * Cure constructor
      *
-     * @param cureName       the name of the cure, can't be changed
      * @param cureCategory   the category of the cure, can't be changed
      * @param cureCost       the cost of the cure
      * @param restoredPoints amounts of points restored by the cure
      */
-    public Cure(String cureName, String cureCategory, int cureCost, int restoredPoints) {
-        super(cureName, cureCategory, cureCost);
+    public Cure(String cureCategory, int cureCost, int restoredPoints) {
+        super(cureCategory, cureCost);
         this.restoredPoints = restoredPoints;
     }
 

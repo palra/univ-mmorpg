@@ -12,26 +12,24 @@ public abstract class Weapon extends Item {
     /**
      * Weapon constructor
      *
-     * @param weaponName     name of the weapon, cannot be changed
      * @param weaponCategory category of the weapon, cannot be changed
      * @param weaponCost     cost of the weapon
      * @param weaponWeight   weight of the weapon, cannot be changed
      * @param weaponPower    power of the weapon
      */
-    public Weapon(String weaponName, String weaponCategory, int weaponCost, int weaponWeight, int weaponPower) {
-        super(weaponName, weaponCategory, weaponCost, weaponWeight);
+    public Weapon(String weaponCategory, int weaponCost, int weaponWeight, int weaponPower) {
+        super(weaponCategory, weaponCost, weaponWeight);
         this.power = weaponPower;
     }
 
     /**
      * Weapon constructor
-     * @param weaponName    name of the weapon, cannot be changed
      * @param weaponCategory    category of the weapon, cannot be changed
      * @param weaponCost    cost of the weapon
      * @param weaponPower   power of the weapon
      */
-    public Weapon(String weaponName, String weaponCategory, int weaponCost, int weaponPower) {
-        super(weaponName, weaponCategory, weaponCost);
+    public Weapon(String weaponCategory, int weaponCost, int weaponPower) {
+        super(weaponCategory, weaponCost);
         this.power = weaponPower;
     }
 
