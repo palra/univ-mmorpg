@@ -1,28 +1,36 @@
 package fr.univdevs.mmorpg.engine.world;
 
+import java.io.PrintStream;
+
 /**
  * Tilemap class
  * A Tilemap is a map represented with characters
- * In facts, this is an array of char
+ *
+ * @author Vincent Emile
  */
 public class Tilemap {
 
-    public final static int GRID_SIZE = 10;
-
+    private static char EMPTY_CHAR = ' ';
     private char[] tiles;
+    private int dimension;
 
-    /**
-     * Tilemap Constructor
-     * a TileMap is map by string
-     *
-     * @param chosenTiles the String representing the tiles
-     */
-    public Tilemap(char[] chosenTiles) {
-        tiles = chosenTiles;
+    public Tilemap(int dimension) {
+        this.tiles = new char[dimension * dimension];
+        this.dimension = dimension;
     }
 
     /**
-     * Public method to get the Char of the map
+     * Tilemap Constructor
+     *
+     * @param chosenTiles the char array representing the tiles, assuming its length is a square number.
+     */
+    public Tilemap(char[] chosenTiles) {
+        tiles = chosenTiles;
+        dimension = (int) Math.sqrt(tiles.length);
+    }
+
+    /**
+     * Returns the 1-dimensional array of tiles.
      *
      * @return An array of char, composing the map
      */
@@ -31,51 +39,116 @@ public class Tilemap {
     }
 
     /**
-     * Public method render the map
-     * The map is an array of char, render will format it to a map
+     * Renders the map.
+     *
+     * @param out The ourput print stream
      */
-    public void render() {
+    public void render(PrintStream out) {
         for (int i = 0; i < this.tiles.length; i++) {
-            System.out.print(this.tiles[i]);
+            out.print(this.tiles[i]);
+            if (i % dimension == 0 && i != 0)
+                out.println();
         }
     }
 
-    public boolean exists(int x, int y) {
-        return (x * GRID_SIZE + y <= tiles.length);
+    /**
+     * Checks if a given position is in the tilemap.
+     *
+     * @param x The horizontal position to test
+     * @param y The vertical position to test
+     * @return true if the position is valid, false otherwise
+     */
+    public boolean isValidPosition(int x, int y) {
+        return (x >= 0 && x < dimension && y >= 0 && y < dimension);
+    }
+
+    /**
+     * Returns the display character of the tile at a given position
+     *
+     * @param x The horizontal position
+     * @param y The vertical position
+     * @return The char at the given position.
+     * @throws IndexOutOfBoundsException if the position is invalid.
+     */
+    public char getCharAt(int x, int y) {
+        return this.tiles[x * dimension + y];
+    }
+
+    /**
+     * Checks if a given position contains an empty tile
+     *
+     * @param x The horizontal position to test
+     * @param y The vertical position to test
+     * @return The char at the given position.
+     *
+     * @throws IndexOutOfBoundsException if the position is invalid.
+     */
+    public boolean isEmptyAt(int x, int y) {
+        return getCharAt(x, y) != EMPTY_CHAR;
     }
 
     /**
      * Public method to return one tile
      *
-     * @param x the Easting of the tile
-     * @param y the Northing of the tile
-     * @return The tile we want to get
+     * @param x The horizontal position
+     * @param y The vertical position
+     * @return The tile we want to get, if exists, null otherwise
      */
-    public char getTile(int x, int y) {
-        return tiles[x * GRID_SIZE + y];
+    public Entity getTileAt(int x, int y) {
+        if (!isValidPosition(x, y))
+            return null;
+
+        char c = getCharAt(x, y);
+        return new Tile(x, y, c, !isEmptyAt(x, y));
     }
 
     /**
-     * Public method to set a tile
+     * Sets the tile
      *
-     * @param x the Easting of the tile
-     * @param y the Northing of the tile
+     * @param x The horizontal position
+     * @param y The vertical position
      * @param c the tile we want to add
-     * @return the tile added
+     * @throws IndexOutOfBoundsException if the position is invalid.
      */
-    public char setTile(int x, int y, char c) throws Exception {
-        if (!(exists(x, y))) throw new Exception("La case n'existe pas");
-        tiles[x * GRID_SIZE + y] = c;
-        return c;
+    public void setTile(int x, int y, char c) {
+        this.tiles[x * dimension + y] = c;
     }
 
     /**
-     * Public method to have the size (litteral) of the map
-     *
-     * @return the size
+     * Returns the length of a side of the tilemap
+     * @return The dimension
      */
-    public int getSize() {
-        return this.tiles.length;
+    public int getDimension() {
+        return dimension;
     }
 
+    public static class Tile implements Entity {
+        private int x;
+        private int y;
+        private char disp;
+        private boolean collidable;
+
+        public Tile(int x, int y, char disp, boolean collidable) {
+            this.x = x;
+            this.y = y;
+            this.disp = disp;
+            this.collidable = collidable;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public String getDisplay() {
+            return "" + disp; // Cast to string
+        }
+
+        public boolean isCollidable() {
+            return collidable;
+        }
+    }
 }
