@@ -7,8 +7,15 @@ import fr.univdevs.util.Vector2D;
  * TODO : document
  */
 public class Warrior extends fr.univdevs.mmorpg.engine.character.Character {
+    private String[] canUse = {"Knife", "Bow", "Sword"};
+
     public Warrior(String name) {
         super(name, "Warrior");
+    }
+
+    @Override
+    public String[] getCanUse() {
+        return canUse;
     }
 
     public int getX() {

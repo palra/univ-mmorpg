@@ -13,14 +13,17 @@ import java.util.Iterator;
  */
 public class Inventory {
     private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
+    private Character character;
+
 
     /**
      * Inventory constructor
      * A HashMap is a couple string, item here
      * The string is the key (the name of the item)
      */
-    public Inventory() {
+    public Inventory(Character chosenCharacter) {
         this.items = new HashMap<Integer, Item>();
+        this.character = chosenCharacter;
     }
 
     /**
@@ -103,13 +106,21 @@ public class Inventory {
     }
 
 
+    public boolean checkUse(Item wantedItem) {
+        for (int i = 0; i < this.character.getCanUse().length; i++) {
+            if (this.character.getCanUse()[i] == wantedItem.getCategory())
+                return true;
+        }
+        return false;
+    }
 
 
     /**
      *
      * @param item  idem to be added
      */
-    public Item add(Item item) {
+    public Item add(Item item) throws Exception {
+        if (!checkUse(item)) throw new Exception("Pas possible!");
         return this.items.put(item.getID(), item);
     }
 

@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
+import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.weapon.Bow;
 import org.junit.Before;
@@ -16,7 +17,8 @@ public class InventoryTest {
     private Inventory inventory;
     @Before
     public void setUp() throws Exception {
-        this.inventory = new Inventory();
+        Character charactTest = new Warrior("Character");
+        this.inventory = new Inventory(charactTest);
     }
 
     @Test
@@ -25,7 +27,7 @@ public class InventoryTest {
 
     @Test
     public void testGetByType() throws Exception {
-        Bow bow = new Bow("weapon", 10, 3);
+        Bow bow = new Bow();
         inventory.add(bow);
         for (int i = 0; i < inventory.getByType("cure").length; i++) {
             System.out.println(inventory.getByType("cure")[i].getID());
@@ -48,8 +50,17 @@ public class InventoryTest {
         Player drattak = new Player("drattak");
         Character chardrattak = new Warrior("chardrattak");
         drattak.setCharacter(chardrattak);
-        Bow bower = new Bow("Bow", 20, 20);
-        Bow bbbbow = new Bow("Bow", 29, 20);
+        Bow bower = new Bow();
+        Bow bbbbow = new Bow();
+
+        Player palra = new Player("palra");
+        Character charplara = new Healer("charpalra");
+        palra.setCharacter(charplara);
+        try {
+            palra.getCharacter().getInventory().add(bower);
+        } catch (Exception e) {
+            System.out.println("Impossible!");
+        }
 
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);

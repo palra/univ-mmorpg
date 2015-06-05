@@ -31,6 +31,5 @@ public class Healer extends Character {
 
     public String[] getCanUse() {
         return canUse;
-        //TODO : LINK CHARACTER TO INVENTORY
     }
 }
