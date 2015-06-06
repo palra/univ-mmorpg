@@ -3,16 +3,16 @@ package fr.univdevs.mmorpg.game.item.protection;
 import fr.univdevs.mmorpg.engine.character.item.Protection;
 
 /**
- * Shield class
- * A shield is the first protection
+ * Helmet class
+ * A helmet protect by 0.1
  */
-public class Shield extends Protection {
+public class Helmet extends Protection {
     /**
-     * Protection constructor
-     * A protection is something the character carries to improve his defence
+     * Helmet constructor
+     * A helmet add 0.1 to protection coefficient
      */
-    public Shield() {
-        super("Shield", 90, 50, 0.2);
+    public Helmet() {
+        super("Helmet", 45, 20, 0.1);
     }
 
     public String getDisplay() {
