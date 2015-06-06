@@ -106,6 +106,12 @@ public class Inventory {
     }
 
 
+    /**
+     * Public method to check if the character can use the item
+     *
+     * @param wantedItem the item we want to add
+     * @return true if the character can use the item
+     */
     public boolean checkUse(Item wantedItem) {
         for (int i = 0; i < this.character.getCanUse().length; i++) {
             if (this.character.getCanUse()[i] == wantedItem.getCategory())
@@ -120,7 +126,7 @@ public class Inventory {
      * @param item  idem to be added
      */
     public Item add(Item item) throws Exception {
-        if (!checkUse(item)) throw new Exception("Pas possible!");
+        if (!checkUse(item)) throw new Exception();
         return this.items.put(item.getID(), item);
     }
 
@@ -163,6 +169,10 @@ public class Inventory {
 
     }
 
+    /**
+     * Public method to get the IDs of all the inventory's item
+     * @return an arraylist containing these items
+     */
     public ArrayList<Integer> getIds() {
         ArrayList<Integer> results = new ArrayList<Integer>();
         for (Integer key : items.keySet()) {

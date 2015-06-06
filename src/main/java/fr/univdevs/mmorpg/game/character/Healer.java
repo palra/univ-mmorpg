@@ -10,7 +10,7 @@ import fr.univdevs.mmorpg.game.item.weapon.Knife;
  * But he can only use knife to fight
  */
 public class Healer extends Character {
-    private String[] canUse = {"Knife"};
+    private String[] canUse = {"Knife", "HealerCure", "HyperPotion", "Potion", "SuperPotion"};
 
     /**
      * Character constructor

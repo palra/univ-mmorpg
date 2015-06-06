@@ -4,7 +4,9 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.mmorpg.game.item.Cure.HealerCure;
 import fr.univdevs.mmorpg.game.item.weapon.Bow;
+import fr.univdevs.mmorpg.game.item.weapon.Knife;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,15 +54,20 @@ public class InventoryTest {
         drattak.setCharacter(chardrattak);
         Bow bower = new Bow();
         Bow bbbbow = new Bow();
+        Knife knife = new Knife();
+        HealerCure hc = new HealerCure();
 
         Player palra = new Player("palra");
         Character charplara = new Healer("charpalra");
         palra.setCharacter(charplara);
+
         try {
-            palra.getCharacter().getInventory().add(bower);
+            drattak.getCharacter().getInventory().add(hc);
         } catch (Exception e) {
-            System.out.println("Impossible!");
+            System.out.println("Types incompatibles");
         }
+
+
 
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);
