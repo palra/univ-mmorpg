@@ -31,7 +31,7 @@ public class App {
     private static List<Player> players = new ArrayList<Player>();
 
     private static void configureGame() throws Exception {
-        tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
+        tilemap = Tilemap.newFromFilename("/game/maps/lvl-02.txt");
         world = new World(tilemap);
         gameManager = new GameManager(world);
 
