@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,6 +44,15 @@ public class Inventory {
      */
     public Item[] getItems(){
         return items.values().toArray(new Item[this.size()]);
+    }
+
+    /**
+     * Public getter for Character
+     *
+     * @return the character
+     */
+    public Character getCharacter() {
+        return character;
     }
 
     /**
@@ -158,6 +166,11 @@ public class Inventory {
         return this.items.remove(item.getID());
     }
 
+    /**
+     * Redefinition of equals method
+     * @param o the object we want to compare
+     * @return true if this and o are the same
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
