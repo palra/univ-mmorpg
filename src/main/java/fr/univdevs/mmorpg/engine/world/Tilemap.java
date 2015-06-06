@@ -1,7 +1,11 @@
 package fr.univdevs.mmorpg.engine.world;
 
+import fr.univdevs.util.Vector2D;
+
 import java.io.IOException;
 import java.util.Scanner;
+
+import static fr.univdevs.util.Numbers.randomInt;
 
 /**
  * Tilemap class
@@ -173,6 +177,20 @@ public class Tilemap {
 
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Returns a random position on the tilemap, in an empty tile.
+     *
+     * @return The random position.
+     */
+    public Vector2D<Integer> getEmptyRandomPosition() {
+        Vector2D<Integer> pos;
+        do {
+            pos = new Vector2D<Integer>(randomInt(0, width), randomInt(0, height));
+        } while (!isValidPosition(pos.x, pos.y));
+
+        return pos;
     }
 
     public static class Tile implements Entity {

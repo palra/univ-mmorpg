@@ -6,8 +6,14 @@ import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
 import fr.univdevs.mmorpg.bridge.MapCommand;
 import fr.univdevs.mmorpg.engine.GameManager;
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
+import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.util.Vector2D;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The main application
@@ -20,12 +26,22 @@ public class App {
     private static GameManager gameManager;
     private static World world;
     private static Tilemap tilemap;
+    private static List<Player> players = new ArrayList<Player>();
 
     private static void configureGame() throws Exception {
         tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
         world = new World(tilemap);
         gameManager = new GameManager(world);
 
+        // Registering players
+        players.add(new Player("palra", new Warrior("nom-super-agressif")));
+
+        for (Player p : players) {
+            Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
+            p.getCharacter().setX(pos.x);
+            p.getCharacter().setY(pos.y);
+            gameManager.addPlayer(p);
+        }
     }
 
     public static void main(String[] args) {
@@ -57,9 +73,10 @@ public class App {
         /*=======================
                  Shell
          =======================*/
-        InteractiveShell shell = new InteractiveShell("Welcome to MMORPG Shell [version 0.0.0172\n" +
-                "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
-                " (" + System.getProperty("os.arch") + ")\n"
+        InteractiveShell shell = new InteractiveShell("Welcome to MMORPG Shell [version 0.0.0172]\n" +
+            "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
+            " (" + System.getProperty("os.arch") + ")\n" +
+            "Type `help` for help on the shell\n"
         );
 
         shell.add(exit);

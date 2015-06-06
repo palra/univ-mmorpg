@@ -184,7 +184,6 @@ public abstract class Character implements MovableEntity {
      * Public method to return the inventory of a character
      * @return Inventory
      */
-
     public Inventory getInventory(){
         return this.inventory;
     }

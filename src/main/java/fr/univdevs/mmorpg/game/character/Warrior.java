@@ -1,41 +1,25 @@
 package fr.univdevs.mmorpg.game.character;
 
-import fr.univdevs.util.Vector2D;
-
+import fr.univdevs.mmorpg.engine.character.Character;
 /**
  * Created by drattak on 23/05/15.
  * TODO : document
  */
-public class Warrior extends fr.univdevs.mmorpg.engine.character.Character {
+public class Warrior extends Character {
+    /**
+     * Default constructor
+     *
+     * @param name The name of the warrior
+     */
     public Warrior(String name) {
         super(name, "Warrior");
     }
 
-    public int getX() {
-        return 0;
-    }
-
-    public void setX(int x) {
-
-    }
-
-    public int getY() {
-        return 0;
-    }
-
-    public void setY(int y) {
-
-    }
-
     public String getDisplay() {
-        return null;
+        return (this.getName().trim().charAt(0) + "").toUpperCase();
     }
 
     public boolean isCollidable() {
         return true;
-    }
-
-    public Vector2D getPosition() {
-        return null;
     }
 }
