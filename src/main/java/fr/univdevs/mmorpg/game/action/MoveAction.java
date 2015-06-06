@@ -15,8 +15,10 @@ public class MoveAction extends Action {
     private int x;
     private int y;
 
-    public MoveAction(Player subject) {
+    public MoveAction(Player subject, int chosenX, int chosenY) {
         super(subject, subject);
+        this.x = chosenX;
+        this.y = chosenY;
 
     }
 
@@ -24,22 +26,15 @@ public class MoveAction extends Action {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     @Override
     public void execute() throws Exception {
-        setY(this.y);
-        setX(this.x);
+        getSubject().getCharacter().setY(3);
+        getSubject().getCharacter().setX(4);
         Logger l = this.getLogger();
         l.log(new MoveEvent(this.getSubject()));
     }

@@ -46,7 +46,7 @@ public class FightAction extends Action {
 
         @Override
         public String getDescription() {
-            return this.getSubject().getName() + " a attaqué " + this.getTarget();
+            return this.getSubject().getName() + " a attaqué " + this.getTarget().getName();
         }
     }
 }

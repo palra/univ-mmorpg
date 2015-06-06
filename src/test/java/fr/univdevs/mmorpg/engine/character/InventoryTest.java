@@ -1,7 +1,10 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
+import fr.univdevs.mmorpg.game.action.FightAction;
+import fr.univdevs.mmorpg.game.action.MoveAction;
 import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
@@ -35,15 +38,6 @@ public class InventoryTest {
 
     }
 
-    @Test
-    public void testTilemap() throws Exception {
-        char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '\n'};
-        Tilemap t = new Tilemap(c);
-        //t.render();
-        //System.out.println(t.getSize());
-        t.setTile(1, 5, 'f');
-        //t.render();
-    }
 
     @Test
     public void testCharacter() throws Exception {
@@ -59,21 +53,19 @@ public class InventoryTest {
         Character charplara = new Healer("charpalra");
         palra.setCharacter(charplara);
 
-        try {
-            drattak.getCharacter().getInventory().add(hc);
-        } catch (Exception e) {
-            System.out.println("Types incompatibles");
-        }
-
-
 
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);
-        System.out.println(drattak.getCharacter().getInventory().toString());
-        for (int i = 0; i < Item.getIds().size(); i++) {
-            System.out.println(Item.getIds().get(i));
-        }
-        }
+       /* MoveAction ma = new MoveAction(drattak,3,4);
+        MoveAction.MoveEvent me = new MoveAction.MoveEvent(drattak);
+        Logger l = new Logger();
+        ma.setLogger(l);
+        System.out.println(drattak.getCharacter().getX() + ", " + drattak.getCharacter().getY());
+        ma.execute();
+        System.out.println(drattak.getCharacter().getX() + ", " + drattak.getCharacter().getY());*/
+        drattak.getCharacter().setY(4);
+        System.out.println(drattak.getCharacter().getY());
 
+    }
 
 }

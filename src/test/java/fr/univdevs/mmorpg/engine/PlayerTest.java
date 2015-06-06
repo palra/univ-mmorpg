@@ -34,5 +34,9 @@ public class PlayerTest {
         assertTrue(players.get(0) == drattak);
         assertTrue(players.get(1) == p3);
         assertTrue(players.get(2) == palra);
+
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i).getName());
+        }
     }
 }

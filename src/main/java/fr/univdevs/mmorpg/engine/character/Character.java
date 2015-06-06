@@ -164,8 +164,8 @@ public abstract class Character implements MovableEntity {
     /**
      * {@inheritDoc}
      */
-    public void setX(int x) {
-        this.x = x;
+    public void setX(int chosenX) {
+        this.x = chosenX;
     }
 
     /**
@@ -178,8 +178,8 @@ public abstract class Character implements MovableEntity {
     /**
      * {@inheritDoc}
      */
-    public void setY(int y) {
-        this.y = y;
+    public void setY(int chosenY) {
+        this.y = chosenY;
     }
 
     /**
