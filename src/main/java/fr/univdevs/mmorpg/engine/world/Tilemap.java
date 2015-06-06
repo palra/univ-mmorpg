@@ -1,10 +1,6 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Scanner;
 
 /**
@@ -64,16 +60,9 @@ public class Tilemap {
      * @return A new instance of the Tilemap
      *
      * @throws IOException If any error occured with file reading
-     * @throws URISyntaxException If any error occured while transcripting the filename to a File instance
      */
-    public static Tilemap newFromFilename(String filename) throws IOException, URISyntaxException {
-        URL file_url = Tilemap.class.getResource(filename);
-
-        if (file_url == null) {
-            throw new FileNotFoundException(filename + " does not exists");
-        }
-
-        Scanner sc = new Scanner(new File(file_url.toURI()));
+    public static Tilemap newFromFilename(String filename) throws IOException {
+        Scanner sc = new Scanner(Tilemap.class.getResourceAsStream(filename));
         int width = sc.nextInt();
         int height = sc.nextInt();
         sc.nextLine();
