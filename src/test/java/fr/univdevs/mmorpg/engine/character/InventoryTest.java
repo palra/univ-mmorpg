@@ -1,13 +1,10 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.weapon.Bow;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Iterator;
 
 /**
  * Test class for all inventory-relative objects
@@ -34,16 +31,6 @@ public class InventoryTest {
     }
 
     @Test
-    public void testTilemap() throws Exception {
-        char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '\n'};
-        Tilemap t = new Tilemap(c);
-        //t.render();
-        //System.out.println(t.getSize());
-        t.setTile(1, 5, 'f');
-        //t.render();
-    }
-
-    @Test
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
         Character chardrattak = new Warrior("chardrattak");
@@ -57,7 +44,5 @@ public class InventoryTest {
         for (int i = 0; i < Item.getIds().size(); i++) {
             System.out.println(Item.getIds().get(i));
         }
-        }
-
-
+    }
 }
