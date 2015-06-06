@@ -85,9 +85,14 @@ public class World {
         return collision;
     }
 
+<<<<<<< HEAD
+        // TODO : finish it
+        return true;
+=======
     public boolean isCollidableAt(int x, int y) {
         Entity e = getEntity(x, y);
         return e != null && e.isCollidable();
+>>>>>>> feature/world-commander
     }
 
     public enum Direction {

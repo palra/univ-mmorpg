@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.engine;
 
 import fr.univdevs.mmorpg.engine._mocks.NoOpAction;
+import fr.univdevs.mmorpg.engine.world.Tilemap;
+import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +15,7 @@ public class GameManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        gm = new GameManager();
+        gm = new GameManager(new World(new Tilemap(1)));
     }
 
     @Test

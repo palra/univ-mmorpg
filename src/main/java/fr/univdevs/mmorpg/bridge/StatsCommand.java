@@ -1,8 +1,5 @@
 package fr.univdevs.mmorpg.bridge;
 
-import fr.univdevs.commander.Command;
-import fr.univdevs.mmorpg.engine.GameManager;
-import fr.univdevs.mmorpg.engine.GameManagerAware;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 
@@ -11,12 +8,19 @@ import fr.univdevs.mmorpg.engine.character.Character;
  * <p/>
  * Synopsis :
  */
-public class StatsCommand extends Command implements GameManagerAware {
+public class StatsCommand extends GameManagerAwareCommand {
     private String currentPlayerName = null;
-    private GameManager gameManager;
 
     public StatsCommand() {
         this.setName("stats");
+    }
+
+    public String getCurrentPlayerName() {
+        return currentPlayerName;
+    }
+
+    public void setCurrentPlayerName(String currentPlayerName) {
+        this.currentPlayerName = currentPlayerName;
     }
 
     @Override
@@ -27,7 +31,7 @@ public class StatsCommand extends Command implements GameManagerAware {
         else if (args.length > 1)
             throw new IllegalStateException("This command only accepts zero or one argument.");
 
-        Player p = this.gameManager.getPlayerByName(playerName);
+        Player p = this.getGameManager().getPlayerByName(playerName);
         if (p == null) {
             if (playerName.equals(currentPlayerName)) {
                 throw new IllegalArgumentException("The name of the current player is invalid.");
@@ -55,22 +59,6 @@ public class StatsCommand extends Command implements GameManagerAware {
     @Override
     public String getSynopsis() {
         return "<player_name>";
-    }
-
-    public GameManager getGameManager() {
-        return gameManager;
-    }
-
-    public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
-    }
-
-    public String getCurrentPlayerName() {
-        return currentPlayerName;
-    }
-
-    public void setCurrentPlayerName(String currentPlayerName) {
-        this.currentPlayerName = currentPlayerName;
     }
 
     /**

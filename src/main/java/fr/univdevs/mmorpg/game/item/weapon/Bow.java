@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.game.item.weapon;
 
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Class Bow
@@ -20,8 +21,8 @@ public class Bow extends Weapon {
     public void onUnregister(Character character) {
     }
 
-    public String getDisplay() {
-        return "↗";
+    public ANSIChar getDisplay() {
+        return new ANSIChar('↗');
     }
 
     public boolean isCollidable() {
