@@ -4,6 +4,7 @@ import fr.univdevs.commander.CommandParser;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
+import fr.univdevs.mmorpg.bridge.MapCommand;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
@@ -64,6 +65,10 @@ public class App {
         // help
         HelpCommand help = new HelpCommand();
 
+        // map
+        MapCommand map = new MapCommand();
+        map.setGameManager(gameManager);
+
 
         /*=======================
                  Shell
@@ -75,8 +80,7 @@ public class App {
 
         shell.add(exit);
         shell.add(help);
-
-        tilemap.render(System.out);
+        shell.add(map);
 
         // The main loop
         while (!exit.isClosed()) {

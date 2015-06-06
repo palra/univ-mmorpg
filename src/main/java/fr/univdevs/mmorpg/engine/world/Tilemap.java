@@ -1,7 +1,5 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import java.io.PrintStream;
-
 /**
  * Tilemap class
  * A Tilemap is a map represented with characters
@@ -51,16 +49,18 @@ public class Tilemap {
 
     /**
      * Renders the map.
-     *
-     * @param out The ourput print stream
+     * @return the rendered map
      */
-    public void render(PrintStream out) {
+    public String render() {
+        String out = "";
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                out.print(getCharAt(col, row));
+                out += getCharAt(col, row);
             }
-            out.println();
+            out += System.lineSeparator();
         }
+
+        return out;
     }
 
     /**
