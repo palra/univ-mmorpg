@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine._mocks.NoOpAction;
+import fr.univdevs.mmorpg.game.action.NoOpAction;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import org.junit.Before;
 import org.junit.Test;

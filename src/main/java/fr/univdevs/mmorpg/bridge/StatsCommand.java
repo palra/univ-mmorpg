@@ -46,7 +46,7 @@ public class StatsCommand extends Command implements GameManagerAware {
             " - Type : " + c.getType() + "\n" +
             " - Vie : " + c.getHealth() + " HP\n" +
             " - Experience : " + c.getExperience() + " XP \n" +
-            " - Action Points : " + c.getActionPoints() + " AP \n" +
+                " - action Points : " + c.getActionPoints() + " AP \n" +
             " - Vitesse : " + c.getSpeed() + "\n" +
             " - Résistance : " + c.getResistance() + "\n" +
             " - Argent : " + c.getMoney() + "£ \n";

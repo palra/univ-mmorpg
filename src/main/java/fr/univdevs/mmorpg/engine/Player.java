@@ -83,7 +83,7 @@ public class Player {
     }
 
     /**
-     * Getter of Action
+     * Getter of action
      * @return the next action
      */
     public Action getNextAction() {

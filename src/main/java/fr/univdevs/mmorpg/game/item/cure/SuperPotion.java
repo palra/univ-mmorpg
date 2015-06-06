@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.game.item.Cure;
+package fr.univdevs.mmorpg.game.item.cure;
 
 import fr.univdevs.mmorpg.engine.character.item.Cure;
 

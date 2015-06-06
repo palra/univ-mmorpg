@@ -38,7 +38,7 @@ public class StatsCommandTest {
             " - Type : Warrior\n" +
             " - Vie : 100 HP\n" +
             " - Experience : 0 XP \n" +
-            " - Action Points : 0 AP \n" +
+                " - action Points : 0 AP \n" +
             " - Vitesse : 0\n" +
             " - Résistance : 0.0\n" +
             " - Argent : 0£ \n", parser.parse("stats").getOutput());

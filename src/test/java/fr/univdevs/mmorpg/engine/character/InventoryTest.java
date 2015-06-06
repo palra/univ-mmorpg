@@ -4,13 +4,11 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
-import fr.univdevs.mmorpg.game.item.Cure.HealerCure;
+import fr.univdevs.mmorpg.game.item.cure.HealerCure;
 import fr.univdevs.mmorpg.game.item.weapon.Bow;
 import fr.univdevs.mmorpg.game.item.weapon.Knife;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Iterator;
 
 /**
  * Test class for all inventory-relative objects

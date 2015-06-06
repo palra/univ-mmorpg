@@ -91,7 +91,7 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Public method to return the Action Points of the Character
+     * Public method to return the action Points of the Character
      * @return int
      */
     public int getActionPoints() {
@@ -99,8 +99,8 @@ public abstract class Character implements MovableEntity {
     }
 
     /**
-     * Public method to give Action Points
-     * @param chosenActionPoints    amount of Action Points to give
+     * Public method to give action Points
+     * @param chosenActionPoints    amount of action Points to give
      */
     public void setActionPoints(int chosenActionPoints) {
         this.actionPoints = chosenActionPoints;

@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.game.Action;
+package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
@@ -12,7 +12,7 @@ public class CureAction extends Action {
     private Cure cure;
 
     /**
-     * Action constructor
+     * action constructor
      *
      * @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted

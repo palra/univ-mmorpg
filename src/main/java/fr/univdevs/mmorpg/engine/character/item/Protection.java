@@ -13,7 +13,6 @@ public abstract class Protection extends Item {
      * Protection constructor
      * A protection is something the character carries to improve his defence
      *
-     * @param protectionCategory   the Category of the item //TODO remove from constructor, here category is Protection
      * @param protectionCost       the cost
      * @param protectionWeight     the Weight, is added to character's weight
      * @param protectionRobustness is equivalent to efficiency of the protection

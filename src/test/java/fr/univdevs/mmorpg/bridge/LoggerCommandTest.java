@@ -3,7 +3,7 @@ package fr.univdevs.mmorpg.bridge;
 import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine._mocks.NoOpAction;
+import fr.univdevs.mmorpg.game.action.NoOpAction;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import org.junit.Before;
 import org.junit.Test;

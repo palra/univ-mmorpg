@@ -4,7 +4,7 @@ import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
 
 /**
- * Public class Action
+ * Public class action
  * An action is any thing that can do the character
  * The action is done by a subject to a target
  */
@@ -14,7 +14,7 @@ public abstract class Action implements LoggerAwareInterface {
     private Logger logger;
 
     /**
-     * Action constructor
+     * action constructor
      *  @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
@@ -24,7 +24,7 @@ public abstract class Action implements LoggerAwareInterface {
     }
 
     /**
-     * Public method to return the target of the Action
+     * Public method to return the target of the action
      *
      * @return the target
      */
