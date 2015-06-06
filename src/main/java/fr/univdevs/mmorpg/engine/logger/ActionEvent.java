@@ -12,12 +12,16 @@ public abstract class ActionEvent<T> extends Event {
     private T subject;
     private T target;
 
-    public ActionEvent(String topic, String name) {
+    public ActionEvent(String topic, String name, T subject, T target) {
         super(topic, name);
+        this.subject = subject;
+        this.target = target;
     }
 
-    public ActionEvent(String topic, String name, Date date) {
+    public ActionEvent(String topic, String name, Date date, T subject, T target) {
         super(topic, name, date);
+        this.subject = subject;
+        this.target = target;
     }
 
     /**

@@ -3,6 +3,7 @@ package fr.univdevs.mmorpg.game.action;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
+import fr.univdevs.mmorpg.engine.logger.ActionEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.SubjectEvent;
 
@@ -31,21 +32,21 @@ public class FightAction extends Action {
     public void execute() throws Exception {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() - this.weapon.getPower());
         Logger l = this.getLogger();
-        l.log(new FightEvent(this.getSubject()));
+        l.log(new FightEvent(this.getSubject(), this.getTarget()));
     }
 
-    public static class FightEvent extends SubjectEvent<Player> {
-        public FightEvent(Player subject) {
-            this(new Date(), subject);
+    public static class FightEvent extends ActionEvent<Player> {
+        public FightEvent(Player subject, Player target) {
+            this(new Date(), subject, target);
         }
 
-        public FightEvent(Date date, Player subject) {
-            super("action", "noop", date, subject);
+        public FightEvent(Date date, Player subject, Player target) {
+            super("action", "fight", date, subject, target);
         }
 
         @Override
         public String getDescription() {
-            return this.getSubject().getName() + " a attaqué";
+            return this.getSubject().getName() + " a attaqué " + this.getTarget();
         }
     }
 }
