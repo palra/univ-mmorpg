@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.engine.world;
 
 import fr.univdevs.util.Vector2D;
+import fr.univdevs.util.ansi.ANSIChar;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -92,6 +93,18 @@ public class Tilemap {
         return tiles;
     }
 
+    public Entity[] getTilesEntity() {
+        Entity[] tiles = new Entity[this.tiles.length];
+
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                tiles[row * width + col] = this.getTileAt(col, row);
+            }
+        }
+
+        return tiles;
+    }
+
     /**
      * Renders the map.
      * @return the rendered map
@@ -151,7 +164,7 @@ public class Tilemap {
      * @param y The vertical position
      * @return The tile we want to get, if exists, null otherwise
      */
-    public Entity getTileAt(int x, int y) {
+    public Tile getTileAt(int x, int y) {
         if (!isValidPosition(x, y))
             return null;
 
@@ -214,8 +227,8 @@ public class Tilemap {
             return y;
         }
 
-        public String getDisplay() {
-            return "" + disp; // Cast to string
+        public ANSIChar getDisplay() {
+            return new ANSIChar(disp);
         }
 
         public boolean isCollidable() {
