@@ -1,5 +1,12 @@
 package fr.univdevs.mmorpg.engine.world;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Scanner;
+
 /**
  * Tilemap class
  * A Tilemap is a map represented with characters
@@ -36,6 +43,51 @@ public class Tilemap {
 
         this.width = width;
         this.height = height;
+    }
+
+    /**
+     * Creates a new Tilemap from a resource file.
+     *
+     * Syntax of a file:
+     * <width>
+     * <height>
+     * <map>
+     *
+     * Where :
+     *  - `width` is the number of columns of the map
+     *  - `height` is the number of rows of the map
+     *  - `map` is a string with `height` substrings of `width` length, separated by a EOF character (\n, depending of
+     *  your OS).
+     *
+     * @param filename The path to the resource file, is an absolute link where `/` points at the root of the
+     *                 `main/resources` folder.
+     * @return A new instance of the Tilemap
+     *
+     * @throws IOException If any error occured with file reading
+     * @throws URISyntaxException If any error occured while transcripting the filename to a File instance
+     */
+    public static Tilemap newFromFilename(String filename) throws IOException, URISyntaxException {
+        URL file_url = Tilemap.class.getResource(filename);
+
+        if (file_url == null) {
+            throw new FileNotFoundException(filename + " does not exists");
+        }
+
+        Scanner sc = new Scanner(new File(file_url.toURI()));
+        int width = sc.nextInt();
+        int height = sc.nextInt();
+        sc.nextLine();
+
+        Tilemap tilemap = new Tilemap(width, height);
+
+        for (int row = 0; row < height; row++) {
+            String strRow = sc.nextLine();
+            for (int col = 0; col < width; col++) {
+                tilemap.setTile(col, row, strRow.charAt(col));
+            }
+        }
+
+        return tilemap;
     }
 
     /**
