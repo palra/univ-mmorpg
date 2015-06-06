@@ -12,6 +12,7 @@ import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class App {
         /*=======================
                  Shell
          =======================*/
-        InteractiveShell shell = new InteractiveShell("Welcome to MMORPG Shell [version 0.0.0172]\n" +
+        InteractiveShell shell = new InteractiveShell(new ANSIString("Welcome to MMORPG Shell [version 0.0.0172]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
             " (" + System.getProperty("os.arch") + ")\n" +
             "Type `help` for help on the shell\n"

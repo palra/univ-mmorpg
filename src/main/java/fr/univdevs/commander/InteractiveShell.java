@@ -6,6 +6,8 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Scanner;
 
 /**
@@ -44,6 +46,15 @@ public class InteractiveShell {
      * @param motd The Message of the Day
      */
     public InteractiveShell(ANSIString motd) {
+        this(motd.toString());
+    }
+
+    /**
+     * Constructs an InteractiveShell, and outputs the MOTD immediately on the output.
+     *
+     * @param motd The Message of the Day
+     */
+    public InteractiveShell(String motd) {
         this();
         out.println(motd);
     }
@@ -78,7 +89,9 @@ public class InteractiveShell {
                 res = this.getCommandParser().parse(in);
                 this.out.print(Strings.nullToEmpty(res.getOutput()));
             } catch (Exception e) {
-                e.printStackTrace();
+                StringWriter errors = new StringWriter();
+                e.printStackTrace(new PrintWriter(errors));
+                System.err.println(new ANSIString(errors.toString(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD));
             }
         }
 
