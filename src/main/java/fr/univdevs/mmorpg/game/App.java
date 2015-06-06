@@ -11,6 +11,7 @@ import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.util.Vector2D;
+import fr.univdevs.util.ansi.ANSIAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,11 @@ public class App {
             Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
             p.getCharacter().setX(pos.x);
             p.getCharacter().setY(pos.y);
+            p.getCharacter().getDisplay()
+                .addAttribute(ANSIAttribute.ATTR_BLINK)
+                .addAttribute(ANSIAttribute.FG_RED)
+                .removeAttribute(ANSIAttribute.ATTR_BLINK);
+
             gameManager.addPlayer(p);
         }
     }

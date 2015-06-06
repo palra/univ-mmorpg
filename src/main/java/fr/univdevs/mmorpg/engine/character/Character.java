@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 import fr.univdevs.util.Numbers;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * The Character object. This is the character played by a player
@@ -19,6 +20,7 @@ public abstract class Character implements MovableEntity {
     private Inventory inventory;
     private int x;
     private int y;
+    private ANSIChar display;
 
     /**
      * Character constructor
@@ -27,10 +29,34 @@ public abstract class Character implements MovableEntity {
      * @param chosenType Type chosen for the character, can't change
      */
     public Character(String chosenName, String chosenType){
+        this(chosenName, chosenName.trim().toUpperCase().charAt(0), chosenType);
+    }
+
+    /**
+     * Character constructor
+     *
+     * @param chosenName    Name chosen for the character, can't change
+     * @param chosenDisplay char that will be displayed on the map
+     * @param chosenType    Type chosen for the character, can't change
+     */
+    public Character(String chosenName, char chosenDisplay, String chosenType) {
+        this(chosenName, new ANSIChar(chosenDisplay), chosenType);
+    }
+
+
+    /**
+     * Character constructor
+     *
+     * @param chosenName    Name chosen for the character, can't change
+     * @param chosenDisplay ANSIChar, fos visuals, read-only (for public)
+     * @param chosenType    Type chosen for the character, can't change
+     */
+    public Character(String chosenName, ANSIChar chosenDisplay, String chosenType) {
         this.name = chosenName;
         this.type = chosenType;
         this.inventory = new Inventory();
         this.health = 100;
+        this.setDisplay(chosenDisplay);
     }
 
     public String toString() {
@@ -186,6 +212,20 @@ public abstract class Character implements MovableEntity {
      */
     public Inventory getInventory(){
         return this.inventory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public ANSIChar getDisplay() {
+        return display;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void setDisplay(ANSIChar display) {
+        this.display = display;
     }
 
     @Override
