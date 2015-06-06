@@ -42,30 +42,22 @@ public class InventoryTest {
     @Test
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
+        Player palra = new Player("palra");
+
         Character chardrattak = new Warrior("chardrattak");
+        Character charplara = new Healer("charpalra");
+
         drattak.setCharacter(chardrattak);
+        palra.setCharacter(charplara);
+
         Bow bower = new Bow();
         Bow bbbbow = new Bow();
+
         Knife knife = new Knife();
         HealerCure hc = new HealerCure();
 
-        Player palra = new Player("palra");
-        Character charplara = new Healer("charpalra");
-        palra.setCharacter(charplara);
-
-
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);
-       /* MoveAction ma = new MoveAction(drattak,3,4);
-        MoveAction.MoveEvent me = new MoveAction.MoveEvent(drattak);
-        Logger l = new Logger();
-        ma.setLogger(l);
-        System.out.println(drattak.getCharacter().getX() + ", " + drattak.getCharacter().getY());
-        ma.execute();
-        System.out.println(drattak.getCharacter().getX() + ", " + drattak.getCharacter().getY());*/
-        drattak.getCharacter().setY(4);
-        System.out.println(drattak.getCharacter().getY());
-
     }
 
 }
