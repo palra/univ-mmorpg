@@ -1,6 +1,8 @@
 package fr.univdevs.commander;
 
 import fr.univdevs.util.Strings;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -13,7 +15,9 @@ import java.util.Scanner;
  */
 public class InteractiveShell {
     private CommandParser commandParser;
-    private String inviteString = "msh> ";
+    private ANSIString inviteString = new ANSIString(
+        new ANSIString("msh", ANSIAttribute.FG_GREEN) + "> "
+    );
 
     private InputStream in = System.in;
     private PrintStream out = System.out;
@@ -39,7 +43,7 @@ public class InteractiveShell {
      *
      * @param motd The Message of the Day
      */
-    public InteractiveShell(String motd) {
+    public InteractiveShell(ANSIString motd) {
         this();
         out.println(motd);
     }
@@ -53,11 +57,11 @@ public class InteractiveShell {
         return commandParser;
     }
 
-    public String getInviteString() {
+    public ANSIString getInviteString() {
         return inviteString;
     }
 
-    public void setInviteString(String inviteString) {
+    public void setInviteString(ANSIString inviteString) {
         this.inviteString = inviteString;
     }
 

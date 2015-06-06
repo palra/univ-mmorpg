@@ -9,4 +9,8 @@ public class ANSIString extends ANSIDisplayableObject<String> {
     public ANSIString(String rawObject, ANSIAttribute... attributes) {
         super(rawObject, attributes);
     }
+
+    public ANSIString(ANSIString ansiString) {
+        super(ansiString.toString());
+    }
 }
