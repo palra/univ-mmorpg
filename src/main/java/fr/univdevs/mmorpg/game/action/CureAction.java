@@ -39,7 +39,7 @@ public class CureAction extends Action {
         }
 
         public CureEvent(Date date, Player subject, Player target) {
-            super("action", "fight", date, subject, target);
+            super("action", "cure", date, subject, target);
         }
 
 

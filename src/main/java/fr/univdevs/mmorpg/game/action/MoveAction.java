@@ -46,7 +46,7 @@ public class MoveAction extends Action {
         }
 
         public MoveEvent(Date date, Player subject) {
-            super("action", "noop", date, subject);
+            super("action", "move", date, subject);
         }
 
         @Override
