@@ -43,8 +43,7 @@ public class App {
             p.getCharacter().setY(pos.y);
             p.getCharacter().getDisplay()
                 .addAttribute(ANSIAttribute.ATTR_BLINK)
-                .addAttribute(ANSIAttribute.FG_RED)
-                .removeAttribute(ANSIAttribute.ATTR_BLINK);
+                .addAttribute(ANSIAttribute.FG_RED);
 
             gameManager.addPlayer(p);
         }

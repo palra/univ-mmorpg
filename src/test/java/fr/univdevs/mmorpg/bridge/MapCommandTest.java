@@ -7,12 +7,12 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Warrior;
-import fr.univdevs.util.Vector2D;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by palra on 06/06/15.
@@ -28,21 +28,14 @@ public class MapCommandTest {
 
     @Before
     public void setUp() throws Exception {
-        tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
+        tilemap = Tilemap.newFromFilename("/game/maps/test-lvl-01.txt");
         world = new World(tilemap);
         gameManager = new GameManager(world);
 
-        players = new ArrayList<Player>();
-
-        // Registering players
-        players.add(new Player("palra", new Warrior("nom-super-agressif")));
-
-        for (Player p : players) {
-            Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
-            p.getCharacter().setX(pos.x);
-            p.getCharacter().setY(pos.y);
-            gameManager.addPlayer(p);
-        }
+        Player p = new Player("palra", new Warrior("nom-super-agressif"));
+        p.getCharacter().setX(1);
+        p.getCharacter().setY(1);
+        gameManager.addPlayer(p);
 
         map = new MapCommand();
         map.setGameManager(gameManager);
@@ -54,5 +47,16 @@ public class MapCommandTest {
     @Test
     public void testExecute() throws Exception {
         ParserResult res = parser.parse("map");
+        assertEquals("###\n" +
+            "#N#\n" +
+            "###\n", res.getOutput());
+    }
+
+    @Test
+    public void testNoEntity() throws Exception {
+        ParserResult res = parser.parse("map --map-only");
+        assertEquals("###\n" +
+            "# #\n" +
+            "###\n", res.getOutput());
     }
 }

@@ -4,6 +4,8 @@ import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIChar;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static fr.univdevs.util.Numbers.randomInt;
@@ -154,7 +156,7 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public boolean isEmptyAt(int x, int y) {
-        return getCharAt(x, y) != EMPTY_CHAR;
+        return getCharAt(x, y) == EMPTY_CHAR;
     }
 
     /**
@@ -195,15 +197,21 @@ public class Tilemap {
     /**
      * Returns a random position on the tilemap, in an empty tile.
      *
-     * @return The random position.
+     * @return The random position, null if not available
      */
     public Vector2D<Integer> getEmptyRandomPosition() {
-        Vector2D<Integer> pos;
-        do {
-            pos = new Vector2D<Integer>(randomInt(0, width), randomInt(0, height));
-        } while (!isValidPosition(pos.x, pos.y));
+        List<Vector2D<Integer>> emptyPositions = new ArrayList<Vector2D<Integer>>();
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                if (isEmptyAt(col, row))
+                    emptyPositions.add(new Vector2D<Integer>(col, row));
+            }
+        }
 
-        return pos;
+        if (emptyPositions.isEmpty())
+            return null;
+
+        return emptyPositions.get(randomInt(0, emptyPositions.size() - 1));
     }
 
     public static class Tile implements Entity {

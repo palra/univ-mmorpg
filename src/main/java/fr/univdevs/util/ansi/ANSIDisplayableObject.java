@@ -64,6 +64,9 @@ public class ANSIDisplayableObject<T> {
 
     @Override
     public String toString() {
+        if (attributes.isEmpty())
+            return rawObject.toString();
+
         String out = SEQ_START;
         for (int i = 0; i < attributes.size(); i++) {
             out += attributes.get(i);
