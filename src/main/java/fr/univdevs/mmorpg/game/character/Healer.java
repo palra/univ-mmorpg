@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.game.character;
 
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.game.item.weapon.Knife;
@@ -17,8 +18,8 @@ public class Healer extends Character {
      *
      * @param chosenName Name chosen for the character, can't change
      */
-    public Healer(String chosenName) {
-        super(chosenName, "Healer");
+    public Healer(String chosenName, Player chosenPlayer) {
+        super(chosenName, "Healer", chosenPlayer);
     }
 
     public String getDisplay() {

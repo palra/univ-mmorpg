@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.engine.character.skills;
 
+import fr.univdevs.mmorpg.engine.character.Character;
+
 /**
  * Interface representing the ability to fight with other characters
  *

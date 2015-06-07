@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
 import fr.univdevs.util.Numbers;
 
@@ -9,6 +10,7 @@ import fr.univdevs.util.Numbers;
 public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
     private final static double MAX_RESISTANCE = 0.99;
+    private final Player player;
     private String type;
     private String name;
     private int experience;
@@ -27,12 +29,17 @@ public abstract class Character implements MovableEntity {
      * @param chosenName Name chosen for the character, can't change
      * @param chosenType Type chosen for the character, can't change
      */
-    public Character(String chosenName, String chosenType){
+    public Character(String chosenName, String chosenType, Player chosenPlayer) {
         this.name = chosenName;
         this.type = chosenType;
         this.inventory = new Inventory(this);
         this.health = 100;
         this.resistance = 0.0;
+        this.player = chosenPlayer;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     /**
