@@ -30,7 +30,7 @@ public class App {
     private static List<Player> players = new ArrayList<Player>();
     private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
     private static InteractiveShell shell = new InteractiveShell(
-        new ANSIString("Welcome to MMORPG Shell [version 0.0.0172]\n", ANSIAttribute.ATTR_BOLD) +
+        new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
             " (" + System.getProperty("os.arch") + ")\n" +
             "Type `help` for help on the shell\n"
