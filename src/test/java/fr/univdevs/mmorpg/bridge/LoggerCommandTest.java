@@ -57,6 +57,6 @@ public class LoggerCommandTest {
         assertEquals("<action.noop>: drattak passe son tour\n" +
             "<action.noop>: palra passe son tour\n", parser.parse("log").getOutput());
 
-        assertEquals("", parser.parse("log").getOutput());
+        assertEquals(LoggerCommand.NOT_FOUND_MSG, parser.parse("log").getOutput());
     }
 }

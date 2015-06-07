@@ -21,8 +21,9 @@ import java.util.List;
  * * `--since-last` : Dumps all the events since the last consultation, the default behavior.
  */
 public class LoggerCommand extends Command implements LoggerAwareInterface {
-    private static final String ALL_FLAG = "--all";
-    private static final String SINCE_LAST_FLAG = "--since-last";
+    protected static final String ALL_FLAG = "--all";
+    protected static final String SINCE_LAST_FLAG = "--since-last";
+    protected static final String NOT_FOUND_MSG = new ANSIString("No entries found for your request\n", ANSIAttribute.FG_RED) + "";
 
     private Logger logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
@@ -83,6 +84,10 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
 
         String out = "";
         DateFormat df = new SimpleDateFormat(dateFormat);
+
+        if (lst.isEmpty()) {
+            return NOT_FOUND_MSG;
+        }
 
         for (Event e : lst) {
             out += String.format(
