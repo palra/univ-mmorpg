@@ -1,11 +1,22 @@
 package fr.univdevs.util;
 
+import java.util.Random;
+
 /**
  * Utility class containing some string manipulation methods.
  *
  * @author Loïc Payol
  */
-public abstract class Strings {
+public class Strings {
+    private static Random random = new Random();
+
+    /**
+     * Returns the random generator
+     * @return The random generator
+     */
+    public static Random getRandom() {
+        return random;
+    }
 
     /**
      * Takes a string and return the string if not null, and an empty string if null
@@ -25,5 +36,14 @@ public abstract class Strings {
      */
     public static boolean isNullOrEmpty(String s) {
         return s == null || s.isEmpty();
+    }
+
+    /**
+     * Returns a random hexadecimal string.
+     *
+     * @return A random hexadecimal string
+     */
+    public static String random() {
+        return Integer.toHexString(random.nextInt());
     }
 }

@@ -1,17 +1,17 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
+import fr.univdevs.util.Strings;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Item class
  * An item is any object that can be wore
  */
 public abstract class Item implements MovableEntity {
-    private static ArrayList<Integer> ids = new ArrayList<Integer>();
-    private int ID;
+    private static ArrayList<String> ids = new ArrayList<String>();
+    private String ID;
     private String category;
     private int cost;
     private int weight;
@@ -27,13 +27,8 @@ public abstract class Item implements MovableEntity {
      * @param itemWeight   weight of the item, cannot be changed
      */
     public Item(String itemCategory, int itemCost, int itemWeight) {
-        this.category = itemCategory;
-        this.cost = itemCost;
+        this(itemCategory, itemCost);
         this.weight = itemWeight;
-        do {
-            this.ID = new Random().nextInt();
-            this.ids.add(this.ID);
-        } while (!this.ids.contains(this.ID));
     }
 
     /**
@@ -44,9 +39,13 @@ public abstract class Item implements MovableEntity {
     public Item(String itemCategory, int itemCost) {
         this.category = itemCategory;
         this.cost = itemCost;
+        do {
+            this.ID = Strings.random();
+            ids.add(this.ID);
+        } while (!ids.contains(this.ID));
     }
 
-    public static ArrayList<Integer> getIds() {
+    public static ArrayList<String> getIds() {
         return ids;
     }
 
@@ -127,7 +126,7 @@ public abstract class Item implements MovableEntity {
      *
      * @return the ID of the object
      */
-    public int getID() {
+    public String getID() {
         return this.ID;
     }
 

@@ -54,7 +54,7 @@ public abstract class Character implements MovableEntity {
     public Character(String chosenName, ANSIChar chosenDisplay, String chosenType) {
         this.name = chosenName;
         this.type = chosenType;
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(this);
         this.health = 100;
         this.setDisplay(chosenDisplay);
     }

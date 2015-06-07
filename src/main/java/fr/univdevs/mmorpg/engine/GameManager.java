@@ -51,6 +51,7 @@ public class GameManager {
      * @return The old player with the same name, if exists, null otherwise
      */
     public Player addPlayer(Player player) {
+        player.getCharacter().getInventory().setLogger(this.getLogger());
         return this.players.put(player.getName(), player);
     }
 

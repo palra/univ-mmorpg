@@ -2,7 +2,9 @@ package fr.univdevs.mmorpg.engine.world;
 
 import fr.univdevs.util.Vector2D;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Public class world
@@ -58,30 +60,38 @@ public class World {
      *
      * @param dir The direction of the move
      * @param nb  The number of cases to move, must be positive
-     * @return true if a collision occured, false otherwise.
+     * @return An instance of MoveResult, that sets nonCollidableEntities at null when no movment has been done.
      */
-    public boolean move(MovableEntity e, Direction dir, int nb) {
+    public MoveResult move(MovableEntity e, Direction dir, int nb) {
         if (nb <= 0)
-            return false;
+            return new MoveResult(null, false, 0);
 
         int i = 0;
         boolean collision = false;
         int up_dir = (dir == Direction.UP) ? -1 : (dir == Direction.DOWN) ? 1 : 0;
         int right_dir = (dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0;
+        List<Entity> nonCollidableEntities = new ArrayList<Entity>();
 
         while (i < nb && !collision) {
             e.setX(e.getX() + right_dir);
             e.setY(e.getY() + up_dir);
             collision = isCollidableAt(e.getX(), e.getY());
+
+            Entity inplace = getEntity(e.getX(), e.getY());
+            if (inplace != null && !inplace.isCollidable()) {
+                nonCollidableEntities.add(inplace);
+            }
+
             i++;
         }
 
         if (collision) {
             e.setX(e.getX() - right_dir);
             e.setY(e.getY() - up_dir);
+            i--;
         }
 
-        return collision;
+        return new MoveResult(nonCollidableEntities, collision, i);
     }
 
     public boolean isCollidableAt(int x, int y) {
@@ -95,6 +105,30 @@ public class World {
         RIGHT,
         UP,
         DOWN
+    }
+
+    public static class MoveResult {
+        private final List<Entity> nonCollidableEntities;
+        private final boolean collision;
+        private final int nbCases;
+
+        public MoveResult(List<Entity> nonCollidableEntities, boolean collision, int nbCases) {
+            this.nonCollidableEntities = nonCollidableEntities;
+            this.collision = collision;
+            this.nbCases = nbCases;
+        }
+
+        public List<Entity> getNonCollidableEntities() {
+            return nonCollidableEntities;
+        }
+
+        public boolean isCollision() {
+            return collision;
+        }
+
+        public int getNbCases() {
+            return nbCases;
+        }
     }
 
     /**

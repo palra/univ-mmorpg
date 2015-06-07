@@ -3,6 +3,9 @@ package fr.univdevs.mmorpg.game.action;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.mmorpg.engine.character.Inventory;
+import fr.univdevs.mmorpg.engine.character.Item;
+import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.event.ActionEvent;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -37,8 +40,14 @@ public class MoveAction extends Action {
     public void execute() throws Exception {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
-        w.move(c, this.direction, this.nbCases);
+        World.MoveResult res = w.move(c, this.direction, this.nbCases);
         this.getLogger().log(new MoveActionEvent(getSubject(), getTarget(), this.direction, this.nbCases));
+
+        Inventory i = c.getInventory();
+        for (Entity e : res.getNonCollidableEntities()) {
+            if (e instanceof Item)
+                i.add((Item) e);
+        }
     }
 
     public static class MoveActionEvent extends ActionEvent {

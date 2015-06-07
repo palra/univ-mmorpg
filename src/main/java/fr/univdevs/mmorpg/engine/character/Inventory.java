@@ -1,18 +1,26 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import fr.univdevs.mmorpg.engine.logger.Event;
+import fr.univdevs.mmorpg.engine.logger.Logger;
+import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
+
+import java.util.*;
 
 /**
  * Inventory
  * The inventory containing items
  *
  */
-public class Inventory {
-    private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
+public class Inventory implements LoggerAwareInterface {
+    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
     private Character character;
+    private Logger logger;
+
+    public Inventory() {
+        throw new IllegalArgumentException("The character is mandatory");
+    }
 
     /**
      * Inventory constructor
@@ -20,7 +28,9 @@ public class Inventory {
      * The string is the key (the name of the item)
      */
     public Inventory(Character c) {
-        this.items = new HashMap<Integer, Item>();
+        this.items = new HashMap<String, Item>();
+        if (c == null)
+            throw new IllegalArgumentException("The character is mandatory");
         this.character = c;
     }
 
@@ -31,6 +41,21 @@ public class Inventory {
      */
     public Character getCharacter() {
         return character;
+    }
+
+    /**
+     * Returns the logger
+     * @return The logger
+     */
+    public Logger getLogger() {
+        return logger;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 
     /**
@@ -119,7 +144,14 @@ public class Inventory {
     public Item add(Item item) {
         item.onRegister(character);
         Item i = this.items.put(item.getID(), item);
-        i.onUnregister(this.getCharacter());
+
+        if (i != null)
+            i.onUnregister(character);
+
+        if (logger != null) {
+            logger.log(new InventoryAddEvent(i, character));
+        }
+
         return i;
     }
 
@@ -137,7 +169,7 @@ public class Inventory {
      * @param key  We check the presence by the id
      * @return true if the inventory has the selected item
      */
-    public boolean has(int key) {
+    public boolean has(String key) {
         return this.items.containsKey(key);
     }
 
@@ -150,6 +182,10 @@ public class Inventory {
         Item i = this.items.remove(item.getID());
         if (i != null)
             i.onUnregister(this.getCharacter());
+
+        if (logger != null) {
+            logger.log(new InventoryRemoveEvent(i, character));
+        }
 
         return i;
     }
@@ -165,11 +201,63 @@ public class Inventory {
 
     }
 
-    public ArrayList<Integer> getIds() {
-        ArrayList<Integer> results = new ArrayList<Integer>();
-        for (Integer key : items.keySet()) {
+    public List<String> getIds() {
+        ArrayList<String> results = new ArrayList<String>();
+        for (String key : items.keySet()) {
             results.add(key);
         }
         return results;
+    }
+
+    public static class InventoryAddEvent extends Event {
+        private static final String TOPIC = "inventory";
+        private static final String NAME = "add";
+        private Item item;
+        private Character character;
+
+        public InventoryAddEvent(Item item, Character character) {
+            super(TOPIC, NAME);
+            this.item = item;
+            this.character = character;
+        }
+
+        public InventoryAddEvent(Date date, Item item, Character character) {
+            super(TOPIC, NAME, date);
+            this.item = item;
+            this.character = character;
+        }
+
+        @Override
+        public String getDescription() {
+            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " ramasse " +
+                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
+        }
+    }
+
+    public static class InventoryRemoveEvent extends Event {
+        private static final String TOPIC = "inventory";
+        private static final String NAME = "remove";
+        private Item item;
+        private Character character;
+
+        public InventoryRemoveEvent(Item item, Character character) {
+            super(TOPIC, NAME);
+            this.item = item;
+            this.character = character;
+        }
+
+        public InventoryRemoveEvent(Date date, Item item, Character character) {
+            super(TOPIC, NAME, date);
+            this.item = item;
+            this.character = character;
+        }
+
+        @Override
+        public String getDescription() {
+            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
+                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
+        }
     }
 }
