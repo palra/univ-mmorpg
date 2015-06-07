@@ -2,6 +2,8 @@ package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 /**
  * Command displaying stats of a given
@@ -54,8 +56,8 @@ public class StatsCommand extends GameManagerAwareCommand {
             throw new NullPointerException("The player `" + playerName + "` is not binded to a character");
         }
 
-        return "Stats for player `" + p.getName() + "` : \n" +
-            "-----------------------------\n" +
+        return "Stats for player `" + new ANSIString(p.getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
+            "` : \n-----------------------------\n" +
             " - Type : " + c.getType() + "\n" +
             " - Vie : " + c.getHealth() + " HP\n" +
             " - Experience : " + c.getExperience() + " XP \n" +

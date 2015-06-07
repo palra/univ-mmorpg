@@ -7,6 +7,8 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,12 +37,12 @@ public class StatsCommandTest {
 
     @Test
     public void testStats() throws Exception {
-        assertEquals("Stats for player `palra` : \n" +
+        assertEquals("Stats for player `" + new ANSIString("palra", ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) + "` : \n" +
             "-----------------------------\n" +
             " - Type : Warrior\n" +
             " - Vie : 100 HP\n" +
             " - Experience : 0 XP \n" +
-            " - action Points : 0 AP \n" +
+            " - Points d'action : 0 AP \n" +
             " - Vitesse : 0\n" +
             " - Résistance : 0.0\n" +
             " - Argent : 0£ \n", parser.parse("stats").getOutput());
