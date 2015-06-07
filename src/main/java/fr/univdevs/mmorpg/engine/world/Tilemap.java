@@ -1,6 +1,14 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import java.io.PrintStream;
+import fr.univdevs.util.Vector2D;
+import fr.univdevs.util.ansi.ANSIChar;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import static fr.univdevs.util.Numbers.randomInt;
 
 /**
  * Tilemap class
@@ -12,11 +20,18 @@ public class Tilemap {
 
     private static char EMPTY_CHAR = ' ';
     private char[] tiles;
-    private int dimension;
+    private int width;
+    private int height;
 
     public Tilemap(int dimension) {
         this.tiles = new char[dimension * dimension];
-        this.dimension = dimension;
+        this.width = this.height = dimension;
+    }
+
+    public Tilemap(int width, int height) {
+        this.tiles = new char[width * height];
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -24,9 +39,51 @@ public class Tilemap {
      *
      * @param chosenTiles the char array representing the tiles, assuming its length is a square number.
      */
-    public Tilemap(char[] chosenTiles) {
+    public Tilemap(char[] chosenTiles, int width, int height) {
         tiles = chosenTiles;
-        dimension = (int) Math.sqrt(tiles.length);
+        if (width * height != tiles.length)
+            throw new IllegalArgumentException("Width and height does not correspond to the given array");
+
+        this.width = width;
+        this.height = height;
+    }
+
+    /**
+     * Creates a new Tilemap from a resource file.
+     *
+     * Syntax of a file:
+     * <width>
+     * <height>
+     * <map>
+     *
+     * Where :
+     *  - `width` is the number of columns of the map
+     *  - `height` is the number of rows of the map
+     *  - `map` is a string with `height` substrings of `width` length, separated by a EOF character (\n, depending of
+     *  your OS).
+     *
+     * @param filename The path to the resource file, is an absolute link where `/` points at the root of the
+     *                 `main/resources` folder.
+     * @return A new instance of the Tilemap
+     *
+     * @throws IOException If any error occured with file reading
+     */
+    public static Tilemap newFromFilename(String filename) throws IOException {
+        Scanner sc = new Scanner(Tilemap.class.getResourceAsStream(filename));
+        int width = sc.nextInt();
+        int height = sc.nextInt();
+        sc.nextLine();
+
+        Tilemap tilemap = new Tilemap(width, height);
+
+        for (int row = 0; row < height; row++) {
+            String strRow = sc.nextLine();
+            for (int col = 0; col < width; col++) {
+                tilemap.setTile(col, row, strRow.charAt(col));
+            }
+        }
+
+        return tilemap;
     }
 
     /**
@@ -38,17 +95,32 @@ public class Tilemap {
         return tiles;
     }
 
+    public Entity[] getTilesEntity() {
+        Entity[] tiles = new Entity[this.tiles.length];
+
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                tiles[row * width + col] = this.getTileAt(col, row);
+            }
+        }
+
+        return tiles;
+    }
+
     /**
      * Renders the map.
-     *
-     * @param out The ourput print stream
+     * @return the rendered map
      */
-    public void render(PrintStream out) {
-        for (int i = 0; i < this.tiles.length; i++) {
-            out.print(this.tiles[i]);
-            if (i % dimension == 0 && i != 0)
-                out.println();
+    public String render() {
+        String out = "";
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                out += getCharAt(col, row);
+            }
+            out += System.lineSeparator();
         }
+
+        return out;
     }
 
     /**
@@ -59,7 +131,7 @@ public class Tilemap {
      * @return true if the position is valid, false otherwise
      */
     public boolean isValidPosition(int x, int y) {
-        return (x >= 0 && x < dimension && y >= 0 && y < dimension);
+        return (x >= 0 && x < width && y >= 0 && y < height);
     }
 
     /**
@@ -71,7 +143,7 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public char getCharAt(int x, int y) {
-        return this.tiles[x * dimension + y];
+        return this.tiles[y * width + x];
     }
 
     /**
@@ -84,7 +156,7 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public boolean isEmptyAt(int x, int y) {
-        return getCharAt(x, y) != EMPTY_CHAR;
+        return getCharAt(x, y) == EMPTY_CHAR;
     }
 
     /**
@@ -94,7 +166,7 @@ public class Tilemap {
      * @param y The vertical position
      * @return The tile we want to get, if exists, null otherwise
      */
-    public Entity getTileAt(int x, int y) {
+    public Tile getTileAt(int x, int y) {
         if (!isValidPosition(x, y))
             return null;
 
@@ -111,15 +183,35 @@ public class Tilemap {
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public void setTile(int x, int y, char c) {
-        this.tiles[x * dimension + y] = c;
+        this.tiles[y * width + x] = c;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     /**
-     * Returns the length of a side of the tilemap
-     * @return The dimension
+     * Returns a random position on the tilemap, in an empty tile.
+     *
+     * @return The random position, null if not available
      */
-    public int getDimension() {
-        return dimension;
+    public Vector2D<Integer> getEmptyRandomPosition() {
+        List<Vector2D<Integer>> emptyPositions = new ArrayList<Vector2D<Integer>>();
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                if (isEmptyAt(col, row))
+                    emptyPositions.add(new Vector2D<Integer>(col, row));
+            }
+        }
+
+        if (emptyPositions.isEmpty())
+            return null;
+
+        return emptyPositions.get(randomInt(0, emptyPositions.size() - 1));
     }
 
     public static class Tile implements Entity {
@@ -143,8 +235,8 @@ public class Tilemap {
             return y;
         }
 
-        public String getDisplay() {
-            return "" + disp; // Cast to string
+        public ANSIChar getDisplay() {
+            return new ANSIChar(disp);
         }
 
         public boolean isCollidable() {

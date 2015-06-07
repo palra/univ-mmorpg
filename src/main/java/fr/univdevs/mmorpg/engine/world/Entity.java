@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.engine.world;
 
+import fr.univdevs.util.ansi.ANSIChar;
+
 /**
  * Public interface Entity, declare any object to an entity, that can be displayed in the map
  */
@@ -20,15 +22,11 @@ public interface Entity {
     int getY();
 
     /**
-     * Returns the String that represents the entity on the map.
-     * Note that it could be a char, as it MUST be rendered as a char on the screen, but we assume that you know it, so
-     * make sure your string is rendered as a single character on the terminal, if you use ANSI Colors
+     * Returns the ANSIChar that represents the entity on the map.
      *
-     * TODO : make a class in order to make sure that a single character will be printed and add the possibility to add some colors
-     *
-     * @return The display "string"
+     * @return The display character
      */
-    String getDisplay();
+    ANSIChar getDisplay();
 
     /**
      * When moving an entity, does this entity blocks the way ?

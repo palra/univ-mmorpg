@@ -1,17 +1,16 @@
 package fr.univdevs.mmorpg.engine;
 
 import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
 
 /**
  * Public class action
  * An action is any thing that can do the character
  * The action is done by a subject to a target
  */
-public abstract class Action implements LoggerAwareInterface {
+public abstract class Action implements GameManagerAware {
     private Player subject;
     private Player target;
-    private Logger logger;
+    private GameManager gameManager;
 
     /**
      * action constructor
@@ -19,6 +18,9 @@ public abstract class Action implements LoggerAwareInterface {
      * @param chosenTarget  the Character targeted
      */
     public Action(Player chosenSubject, Player chosenTarget) {
+        if (chosenSubject == null)
+            throw new NullPointerException("The subject can't be null");
+
         this.subject = chosenSubject;
         this.target = chosenTarget;
     }
@@ -43,18 +45,26 @@ public abstract class Action implements LoggerAwareInterface {
 
 
     /**
-     * Returns the logger.
+     * Returns the logger, shortcut for {@link GameManager#getLogger()}
      * @return The logger
      */
     public Logger getLogger() {
-        return logger;
+        return gameManager.getLogger();
+    }
+
+    /**
+     * Returns the game manager
+     * @return The game manager
+     */
+    public GameManager getGameManager() {
+        return gameManager;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setLogger(Logger logger) {
-        this.logger = logger;
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**

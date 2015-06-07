@@ -9,7 +9,11 @@ import java.util.*;
  * Manages a game instance.
  */
 public class GameManager {
+<<<<<<< HEAD
+    private World world = new World(2);
+=======
     private World world;
+>>>>>>> feature/world-commander
     private Map<String, Player> players = new HashMap<String, Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
     private Logger logger = new Logger();
@@ -92,14 +96,14 @@ public class GameManager {
         for (Player p : pls) {
             Action a = p.getNextAction();
             if (a == null)
-                throw new IllegalStateException("action of player " + p.getName() + " was not registered.");
+                throw new IllegalStateException("Action of player " + p.getName() + " was not registered.");
 
             actions.add(a);
         }
 
         // And executing them
         for (Action a : actions) {
-            a.setGameManager(this); // Injecting the logger
+            a.setLogger(this.logger); // Injecting the logger
             a.execute(); // Executing the action
         }
     }
