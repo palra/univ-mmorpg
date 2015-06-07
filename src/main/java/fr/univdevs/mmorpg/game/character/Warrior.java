@@ -35,7 +35,6 @@ public class Warrior extends Character implements CanFight {
     public String[] getCanUse() {
         return canUse;
     }
-
     public ANSIChar getDisplay() {
         return null;
     }

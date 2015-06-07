@@ -24,7 +24,7 @@ public class Knife extends Weapon {
     }
 
     @Override
-    public void onRegister(fr.univdevs.mmorpg.engine.character.Character character) {
+    public void onRegister(Character character) {
 
     }
 
