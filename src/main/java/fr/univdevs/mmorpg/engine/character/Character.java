@@ -235,15 +235,5 @@ public abstract class Character implements MovableEntity {
 
     }
 
-    /**
-     * When a character decides to carry an item
-     *
-     * @param item the item we want to carry
-     */
-    public void useItem(Item item) {
-        item.onRegister(this);
-        inventory.remove(item);
-    }
-
 
 }

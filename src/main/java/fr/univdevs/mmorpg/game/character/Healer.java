@@ -27,14 +27,12 @@ public class Healer extends Character {
         super(chosenName, "Healer");
     }
 
-
-
     public ANSIChar getDisplay() {
         return null;
     }
 
     public boolean isCollidable() {
-        return false;
+        return true;
     }
 
     public String[] getCanUse() {
