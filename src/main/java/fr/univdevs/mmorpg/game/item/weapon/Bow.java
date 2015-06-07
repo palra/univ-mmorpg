@@ -1,31 +1,23 @@
 package fr.univdevs.mmorpg.game.item.weapon;
 
-import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
+import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Class Bow
- * A Bow
+ * A Bow has a power of 20 points
  */
 public class Bow extends Weapon {
-    public Bow(String bowCategory, int bowCost, int bowWeight) {
-        super(bowCategory, bowCost, bowWeight, 20);
+
+    public Bow(String weaponCategory, int weaponCost, int weaponPower) {
+        super(weaponCategory, weaponCost, weaponPower);
     }
 
-    @Override
-    public void onRegister(Character character) {
+    public Bow() {
+        super("Bow", 150, 150, 20);
     }
-
-    @Override
-    public void onUnregister(Character character) {
-    }
-
     public ANSIChar getDisplay() {
-        return new ANSIChar('↗');
-    }
-
-    public boolean isCollidable() {
-        return false;
+        return new ANSIChar('\u2931', ANSIAttribute.FG_MAGENTA); // => ⤱
     }
 }

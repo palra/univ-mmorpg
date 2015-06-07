@@ -2,9 +2,11 @@ package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
+import fr.univdevs.mmorpg.engine.world.World;
+
+import java.util.List;
 
 /**
  * Command that dumps the map of a GameManager
@@ -23,7 +25,8 @@ public class MapCommand extends GameManagerAwareCommand {
     @Override
     public String execute(String[] args) throws Exception {
         boolean mapOnly = args.length >= 1 && args[0].equals(MAP_ONLY_OPT);
-        Tilemap tilemap = this.getGameManager().getWorld().getTilemap();
+        World world = this.getGameManager().getWorld();
+        Tilemap tilemap = world.getTilemap();
         Entity[] entities = tilemap.getTilesEntity();
 
         int width = tilemap.getWidth();
@@ -32,13 +35,18 @@ public class MapCommand extends GameManagerAwareCommand {
         if (!mapOnly) {
             GameManager gm = this.getGameManager();
 
-            // Displays the players
+            // Query the world entities
+            List<Entity> entitiesToAdd = world.getEntities();
+
+            // Query the players
             for (Player p : gm.getPlayers()) {
-                Character c = p.getCharacter();
-                entities[c.getY() * width + c.getX()] = c;
+                entitiesToAdd.add(p.getCharacter());
             }
 
-            // TODO : displays the items in the world
+            // And add the whole to the global list
+            for (Entity e : entitiesToAdd) {
+                entities[e.getY() * width + e.getX()] = e;
+            }
         }
 
         String out = "";

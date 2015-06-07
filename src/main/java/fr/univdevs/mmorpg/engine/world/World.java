@@ -39,7 +39,7 @@ public class World {
      * @param e the Entity we want to add
      * @return null if no entity was at this place, the old entity otherwise
      */
-    public Entity addEntity(Entity e) throws EntityCollisionException {
+    public Entity addEntity(Entity e) {
         return this.entities.put(new Vector2D<Integer>(e.getX(), e.getY()), e);
     }
 
@@ -52,6 +52,10 @@ public class World {
      */
     public Entity getEntity(int x, int y) {
         return this.entities.get(new Vector2D<Integer>(x, y));
+    }
+
+    public List<Entity> getEntities() {
+        return new ArrayList<Entity>(this.entities.values());
     }
 
 
@@ -73,14 +77,14 @@ public class World {
         List<Entity> nonCollidableEntities = new ArrayList<Entity>();
 
         while (i < nb && !collision) {
-            e.setX(e.getX() + right_dir);
-            e.setY(e.getY() + up_dir);
-            collision = isCollidableAt(e.getX(), e.getY());
-
             Entity inplace = getEntity(e.getX(), e.getY());
             if (inplace != null && !inplace.isCollidable()) {
                 nonCollidableEntities.add(inplace);
             }
+
+            e.setX(e.getX() + right_dir);
+            e.setY(e.getY() + up_dir);
+            collision = isCollidableAt(e.getX(), e.getY());
 
             i++;
         }

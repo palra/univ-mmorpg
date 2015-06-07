@@ -12,6 +12,7 @@ import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.action.MoveCommand;
 import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.mmorpg.game.item.cure.Potion;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -37,7 +38,7 @@ public class App {
     );
 
     private static void configureGame() throws Exception {
-        Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-02.txt");
+        Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
         World world = new World(tilemap);
         gameManager = new GameManager(world);
 
@@ -54,12 +55,18 @@ public class App {
 
             gameManager.addPlayer(p);
         }
+
+        // And put some items
+        Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
+        Potion potion = new Potion();
+        potion.setX(1);
+        potion.setY(1);
+        world.addEntity(potion);
     }
 
-    private static void registerActions(Player currentPlayer) {
+    private static void registerPlayerCommands(Player currentPlayer) {
         for (ActionCommand command : actionCommands)
             shell.remove(command);
-
         actionCommands.clear();
 
         // move
@@ -140,7 +147,7 @@ public class App {
                     System.out.println(new ANSIString(currentPlayer.getName() + "'s turn : ", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_MAGENTA));
                 }
 
-                registerActions(currentPlayer);
+                registerPlayerCommands(currentPlayer);
                 currentPlayer.getCharacter().getDisplay().addAttribute(ANSIAttribute.ATTR_BLINK).addAttribute(ANSIAttribute.ATTR_BOLD);
                 shell.nextResult();
 

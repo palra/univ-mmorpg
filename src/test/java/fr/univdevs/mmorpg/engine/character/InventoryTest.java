@@ -23,7 +23,7 @@ public class InventoryTest {
 
     @Test
     public void testGetByType() throws Exception {
-        Bow bow = new Bow("weapon", 10, 3);
+        Bow bow = new Bow();
         inventory.add(bow);
         for (int i = 0; i < inventory.getByType("cure").length; i++) {
             System.out.println(inventory.getByType("cure")[i].getID());
@@ -34,6 +34,8 @@ public class InventoryTest {
     @Test
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
+        Player palra = new Player("palra");
+
         Character chardrattak = new Warrior("chardrattak");
         drattak.setCharacter(chardrattak);
         Bow bower = new Bow("Bow", 20, 20);

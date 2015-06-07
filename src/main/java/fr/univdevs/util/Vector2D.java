@@ -48,6 +48,12 @@ public class Vector2D<T extends Number> {
         Vector2D<?> vector2D = (Vector2D<?>) o;
 
         return !(x != null ? !x.equals(vector2D.x) : vector2D.x != null) && !(y != null ? !y.equals(vector2D.y) : vector2D.y != null);
+    }
 
+    @Override
+    public int hashCode() {
+        int result = x.hashCode();
+        result = 31 * result + y.hashCode();
+        return result;
     }
 }

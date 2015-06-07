@@ -42,4 +42,8 @@ public abstract class Weapon extends Item {
     public int getPower() {
         return this.power;
     }
+
+    public boolean isCollidable() {
+        return false;
+    }
 }

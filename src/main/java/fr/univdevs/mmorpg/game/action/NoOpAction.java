@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine._mocks;
+package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;

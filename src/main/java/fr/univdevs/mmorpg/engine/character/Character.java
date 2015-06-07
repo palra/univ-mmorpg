@@ -9,6 +9,7 @@ import fr.univdevs.util.ansi.ANSIChar;
  */
 public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
+    private final static double MAX_RESISTANCE = 0.99;
     private String type;
     private String name;
     private int experience;
@@ -56,6 +57,7 @@ public abstract class Character implements MovableEntity {
         this.type = chosenType;
         this.inventory = new Inventory(this);
         this.health = 100;
+        this.resistance = 0.0;
         this.setDisplay(chosenDisplay);
     }
 
@@ -166,11 +168,10 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to give resistance to a character
-     *
-     * @param resistance coefficient to set, must be greater than 1
+     * @param resistance    coefficient to set, must be in [0;1)
      */
     public void setResistance(double resistance) {
-        this.resistance = Numbers.clamp(resistance, 1, Double.MAX_VALUE);
+        this.resistance = Numbers.clamp(resistance, 0, MAX_RESISTANCE);
     }
 
     /**
@@ -240,6 +241,13 @@ public abstract class Character implements MovableEntity {
      */
     protected void setDisplay(ANSIChar display) {
         this.display = display;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isCollidable() {
+        return true;
     }
 
     @Override

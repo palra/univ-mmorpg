@@ -142,7 +142,7 @@ public class Inventory implements LoggerAwareInterface {
             i.onUnregister(character);
 
         if (logger != null) {
-            logger.log(new InventoryAddEvent(i, character));
+            logger.log(new InventoryAddEvent(item, character));
         }
 
         return i;
@@ -168,7 +168,6 @@ public class Inventory implements LoggerAwareInterface {
         return this.items.containsKey(key);
     }
 
-
     /**
      * @param item The removed item, if removed
      */
@@ -178,7 +177,7 @@ public class Inventory implements LoggerAwareInterface {
             i.onUnregister(this.getCharacter());
 
         if (logger != null) {
-            logger.log(new InventoryRemoveEvent(i, character));
+            logger.log(new InventoryRemoveEvent(item, character));
         }
 
         return i;

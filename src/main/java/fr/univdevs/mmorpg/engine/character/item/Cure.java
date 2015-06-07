@@ -4,15 +4,15 @@ import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Item;
 
 /**
- * Abstract class Cure
+ * Abstract class cure
  * Represents all the cures
- * A Cure can cure a Character from 10 to MAX
+ * A cure can cure a Character from 10 to MAX
  */
 public abstract class Cure extends Item {
     private int restoredPoints;
 
     /**
-     * Cure constructor
+     * cure constructor
      *
      * @param cureCategory   the category of the cure, can't be changed
      * @param cureCost       the cost of the cure
@@ -26,7 +26,7 @@ public abstract class Cure extends Item {
 
 
     /**
-     * Cure constructor
+     * cure constructor
      *
      * @param cureCategory   the category of the cure, can't be changed
      * @param cureCost       the cost of the cure
@@ -62,5 +62,9 @@ public abstract class Cure extends Item {
      */
     public void apply(Character c) {
         c.setHealth(c.getHealth() + restoredPoints);
+    }
+
+    public boolean isCollidable() {
+        return false;
     }
 }

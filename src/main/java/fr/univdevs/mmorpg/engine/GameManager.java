@@ -99,7 +99,7 @@ public class GameManager {
         for (Player p : pls) {
             Action a = p.getNextAction();
             if (a == null)
-                throw new IllegalStateException("Action of player " + p.getName() + " was not registered.");
+                throw new IllegalStateException("action of player " + p.getName() + " was not registered.");
 
             actions.add(a);
             p.setNextAction(null);
