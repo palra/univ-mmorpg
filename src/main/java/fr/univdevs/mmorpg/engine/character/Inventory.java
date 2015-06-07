@@ -114,7 +114,6 @@ public class Inventory {
         return totalWeight;
     }
 
-
     /**
      * Public method to check if the character can use the item
      *
@@ -157,7 +156,6 @@ public class Inventory {
     public boolean has(int key) {
         return this.items.containsKey(key);
     }
-
 
     /**
      *

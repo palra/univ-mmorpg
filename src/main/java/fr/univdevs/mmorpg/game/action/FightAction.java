@@ -33,6 +33,7 @@ public class FightAction extends Action {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() - (this.weapon.getPower() - (this.weapon.getPower() * getTarget().getCharacter().getResistance()))));
         Logger l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));
+        this.weapon = null;
     }
 
     public static class FightEvent extends ActionEvent<Player> {

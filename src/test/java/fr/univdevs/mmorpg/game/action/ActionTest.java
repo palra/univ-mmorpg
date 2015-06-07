@@ -6,6 +6,7 @@ import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HyperPotion;
 import fr.univdevs.mmorpg.game.item.cure.Potion;
+import fr.univdevs.mmorpg.game.item.protection.Armor;
 import fr.univdevs.mmorpg.game.item.protection.Helmet;
 import fr.univdevs.mmorpg.game.item.protection.Shield;
 import fr.univdevs.mmorpg.game.item.weapon.Bow;
@@ -35,6 +36,7 @@ public class ActionTest {
 
     Shield sh = new Shield();
     Helmet h = new Helmet();
+    Armor a = new Armor();
 
     @Test
     public void testActions() throws Exception {
@@ -42,6 +44,7 @@ public class ActionTest {
         palra.setCharacter(pCharacter);
         palra.getCharacter().useItem(sh);
         palra.getCharacter().useItem(h);
+        palra.getCharacter().useItem(a);
 
         FightAction fa = new FightAction(drattak, palra, bow);
         CureAction ca = new CureAction(drattak, palra, p);
@@ -49,10 +52,6 @@ public class ActionTest {
         Logger l = new Logger();
         fa.setLogger(l);
         fa.execute();
-
-
-        //ca.setLogger(l);
-        //ca.execute();
 
         System.out.println(showHP());
     }

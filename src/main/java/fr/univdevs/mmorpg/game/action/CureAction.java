@@ -29,8 +29,10 @@ public class CureAction extends Action {
     @Override
     public void execute() throws Exception {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
+        getSubject().getCharacter().getInventory().remove(this.cure);
         Logger l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
+        this.cure = null;
     }
 
     public static class CureEvent extends ActionEvent<Player> {
