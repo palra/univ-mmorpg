@@ -12,7 +12,7 @@ public class TilemapTest {
     @Test
     public void testTilemap() throws Exception {
         char[] c = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '\n', '#', '#', '\n'};
-        Tilemap t = new Tilemap(c);
+        Tilemap t = new Tilemap(5, 10);
         //t.render();
         //System.out.println(t.getSize());
         t.setTile(1, 5, 'f');

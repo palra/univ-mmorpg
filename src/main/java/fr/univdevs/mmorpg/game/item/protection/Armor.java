@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.game.item.protection;
 
 import fr.univdevs.mmorpg.engine.character.item.Protection;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Armor class
@@ -16,7 +17,7 @@ public class Armor extends Protection {
         super("Armor", 80, 150, 0.35);
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 

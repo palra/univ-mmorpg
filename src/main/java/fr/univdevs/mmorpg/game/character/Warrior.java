@@ -8,6 +8,7 @@ import fr.univdevs.mmorpg.engine.character.skills.CanCure;
 import fr.univdevs.mmorpg.engine.character.skills.CanFight;
 import fr.univdevs.mmorpg.game.action.FightAction;
 import fr.univdevs.util.Vector2D;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Created by drattak on 23/05/15.
@@ -35,7 +36,7 @@ public class Warrior extends Character implements CanFight {
         return canUse;
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 

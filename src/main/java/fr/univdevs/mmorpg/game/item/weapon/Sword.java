@@ -3,6 +3,7 @@ package fr.univdevs.mmorpg.game.item.weapon;
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Public class Sword
@@ -15,7 +16,7 @@ public class Sword extends Weapon {
         super("Sword", 100, 100, 11);
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 

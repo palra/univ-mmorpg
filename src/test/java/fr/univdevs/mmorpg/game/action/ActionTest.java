@@ -50,7 +50,7 @@ public class ActionTest {
         CureAction ca = new CureAction(drattak, palra, p);
 
         Logger l = new Logger();
-        fa.setLogger(l);
+        //fa.setLogger(l);
         fa.execute();
 
         System.out.println(showHP());

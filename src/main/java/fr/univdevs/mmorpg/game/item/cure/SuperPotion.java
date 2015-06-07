@@ -3,6 +3,7 @@ package fr.univdevs.mmorpg.game.item.cure;
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * SuperPotion class
@@ -14,7 +15,7 @@ public class SuperPotion extends Cure {
         super("SuperPotion", 20, 20);
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 

@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
+import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.action.FightAction;
 import fr.univdevs.mmorpg.game.action.NoOpAction;
 import fr.univdevs.mmorpg.game.character.Warrior;
@@ -12,10 +13,11 @@ import org.junit.Test;
  */
 public class GameManagerTest {
     private GameManager gm;
+    private World world;
 
     @Before
     public void setUp() throws Exception {
-        gm = new GameManager();
+        gm = new GameManager(world);
     }
 
     @Test

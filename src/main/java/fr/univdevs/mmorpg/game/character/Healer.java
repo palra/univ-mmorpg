@@ -4,6 +4,7 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.game.item.weapon.Knife;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Public class Healer
@@ -26,7 +27,9 @@ public class Healer extends Character {
         super(chosenName, "Healer");
     }
 
-    public String getDisplay() {
+
+
+    public ANSIChar getDisplay() {
         return null;
     }
 

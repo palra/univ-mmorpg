@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.game.item.protection;
 
 import fr.univdevs.mmorpg.engine.character.item.Protection;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Helmet class
@@ -15,7 +16,7 @@ public class Helmet extends Protection {
         super("Helmet", 45, 20, 0.1);
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 

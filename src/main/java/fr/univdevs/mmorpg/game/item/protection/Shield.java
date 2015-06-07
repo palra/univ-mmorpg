@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.game.item.protection;
 
 import fr.univdevs.mmorpg.engine.character.item.Protection;
+import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Shield class
@@ -15,7 +16,7 @@ public class Shield extends Protection {
         super("Shield", 90, 50, 0.2);
     }
 
-    public String getDisplay() {
+    public ANSIChar getDisplay() {
         return null;
     }
 
