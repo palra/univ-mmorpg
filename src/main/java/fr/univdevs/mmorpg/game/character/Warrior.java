@@ -26,6 +26,10 @@ public class Warrior extends Character implements CanFight {
         super(name, "Warrior", chosenPlayer);
     }
 
+    public Warrior(String name) {
+        super(name, "Warrior");
+    }
+
     @Override
     public String[] getCanUse() {
         return canUse;

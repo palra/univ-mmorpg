@@ -10,7 +10,7 @@ import fr.univdevs.util.Numbers;
 public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
     private final static double MAX_RESISTANCE = 0.99;
-    private final Player player;
+    private Player player;
     private String type;
     private String name;
     private int experience;
@@ -36,6 +36,14 @@ public abstract class Character implements MovableEntity {
         this.health = 100;
         this.resistance = 0.0;
         this.player = chosenPlayer;
+    }
+
+    public Character(String chosenName, String chosenType) {
+        this.name = chosenName;
+        this.type = chosenType;
+        this.inventory = new Inventory(this);
+        this.health = 100;
+        this.resistance = 0.0;
     }
 
     public Player getPlayer() {

@@ -25,8 +25,8 @@ public class ActionTest {
     Player drattak = new Player("drattak");
     Player palra = new Player("palra");
 
-    Character dCharacter = new Warrior("DrattakCharacter");
-    Character pCharacter = new Warrior("PalraCharacter");
+    Character dCharacter = new Warrior("DrattakCharacter", drattak);
+    Character pCharacter = new Warrior("PalraCharacter", palra);
 
     Bow bow = new Bow();
     Bow bow2 = new Bow();

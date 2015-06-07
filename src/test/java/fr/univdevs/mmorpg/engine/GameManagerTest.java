@@ -1,7 +1,9 @@
 package fr.univdevs.mmorpg.engine;
 
+import fr.univdevs.mmorpg.game.action.FightAction;
 import fr.univdevs.mmorpg.game.action.NoOpAction;
 import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.mmorpg.game.item.weapon.Bow;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,8 +31,13 @@ public class GameManagerTest {
         drattak.setNextAction(new NoOpAction(drattak, null));
         palra.setNextAction(new NoOpAction(drattak, null));
         p3.setNextAction(new NoOpAction(drattak, null));
+        System.out.println(palra.getCharacter().getHealth());
+        drattak.setNextAction(new FightAction(drattak, palra, new Bow()));
 
         gm.playTurn();
+
+        System.out.println(palra.getCharacter().getHealth());
+
 
         // TODO : incomplete
     }

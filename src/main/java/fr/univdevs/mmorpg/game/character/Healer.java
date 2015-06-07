@@ -22,6 +22,10 @@ public class Healer extends Character {
         super(chosenName, "Healer", chosenPlayer);
     }
 
+    public Healer(String chosenName) {
+        super(chosenName, "Healer");
+    }
+
     public String getDisplay() {
         return null;
     }
