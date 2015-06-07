@@ -45,8 +45,10 @@ public class MoveAction extends Action {
 
         Inventory i = c.getInventory();
         for (Entity e : res.getNonCollidableEntities()) {
-            if (e instanceof Item)
+            if (e instanceof Item) {
                 i.add((Item) e);
+                w.removeEntity(e);
+            }
         }
     }
 

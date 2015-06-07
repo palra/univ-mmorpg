@@ -44,6 +44,16 @@ public class World {
     }
 
     /**
+     * Removes the entity passed in parameter from the world
+     *
+     * @param e The entity we want to remove
+     * @return null if the given entity is not on the map, the Entity otherwise
+     */
+    public Entity removeEntity(Entity e) {
+        return this.entities.remove(new Vector2D<Integer>(e.getX(), e.getY()));
+    }
+
+    /**
      * Public method to return an Entity
      *
      * @param x the horizontal position of the entity you want to get

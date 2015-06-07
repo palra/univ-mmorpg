@@ -6,6 +6,7 @@ import fr.univdevs.commander.userworld.HelpCommand;
 import fr.univdevs.mmorpg.bridge.ActionCommand;
 import fr.univdevs.mmorpg.bridge.LoggerCommand;
 import fr.univdevs.mmorpg.bridge.MapCommand;
+import fr.univdevs.mmorpg.bridge.StatsCommand;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
@@ -30,6 +31,7 @@ public class App {
     private static GameManager gameManager;
     private static List<Player> players = new ArrayList<Player>();
     private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
+    private static StatsCommand stats;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -76,6 +78,8 @@ public class App {
 
         for (ActionCommand command : actionCommands)
             shell.add(command);
+
+        stats.setCurrentPlayer(currentPlayer);
     }
 
     private static boolean actionRegistered() {
@@ -113,6 +117,10 @@ public class App {
         LoggerCommand log = new LoggerCommand();
         log.setLogger(gameManager.getLogger());
 
+        // stats
+        stats = new StatsCommand();
+        stats.setGameManager(gameManager);
+
 
         /*=======================
                  Shell
@@ -122,6 +130,7 @@ public class App {
         shell.add(help);
         shell.add(map);
         shell.add(log);
+        shell.add(stats);
 
         boolean playTurn = false;
         Iterator<Player> iPlayers = null;

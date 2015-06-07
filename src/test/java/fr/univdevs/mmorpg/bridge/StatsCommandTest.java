@@ -26,7 +26,7 @@ public class StatsCommandTest {
         gm.addPlayer(new Player("palra", new Warrior("medor")));
 
         sc = new StatsCommand();
-        sc.setCurrentPlayerName("palra");
+        sc.setCurrentPlayer(gm.getPlayerByName("palra"));
 
         sc.setGameManager(gm);
 
