@@ -99,7 +99,7 @@ public class GameManager {
 
         // And executing them
         for (Action a : actions) {
-            a.setLogger(this.logger); // Injecting the logger
+            a.setGameManager(this); // Injecting the logger
             a.execute(); // Executing the action
         }
     }

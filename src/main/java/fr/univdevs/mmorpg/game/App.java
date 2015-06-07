@@ -9,6 +9,7 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
+import fr.univdevs.mmorpg.game.action.MoveCommand;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -75,6 +76,10 @@ public class App {
         MapCommand map = new MapCommand();
         map.setGameManager(gameManager);
 
+        // move : MUST NOT BE USED THAT WAY, but must be instanciated each time you ask your player to move
+        MoveCommand move = new MoveCommand(players.get(0));
+        move.setGameManager(gameManager);
+
 
         /*=======================
                  Shell
@@ -88,6 +93,7 @@ public class App {
         shell.add(exit);
         shell.add(help);
         shell.add(map);
+        shell.add(move);
 
         // The main loop
         while (!exit.isClosed()) {

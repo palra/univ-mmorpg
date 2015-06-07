@@ -66,20 +66,19 @@ public class World {
 
         int i = 0;
         boolean collision = false;
-        int up_dir = (dir == Direction.UP) ? 1 : (dir == Direction.DOWN) ? -1 : 0;
+        int up_dir = (dir == Direction.UP) ? -1 : (dir == Direction.DOWN) ? 1 : 0;
         int right_dir = (dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0;
 
         while (i < nb && !collision) {
+            e.setX(e.getX() + right_dir);
+            e.setY(e.getY() + up_dir);
             collision = isCollidableAt(e.getX(), e.getY());
-
-            e.setX(e.getX() + up_dir);
-            e.setY(e.getY() + right_dir);
             i++;
         }
 
         if (collision) {
-            e.setX(e.getX() - up_dir);
-            e.setY(e.getY() - right_dir);
+            e.setX(e.getX() - right_dir);
+            e.setY(e.getY() - up_dir);
         }
 
         return collision;
@@ -87,7 +86,8 @@ public class World {
 
     public boolean isCollidableAt(int x, int y) {
         Entity e = getEntity(x, y);
-        return e != null && e.isCollidable();
+        Tilemap.Tile t = tilemap.getTileAt(x, y);
+        return (e != null && e.isCollidable()) || (t != null && t.isCollidable());
     }
 
     public enum Direction {
