@@ -5,6 +5,8 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.event.ActionEvent;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.Date;
 
@@ -58,7 +60,10 @@ public class MoveAction extends Action {
 
         @Override
         public String getDescription() {
-            String out = getSubject().getName() + " a déplacé " + getSubject().getCharacter().getName() + " de " + nbCases + " case" +
+            String out = new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
+                " a déplacé " +
+                new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
+                " de " + nbCases + " case" +
                 ((nbCases > 1) ? "" : "s") + // Pluralize the string
                 " vers ";
 

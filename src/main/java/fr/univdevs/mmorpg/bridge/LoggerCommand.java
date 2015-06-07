@@ -4,6 +4,8 @@ import fr.univdevs.commander.Command;
 import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +26,10 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
 
     private Logger logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
-    private String logFormat = "[%s] <%s.%s>: %s";
+    private String logFormat = "" +
+        new ANSIString("[%s] ", ANSIAttribute.FG_CYAN) +
+        new ANSIString("<%s.%s>", ANSIAttribute.FG_YELLOW, ANSIAttribute.ATTR_UNDERSCORE) +
+        ": %s";
     private int lastIdx = 0;
 
     public LoggerCommand() {
