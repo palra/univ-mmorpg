@@ -141,9 +141,11 @@ public class App {
                 }
 
                 registerActions(currentPlayer);
+                currentPlayer.getCharacter().getDisplay().addAttribute(ANSIAttribute.ATTR_BLINK).addAttribute(ANSIAttribute.ATTR_BOLD);
                 shell.nextResult();
 
                 if (actionRegistered()) {
+                    currentPlayer.getCharacter().getDisplay().removeAttribute(ANSIAttribute.ATTR_BLINK).removeAttribute(ANSIAttribute.ATTR_BOLD);
                     currentPlayer = null;
                     playTurn = !iPlayers.hasNext(); // Execute turns when every player played.
                     if (playTurn)
