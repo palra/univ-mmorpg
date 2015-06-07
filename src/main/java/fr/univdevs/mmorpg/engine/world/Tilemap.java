@@ -50,22 +50,21 @@ public class Tilemap {
 
     /**
      * Creates a new Tilemap from a resource file.
-     *
+     * <p/>
      * Syntax of a file:
      * <width>
      * <height>
      * <map>
-     *
+     * <p/>
      * Where :
-     *  - `width` is the number of columns of the map
-     *  - `height` is the number of rows of the map
-     *  - `map` is a string with `height` substrings of `width` length, separated by a EOF character (\n, depending of
-     *  your OS).
+     * - `width` is the number of columns of the map
+     * - `height` is the number of rows of the map
+     * - `map` is a string with `height` substrings of `width` length, separated by a EOF character (\n, depending of
+     * your OS).
      *
      * @param filename The path to the resource file, is an absolute link where `/` points at the root of the
      *                 `main/resources` folder.
      * @return A new instance of the Tilemap
-     *
      * @throws IOException If any error occured with file reading
      */
     public static Tilemap newFromFilename(String filename) throws IOException {
@@ -109,6 +108,7 @@ public class Tilemap {
 
     /**
      * Renders the map.
+     *
      * @return the rendered map
      */
     public String render() {
@@ -152,7 +152,6 @@ public class Tilemap {
      * @param x The horizontal position to test
      * @param y The vertical position to test
      * @return The char at the given position.
-     *
      * @throws IndexOutOfBoundsException if the position is invalid.
      */
     public boolean isEmptyAt(int x, int y) {

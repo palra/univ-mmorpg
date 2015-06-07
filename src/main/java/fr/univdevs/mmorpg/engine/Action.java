@@ -14,7 +14,8 @@ public abstract class Action implements GameManagerAware {
 
     /**
      * Action constructor
-     *  @param chosenSubject the Character who execute the action
+     *
+     * @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
     public Action(Player chosenSubject, Player chosenTarget) {
@@ -46,6 +47,7 @@ public abstract class Action implements GameManagerAware {
 
     /**
      * Returns the logger, shortcut for {@link GameManager#getLogger()}
+     *
      * @return The logger
      */
     public Logger getLogger() {
@@ -54,6 +56,7 @@ public abstract class Action implements GameManagerAware {
 
     /**
      * Returns the game manager
+     *
      * @return The game manager
      */
     public GameManager getGameManager() {

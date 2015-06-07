@@ -25,9 +25,10 @@ public abstract class Protection extends Item {
 
     /**
      * Getter of robustness
+     *
      * @return robustness
      */
-    public double getRobustness(){
+    public double getRobustness() {
         return this.robustness;
     }
 

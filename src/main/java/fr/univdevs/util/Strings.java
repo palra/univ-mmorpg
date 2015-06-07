@@ -12,6 +12,7 @@ public class Strings {
 
     /**
      * Returns the random generator
+     *
      * @return The random generator
      */
     public static Random getRandom() {

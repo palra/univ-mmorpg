@@ -28,7 +28,7 @@ public abstract class Character implements MovableEntity {
      * @param chosenName Name chosen for the character, can't change
      * @param chosenType Type chosen for the character, can't change
      */
-    public Character(String chosenName, String chosenType){
+    public Character(String chosenName, String chosenType) {
         this(chosenName, chosenName.trim().toUpperCase().charAt(0), chosenType);
     }
 
@@ -76,6 +76,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to change money Value
+     *
      * @param money how much money we give
      */
     public void setMoney(int money) {
@@ -84,6 +85,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public mehod to get the type (category) of the character
+     *
      * @return String
      */
     public String getType() {
@@ -92,6 +94,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return the name of the Character
+     *
      * @return String
      */
     public String getName() {
@@ -100,6 +103,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return the XP of the Character
+     *
      * @return int
      */
     public int getExperience() {
@@ -108,7 +112,8 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to change XP of the Character
-     * @param experience    amount of experience we want to give
+     *
+     * @param experience amount of experience we want to give
      */
     public void setExperience(int experience) {
         this.experience = Numbers.clamp(experience, 0, Integer.MAX_VALUE);
@@ -116,6 +121,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return the Action Points of the Character
+     *
      * @return int
      */
     public int getActionPoints() {
@@ -124,7 +130,8 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to give Action Points
-     * @param chosenActionPoints    amount of Action Points to give
+     *
+     * @param chosenActionPoints amount of Action Points to give
      */
     public void setActionPoints(int chosenActionPoints) {
         this.actionPoints = chosenActionPoints;
@@ -132,6 +139,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return Health Point
+     *
      * @return int
      */
     public int getHealth() {
@@ -140,6 +148,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to give Health Point
+     *
      * @param chosenHealth The new healh point value
      */
     public void setHealth(int chosenHealth) {
@@ -148,6 +157,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return resistance of a Character
+     *
      * @return double
      */
     public double getResistance() {
@@ -156,7 +166,8 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to give resistance to a character
-     * @param resistance    coefficient to set, must be greater than 1
+     *
+     * @param resistance coefficient to set, must be greater than 1
      */
     public void setResistance(double resistance) {
         this.resistance = Numbers.clamp(resistance, 1, Double.MAX_VALUE);
@@ -164,6 +175,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return the speed of a character
+     *
      * @return int
      */
     public int getSpeed() {
@@ -172,6 +184,7 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to set the speed of a Character
+     *
      * @param speed the speed of the character
      */
     public void setSpeed(int speed) {
@@ -208,9 +221,10 @@ public abstract class Character implements MovableEntity {
 
     /**
      * Public method to return the inventory of a character
+     *
      * @return Inventory
      */
-    public Inventory getInventory(){
+    public Inventory getInventory() {
         return this.inventory;
     }
 

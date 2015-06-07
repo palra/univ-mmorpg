@@ -127,6 +127,7 @@ public class CommandParser {
 
     /**
      * Removes a given command.
+     *
      * @param o The command to remove
      * @return The command removed, if any
      */

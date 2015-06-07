@@ -2,6 +2,7 @@ package fr.univdevs.commander;
 
 /**
  * Exception thrown when no command name was given.
+ *
  * @author Loïc Payol
  */
 public class EmptyCommandException extends Exception {

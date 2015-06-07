@@ -15,6 +15,7 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
 
     /**
      * Default constructor
+     *
      * @param currentPlayer The current player, subject of the action.
      */
     public ActionCommand(Player currentPlayer) {
@@ -26,6 +27,7 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
 
     /**
      * Returns the newly built action, if already built
+     *
      * @return The action, if built, null instead
      */
     public Action getAction() {
@@ -34,6 +36,7 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
 
     /**
      * Sets the new action to the currentPlayer
+     *
      * @param action The action
      */
     public void setAction(Action action) {

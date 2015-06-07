@@ -2,6 +2,7 @@ package fr.univdevs.commander;
 
 /**
  * Exception thrown when a requested command does not exists.
+ *
  * @author Loïc Payol
  */
 public class NonExistingCommandException extends Exception {

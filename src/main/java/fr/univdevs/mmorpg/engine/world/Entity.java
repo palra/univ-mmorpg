@@ -30,6 +30,7 @@ public interface Entity {
 
     /**
      * When moving an entity, does this entity blocks the way ?
+     *
      * @return The collidableness of the entity
      */
     boolean isCollidable();

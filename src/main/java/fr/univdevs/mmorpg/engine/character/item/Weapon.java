@@ -24,9 +24,10 @@ public abstract class Weapon extends Item {
 
     /**
      * Weapon constructor
-     * @param weaponCategory    category of the weapon, cannot be changed
-     * @param weaponCost    cost of the weapon
-     * @param weaponPower   power of the weapon
+     *
+     * @param weaponCategory category of the weapon, cannot be changed
+     * @param weaponCost     cost of the weapon
+     * @param weaponPower    power of the weapon
      */
     public Weapon(String weaponCategory, int weaponCost, int weaponPower) {
         super(weaponCategory, weaponCost);
@@ -35,9 +36,10 @@ public abstract class Weapon extends Item {
 
     /**
      * function to return the power of a weapon
+     *
      * @return int
      */
-    public int getPower(){
+    public int getPower() {
         return this.power;
     }
 }

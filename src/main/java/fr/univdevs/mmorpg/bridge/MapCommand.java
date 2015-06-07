@@ -15,6 +15,7 @@ import fr.univdevs.mmorpg.engine.world.Tilemap;
  */
 public class MapCommand extends GameManagerAwareCommand {
     private static String MAP_ONLY_OPT = "--map-only";
+
     public MapCommand() {
         this.setName("map");
     }

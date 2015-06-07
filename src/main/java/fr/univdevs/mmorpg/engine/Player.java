@@ -36,7 +36,7 @@ public class Player {
      * A player represents the human
      *
      * @param chosenName the name we want to give to the player
-     * @param character The character associated to the player
+     * @param character  The character associated to the player
      */
     public Player(String chosenName, Character character) {
         this(chosenName);
@@ -46,6 +46,7 @@ public class Player {
 
     /**
      * Protected method to get the name of the player
+     *
      * @return the name of the player
      */
     public String getName() {
@@ -54,6 +55,7 @@ public class Player {
 
     /**
      * Getter of the Character
+     *
      * @return the character
      */
     public Character getCharacter() {
@@ -62,9 +64,10 @@ public class Player {
 
     /**
      * Setter of the Character
-     * @param chosenCharacter   the character we want to set
+     *
+     * @param chosenCharacter the character we want to set
      * @return the chosen character
-     * @throws Exception    if the player already has a character
+     * @throws Exception if the player already has a character
      */
     public Character setCharacter(Character chosenCharacter) throws Exception {
         if (this.character != null) throw new Exception("Vous possédez déjà un personnage");
@@ -74,7 +77,8 @@ public class Player {
 
     /**
      * Setter of action
-     * @param chosenAction  the action we want to set
+     *
+     * @param chosenAction the action we want to set
      * @return the same action
      */
     public Action setNextAction(Action chosenAction) {
@@ -84,6 +88,7 @@ public class Player {
 
     /**
      * Getter of Action
+     *
      * @return the next action
      */
     public Action getNextAction() {

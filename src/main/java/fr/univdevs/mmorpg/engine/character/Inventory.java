@@ -11,7 +11,6 @@ import java.util.*;
 /**
  * Inventory
  * The inventory containing items
- *
  */
 public class Inventory implements LoggerAwareInterface {
     private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
@@ -45,6 +44,7 @@ public class Inventory implements LoggerAwareInterface {
 
     /**
      * Returns the logger
+     *
      * @return The logger
      */
     public Logger getLogger() {
@@ -72,52 +72,47 @@ public class Inventory implements LoggerAwareInterface {
     }
 
     /**
-     *
-     * @return  Item collection
+     * @return Item collection
      */
-    public Item[] getItems(){
+    public Item[] getItems() {
         return items.values().toArray(new Item[this.size()]);
     }
 
     /**
-     *
-     * @return  the size of the Inventory
+     * @return the size of the Inventory
      */
-    public int size(){
+    public int size() {
         return items.size();
     }
 
     /**
-     *
-     * @return  True if Inventory is empty
+     * @return True if Inventory is empty
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return items.isEmpty();
     }
 
     /**
-     *
-     * @param category  the selected category
-     * @return  matching items
+     * @param category the selected category
+     * @return matching items
      */
-    public Item[] getByType(String category){
+    public Item[] getByType(String category) {
         ArrayList<Item> selectedItems = new ArrayList<Item>();
-        for(Item value : this.items.values()){
-                if (value.getCategory().equals(category)) {
-                    selectedItems.add(value);
-                }
+        for (Item value : this.items.values()) {
+            if (value.getCategory().equals(category)) {
+                selectedItems.add(value);
+            }
         }
         return selectedItems.toArray(new Item[selectedItems.size()]);
     }
 
     /**
-     *
      * @return all Types of the inventory
      */
-    public String[] getTypes(){
+    public String[] getTypes() {
         HashSet<String> types = new HashSet<String>(); //Hashset avoid doubles
         Iterator i = this.items.entrySet().iterator();
-        for(Item value : this.items.values()){
+        for (Item value : this.items.values()) {
             types.add(value.getCategory());
         }
 
@@ -125,21 +120,19 @@ public class Inventory implements LoggerAwareInterface {
     }
 
     /**
-     *
      * @return sum of all the weights
      */
-    public int getWeight(){
+    public int getWeight() {
         int totalWeight = 0;
         Iterator i = this.items.entrySet().iterator();
-        for(Item value : this.items.values()){
+        for (Item value : this.items.values()) {
             totalWeight += value.getWeight();
-            }
+        }
         return totalWeight;
     }
 
     /**
-     *
-     * @param item  idem to be added
+     * @param item idem to be added
      */
     public Item add(Item item) {
         item.onRegister(character);
@@ -157,7 +150,8 @@ public class Inventory implements LoggerAwareInterface {
 
     /**
      * Public method to check if the inventory the param Item
-     * @param item  the item we want to check
+     *
+     * @param item the item we want to check
      * @return true if the inventory contains the selected item
      */
     public boolean has(Item item) {
@@ -166,7 +160,8 @@ public class Inventory implements LoggerAwareInterface {
 
     /**
      * Public method to check if the inventory has an item
-     * @param key  We check the presence by the id
+     *
+     * @param key We check the presence by the id
      * @return true if the inventory has the selected item
      */
     public boolean has(String key) {
@@ -175,7 +170,6 @@ public class Inventory implements LoggerAwareInterface {
 
 
     /**
-     *
      * @param item The removed item, if removed
      */
     public Item remove(Item item) {

@@ -11,6 +11,7 @@ import org.junit.Test;
  */
 public class InventoryTest {
     private Inventory inventory;
+
     @Before
     public void setUp() throws Exception {
         this.inventory = new Inventory(new Warrior("drattak"));

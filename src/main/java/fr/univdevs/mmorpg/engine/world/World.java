@@ -133,6 +133,7 @@ public class World {
 
     /**
      * Exception thrown when an entity is colliding something in the world, and that is not expected.
+     *
      * @author Loïc Payol
      */
     public static class EntityCollisionException extends Exception {

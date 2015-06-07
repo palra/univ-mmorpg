@@ -41,7 +41,7 @@ public class MoveAction extends Action {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
-        this.getLogger().log(new MoveActionEvent(getSubject(), getTarget(), this.direction, this.nbCases));
+        this.getLogger().log(new MoveActionEvent(getSubject(), res, this.direction));
 
         Inventory i = c.getInventory();
         for (Entity e : res.getNonCollidableEntities()) {
@@ -52,19 +52,19 @@ public class MoveAction extends Action {
 
     public static class MoveActionEvent extends ActionEvent {
         public static final String NAME = "move";
-        private World.Direction direction;
-        private int nbCases;
+        private World.MoveResult res;
+        private World.Direction dir;
 
-        public MoveActionEvent(Player subject, Player target, World.Direction direction, int nbCases) {
-            super(NAME, subject, target);
-            this.direction = direction;
-            this.nbCases = nbCases;
+        public MoveActionEvent(Player subject, World.MoveResult res, World.Direction dir) {
+            super(NAME, subject, null);
+            this.res = res;
+            this.dir = dir;
         }
 
-        public MoveActionEvent(Date date, Player subject, Player target, World.Direction direction, int nbCases) {
-            super(NAME, date, subject, target);
-            this.direction = direction;
-            this.nbCases = nbCases;
+        public MoveActionEvent(Date date, Player subject, World.MoveResult res, World.Direction dir) {
+            super(NAME, date, subject, null);
+            this.res = res;
+            this.dir = dir;
         }
 
         @Override
@@ -72,11 +72,11 @@ public class MoveAction extends Action {
             String out = new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
                 " a déplacé " +
                 new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
-                " de " + nbCases + " case" +
-                ((nbCases > 1) ? "" : "s") + // Pluralize the string
+                " de " + res.getNbCases() + " case" +
+                ((res.getNbCases() > 1) ? "" : "s") + // Pluralize the string
                 " vers ";
 
-            switch (direction) {
+            switch (dir) {
                 case LEFT:
                     out += "la gauche";
                     break;

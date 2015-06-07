@@ -8,6 +8,14 @@ import java.util.UUID;
  * Represents an event in the game
  */
 public abstract class Event {
+    /**
+     * Compares two events according to their creation date. The newer is the first.
+     */
+    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
+        public int compare(Event e1, Event e2) {
+            return -SORT_BY_DATE_ASC.compare(e1, e2);
+        }
+    };
     private String topic;
     private String name;
     private Date createdAt;
@@ -19,14 +27,6 @@ public abstract class Event {
             return e1.getCreatedAt().compareTo(e2.getCreatedAt());
         }
     };
-    /**
-     * Compares two events according to their creation date. The newer is the first.
-     */
-    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
-        public int compare(Event e1, Event e2) {
-            return -SORT_BY_DATE_ASC.compare(e1, e2);
-        }
-    };
     private UUID uuid;
 
 
@@ -34,7 +34,7 @@ public abstract class Event {
      * Constructs an event, with a given subject and the date initialized to now.
      *
      * @param topic The topic of the event
-     * @param name The event name.
+     * @param name  The event name.
      */
     public Event(String topic, String name) {
         this(topic, name, new Date());
@@ -74,6 +74,7 @@ public abstract class Event {
 
     /**
      * Returns the creation date of the event
+     *
      * @return The creation date of the event
      */
     public Date getCreatedAt() {
@@ -105,6 +106,7 @@ public abstract class Event {
 
     /**
      * Returns an human understandable description of the event.
+     *
      * @return The description of the event.
      */
     public abstract String getDescription();

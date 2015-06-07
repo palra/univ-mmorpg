@@ -2,6 +2,7 @@ package fr.univdevs.commander;
 
 /**
  * Encapsulates the return values of the `CommandParser` `parse` method
+ *
  * @author Loïc Payol
  */
 public class ParserResult {
