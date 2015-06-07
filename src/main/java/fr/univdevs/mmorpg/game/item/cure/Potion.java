@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.game.item.cure;
 
+import fr.univdevs.mmorpg.engine.character.*;
+import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
 
 /**
@@ -18,5 +20,16 @@ public class Potion extends Cure {
 
     public boolean isCollidable() {
         return false;
+    }
+
+
+    @Override
+    public void onRegister(Character character) {
+
+    }
+
+    @Override
+    public void onUnregister(Character character) {
+
     }
 }

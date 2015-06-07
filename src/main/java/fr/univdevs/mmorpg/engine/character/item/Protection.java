@@ -34,6 +34,7 @@ public abstract class Protection extends Item {
     public void onRegister(Character c) {
         c.setResistance(
             c.getResistance() + this.robustness
+
         );
     }
 

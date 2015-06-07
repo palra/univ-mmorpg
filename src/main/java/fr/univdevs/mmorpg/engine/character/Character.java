@@ -8,6 +8,7 @@ import fr.univdevs.util.Numbers;
  */
 public abstract class Character implements MovableEntity {
     private final static int MAX_HEALTH = 100;
+    private final static double MAX_RESISTANCE = 0.99;
     private String type;
     private String name;
     private int experience;
@@ -31,8 +32,14 @@ public abstract class Character implements MovableEntity {
         this.type = chosenType;
         this.inventory = new Inventory(this);
         this.health = 100;
+        this.resistance = 0.0;
     }
 
+    /**
+     * Abstract method to get all the types of item that a character can use
+     *
+     * @return The array containing the elements
+     */
     public abstract String[] getCanUse();
 
     public String toString() {
@@ -135,7 +142,8 @@ public abstract class Character implements MovableEntity {
      * @param resistance    coefficient to set, must be greater than 1
      */
     public void setResistance(double resistance) {
-        this.resistance = Numbers.clamp(resistance, 1, Double.MAX_VALUE);
+        if (!(this.resistance + resistance > MAX_RESISTANCE))
+            this.resistance = /*Numbers.clamp(resistance, 1, Double.MAX_VALUE)*/ resistance;
     }
 
     /**
@@ -186,7 +194,6 @@ public abstract class Character implements MovableEntity {
      * Public method to return the inventory of a character
      * @return Inventory
      */
-
     public Inventory getInventory(){
         return this.inventory;
     }
@@ -212,4 +219,16 @@ public abstract class Character implements MovableEntity {
         return inventory.equals(character.inventory);
 
     }
+
+    /**
+     * When a character decides to carry an item
+     *
+     * @param item the item we want to carry
+     */
+    public void useItem(Item item) {
+        item.onRegister(this);
+        inventory.remove(item);
+    }
+
+
 }

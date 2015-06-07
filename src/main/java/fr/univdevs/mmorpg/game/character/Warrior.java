@@ -11,6 +11,12 @@ import fr.univdevs.util.Vector2D;
 public class Warrior extends Character {
     private String[] canUse = {"Knife", "Bow", "Sword", "HyperPotion", "Potion", "SuperPotion"};
 
+    /**
+     * Warrior constructor
+     * A warrior is a Character that can use any type of weapon
+     *
+     * @param name the name of the warrior
+     */
     public Warrior(String name) {
         super(name, "Warrior");
     }

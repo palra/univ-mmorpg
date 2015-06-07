@@ -11,6 +11,7 @@ import java.util.Iterator;
  *
  */
 public class Inventory {
+    public static final String[] protections = {"Helmet", "Shield"};
     private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
     private Character character;
 

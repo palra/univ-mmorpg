@@ -83,16 +83,9 @@ public abstract class Item implements MovableEntity {
      * By default, it does nothing.
      * @param character on which character it will be applied
      */
-    public void onRegister(Character character) {
-    }
+    public abstract void onRegister(Character character);
 
-    /**
-     * Public method to indicate how the item will affect the character
-     * By default, it does nothing.
-     * @param character on which character it will be applied
-     */
-    public void onUnregister(Character character) {
-    }
+    public abstract void onUnregister(Character character);
 
     /**
      * {@inheritDoc}
