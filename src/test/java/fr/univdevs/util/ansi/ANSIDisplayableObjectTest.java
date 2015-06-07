@@ -23,6 +23,7 @@ public class ANSIDisplayableObjectTest {
         ansi
             .addAttribute(ANSIAttribute.ATTR_BLINK)
             .addAttribute(ANSIAttribute.BG_BLUE)
+            .addAttribute(ANSIAttribute.BG_BLUE)
             .addAttribute(ANSIAttribute.FG_RED)
             .addAttribute(ANSIAttribute.FG_GREEN)
             .removeAttribute(ANSIAttribute.FG_RED);
@@ -31,5 +32,7 @@ public class ANSIDisplayableObjectTest {
         assertTrue(ansi.getAttributes().contains(ANSIAttribute.BG_BLUE));
         assertTrue(ansi.getAttributes().contains(ANSIAttribute.FG_GREEN));
         assertFalse(ansi.getAttributes().contains(ANSIAttribute.FG_RED));
+
+        assertEquals(3, ansi.getAttributes().toArray().length);
     }
 }

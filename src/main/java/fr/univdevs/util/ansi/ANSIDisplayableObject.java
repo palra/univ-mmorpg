@@ -1,8 +1,6 @@
 package fr.univdevs.util.ansi;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.EnumSet;
 
 /**
  * Class representing an ANSI colored object. It automatically resets the colors after applying them.
@@ -14,7 +12,7 @@ public class ANSIDisplayableObject<T> {
     public static final String SEQ_END = "m";
 
     private T rawObject;
-    private List<ANSIAttribute> attributes;
+    private EnumSet<ANSIAttribute> attributes;
 
     /**
      * Constructs an ANSIString from an object and ANSIAttributes
@@ -24,14 +22,18 @@ public class ANSIDisplayableObject<T> {
      */
     public ANSIDisplayableObject(T rawObject, ANSIAttribute... attributes) {
         this.rawObject = rawObject;
-        this.attributes = new ArrayList<ANSIAttribute>(Arrays.asList(attributes));
+        this.attributes =
+            attributes.length > 0 ?
+                EnumSet.of(attributes[0], attributes) :
+                EnumSet.noneOf(ANSIAttribute.class)
+        ;
     }
 
     public T getRaw() {
         return rawObject;
     }
 
-    public List<ANSIAttribute> getAttributes() {
+    public EnumSet<ANSIAttribute> getAttributes() {
         return attributes;
     }
 
@@ -68,17 +70,10 @@ public class ANSIDisplayableObject<T> {
             return rawObject.toString();
 
         String out = SEQ_START;
-        for (int i = 0; i < attributes.size(); i++) {
-            out += attributes.get(i);
-            if (i != attributes.size() - 1)
-                out += ";";
+        for (ANSIAttribute attribute : attributes) {
+            out += attribute + ";";
         }
-        out += SEQ_END;
 
-        out += rawObject;
-
-        out += SEQ_START + ANSIAttribute.ATTR_RESET + SEQ_END;
-
-        return out;
+        return out.substring(0, out.length() - 1) + SEQ_END + rawObject + SEQ_START + ANSIAttribute.ATTR_RESET + SEQ_END;
     }
 }
