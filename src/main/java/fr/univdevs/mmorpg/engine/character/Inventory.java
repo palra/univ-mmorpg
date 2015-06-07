@@ -12,7 +12,7 @@ import java.util.Iterator;
  */
 public class Inventory {
     public static final String[] protections = {"Helmet", "Shield"};
-    private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
+    private HashMap<String, Item> items; //A HashMap is a couple of Objects, here a couple String (id), Item
     private Character character;
 
 
@@ -22,7 +22,7 @@ public class Inventory {
      * The string is the key (the name of the item)
      */
     public Inventory(Character chosenCharacter) {
-        this.items = new HashMap<Integer, Item>();
+        this.items = new HashMap<String, Item>();
         this.character = chosenCharacter;
     }
 
@@ -185,9 +185,9 @@ public class Inventory {
      * Public method to get the IDs of all the inventory's item
      * @return an arraylist containing these items
      */
-    public ArrayList<Integer> getIds() {
-        ArrayList<Integer> results = new ArrayList<Integer>();
-        for (Integer key : items.keySet()) {
+    public ArrayList<String> getIds() {
+        ArrayList<String> results = new ArrayList<String>();
+        for (String key : items.keySet()) {
             results.add(key);
         }
         return results;

@@ -58,6 +58,7 @@ public class InventoryTest {
 
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);
+        System.out.println(bower.getID().toString());
     }
 
 }

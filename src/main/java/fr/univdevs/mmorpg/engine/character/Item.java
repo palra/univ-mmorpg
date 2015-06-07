@@ -1,7 +1,9 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
+import fr.univdevs.util.Strings;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,8 +12,8 @@ import java.util.Random;
  * An item is any object that can be wore
  */
 public abstract class Item implements MovableEntity {
-    private static ArrayList<Integer> ids = new ArrayList<Integer>();
-    private int ID;
+    private static ArrayList<String> ids = new ArrayList<String>();
+    private String ID;
     private String category;
     private int cost;
     private int weight;
@@ -31,7 +33,7 @@ public abstract class Item implements MovableEntity {
         this.cost = itemCost;
         this.weight = itemWeight;
         do {
-            this.ID = new Random().nextInt();
+            this.ID = Integer.toHexString(new Random().nextInt());
             this.ids.add(this.ID);
         } while (!this.ids.contains(this.ID));
     }
@@ -46,7 +48,7 @@ public abstract class Item implements MovableEntity {
         this.cost = itemCost;
     }
 
-    public static ArrayList<Integer> getIds() {
+    public static ArrayList<String> getIds() {
         return ids;
     }
 
@@ -120,7 +122,7 @@ public abstract class Item implements MovableEntity {
      *
      * @return the ID of the object
      */
-    public int getID() {
+    public String getID() {
         return this.ID;
     }
 

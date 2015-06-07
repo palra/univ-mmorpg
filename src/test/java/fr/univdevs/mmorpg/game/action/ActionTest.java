@@ -42,9 +42,7 @@ public class ActionTest {
     public void testActions() throws Exception {
         drattak.setCharacter(dCharacter);
         palra.setCharacter(pCharacter);
-        palra.getCharacter().useItem(sh);
-        palra.getCharacter().useItem(h);
-        palra.getCharacter().useItem(a);
+
 
         FightAction fa = new FightAction(drattak, palra, bow);
         CureAction ca = new CureAction(drattak, palra, p);
