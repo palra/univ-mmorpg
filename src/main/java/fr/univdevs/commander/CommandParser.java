@@ -126,6 +126,25 @@ public class CommandParser {
     }
 
     /**
+     * Removes a given command.
+     * @param o The command to remove
+     * @return The command removed, if any
+     */
+    public Command remove(Command o) {
+        return remove(o.getName());
+    }
+
+    /**
+     * Removes a command, identified by its name.
+     *
+     * @param name The name of the command to remove
+     * @return The command removed, if any
+     */
+    public Command remove(String name) {
+        return commands.remove(name);
+    }
+
+    /**
      * Returns all commands
      *
      * @return Array of registered commands

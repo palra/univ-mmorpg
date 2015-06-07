@@ -93,6 +93,14 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         return out;
     }
 
+    public int getLastIndex() {
+        return lastIdx;
+    }
+
+    public void setLastIndex(int lastIdx) {
+        this.lastIdx = lastIdx;
+    }
+
     @Override
     public String getSynopsis() {
         return "[--all|--since-last]";

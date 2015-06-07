@@ -127,6 +127,20 @@ public class InteractiveShell {
     }
 
     /**
+     * @see CommandParser#remove(String)
+     */
+    public Command remove(String name) {
+        return commandParser.remove(name);
+    }
+
+    /**
+     * @see CommandParser#remove(Command)
+     */
+    public Command remove(Command o) {
+        return commandParser.remove(o);
+    }
+
+    /**
      * @see CommandParser#getCommands()
      */
     public Command[] getCommands() {

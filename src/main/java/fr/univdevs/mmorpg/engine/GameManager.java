@@ -95,6 +95,7 @@ public class GameManager {
                 throw new IllegalStateException("Action of player " + p.getName() + " was not registered.");
 
             actions.add(a);
+            p.setNextAction(null);
         }
 
         // And executing them

@@ -19,7 +19,7 @@ public class Player {
             return -Double.compare(p1.getCharacter().getSpeed(), p2.getCharacter().getSpeed());
         }
     };
-    private Action action;
+    private Action action = null;
 
     /**
      * Player Constructor

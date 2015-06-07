@@ -10,7 +10,7 @@ import fr.univdevs.mmorpg.engine.world.World;
  *
  * @author Loïc Payol
  */
-public class MoveCommand extends ActionCommand<MoveAction> {
+public class MoveCommand extends ActionCommand {
     public MoveCommand(Player currentPlayer) {
         super(currentPlayer);
         this.setName("move");
@@ -26,11 +26,7 @@ public class MoveCommand extends ActionCommand<MoveAction> {
 
         MoveAction action = new MoveAction(this.getCurrentPlayer(), null, dir, nbCases);
         action.setGameManager(this.getGameManager());
-        action.execute();
         this.setAction(action);
-
-        if (getCommandParser().has("map"))
-            return getCommandParser().parse("map").getOutput();
 
         return null;
     }

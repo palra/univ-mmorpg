@@ -1,9 +1,10 @@
 package fr.univdevs.mmorpg.game;
 
-import fr.univdevs.commander.CommandParser;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
+import fr.univdevs.mmorpg.bridge.ActionCommand;
+import fr.univdevs.mmorpg.bridge.LoggerCommand;
 import fr.univdevs.mmorpg.bridge.MapCommand;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
@@ -16,6 +17,7 @@ import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -24,16 +26,19 @@ import java.util.List;
  * @author Loïc Payol
  */
 public class App {
-    private static int WORLD_SIZE = 25;
-
     private static GameManager gameManager;
-    private static World world;
-    private static Tilemap tilemap;
     private static List<Player> players = new ArrayList<Player>();
+    private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
+    private static InteractiveShell shell = new InteractiveShell(
+        new ANSIString("Welcome to MMORPG Shell [version 0.0.0172]\n", ANSIAttribute.ATTR_BOLD) +
+            "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
+            " (" + System.getProperty("os.arch") + ")\n" +
+            "Type `help` for help on the shell\n"
+    );
 
     private static void configureGame() throws Exception {
-        tilemap = Tilemap.newFromFilename("/game/maps/lvl-02.txt");
-        world = new World(tilemap);
+        Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-02.txt");
+        World world = new World(tilemap);
         gameManager = new GameManager(world);
 
         // Registering players
@@ -51,6 +56,30 @@ public class App {
         }
     }
 
+    private static void registerActions(Player currentPlayer) {
+        for (ActionCommand command : actionCommands)
+            shell.remove(command);
+
+        actionCommands.clear();
+
+        // move
+        MoveCommand move = new MoveCommand(currentPlayer);
+        move.setGameManager(gameManager);
+        actionCommands.add(move);
+
+        for (ActionCommand command : actionCommands)
+            shell.add(command);
+    }
+
+    private static boolean actionRegistered() {
+
+        for (ActionCommand actionCommand : actionCommands)
+            if (actionCommand.hasAction())
+                return true;
+
+        return false;
+    }
+
     public static void main(String[] args) {
         try {
             App.configureGame();
@@ -58,9 +87,6 @@ public class App {
             e.printStackTrace();
             return;
         }
-
-        // CommandParser
-        CommandParser parser = new CommandParser();
 
         /*=======================
                 Commands
@@ -76,30 +102,56 @@ public class App {
         MapCommand map = new MapCommand();
         map.setGameManager(gameManager);
 
-        // move : MUST NOT BE USED THAT WAY, but must be instanciated each time you ask your player to move
-        MoveCommand move = new MoveCommand(players.get(0));
-        move.setGameManager(gameManager);
+        // log
+        LoggerCommand log = new LoggerCommand();
+        log.setLogger(gameManager.getLogger());
 
 
         /*=======================
                  Shell
          =======================*/
-        InteractiveShell shell = new InteractiveShell(new ANSIString("Welcome to MMORPG Shell [version 0.0.0172]\n", ANSIAttribute.ATTR_BOLD) +
-            "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
-            " (" + System.getProperty("os.arch") + ")\n" +
-            "Type `help` for help on the shell\n"
-        );
 
         shell.add(exit);
         shell.add(help);
         shell.add(map);
-        shell.add(move);
+        shell.add(log);
+
+        boolean playTurn = false;
+        Iterator<Player> iPlayers = null;
+        Player currentPlayer = null;
 
         // The main loop
         while (!exit.isClosed()) {
-            shell.nextResult();
+            if (playTurn) {
+                try {
+                    gameManager.playTurn();
+                    System.out.print(log.execute(new String[0]));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                playTurn = false; // Reset playTurn when executed.
+            } else { // Ask each player what he wants to do.
+                if (iPlayers == null)
+                    iPlayers = players.iterator();
+
+                if (currentPlayer == null) {
+                    currentPlayer = iPlayers.next();
+                    System.out.println(new ANSIString(currentPlayer.getName() + "'s turn : ", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_MAGENTA));
+                }
+
+                registerActions(currentPlayer);
+                shell.nextResult();
+
+                if (actionRegistered()) {
+                    currentPlayer = null;
+                    playTurn = !iPlayers.hasNext(); // Execute turns when every player played.
+                    if (playTurn)
+                        iPlayers = null; // Reset the iterator, if no more players are in the array
+                }
+            }
         }
 
-        // Goodbye, App.java :)
+        // Goodbye, main(String... args) :)
     }
 }
