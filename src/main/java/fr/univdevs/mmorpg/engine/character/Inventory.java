@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,14 +12,25 @@ import java.util.Iterator;
  */
 public class Inventory {
     private HashMap<Integer, Item> items; //A HashMap is a couple of Objects, here a couple String, Item
+    private Character character;
 
     /**
      * Inventory constructor
      * A HashMap is a couple string, item here
      * The string is the key (the name of the item)
      */
-    public Inventory() {
+    public Inventory(Character c) {
         this.items = new HashMap<Integer, Item>();
+        this.character = c;
+    }
+
+    /**
+     * Returns the character
+     *
+     * @return The character
+     */
+    public Character getCharacter() {
+        return character;
     }
 
     /**
@@ -102,15 +112,15 @@ public class Inventory {
         return totalWeight;
     }
 
-
-
-
     /**
      *
      * @param item  idem to be added
      */
     public Item add(Item item) {
-        return this.items.put(item.getID(), item);
+        item.onRegister(character);
+        Item i = this.items.put(item.getID(), item);
+        i.onUnregister(this.getCharacter());
+        return i;
     }
 
     /**
@@ -119,7 +129,6 @@ public class Inventory {
      * @return true if the inventory contains the selected item
      */
     public boolean has(Item item) {
-
         return this.items.containsValue(item);
     }
 
@@ -135,10 +144,14 @@ public class Inventory {
 
     /**
      *
-     * @param item  item to be removed
+     * @param item The removed item, if removed
      */
     public Item remove(Item item) {
-        return this.items.remove(item.getID());
+        Item i = this.items.remove(item.getID());
+        if (i != null)
+            i.onUnregister(this.getCharacter());
+
+        return i;
     }
 
     @Override
