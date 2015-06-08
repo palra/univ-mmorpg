@@ -10,9 +10,6 @@ import fr.univdevs.util.ansi.ANSIChar;
  */
 public class Bow extends Weapon {
 
-    public Bow(String weaponCategory, int weaponCost, int weaponPower) {
-        super(weaponCategory, weaponCost, weaponPower);
-    }
 
     public Bow() {
         super("Bow", 150, 150, 20);

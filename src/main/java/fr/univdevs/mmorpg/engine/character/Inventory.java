@@ -136,18 +136,23 @@ public class Inventory implements LoggerAwareInterface {
      *
      * @param item idem to be added
      */
-    public Item add(Item item) {
-        item.onRegister(character);
-        Item i = this.items.put(item.getID(), item);
+    public Item add(Item item) throws NullEnoughCashException {
+        if (this.character.getMoney() >= item.getCost()) {
+            item.onRegister(character);
+            Item i = this.items.put(item.getID(), item);
 
-        if (i != null)
-            i.onUnregister(character);
+            if (i != null)
+                i.onUnregister(character);
 
-        if (logger != null) {
-            logger.log(new InventoryAddEvent(item, character));
-        }
+            if (logger != null) {
+                logger.log(new InventoryAddEvent(item, character));
+            }
 
-        return i;
+            this.character.setMoney(this.character.getMoney() - item.getCost());
+
+        } else throw new NullEnoughCashException("Pas assez d'argent!");
+
+        return item;
     }
 
     /**
@@ -258,6 +263,12 @@ public class Inventory implements LoggerAwareInterface {
             return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
                 new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
                 new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
+        }
+    }
+
+    public static class NullEnoughCashException extends Exception {
+        public NullEnoughCashException(String message) {
+            super(message);
         }
     }
 }
