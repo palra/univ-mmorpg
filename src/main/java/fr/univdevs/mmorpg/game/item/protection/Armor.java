@@ -15,7 +15,7 @@ public class Armor extends Protection {
      * A protection is something the character carries to improve his defence
      */
     public Armor() {
-        super("Armor", 80, 150, 0.45);
+        super("Armor", 500, 150, 0.45);
     }
 
     public ANSIChar getDisplay() {

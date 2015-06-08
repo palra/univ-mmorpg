@@ -12,7 +12,7 @@ public class Bow extends Weapon {
 
 
     public Bow() {
-        super("Bow", 150, 150, 10);
+        super("Bow", 120, 150, 10);
     }
     public ANSIChar getDisplay() {
         return new ANSIChar('\u2931', ANSIAttribute.FG_MAGENTA); // => ⤱

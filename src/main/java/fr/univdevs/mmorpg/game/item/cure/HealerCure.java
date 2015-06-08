@@ -9,11 +9,12 @@ import fr.univdevs.util.ansi.ANSIChar;
  * This is the best cure
  * Only the healer can use it
  * It restores 90 pts
+ * Category, Cost, RestoredPoints
  */
 public class HealerCure extends Cure {
 
     public HealerCure() {
-        super("HealerCure", 200, 90);
+        super("HealerCure", 1000, 90);
     }
 
     public ANSIChar getDisplay() {
