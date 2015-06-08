@@ -59,6 +59,7 @@ public abstract class Character implements MovableEntity {
         this.health = 100;
         this.resistance = 0.0;
         this.setDisplay(chosenDisplay);
+        this.money = Numbers.randomInt(100, 401);
     }
 
     public String toString() {

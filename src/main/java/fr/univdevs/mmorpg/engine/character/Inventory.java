@@ -136,18 +136,20 @@ public class Inventory implements LoggerAwareInterface {
      *
      * @param item idem to be added
      */
-    public Item add(Item item) {
-        item.onRegister(character);
-        Item i = this.items.put(item.getID(), item);
+    public Item add(Item item) throws Exception {
+        if (this.character.getMoney() > item.getCost()) {
+            item.onRegister(character);
+            Item i = this.items.put(item.getID(), item);
 
-        if (i != null)
-            i.onUnregister(character);
+            if (i != null)
+                i.onUnregister(character);
 
-        if (logger != null) {
-            logger.log(new InventoryAddEvent(item, character));
-        }
+            if (logger != null) {
+                logger.log(new InventoryAddEvent(item, character));
+            }
+        } else throw new Exception("Pas assez d'argent!");
 
-        return i;
+        return item;
     }
 
     /**

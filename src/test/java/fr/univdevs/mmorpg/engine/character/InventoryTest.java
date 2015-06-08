@@ -31,7 +31,7 @@ public class InventoryTest {
 
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testCharacter() throws Exception {
         Player drattak = new Player("drattak");
         Player palra = new Player("palra");
@@ -43,9 +43,7 @@ public class InventoryTest {
 
         drattak.getCharacter().getInventory().add(bower);
         drattak.getCharacter().getInventory().add(bbbbow);
-        System.out.println(drattak.getCharacter().getInventory().toString());
-        for (int i = 0; i < Item.getIds().size(); i++) {
-            System.out.println(Item.getIds().get(i));
-        }
+        System.out.println(drattak.getCharacter().toString());
+        System.out.println(palra.getCharacter().toString());
     }
 }
