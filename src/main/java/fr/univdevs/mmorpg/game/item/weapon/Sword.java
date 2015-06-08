@@ -12,7 +12,7 @@ import fr.univdevs.util.ansi.ANSIChar;
 public class Sword extends Weapon {
 
     public Sword() {
-        super("Sword", 100, 100, 11);
+        super("Sword", 200, 100, 100);
     }
 
     public ANSIChar getDisplay() {

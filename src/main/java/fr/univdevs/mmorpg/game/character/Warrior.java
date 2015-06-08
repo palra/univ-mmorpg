@@ -20,6 +20,6 @@ public class Warrior extends Character {
 
     @Override
     public boolean canUse(Class<? extends Item> itemClass) {
-        return !(itemClass.isAssignableFrom(HealerCure.class)); // instanceof Cure
+        return !(itemClass.isAssignableFrom(HealerCure.class)); // instanceof HealerCure
     }
 }

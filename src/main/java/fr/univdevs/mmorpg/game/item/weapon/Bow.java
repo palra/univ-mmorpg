@@ -6,13 +6,13 @@ import fr.univdevs.util.ansi.ANSIChar;
 
 /**
  * Class Bow
- * A Bow has a power of 20 points
+ * A Bow has a power of 10 points
  */
 public class Bow extends Weapon {
 
 
     public Bow() {
-        super("Bow", 150, 150, 20);
+        super("Bow", 120, 150, 10);
     }
     public ANSIChar getDisplay() {
         return new ANSIChar('\u2931', ANSIAttribute.FG_MAGENTA); // => ⤱

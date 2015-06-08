@@ -14,7 +14,7 @@ public class Shield extends Protection {
      * A protection is something the character carries to improve his defence
      */
     public Shield() {
-        super("Shield", 90, 50, 0.2);
+        super("Shield", 300, 50, 0.2);
     }
 
     public ANSIChar getDisplay() {

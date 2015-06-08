@@ -60,6 +60,7 @@ public abstract class Character implements MovableEntity {
         this.resistance = 0.0;
         this.setDisplay(chosenDisplay);
         this.money = Numbers.randomInt(100, 401);
+        this.speed = 100;
     }
 
     public String toString() {

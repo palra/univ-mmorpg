@@ -11,7 +11,7 @@ import fr.univdevs.util.ansi.ANSIChar;
 public class Knife extends Weapon {
 
     public Knife() {
-        super("Knife", 30, 30, 4);
+        super("Knife", 90, 30, 4);
     }
 
     public ANSIChar getDisplay() {

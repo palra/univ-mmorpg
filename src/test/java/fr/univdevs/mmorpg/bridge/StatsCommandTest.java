@@ -45,7 +45,7 @@ public class StatsCommandTest {
             " - Vie : 100 HP\n" +
             " - Experience : 0 XP \n" +
             " - Points d'action : 0 AP \n" +
-            " - Vitesse : 0\n" +
+            " - Vitesse : 100\n" +
             " - Résistance : 0.0\n" +
             " - Argent : " + player.getCharacter().getMoney() + "£ \n", parser.parse("stats").getOutput());
     }

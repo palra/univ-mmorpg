@@ -11,7 +11,7 @@ import fr.univdevs.util.ansi.ANSIChar;
 public class Potion extends Cure {
 
     public Potion() {
-        super("Potion", 10, 10);
+        super("Potion", 100, 10);
     }
 
     public ANSIChar getDisplay() {

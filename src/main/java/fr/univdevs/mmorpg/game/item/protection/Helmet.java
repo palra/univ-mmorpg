@@ -14,7 +14,7 @@ public class Helmet extends Protection {
      * A helmet add 0.1 to protection coefficient
      */
     public Helmet() {
-        super("Helmet", 45, 20, 0.1);
+        super("Helmet", 200, 20, 0.1);
     }
 
     public ANSIChar getDisplay() {
