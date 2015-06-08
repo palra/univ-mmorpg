@@ -38,7 +38,7 @@ public class FightAction extends Action {
         this.weapon = null;
     }
 
-    public static class FightEvent extends ActionEvent<Player> {
+    public static class FightEvent extends ActionEvent {
         public FightEvent(Player subject, Player target) {
             this(new Date(), subject, target);
         }

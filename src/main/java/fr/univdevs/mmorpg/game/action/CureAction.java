@@ -38,7 +38,7 @@ public class CureAction extends Action {
         this.cure = null;
     }
 
-    public static class CureEvent extends ActionEvent<Player> {
+    public static class CureEvent extends ActionEvent {
         public CureEvent(Player subject, Player target) {
             this(new Date(), subject, target);
         }
