@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class GameManager {
     private World world;
-    private Map<String, Player> players = new HashMap<String, Player>();
+    private ArrayList<Player> players = new ArrayList<Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
     private Logger logger = new Logger();
     private int roundNb = 1;
@@ -30,8 +30,8 @@ public class GameManager {
      *
      * @return The registrered players
      */
-    public Player[] getPlayers() {
-        return players.values().toArray(new Player[players.size()]);
+    public List<Player> getPlayers() {
+        return this.players;
     }
 
     /**
@@ -41,18 +41,58 @@ public class GameManager {
      * @return The player if exists, null otherwise
      */
     public Player getPlayerByName(String name) {
-        return this.players.get(name);
+        ListIterator<Player> it = this.players.listIterator();
+        Player player = null;
+        while (it.hasNext()) {
+            Player next = it.next();
+            if (next.getName().equals(name))
+                player = next;
+        }
+
+        return player;
     }
 
     /**
      * Registers a new player
      *
      * @param player The new player
-     * @return The old player with the same name, if exists, null otherwise
+     * @return true
+     * @throws IllegalArgumentException if another player has the same name
      */
-    public Player addPlayer(Player player) {
-        player.getCharacter().getInventory().setLogger(this.getLogger());
-        return this.players.put(player.getName(), player);
+    public boolean addPlayer(Player player) {
+        if (this.hasPlayerWithSameName(player))
+            throw new IllegalArgumentException("A player with the same name exists");
+
+        return this.players.add(player);
+    }
+
+    /**
+     * Returns if there is a player with the same name in the collection.
+     *
+     * @param player The player to check
+     * @return true if a player with the same name was found, false otherwise
+     */
+    public boolean hasPlayerWithSameName(Player player) {
+        return this.hasPlayerWithSameName(player.getName());
+    }
+
+
+    /**
+     * Returns if there is a player with the same name in the collection.
+     *
+     * @param name The name to check
+     * @return true if a player with the same name was found, false otherwise
+     */
+    public boolean hasPlayerWithSameName(String name) {
+        ListIterator<Player> it = this.players.listIterator();
+        boolean hasSameName = false;
+        while (it.hasNext() && !hasSameName) {
+            Player p = it.next();
+            if (p.getName().equals(name))
+                hasSameName = true;
+        }
+
+        return hasSameName;
     }
 
     /**
@@ -91,12 +131,11 @@ public class GameManager {
     public void playTurn() throws Exception {
         getLogger().log(new GameRoundStartEvent(this.roundNb));
 
-        List<Player> pls = new ArrayList<Player>(this.players.values());
-        Collections.sort(pls, this.playerComparator);
+        Collections.sort(this.players, this.playerComparator);
 
         // Loading all the actions
         List<Action> actions = new ArrayList<Action>();
-        for (Player p : pls) {
+        for (Player p : this.players) {
             Action a = p.getNextAction();
             if (a == null)
                 throw new IllegalStateException("action of player " + p.getName() + " was not registered.");
