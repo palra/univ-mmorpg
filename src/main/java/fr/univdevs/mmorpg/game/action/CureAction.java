@@ -21,9 +21,12 @@ public class CureAction extends Action {
      * @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
-    public CureAction(Player chosenSubject, Player chosenTarget, Cure chosenCure) {
+    public CureAction(Player chosenSubject, Player chosenTarget, Cure chosenCure) throws IllegalArgumentException {
         super(chosenSubject, chosenTarget);
-        this.cure = chosenCure;
+        if (chosenSubject.getCharacter().getInventory().has(chosenCure))
+            this.cure = chosenCure;
+        else
+            throw new IllegalArgumentException("N'est pas dans l'inventaire!");
     }
 
     @Override

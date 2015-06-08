@@ -22,9 +22,12 @@ public class FightAction extends Action {
      * @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
-    public FightAction(Player chosenSubject, Player chosenTarget, Weapon chosenWeapon) {
+    public FightAction(Player chosenSubject, Player chosenTarget, Weapon chosenWeapon) throws IllegalArgumentException {
         super(chosenSubject, chosenTarget);
-        this.weapon = chosenWeapon;
+        if (chosenSubject.getCharacter().getInventory().has(chosenWeapon))
+            this.weapon = chosenWeapon;
+        else
+            throw new IllegalArgumentException("Pas dans l'inventaire!");
     }
 
     @Override
