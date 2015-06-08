@@ -87,22 +87,27 @@ public class World {
         List<Entity> nonCollidableEntities = new ArrayList<Entity>();
 
         while (i < nb && !collision) {
+            // Moving the entity
+            e.setX(e.getX() + right_dir);
+            e.setY(e.getY() + up_dir);
+
+            // Query the entity that is in that place
             Entity inplace = getEntity(e.getX(), e.getY());
             if (inplace != null && !inplace.isCollidable()) {
                 nonCollidableEntities.add(inplace);
             }
 
-            e.setX(e.getX() + right_dir);
-            e.setY(e.getY() + up_dir);
+            // Checking if any collision
             collision = isCollidableAt(e.getX(), e.getY());
 
-            i++;
-        }
+            // And rewing if any
+            if (collision) {
+                e.setX(e.getX() - right_dir);
+                e.setY(e.getY() - up_dir);
+                i--;
+            }
 
-        if (collision) {
-            e.setX(e.getX() - right_dir);
-            e.setY(e.getY() - up_dir);
-            i--;
+            i++;
         }
 
         return new MoveResult(nonCollidableEntities, collision, i);
