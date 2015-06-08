@@ -16,6 +16,12 @@ public class MoveCommand extends ActionCommand {
         this.setName("move");
     }
 
+    public MoveCommand(MoveCommand other) {
+        super(other.getCurrentPlayer());
+        this.setName(other.getName());
+    }
+
+
     @Override
     public String execute(String[] args) throws Exception {
         if (args.length != 2)

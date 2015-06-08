@@ -17,6 +17,10 @@ public class HealerCure extends Cure {
         super("HealerCure", 1000, 90);
     }
 
+    public HealerCure(HealerCure other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u25cf', ANSIAttribute.FG_YELLOW); // => ●
     }

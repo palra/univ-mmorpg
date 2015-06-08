@@ -16,4 +16,9 @@ public class Healer extends Character {
     public Healer(String chosenName) {
         super(chosenName, "Healer");
     }
+
+
+    public Healer(Healer other) {
+        super(other);
+    }
 }

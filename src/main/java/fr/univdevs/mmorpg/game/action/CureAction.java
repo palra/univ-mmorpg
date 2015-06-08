@@ -29,6 +29,12 @@ public class CureAction extends Action {
             throw new IllegalArgumentException("N'est pas dans l'inventaire!");
     }
 
+    public CureAction(CureAction other) {
+        super(other);
+        this.cure = other.cure;
+    }
+
+
     @Override
     public void execute() throws Exception {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());

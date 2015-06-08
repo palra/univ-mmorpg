@@ -18,6 +18,10 @@ public class Armor extends Protection {
         super("Armor", 500, 150, 0.45);
     }
 
+    public Armor(Armor other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('?', ANSIAttribute.FG_MAGENTA);
     }

@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.character.item.Cure;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
 import fr.univdevs.mmorpg.engine.logger.ActionEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
@@ -29,6 +30,12 @@ public class FightAction extends Action {
         else
             throw new IllegalArgumentException("Pas dans l'inventaire!");
     }
+
+    public FightAction(FightAction other) {
+        super(other);
+        this.weapon = other.weapon;
+    }
+
 
     @Override
     public void execute() throws Exception {

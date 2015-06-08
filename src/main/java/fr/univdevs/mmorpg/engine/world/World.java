@@ -24,6 +24,12 @@ public class World {
         this.tilemap = tilemap;
     }
 
+    public World(World other) {
+        this.entities = new HashMap<Vector2D<Integer>, Entity>(other.entities);
+        this.tilemap = new Tilemap(other.tilemap);
+    }
+
+
     /**
      * Returns the tilemap
      *

@@ -43,6 +43,11 @@ public class Player {
         this.character = character;
     }
 
+    public Player(Player other) {
+        this.name = new String(other.name);
+        this.character = other.character;
+        this.action = other.action;
+    }
 
     /**
      * Protected method to get the name of the player

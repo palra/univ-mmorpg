@@ -17,6 +17,10 @@ public class Helmet extends Protection {
         super("Helmet", 200, 20, 0.1);
     }
 
+    public Helmet(Helmet other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u26d1', ANSIAttribute.FG_CYAN);
     } // \u26d1 => ⛑

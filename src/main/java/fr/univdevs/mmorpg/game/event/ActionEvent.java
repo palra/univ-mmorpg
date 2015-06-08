@@ -43,6 +43,12 @@ public abstract class ActionEvent extends Event {
         this.target = target;
     }
 
+    public ActionEvent(ActionEvent other) {
+        super(other);
+        this.subject = new Player(other.subject);
+        this.target = new Player(other.target);
+    }
+
     public Player getSubject() {
         return subject;
     }

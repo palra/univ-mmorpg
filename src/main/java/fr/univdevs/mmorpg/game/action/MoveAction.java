@@ -36,6 +36,13 @@ public class MoveAction extends Action {
         this.nbCases = nbCases;
     }
 
+    public MoveAction(MoveAction other) {
+        super(other);
+        this.direction = other.direction;
+        this.nbCases = other.nbCases;
+    }
+
+
     @Override
     public void execute() throws Exception {
         World w = this.getGameManager().getWorld();

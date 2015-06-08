@@ -14,6 +14,10 @@ public class SuperPotion extends Cure {
         super("SuperPotion", 200, 20);
     }
 
+    public SuperPotion(SuperPotion other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u25cd', ANSIAttribute.FG_YELLOW); // => ◍
     }

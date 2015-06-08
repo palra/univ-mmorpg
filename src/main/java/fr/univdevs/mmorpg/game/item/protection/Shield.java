@@ -17,6 +17,10 @@ public class Shield extends Protection {
         super("Shield", 300, 50, 0.2);
     }
 
+    public Shield(Shield other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u26E8', ANSIAttribute.FG_CYAN);
     } // \u26e8 => ⛨

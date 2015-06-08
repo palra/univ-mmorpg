@@ -21,6 +21,11 @@ public class NoOpAction extends Action {
         super(chosenSubject, chosenTarget);
     }
 
+    public NoOpAction(NoOpAction other) {
+        super(other);
+    }
+
+
     @Override
     public void execute() throws Exception {
         Logger l = this.getLogger();

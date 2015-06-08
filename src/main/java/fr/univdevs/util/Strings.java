@@ -8,7 +8,11 @@ import java.util.Random;
  * @author Loïc Payol
  */
 public class Strings {
+
     private static Random random = new Random();
+
+    public Strings() {
+    }
 
     /**
      * Returns the random generator

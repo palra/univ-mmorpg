@@ -25,6 +25,15 @@ public class GameManager {
         this.world = world;
     }
 
+    public GameManager(GameManager other) {
+        this.world = new World(other.world);
+        this.players = new HashMap<String, Player>(other.players);
+        this.playerComparator = other.playerComparator;
+        this.logger = new Logger(other.logger);
+        this.roundNb = other.roundNb;
+    }
+
+
     /**
      * Returns an array of all the registered players.
      *
