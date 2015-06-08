@@ -9,6 +9,13 @@ import java.util.List;
 public class Logger {
     private List<Event> events = new ArrayList<Event>();
 
+    public Logger() {
+    }
+
+    public Logger(Logger l) {
+        this.events = new ArrayList<Event>(l.events);
+    }
+
     /**
      * Returns all the events
      *

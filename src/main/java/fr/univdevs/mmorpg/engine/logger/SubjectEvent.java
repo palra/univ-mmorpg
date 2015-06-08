@@ -20,6 +20,12 @@ public abstract class SubjectEvent<T> extends Event {
         this.subject = subject;
     }
 
+    public SubjectEvent(SubjectEvent<T> other) {
+        super(other);
+        this.subject = other.subject;
+    }
+
+
     /**
      * Returns the subject of the event
      *

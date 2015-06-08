@@ -9,4 +9,9 @@ public class ANSIChar extends ANSIDisplayableObject<Character> {
     public ANSIChar(Character rawObject, ANSIAttribute... attributes) {
         super(rawObject, attributes);
     }
+
+
+    public ANSIChar(ANSIChar other) {
+        super(other);
+    }
 }

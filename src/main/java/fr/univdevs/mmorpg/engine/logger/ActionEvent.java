@@ -24,6 +24,13 @@ public abstract class ActionEvent<T> extends Event {
         this.target = target;
     }
 
+    public ActionEvent(ActionEvent<T> other) {
+        super(other);
+        this.subject = other.subject;
+        this.target = other.target;
+    }
+
+
     /**
      * public getter for Subject
      *
