@@ -132,6 +132,8 @@ public class Inventory implements LoggerAwareInterface {
     }
 
     /**
+     * Adds the given item to the collection. If the item can't be added, returns it.
+     *
      * @param item idem to be added
      */
     public Item add(Item item) {

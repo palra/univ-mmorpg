@@ -250,6 +250,16 @@ public abstract class Character implements MovableEntity {
         return true;
     }
 
+    /**
+     * Returns true if the given Item class can be used, false otherwise.
+     *
+     * @param itemClass The Item class
+     * @return true if the itemClass can be used, false otherwise.
+     */
+    public boolean canUse(Class<? extends Item> itemClass) {
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

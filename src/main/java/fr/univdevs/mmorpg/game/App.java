@@ -13,7 +13,7 @@ import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.action.MoveCommand;
 import fr.univdevs.mmorpg.game.character.Warrior;
-import fr.univdevs.mmorpg.game.item.cure.Potion;
+import fr.univdevs.mmorpg.game.item.cure.HealerCure;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -60,10 +60,10 @@ public class App {
 
         // And put some items
         Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
-        Potion potion = new Potion();
-        potion.setX(1);
-        potion.setY(1);
-        world.addEntity(potion);
+        HealerCure healerCure = new HealerCure();
+        healerCure.setX(1);
+        healerCure.setY(1);
+        world.addEntity(healerCure);
     }
 
     private static void registerPlayerCommands(Player currentPlayer) {
