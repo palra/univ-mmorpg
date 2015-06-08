@@ -137,7 +137,7 @@ public class Inventory implements LoggerAwareInterface {
      * @param item idem to be added
      */
     public Item add(Item item) throws NullEnoughCashException {
-        if (this.character.getMoney() > item.getCost()) {
+        if (this.character.getMoney() >= item.getCost()) {
             item.onRegister(character);
             Item i = this.items.put(item.getID(), item);
 
@@ -147,6 +147,9 @@ public class Inventory implements LoggerAwareInterface {
             if (logger != null) {
                 logger.log(new InventoryAddEvent(item, character));
             }
+
+            this.character.setMoney(this.character.getMoney() - item.getCost());
+
         } else throw new NullEnoughCashException("Pas assez d'argent!");
 
         return item;
