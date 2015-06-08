@@ -11,6 +11,7 @@ import fr.univdevs.mmorpg.engine.character.Item;
 public abstract class Cure extends Item {
     private int restoredPoints;
 
+
     /**
      * cure constructor
      *
@@ -37,6 +38,11 @@ public abstract class Cure extends Item {
         this.restoredPoints = restoredPoints;
     }
 
+    public Cure(Cure other) {
+        super(other);
+        this.restoredPoints = other.restoredPoints;
+    }
+
     /**
      * Public method to return the amount of points resotred by the cure
      *
@@ -45,6 +51,7 @@ public abstract class Cure extends Item {
     public int getRestoredPoints() {
         return restoredPoints;
     }
+
 
     /**
      * Redefinition of toString

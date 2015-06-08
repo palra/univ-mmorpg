@@ -31,6 +31,7 @@ public abstract class Item implements MovableEntity {
         this.weight = itemWeight;
     }
 
+
     /**
      * Item Constructor
      *
@@ -45,6 +46,16 @@ public abstract class Item implements MovableEntity {
             ids.add(this.ID);
         } while (!ids.contains(this.ID));
     }
+
+    public Item(Item other) {
+        this.ID = other.ID;
+        this.category = other.category;
+        this.cost = other.cost;
+        this.weight = other.weight;
+        this.x = other.x;
+        this.y = other.y;
+    }
+
 
     public static ArrayList<String> getIds() {
         return ids;

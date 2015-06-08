@@ -22,6 +22,12 @@ public abstract class Protection extends Item {
         this.robustness = protectionRobustness;
     }
 
+    public Protection(Protection other) {
+        super(other);
+        this.robustness = other.robustness;
+    }
+
+
     /**
      * Getter of robustness
      *

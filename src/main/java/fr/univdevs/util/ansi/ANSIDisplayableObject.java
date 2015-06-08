@@ -29,6 +29,11 @@ public class ANSIDisplayableObject<T> {
         ;
     }
 
+    public ANSIDisplayableObject(ANSIDisplayableObject<T> other) {
+        this.rawObject = other.rawObject;
+        this.attributes = other.attributes;
+    }
+
     public T getRaw() {
         return rawObject;
     }

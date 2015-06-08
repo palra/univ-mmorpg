@@ -63,6 +63,21 @@ public abstract class Character implements MovableEntity {
         this.speed = 100;
     }
 
+    public Character(Character other) {
+        this.type = other.type;
+        this.name = other.name;
+        this.experience = other.experience;
+        this.actionPoints = other.actionPoints;
+        this.health = other.health;
+        this.resistance = other.resistance;
+        this.speed = other.speed;
+        this.money = other.money;
+        this.inventory = new Inventory(other.inventory);
+        this.x = other.x;
+        this.y = other.y;
+        this.display = new ANSIChar(other.display);
+    }
+
     public String toString() {
         String charac = "";
         charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.actionPoints + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
