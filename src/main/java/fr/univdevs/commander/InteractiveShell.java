@@ -28,7 +28,7 @@ public class InteractiveShell {
      * Default constructor
      */
     public InteractiveShell() {
-        this(new CommandParser());
+        this.commandParser = new CommandParser();
     }
 
     /**
@@ -41,12 +41,27 @@ public class InteractiveShell {
     }
 
     /**
-     * Constructs an InteractiveShell, and outputs the MOTD immediately on the output.
-     *
-     * @param motd The Message of the Day
+     * Constructs an InteractiveShell, with custom input and output streams
+     * @param in The input stream
+     * @param out The printable output stream
      */
-    public InteractiveShell(ANSIString motd) {
-        this(motd.toString());
+    public InteractiveShell(InputStream in, PrintStream out) {
+        this.commandParser = new CommandParser();
+        this.in = in;
+        this.out = out;
+    }
+
+    /**
+     * Constructs an InteractiveShell, with a given CommandParser and custom input and output streams
+     *
+     * @param commandParser The command parser
+     * @param in            The input stream
+     * @param out           The printable output stream
+     */
+    public InteractiveShell(CommandParser commandParser, InputStream in, PrintStream out) {
+        this(commandParser);
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -76,6 +91,13 @@ public class InteractiveShell {
         this.inviteString = inviteString;
     }
 
+    /**
+     * Reads a line from the input stream, parses it with the command parser, and outputs the result of the command on
+     * the print stream. If a command throws an exception, the exception is displayed, and the input process repeats
+     * until no exception is  raised.
+     *
+     * @return The result of the parser
+     */
     public ParserResult nextResult() {
         Scanner sc = new Scanner(this.in);
 
@@ -106,20 +128,6 @@ public class InteractiveShell {
     }
 
     /**
-     * @see CommandParser#has(String)
-     */
-    public boolean has(String command) {
-        return commandParser.has(command);
-    }
-
-    /**
-     * @see CommandParser#has(Command)
-     */
-    public boolean has(Command command) {
-        return commandParser.has(command);
-    }
-
-    /**
      * @see CommandParser#get(String)
      */
     public Command get(String name) {
@@ -134,16 +142,9 @@ public class InteractiveShell {
     }
 
     /**
-     * @see CommandParser#remove(Command)
+     * @see CommandParser#remove(Object)
      */
-    public Command remove(Command o) {
+    public boolean remove(Object o) {
         return commandParser.remove(o);
-    }
-
-    /**
-     * @see CommandParser#getCommands()
-     */
-    public Command[] getCommands() {
-        return commandParser.getCommands();
     }
 }

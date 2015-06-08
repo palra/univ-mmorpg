@@ -67,4 +67,16 @@ public abstract class Command implements CommandParserAware {
     public void setCommandParser(CommandParser parser) {
         this.parser = parser;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Command)) return false;
+
+        Command command = (Command) o;
+
+        if (!name.equals(command.name)) return false;
+        return !(parser != null ? !parser.equals(command.parser) : command.parser != null);
+
+    }
 }

@@ -72,25 +72,23 @@ public final class CommandParserTest {
 
     @Test
     public void testArrayCtor() throws Exception {
-        parser = new CommandParser(new Command[]{
-            new GreeterCommand(),
-            new ThrowingExceptionCommand()
-        });
+        parser = new CommandParser(new GreeterCommand(),
+            new ThrowingExceptionCommand());
 
-        assertEquals(2, parser.getCommands().length);
+        assertEquals(2, parser.getCommands().size());
     }
 
     @Test
     public void testGetCommands() throws Exception {
         parser.add(new GreeterCommand());
         parser.add(new ThrowingExceptionCommand());
-        assertEquals(2, parser.getCommands().length);
+        assertEquals(2, parser.getCommands().size());
     }
 
     @Test
     public final void testHas() throws Exception {
-        assertFalse(parser.has("say-hello"));
+        assertFalse(parser.contains("say-hello"));
         parser.add(new GreeterCommand());
-        assertTrue(parser.has("say-hello"));
+        assertTrue(parser.contains("say-hello"));
     }
 }
