@@ -49,11 +49,10 @@ public class MoveAction extends Action {
                 Item item = (Item) e;
                 try {
                     i.add(item);
+                    w.removeEntity(e);
                 } catch (Inventory.NotEnoughCashException exp) {
                     getLogger().log(new Inventory.InventoryNotEnoughMoneyEvent(item, c));
                 }
-
-                w.removeEntity(e);
             }
         }
     }
