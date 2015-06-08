@@ -33,6 +33,12 @@ public class Inventory implements LoggerAwareInterface {
         this.character = c;
     }
 
+    public Inventory(Inventory other) {
+        this.items = other.items;
+        this.character = other.character;
+        this.logger = other.logger;
+    }
+
     /**
      * Returns the character
      *

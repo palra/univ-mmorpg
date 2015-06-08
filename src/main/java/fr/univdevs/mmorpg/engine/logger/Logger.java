@@ -7,7 +7,14 @@ import java.util.List;
  * Event dispatcher, keeping a trace of each event.
  */
 public class Logger {
-    private List<Event> events = new ArrayList<Event>();
+    private ArrayList<Event> events = new ArrayList<Event>();
+
+    public Logger() {
+    }
+
+    public Logger(Logger l) {
+        this.events = new ArrayList<Event>(l.events);
+    }
 
     /**
      * Returns all the events

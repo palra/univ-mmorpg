@@ -54,6 +54,14 @@ public abstract class Event {
         this.createdAt = date;
     }
 
+    public Event(Event other) {
+        this.topic = other.topic;
+        this.name = other.name;
+        this.createdAt = other.createdAt;
+        this.uuid = other.uuid;
+    }
+
+
     /**
      * Returns the topic of the event
      *

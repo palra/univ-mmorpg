@@ -22,6 +22,7 @@ public abstract class Weapon extends Item {
         this.power = weaponPower;
     }
 
+
     /**
      * Weapon constructor
      *
@@ -32,6 +33,11 @@ public abstract class Weapon extends Item {
     public Weapon(String weaponCategory, int weaponCost, int weaponPower) {
         super(weaponCategory, weaponCost);
         this.power = weaponPower;
+    }
+
+    public Weapon(Weapon other) {
+        super(other);
+        this.power = other.power;
     }
 
     /**
