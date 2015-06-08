@@ -40,6 +40,7 @@ public class ActionTest {
     @Test
     public void testActions() throws Exception {
         drattak.setCharacter(dCharacter);
+        dCharacter.setMoney(10000);
         dCharacter.getInventory().add(bow);
         dCharacter.getInventory().add(p);
         palra.setCharacter(pCharacter);

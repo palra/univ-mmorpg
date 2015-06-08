@@ -46,7 +46,13 @@ public class MoveAction extends Action {
         Inventory i = c.getInventory();
         for (Entity e : res.getNonCollidableEntities()) {
             if (e instanceof Item) {
-                i.add((Item) e);
+                Item item = (Item) e;
+                try {
+                    i.add(item);
+                } catch (Inventory.NotEnoughCashException exp) {
+                    getLogger().log(new Inventory.InventoryNotEnoughMoneyEvent(item, c));
+                }
+
                 w.removeEntity(e);
             }
         }

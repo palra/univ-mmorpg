@@ -21,11 +21,13 @@ public class StatsCommandTest {
     private CommandParser parser;
     private GameManager gm;
     private StatsCommand sc;
+    private Player player;
 
     @Before
     public void setUp() throws Exception {
         gm = new GameManager(new World(new Tilemap(1)));
-        gm.addPlayer(new Player("palra", new Warrior("medor")));
+        player = new Player("palra", new Warrior("medor"));
+        gm.addPlayer(player);
 
         sc = new StatsCommand();
         sc.setCurrentPlayer(gm.getPlayerByName("palra"));
@@ -45,7 +47,7 @@ public class StatsCommandTest {
             " - Points d'action : 0 AP \n" +
             " - Vitesse : 0\n" +
             " - Résistance : 0.0\n" +
-            " - Argent : 0£ \n", parser.parse("stats").getOutput());
+            " - Argent : " + player.getCharacter().getMoney() + "£ \n", parser.parse("stats").getOutput());
     }
 
     @Test(expected = StatsCommand.PlayerNotFoundException.class)

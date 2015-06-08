@@ -3,10 +3,7 @@ package fr.univdevs.mmorpg.game;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
-import fr.univdevs.mmorpg.bridge.ActionCommand;
-import fr.univdevs.mmorpg.bridge.LoggerCommand;
-import fr.univdevs.mmorpg.bridge.MapCommand;
-import fr.univdevs.mmorpg.bridge.StatsCommand;
+import fr.univdevs.mmorpg.bridge.*;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
@@ -32,6 +29,7 @@ public class App {
     private static List<Player> players = new ArrayList<Player>();
     private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
     private static StatsCommand stats;
+    private static InventoryCommand items;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -80,6 +78,7 @@ public class App {
             shell.add(command);
 
         stats.setCurrentPlayer(currentPlayer);
+        items.setCurrentPlayer(currentPlayer);
     }
 
     private static boolean actionRegistered() {
@@ -121,6 +120,9 @@ public class App {
         stats = new StatsCommand();
         stats.setGameManager(gameManager);
 
+        // items
+        items = new InventoryCommand();
+
 
         /*=======================
                  Shell
@@ -131,6 +133,7 @@ public class App {
         shell.add(map);
         shell.add(log);
         shell.add(stats);
+        shell.add(items);
 
         boolean playTurn = false;
         Iterator<Player> iPlayers = null;
@@ -141,10 +144,11 @@ public class App {
             if (playTurn) {
                 try {
                     gameManager.playTurn();
-                    System.out.print(log.execute(new String[0]));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                System.out.print(log.execute(new String[0]));
 
                 playTurn = false; // Reset playTurn when executed.
             } else { // Ask each player what he wants to do.

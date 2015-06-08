@@ -65,7 +65,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
     }
 
     @Override
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) {
         boolean dumpAll = args.length >= 1 && args[0].equals(ALL_FLAG);
         boolean sinceLast = !dumpAll || (args.length >= 1 && args[0].equals(SINCE_LAST_FLAG));
 
