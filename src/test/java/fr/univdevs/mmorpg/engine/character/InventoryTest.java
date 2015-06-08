@@ -32,26 +32,4 @@ public class InventoryTest {
 
     }
 
-    @Test()
-    public void testCharacter() throws Exception {
-        Player drattak = new Player("drattak");
-        Player palra = new Player("palra");
-
-        Character chardrattak = new Warrior("chardrattak");
-        drattak.setCharacter(chardrattak);
-        Bow bower = new Bow();
-        Bow bbbbow = new Bow();
-        Sword sw = new Sword();
-        Sword sw1 = new Sword();
-        Sword sw0 = new Sword();
-
-        drattak.getCharacter().getInventory().add(sw);
-        System.out.println(drattak.getCharacter().getMoney());
-        drattak.getCharacter().getInventory().add(sw1);
-        System.out.println(drattak.getCharacter().getMoney());
-        drattak.getCharacter().getInventory().add(sw0);
-        System.out.println(drattak.getCharacter().getMoney());
-
-        drattak.getCharacter().getInventory().add(bbbbow);
-    }
 }

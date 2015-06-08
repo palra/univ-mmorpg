@@ -40,6 +40,7 @@ public class ActionTest {
     @Test
     public void testActions() throws Exception {
         drattak.setCharacter(dCharacter);
+        drattak.getCharacter().getInventory().add(bow);
         palra.setCharacter(pCharacter);
 
         FightAction fa = new FightAction(drattak, palra, bow);
