@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.engine.logger;
 
+import fr.univdevs.mmorpg.engine.Player;
+
 import java.util.Date;
 
 /**
@@ -8,17 +10,17 @@ import java.util.Date;
  * @author Vincent Emile
  */
 
-public abstract class ActionEvent<T> extends Event {
-    private T subject;
-    private T target;
+public abstract class ActionEvent extends Event {
+    private Player subject;
+    private Player target;
 
-    public ActionEvent(String topic, String name, T subject, T target) {
+    public ActionEvent(String topic, String name, Player subject, Player target) {
         super(topic, name);
         this.subject = subject;
         this.target = target;
     }
 
-    public ActionEvent(String topic, String name, Date date, T subject, T target) {
+    public ActionEvent(String topic, String name, Date date, Player subject, Player target) {
         super(topic, name, date);
         this.subject = subject;
         this.target = target;
@@ -29,7 +31,7 @@ public abstract class ActionEvent<T> extends Event {
      *
      * @return the subject of the event
      */
-    public T getSubject() {
+    public Player getSubject() {
         return subject;
     }
 
@@ -38,7 +40,7 @@ public abstract class ActionEvent<T> extends Event {
      *
      * @return the target of the event
      */
-    public T getTarget() {
+    public Player getTarget() {
         return target;
     }
 }

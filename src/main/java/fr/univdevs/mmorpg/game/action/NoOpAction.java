@@ -3,7 +3,7 @@ package fr.univdevs.mmorpg.game.action;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.engine.logger.SubjectEvent;
+import fr.univdevs.mmorpg.game.event.ActionEvent;
 
 import java.util.Date;
 
@@ -27,13 +27,15 @@ public class NoOpAction extends Action {
         l.log(new NoOpEvent(this.getSubject()));
     }
 
-    public static class NoOpEvent extends SubjectEvent<Player> {
+    public static class NoOpEvent extends ActionEvent {
+        private static final String NAME = "noop";
+
         public NoOpEvent(Player subject) {
-            this(new Date(), subject);
+            super(NAME, subject, null);
         }
 
         public NoOpEvent(Date date, Player subject) {
-            super("action", "noop", date, subject);
+            super(NAME, date, subject, null);
         }
 
         @Override

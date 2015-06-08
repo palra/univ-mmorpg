@@ -23,6 +23,7 @@ public class Tilemap {
     private int width;
     private int height;
 
+
     public Tilemap(int dimension) {
         this.tiles = new char[dimension * dimension];
         this.width = this.height = dimension;
