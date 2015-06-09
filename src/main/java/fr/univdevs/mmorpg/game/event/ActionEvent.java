@@ -44,10 +44,10 @@ public abstract class ActionEvent extends Event {
     }
 
     public Player getSubject() {
-        return subject;
+        return this.subject;
     }
 
     public Player getTarget() {
-        return target;
+        return this.target;
     }
 }
