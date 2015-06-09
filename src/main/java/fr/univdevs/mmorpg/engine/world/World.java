@@ -30,7 +30,7 @@ public class World {
      * @return The tilemap
      */
     public Tilemap getTilemap() {
-        return tilemap;
+        return this.tilemap;
     }
 
     /**
@@ -115,7 +115,7 @@ public class World {
 
     public boolean isCollidableAt(int x, int y) {
         Entity e = getEntity(x, y);
-        Tilemap.Tile t = tilemap.getTileAt(x, y);
+        Tilemap.Tile t = this.tilemap.getTileAt(x, y);
         return (e != null && e.isCollidable()) || (t != null && t.isCollidable());
     }
 
@@ -138,15 +138,15 @@ public class World {
         }
 
         public List<Entity> getNonCollidableEntities() {
-            return nonCollidableEntities;
+            return this.nonCollidableEntities;
         }
 
         public boolean isCollision() {
-            return collision;
+            return this.collision;
         }
 
         public int getNbCases() {
-            return nbCases;
+            return this.nbCases;
         }
     }
 

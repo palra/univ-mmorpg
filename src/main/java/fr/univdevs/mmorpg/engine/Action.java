@@ -60,7 +60,7 @@ public abstract class Action implements GameManagerAware {
      * @return The game manager
      */
     public GameManager getGameManager() {
-        return gameManager;
+        return this.gameManager;
     }
 
     /**

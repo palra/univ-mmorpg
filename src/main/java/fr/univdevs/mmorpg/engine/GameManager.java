@@ -101,7 +101,7 @@ public class GameManager {
      * @return The current player comparator
      */
     public Comparator<Player> getPlayerComparator() {
-        return playerComparator;
+        return this.playerComparator;
     }
 
     /**
@@ -119,7 +119,7 @@ public class GameManager {
      * @return The event logger.
      */
     public Logger getLogger() {
-        return logger;
+        return this.logger;
     }
 
     /**
@@ -195,7 +195,7 @@ public class GameManager {
          * @return The round number
          */
         public int getRoundNumber() {
-            return roundNb;
+            return this.roundNb;
         }
 
         @Override
