@@ -47,6 +47,11 @@ public abstract class Item implements MovableEntity {
         } while (!ids.contains(this.ID));
     }
 
+    /**
+     * Item copy constructor
+     *
+     * @param other the item to copy
+     */
     public Item(Item other) {
         this.ID = other.ID;
         this.category = other.category;
@@ -56,13 +61,21 @@ public abstract class Item implements MovableEntity {
         this.y = other.y;
     }
 
-
+    /**
+     * Public method to get all the IDS already used
+     * Useful to check if randomly generated id does not exist already
+     * @return the ids
+     */
     public static ArrayList<String> getIds() {
         return ids;
     }
 
+    /**
+     * Redefinition of toString
+     * @return the generated string
+     */
     public String toString() {
-        return "id = " + this.getID() + '\n' + "category = " + this.getCategory() + "\n" + "cost = " + this.getCost() + "\n";
+        return "id = " + this.getID() + "\ncategory = " + this.getCategory() + "\ncost = " + this.getCost() + "\n";
     }
 
     /**
@@ -71,7 +84,7 @@ public abstract class Item implements MovableEntity {
      * @return The category
      */
     public String getCategory() {
-        return category;
+        return this.category;
     }
 
     /**
@@ -80,7 +93,7 @@ public abstract class Item implements MovableEntity {
      * @return The cost of the item
      */
     public int getCost() {
-        return cost;
+        return this.cost;
     }
 
     /**
@@ -89,32 +102,15 @@ public abstract class Item implements MovableEntity {
      * @return The weight of the item
      */
     public int getWeight() {
-        return weight;
+        return this.weight;
     }
 
-    /**
-     * Public method to indicate how the item will affect the character
-     * By default, it does nothing.
-     *
-     * @param character on which character it will be applied
-     */
-    public void onRegister(Character character) {
-    }
-
-    /**
-     * Public method to indicate how the item will affect the character
-     * By default, it does nothing.
-     *
-     * @param character on which character it will be applied
-     */
-    public void onUnregister(Character character) {
-    }
 
     /**
      * {@inheritDoc}
      */
     public int getX() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -128,7 +124,7 @@ public abstract class Item implements MovableEntity {
      * {@inheritDoc}
      */
     public int getY() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -155,9 +151,9 @@ public abstract class Item implements MovableEntity {
 
         Item item = (Item) o;
 
-        if (cost != item.cost) return false;
-        if (weight != item.weight) return false;
-        return category.equals(item.category);
+        if (this.cost != item.cost) return false;
+        if (this.weight != item.weight) return false;
+        return this.category.equals(item.category);
 
     }
 }
