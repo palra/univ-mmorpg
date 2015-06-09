@@ -92,7 +92,7 @@ public class Tilemap {
      * @return An array of char, composing the map
      */
     public char[] getTiles() {
-        return tiles;
+        return this.tiles;
     }
 
     public Entity[] getTilesEntity() {
