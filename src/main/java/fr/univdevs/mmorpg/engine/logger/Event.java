@@ -8,14 +8,6 @@ import java.util.UUID;
  * Represents an event in the game
  */
 public abstract class Event {
-    /**
-     * Compares two events according to their creation date. The newer is the first.
-     */
-    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
-        public int compare(Event e1, Event e2) {
-            return -SORT_BY_DATE_ASC.compare(e1, e2);
-        }
-    };
     private String topic;
     private String name;
     private Date createdAt;
@@ -25,6 +17,14 @@ public abstract class Event {
     public static Comparator<Event> SORT_BY_DATE_ASC = new Comparator<Event>() {
         public int compare(Event e1, Event e2) {
             return e1.getCreatedAt().compareTo(e2.getCreatedAt());
+        }
+    };
+    /**
+     * Compares two events according to their creation date. The newer is the first.
+     */
+    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
+        public int compare(Event e1, Event e2) {
+            return -SORT_BY_DATE_ASC.compare(e1, e2);
         }
     };
     private UUID uuid;
@@ -54,6 +54,11 @@ public abstract class Event {
         this.createdAt = date;
     }
 
+    /**
+     * Event copy constructor
+     *
+     * @param other the event we want to copy
+     */
     public Event(Event other) {
         this.topic = other.topic;
         this.name = other.name;
@@ -68,7 +73,7 @@ public abstract class Event {
      * @return The topic of the event
      */
     public String getTopic() {
-        return topic;
+        return this.topic;
     }
 
     /**
@@ -77,7 +82,7 @@ public abstract class Event {
      * @return The name of the event
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -86,7 +91,7 @@ public abstract class Event {
      * @return The creation date of the event
      */
     public Date getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
@@ -95,7 +100,7 @@ public abstract class Event {
      * @return The UUID of the event
      */
     public UUID getUuid() {
-        return uuid;
+        return this.uuid;
     }
 
     @Override
@@ -105,10 +110,10 @@ public abstract class Event {
 
         Event event = (Event) o;
 
-        if (topic != null ? !topic.equals(event.topic) : event.topic != null) return false;
-        if (name != null ? !name.equals(event.name) : event.name != null) return false;
-        if (createdAt != null ? !createdAt.equals(event.createdAt) : event.createdAt != null) return false;
-        return !(uuid != null ? !uuid.equals(event.uuid) : event.uuid != null);
+        if (this.topic != null ? !this.topic.equals(event.topic) : event.topic != null) return false;
+        if (this.name != null ? !this.name.equals(event.name) : event.name != null) return false;
+        if (this.createdAt != null ? !this.createdAt.equals(event.createdAt) : event.createdAt != null) return false;
+        return !(this.uuid != null ? !this.uuid.equals(event.uuid) : event.uuid != null);
 
     }
 
