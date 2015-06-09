@@ -17,6 +17,9 @@ public class Inventory implements LoggerAwareInterface {
     private Character character;
     private Logger logger;
 
+    /**
+     * Empty inventory constructor
+     */
     public Inventory() {
         throw new IllegalArgumentException("The character is mandatory");
     }
@@ -33,6 +36,11 @@ public class Inventory implements LoggerAwareInterface {
         this.character = c;
     }
 
+    /**
+     * Inventory copy constructor
+     *
+     * @param other the inventory to copy
+     */
     public Inventory(Inventory other) {
         this.items = other.items;
         this.character = other.character;
@@ -45,7 +53,7 @@ public class Inventory implements LoggerAwareInterface {
      * @return The character
      */
     public Character getCharacter() {
-        return character;
+        return this.character;
     }
 
     /**
@@ -54,7 +62,7 @@ public class Inventory implements LoggerAwareInterface {
      * @return The logger
      */
     public Logger getLogger() {
-        return logger;
+        return this.logger;
     }
 
     /**
@@ -81,21 +89,21 @@ public class Inventory implements LoggerAwareInterface {
      * @return Item collection
      */
     public Item[] getItems() {
-        return items.values().toArray(new Item[this.size()]);
+        return this.items.values().toArray(new Item[this.size()]);
     }
 
     /**
      * @return the size of the Inventory
      */
     public int size() {
-        return items.size();
+        return this.items.size();
     }
 
     /**
      * @return True if Inventory is empty
      */
     public boolean isEmpty() {
-        return items.isEmpty();
+        return this.items.isEmpty();
     }
 
     /**
@@ -182,6 +190,7 @@ public class Inventory implements LoggerAwareInterface {
     }
 
     /**
+     * Public method to remove an item
      * @param item The removed item, if removed
      */
     public Item remove(Item item) {
@@ -196,6 +205,7 @@ public class Inventory implements LoggerAwareInterface {
         return i;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -203,13 +213,17 @@ public class Inventory implements LoggerAwareInterface {
 
         Inventory inventory = (Inventory) o;
 
-        return items.equals(inventory.items);
+        return this.items.equals(inventory.items);
 
     }
 
+    /**
+     * Public method to get all the IDs of the inventory
+     * @return the List of IDs
+     */
     public List<String> getIds() {
         ArrayList<String> results = new ArrayList<String>();
-        for (String key : items.keySet()) {
+        for (String key : this.items.keySet()) {
             results.add(key);
         }
         return results;
@@ -240,9 +254,9 @@ public class Inventory implements LoggerAwareInterface {
 
         @Override
         public String getDescription() {
-            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " ramasse " +
-                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
+            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " ramasse " +
+                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
         }
     }
 
@@ -266,9 +280,9 @@ public class Inventory implements LoggerAwareInterface {
 
         @Override
         public String getDescription() {
-            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
-                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
+            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
+                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
         }
     }
 
@@ -292,14 +306,17 @@ public class Inventory implements LoggerAwareInterface {
 
         @Override
         public String getDescription() {
-            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
+            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
                 "assez d'argent (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") pour acquérir " +
-                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
-                new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";
+                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
+                    new ANSIString(this.character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";
         }
     }
 
+    /**
+     * Exception created in case there's not enough money
+     */
     public static class NotEnoughCashException extends Exception {
         public NotEnoughCashException(String message) {
             super(message);
