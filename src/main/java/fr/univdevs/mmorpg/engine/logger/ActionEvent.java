@@ -14,18 +14,41 @@ public abstract class ActionEvent extends Event {
     private Player subject;
     private Player target;
 
+    /**
+     * ActionEvent Constructor
+     * ActionEvent records an Action in the Log
+     *
+     * @param topic   the topic of the action
+     * @param name    the name, cure if it's a CureAction, etc
+     * @param subject the one who perform the action
+     * @param target  the one who undergoes the action
+     */
     public ActionEvent(String topic, String name, Player subject, Player target) {
         super(topic, name);
         this.subject = subject;
         this.target = target;
     }
 
+    /**
+     * ActionEvent Constructor
+     * An ActionEvent records an Action in the Log
+     * @param topic the topic of the action
+     * @param name  the name, cure if it's a CureAction, etc
+     * @param date  the date of the action
+     * @param subject   the one who perform the action
+     * @param target    the one who undergoes the action
+     */
     public ActionEvent(String topic, String name, Date date, Player subject, Player target) {
         super(topic, name, date);
         this.subject = subject;
         this.target = target;
     }
 
+    /**
+     * ActionEvent copy constructor
+     * An ActionEvent records an Action in the Log
+     * @param other the ActionEvent to copy
+     */
     public ActionEvent(ActionEvent other) {
         super(other);
         this.subject = other.subject;
@@ -39,7 +62,7 @@ public abstract class ActionEvent extends Event {
      * @return the subject of the event
      */
     public Player getSubject() {
-        return subject;
+        return this.subject;
     }
 
     /**
@@ -48,6 +71,6 @@ public abstract class ActionEvent extends Event {
      * @return the target of the event
      */
     public Player getTarget() {
-        return target;
+        return this.target;
     }
 }
