@@ -54,6 +54,7 @@ public abstract class Protection extends Item {
         c.setResistance(
             c.getResistance() - this.robustness
         );
+        c.setSpeed(c.getSpeed() + this.getWeight() / 20);
     }
 
 }
