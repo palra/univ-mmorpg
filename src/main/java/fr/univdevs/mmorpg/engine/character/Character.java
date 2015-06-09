@@ -30,7 +30,7 @@ public abstract class Character implements MovableEntity {
      * @param chosenType Type chosen for the character, can't change
      */
     public Character(String chosenName, String chosenType) {
-        this(chosenName, chosenName.trim().toUpperCase().charAt(0), chosenType);
+        this(chosenName, chosenName.trim().toUpperCase().charAt(0), chosenType); //trim removes spaces before and after
     }
 
     /**
@@ -41,7 +41,7 @@ public abstract class Character implements MovableEntity {
      * @param chosenType    Type chosen for the character, can't change
      */
     public Character(String chosenName, char chosenDisplay, String chosenType) {
-        this(chosenName, new ANSIChar(chosenDisplay), chosenType);
+        this(chosenName, new ANSIChar(chosenDisplay), chosenType); //ansichar is for displaying in terminal
     }
 
 
@@ -80,7 +80,7 @@ public abstract class Character implements MovableEntity {
 
     public String toString() {
         String charac = "";
-        charac += "name = " + this.name + "\n" + "type = " + this.type + "\n" + "experience = " + this.experience + "\n" + "points d'action = " + this.actionPoints + "\n" + "points de vie = " + this.health + "\n" + "resistance = " + this.resistance + "\n" + "vitesse = " + this.speed + "\n" + "argent = " + this.money + "\n" + "\nINVENTAIRE : \n" + this.inventory.toString();
+        charac += "name = " + this.name + "\ntype = " + this.type + "\nexperience = " + this.experience + "\npoints d'action = " + this.actionPoints + "\npoints de vie = " + this.health + "\nresistance = " + this.resistance + "\nvitesse = " + this.speed + "\nargent = " + this.money + "\n\nINVENTAIRE : \n" + this.inventory.toString();
         return charac;
     }
 
@@ -90,7 +90,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getMoney() {
-        return money;
+        return this.money;
     }
 
     /**
@@ -108,7 +108,7 @@ public abstract class Character implements MovableEntity {
      * @return String
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -117,7 +117,7 @@ public abstract class Character implements MovableEntity {
      * @return String
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -126,7 +126,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getExperience() {
-        return experience;
+        return this.experience;
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getActionPoints() {
-        return actionPoints;
+        return this.actionPoints;
     }
 
     /**
@@ -162,7 +162,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     /**
@@ -180,7 +180,7 @@ public abstract class Character implements MovableEntity {
      * @return double
      */
     public double getResistance() {
-        return resistance;
+        return this.resistance;
     }
 
     /**
@@ -197,7 +197,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     /**
