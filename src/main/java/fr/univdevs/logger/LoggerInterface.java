@@ -26,6 +26,14 @@ public interface LoggerInterface {
     List<Event> getEventsAfterIndex(int index);
 
     /**
+     * Returns the last `number` events, ordered by date of insertion, not by the given date of the event.
+     *
+     * @param number The number of events to return
+     * @return The `number` last events, if exists
+     */
+    List<Event> getLastEvents(int number);
+
+    /**
      * Logs an event.
      *
      * @param e The event to log

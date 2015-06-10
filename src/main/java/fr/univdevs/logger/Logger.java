@@ -27,8 +27,16 @@ public class Logger implements LoggerInterface {
     /**
      * {@inheritDoc}
      */
-    public List<Event> getEventsAfterIndex(final int index) {
+    public List<Event> getEventsAfterIndex(int index) {
         return this.events.subList(index, this.events.size());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public List<Event> getLastEvents(int number) {
+        int size = this.events.size();
+        return this.events.subList(Math.min(size - number, 0), this.events.size());
     }
 
     /**
@@ -36,25 +44,5 @@ public class Logger implements LoggerInterface {
      */
     public boolean log(Event e) {
         return this.events.add(e);
-    }
-
-    /**
-     * Creates a subset of the events array, for each event that matches the criteria given
-     *
-     * @param filter The criteria to add an event to the subset
-     * @return The filtered subset of events
-     */
-    private List<Event> _reduce(FilterRunnable filter) {
-        List<Event> evts = new ArrayList<Event>();
-        for (Event e : events) {
-            if (filter.canAdd(e))
-                evts.add(e);
-        }
-
-        return evts;
-    }
-
-    private abstract static class FilterRunnable {
-        protected abstract boolean canAdd(Event e);
     }
 }
