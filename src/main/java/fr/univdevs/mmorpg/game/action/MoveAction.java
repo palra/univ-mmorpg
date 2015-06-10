@@ -48,7 +48,10 @@ public class MoveAction extends Action {
     public void execute() throws Exception {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
+        if (this.nbCases > 1 * c.getActionPoints())
+            throw new NotEnoughActionPointsException("Vous n'avez pas assez d'AP");
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
+        c.setActionPoints(c.getActionPoints() - 1 * res.getNbCases());
         this.getLogger().log(new MoveActionEvent(getSubject(), res, this.direction));
 
         Inventory i = c.getInventory();
@@ -65,5 +68,11 @@ public class MoveAction extends Action {
         }
     }
 
+    public static class NotEnoughActionPointsException extends Exception {
+        public NotEnoughActionPointsException(String message) {
+            super(message);
+        }
+    }
 
 }
+

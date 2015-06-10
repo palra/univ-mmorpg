@@ -45,6 +45,7 @@ public class App {
         // Registering players
         players.add(new Player("palra", new Warrior("nom-super-agressif")));
 
+
         for (Player p : players) {
             Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
             p.getCharacter().setX(pos.x);
@@ -52,7 +53,7 @@ public class App {
             p.getCharacter().getDisplay()
                 .addAttribute(ANSIAttribute.ATTR_BLINK)
                 .addAttribute(ANSIAttribute.FG_RED);
-
+            p.getCharacter().setMoney(4000);
             gameManager.addPlayer(p);
         }
 
