@@ -115,14 +115,13 @@ public class Inventory implements LoggerAwareInterface {
     /**
      * @return all Types of the inventory
      */
-    public String[] getTypes() {
+    public HashSet<String> getTypes() {
         HashSet<String> types = new HashSet<String>(); //Hashset avoid doubles
-        Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
             types.add(value.getCategory());
         }
 
-        return (String[]) types.toArray();
+        return types;
     }
 
     /**
@@ -130,7 +129,6 @@ public class Inventory implements LoggerAwareInterface {
      */
     public int getWeight() {
         int totalWeight = 0;
-        Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
             totalWeight += value.getWeight();
         }
@@ -209,7 +207,7 @@ public class Inventory implements LoggerAwareInterface {
 
     public List<String> getIds() {
         ArrayList<String> results = new ArrayList<String>();
-        for (String key : items.keySet()) {
+        for (String key : this.items.keySet()) {
             results.add(key);
         }
         return results;
