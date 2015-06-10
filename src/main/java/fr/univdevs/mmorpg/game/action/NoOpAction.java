@@ -2,8 +2,8 @@ package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.event.action.ActionEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.game.event.ActionEvent;
 
 import java.util.Date;
 

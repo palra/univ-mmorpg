@@ -41,7 +41,6 @@ public class FightAction extends Action {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() + (getTarget().getCharacter().getHealth() * getTarget().getCharacter().getResistance()) - this.weapon.getPower()));
         Logger l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));
-        this.weapon = null;
     }
 
     public static class FightEvent extends ActionEvent {
@@ -50,12 +49,12 @@ public class FightAction extends Action {
         }
 
         public FightEvent(Date date, Player subject, Player target) {
-            super("action", "fight", date, subject, target);
+            super("fight", date, subject, target);
         }
 
         @Override
         public String getDescription() {
-            return this.getSubject().getName() + " a attaqué " + this.getTarget().getName();
+            return this.getSubject().getName() + " a attaqué " + this.getTarget().getName() + " avec ";
         }
     }
 }

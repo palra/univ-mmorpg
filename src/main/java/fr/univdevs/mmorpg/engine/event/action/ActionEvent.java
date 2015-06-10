@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.event.action;
 
+
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Event;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 
 public abstract class ActionEvent extends Event {
+    private static String TOPIC = "action";
     private Player subject;
     private Player target;
 
@@ -22,8 +24,8 @@ public abstract class ActionEvent extends Event {
      * @param subject The subject of the action, non nullable, but the constructor will not throw an exception for that
      * @param target  The target of the action, nullable
      */
-    public ActionEvent(String topic, String name, Player subject, Player target) {
-        super(topic, name);
+    public ActionEvent(String name, Player subject, Player target) {
+        super(TOPIC, name);
         this.subject = subject;
         this.target = target;
     }
@@ -36,8 +38,8 @@ public abstract class ActionEvent extends Event {
      * @param subject The subject of the action, non nullable
      * @param target  The target of the action, nullable
      */
-    public ActionEvent(String topic, String name, Date date, Player subject, Player target) {
-        super(topic, name, date);
+    public ActionEvent(String name, Date date, Player subject, Player target) {
+        super(TOPIC, name, date);
         this.subject = subject;
         this.target = target;
     }
