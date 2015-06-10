@@ -33,13 +33,13 @@ public class LoggerCommandTest {
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
         assertEquals("<action.noop>: palra passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n", parser.parse("log --all").getOutput());
+            "<action.noop>: drattak passe son tour\n", parser.parse("log all").getOutput());
 
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n", parser.parse("log --all").getOutput());
+            "<action.noop>: drattak passe son tour\n", parser.parse("log all").getOutput());
     }
 
     @Test

@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.logger.Logger;
+import fr.univdevs.logger.LoggerInterface;
 
 /**
  * Public class Action
@@ -50,7 +50,7 @@ public abstract class Action implements GameManagerAware {
      *
      * @return The logger
      */
-    public Logger getLogger() {
+    public LoggerInterface getLogger() {
         return gameManager.getLogger();
     }
 

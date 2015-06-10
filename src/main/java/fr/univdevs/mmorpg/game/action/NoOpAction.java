@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.game.action;
 
-import fr.univdevs.logger.Logger;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.game.event.ActionEvent;
@@ -23,7 +23,7 @@ public class NoOpAction extends Action {
 
     @Override
     public void execute() throws Exception {
-        Logger l = this.getLogger();
+        LoggerInterface l = this.getLogger();
         l.log(new NoOpEvent(this.getSubject()));
     }
 

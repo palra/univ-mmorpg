@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine;
 
 import fr.univdevs.logger.Event;
 import fr.univdevs.logger.Logger;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -15,7 +16,7 @@ public class GameManager {
     private World world;
     private ArrayList<Player> players = new ArrayList<Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
-    private Logger logger = new Logger();
+    private LoggerInterface logger = new Logger();
     private int roundNb = 1;
 
     /**
@@ -118,7 +119,7 @@ public class GameManager {
      *
      * @return The event logger.
      */
-    public Logger getLogger() {
+    public LoggerInterface getLogger() {
         return this.logger;
     }
 

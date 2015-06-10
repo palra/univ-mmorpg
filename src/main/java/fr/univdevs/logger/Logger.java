@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Event dispatcher, keeping a trace of each event.
  */
-public class Logger {
+public class Logger implements LoggerInterface {
     private ArrayList<Event> events = new ArrayList<Event>();
 
     public Logger() {
@@ -17,9 +17,7 @@ public class Logger {
     }
 
     /**
-     * Returns all the events
-     *
-     * @return All the events
+     * {@inheritDoc}
      */
     public List<Event> getEvents() {
         return events;
@@ -27,20 +25,14 @@ public class Logger {
 
 
     /**
-     * Returns all the events occured after a given date.
-     *
-     * @param index The limit date
-     * @return All the events occured after the given date.
+     * {@inheritDoc}
      */
     public List<Event> getEventsAfterIndex(final int index) {
         return this.events.subList(index, this.events.size());
     }
 
     /**
-     * Logs an event.
-     *
-     * @param e The event to log
-     * @return the return value of List.add
+     * {@inheritDoc}
      */
     public boolean log(Event e) {
         return this.events.add(e);

@@ -2,8 +2,8 @@ package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.Command;
 import fr.univdevs.logger.Event;
-import fr.univdevs.logger.Logger;
 import fr.univdevs.logger.LoggerAwareInterface;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
@@ -21,11 +21,11 @@ import java.util.List;
  * * `--since-last` : Dumps all the events since the last consultation, the default behavior.
  */
 public class LoggerCommand extends Command implements LoggerAwareInterface {
-    protected static final String ALL_FLAG = "--all";
-    protected static final String SINCE_LAST_FLAG = "--since-last";
+    protected static final String ALL_OPT = "all";
+    protected static final String SINCE_LAST_OPT = "since-last";
     protected static final String NOT_FOUND_MSG = new ANSIString("No entries found for your request\n", ANSIAttribute.FG_RED) + "";
 
-    private Logger logger;
+    private LoggerInterface logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
     private String logFormat = "" +
         new ANSIString("[%s] ", ANSIAttribute.FG_CYAN) +
@@ -37,14 +37,14 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
         this.setName("log");
     }
 
-    public Logger getLogger() {
+    public LoggerInterface getLogger() {
         return logger;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setLogger(Logger logger) {
+    public void setLogger(LoggerInterface logger) {
         this.logger = logger;
     }
 
@@ -66,8 +66,8 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
 
     @Override
     public String execute(String[] args) {
-        boolean dumpAll = args.length >= 1 && args[0].equals(ALL_FLAG);
-        boolean sinceLast = !dumpAll || (args.length >= 1 && args[0].equals(SINCE_LAST_FLAG));
+        boolean dumpAll = args.length >= 1 && args[0].equals(ALL_OPT);
+        boolean sinceLast = !dumpAll || (args.length >= 1 && args[0].equals(SINCE_LAST_OPT));
 
         if (lastIdx == 0) {
             dumpAll = true;

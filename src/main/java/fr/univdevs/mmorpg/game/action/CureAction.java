@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.logger.ActionEvent;
-import fr.univdevs.logger.Logger;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
@@ -33,7 +33,7 @@ public class CureAction extends Action {
     public void execute() throws Exception {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
         getSubject().getCharacter().getInventory().remove(this.cure);
-        Logger l = this.getLogger();
+        LoggerInterface l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
         this.cure = null;
     }

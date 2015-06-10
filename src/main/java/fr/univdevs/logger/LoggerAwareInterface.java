@@ -11,5 +11,5 @@ public interface LoggerAwareInterface {
      *
      * @param logger Reference to the logger
      */
-    void setLogger(Logger logger);
+    void setLogger(LoggerInterface logger);
 }
