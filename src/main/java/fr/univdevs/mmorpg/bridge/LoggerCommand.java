@@ -1,9 +1,9 @@
 package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.Command;
-import fr.univdevs.mmorpg.engine.logger.Event;
-import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
+import fr.univdevs.logger.Event;
+import fr.univdevs.logger.Logger;
+import fr.univdevs.logger.LoggerAwareInterface;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 

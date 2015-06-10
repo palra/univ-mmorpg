@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.logger;
+package fr.univdevs.logger;
 
 import java.util.Comparator;
 import java.util.Date;

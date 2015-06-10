@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.logger;
+package fr.univdevs.logger;
 
 /**
  * Interface representing a class that uses an instance of Logger.

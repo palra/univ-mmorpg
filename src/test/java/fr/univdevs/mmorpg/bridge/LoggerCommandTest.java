@@ -1,9 +1,8 @@
 package fr.univdevs.mmorpg.bridge;
 
-import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
+import fr.univdevs.logger.Logger;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.game.action.NoOpAction;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class LoggerCommandTest {
         lc.setLogger(l);
         lc.setLogFormat("<%2$s.%3$s>: %4$s");
 
-        parser = new CommandParser(new Command[]{lc});
+        parser = new CommandParser(lc);
     }
 
     @Test

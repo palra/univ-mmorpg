@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.mmorpg.engine.logger.Logger;
+import fr.univdevs.logger.Logger;
 
 /**
  * Public class Action
