@@ -5,6 +5,7 @@ import fr.univdevs.commander.CommandParser;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.game.action.NoOpAction;
+import fr.univdevs.mmorpg.engine.event.noop.NoOpEvent;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,13 +31,13 @@ public class LoggerCommandTest {
 
     @Test
     public void testAll() throws Exception {
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n", parser.parse("log --all").getOutput());
 
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n" +
@@ -45,14 +46,14 @@ public class LoggerCommandTest {
 
     @Test
     public void testSinceLast() throws Exception {
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals("<action.noop>: palra passe son tour\n" +
             "<action.noop>: drattak passe son tour\n", parser.parse("log").getOutput());
 
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
 
         assertEquals("<action.noop>: drattak passe son tour\n" +
             "<action.noop>: palra passe son tour\n", parser.parse("log").getOutput());
