@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Event dispatcher, keeping a trace of each event.
+ * Event database, keeping a trace of each event.
  */
 public class Logger implements LoggerInterface {
     private ArrayList<Event> events = new ArrayList<Event>();
