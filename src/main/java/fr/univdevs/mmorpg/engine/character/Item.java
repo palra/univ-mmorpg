@@ -143,6 +143,27 @@ public abstract class Item implements MovableEntity {
         return this.ID;
     }
 
+    /**
+     * Method executed when this item is added to the inventory of the given character.
+     * Here should be applied the wanted effect of the item on the character
+     * By default, the method does nothing, so make sure the method is redefined if you want to apply your efffect
+     *
+     * @param c The owner of this item
+     */
+    public void onRegister(Character c) {
+
+    }
+
+    /**
+     * Method executed when this item is removed to the inventory of the given character
+     * Here should be removed the wanted effect of the item on the character
+     * By default, the method does nothing, so make sure the method is redefined if you want to remove your efffect
+     *
+     * @param c The owner of this item
+     */
+    public void onUnregister(Character c) {
+
+    }
 
     @Override
     public boolean equals(Object o) {
