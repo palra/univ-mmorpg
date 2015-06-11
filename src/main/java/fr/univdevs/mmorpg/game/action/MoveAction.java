@@ -79,8 +79,8 @@ public class MoveAction extends Action {
             String out = new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
                 " a déplacé " +
                 new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
-                " de " + res.getNbCases() + " case" +
-                ((res.getNbCases() > 1) ? "" : "s") + // Pluralize the string
+                " de " + this.res.getNbCases() + " case" +
+                ((this.res.getNbCases() > 1) ? "" : "s") + // Pluralize the string
                 " vers ";
 
             switch (dir) {

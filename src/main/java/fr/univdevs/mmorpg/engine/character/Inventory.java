@@ -1,8 +1,8 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.logger.Event;
-import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
+import fr.univdevs.logger.Event;
+import fr.univdevs.logger.LoggerAwareInterface;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
@@ -15,7 +15,7 @@ import java.util.*;
 public class Inventory implements LoggerAwareInterface {
     private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
     private Character character;
-    private Logger logger;
+    private LoggerInterface logger;
 
     /**
      * Empty inventory constructor
@@ -61,14 +61,14 @@ public class Inventory implements LoggerAwareInterface {
      *
      * @return The logger
      */
-    public Logger getLogger() {
+    public LoggerInterface getLogger() {
         return this.logger;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setLogger(Logger logger) {
+    public void setLogger(LoggerInterface logger) {
         this.logger = logger;
     }
 

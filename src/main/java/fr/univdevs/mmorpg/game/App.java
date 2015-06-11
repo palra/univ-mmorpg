@@ -82,7 +82,6 @@ public class App {
     }
 
     private static boolean actionRegistered() {
-
         for (ActionCommand actionCommand : actionCommands)
             if (actionCommand.hasAction())
                 return true;
@@ -145,7 +144,11 @@ public class App {
                 try {
                     gameManager.playTurn();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.err.println(new ANSIString(
+                        e.getClass().getName() + " : " +
+                            new ANSIString(e.getMessage(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD),
+                        ANSIAttribute.FG_RED
+                    ));
                 }
 
                 System.out.print(log.execute(new String[0]));

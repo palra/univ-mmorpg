@@ -5,7 +5,7 @@ package fr.univdevs.commander;
  *
  * @author Loïc Payol
  */
-public class NonExistingCommandException extends Exception {
+public class NonExistingCommandException extends CommandException {
     private static final long serialVersionUID = 66592695014285770L;
     private static final String errorMsg = "The given command does not exists";
 

@@ -1,6 +1,7 @@
 package fr.univdevs.commander.userworld;
 
 import fr.univdevs.commander.Command;
+import fr.univdevs.commander.CommandException;
 import fr.univdevs.util.Strings;
 
 /**
@@ -33,7 +34,7 @@ public class HelpCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         boolean withoutDesc = args.length >= 1 && args[0].equals(WITHOUT_DESC_OPT);
         String out = "";
         for (Command c : this.getCommandParser().getCommands()) {

@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.logger;
+package fr.univdevs.logger;
 
 import fr.univdevs.mmorpg.engine.Player;
 

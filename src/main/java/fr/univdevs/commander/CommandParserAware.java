@@ -10,5 +10,5 @@ public interface CommandParserAware {
      *
      * @param parser The CommandParser
      */
-    void setCommandParser(CommandParser parser);
+    void setCommandParser(CommandParserInterface parser);
 }

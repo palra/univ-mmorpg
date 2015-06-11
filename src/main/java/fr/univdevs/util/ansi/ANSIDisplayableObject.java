@@ -35,11 +35,11 @@ public class ANSIDisplayableObject<T> {
     }
 
     public T getRaw() {
-        return rawObject;
+        return this.rawObject;
     }
 
     public EnumSet<ANSIAttribute> getAttributes() {
-        return attributes;
+        return this.attributes;
     }
 
     /**
@@ -51,7 +51,7 @@ public class ANSIDisplayableObject<T> {
      * If you need the boolean indicator, please use ANSIDisplayableObject<T>#getAttributes() instead
      */
     public ANSIDisplayableObject<T> addAttribute(ANSIAttribute ansiAttribute) {
-        attributes.add(ansiAttribute);
+        this.attributes.add(ansiAttribute);
         return this;
     }
 
@@ -64,21 +64,21 @@ public class ANSIDisplayableObject<T> {
      * If you need the boolean indicator, please use ANSIDisplayableObject<T>#getAttributes() instead
      */
     public ANSIDisplayableObject<T> removeAttribute(Object o) {
-        attributes.remove(o);
+        this.attributes.remove(o);
         return this;
     }
 
 
     @Override
     public String toString() {
-        if (attributes.isEmpty())
-            return rawObject.toString();
+        if (this.attributes.isEmpty())
+            return this.rawObject.toString();
 
         String out = SEQ_START;
-        for (ANSIAttribute attribute : attributes) {
+        for (ANSIAttribute attribute : this.attributes) {
             out += attribute + ";";
         }
 
-        return out.substring(0, out.length() - 1) + SEQ_END + rawObject + SEQ_START + ANSIAttribute.ATTR_RESET + SEQ_END;
+        return out.substring(0, out.length() - 1) + SEQ_END + this.rawObject + SEQ_START + ANSIAttribute.ATTR_RESET + SEQ_END;
     }
 }

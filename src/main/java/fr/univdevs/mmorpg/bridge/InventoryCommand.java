@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.bridge;
 
+import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.Command;
+import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -42,13 +44,15 @@ public class InventoryCommand extends Command {
     }
 
     @Override
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         if (args.length > 2)
-            throw new IllegalArgumentException("Invalid number of arguments");
+            throw new ArgumentValidationCommandException("Invalid number of arguments");
 
+        if (currentPlayer == null)
+            throw new NullPointerException("The given current player is null");
         fr.univdevs.mmorpg.engine.character.Character c = currentPlayer.getCharacter();
         if (c == null)
-            throw new NullPointerException("The given current player is null");
+            throw new NullPointerException("The player `" + currentPlayer.getName() + "` is not binded to a character");
 
         String operand = args.length == 0 ? LIST_OP : args[0];
         if (operand.equals(LIST_OP)) {
@@ -66,7 +70,7 @@ public class InventoryCommand extends Command {
             return out;
         }
 
-        throw new IllegalArgumentException("Invalid operand");
+        throw new ArgumentValidationCommandException("Invalid operand");
     }
 
     @Override

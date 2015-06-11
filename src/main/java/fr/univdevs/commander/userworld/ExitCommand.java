@@ -1,6 +1,7 @@
 package fr.univdevs.commander.userworld;
 
 import fr.univdevs.commander.Command;
+import fr.univdevs.commander.CommandException;
 
 /**
  * Command that can be used to quit a program
@@ -36,7 +37,7 @@ public class ExitCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         this.setClosed(true);
         return null;
     }

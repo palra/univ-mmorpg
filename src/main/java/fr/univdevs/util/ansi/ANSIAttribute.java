@@ -38,6 +38,6 @@ public enum ANSIAttribute {
 
     @Override
     public String toString() {
-        return modifier;
+        return this.modifier;
     }
 }

@@ -6,8 +6,6 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Scanner;
 
 /**
@@ -16,10 +14,10 @@ import java.util.Scanner;
  * @author Loïc Payol
  */
 public class InteractiveShell {
-    private CommandParser commandParser;
-    private ANSIString inviteString = new ANSIString(
+    private CommandParserInterface commandParser;
+    private String inviteString = new ANSIString(
         new ANSIString("msh", ANSIAttribute.FG_GREEN) + "> "
-    );
+    ) + "";
 
     private InputStream in = System.in;
     private PrintStream out = System.out;
@@ -36,7 +34,7 @@ public class InteractiveShell {
      *
      * @param commandParser The command parser
      */
-    public InteractiveShell(CommandParser commandParser) {
+    public InteractiveShell(CommandParserInterface commandParser) {
         this.commandParser = commandParser;
     }
 
@@ -58,7 +56,7 @@ public class InteractiveShell {
      * @param in            The input stream
      * @param out           The printable output stream
      */
-    public InteractiveShell(CommandParser commandParser, InputStream in, PrintStream out) {
+    public InteractiveShell(CommandParserInterface commandParser, InputStream in, PrintStream out) {
         this(commandParser);
         this.in = in;
         this.out = out;
@@ -71,7 +69,7 @@ public class InteractiveShell {
      */
     public InteractiveShell(String motd) {
         this();
-        out.println(motd);
+        this.out.println(motd);
     }
 
     /**
@@ -79,15 +77,15 @@ public class InteractiveShell {
      *
      * @return the command parser
      */
-    public CommandParser getCommandParser() {
-        return commandParser;
+    public CommandParserInterface getCommandParser() {
+        return this.commandParser;
     }
 
-    public ANSIString getInviteString() {
-        return inviteString;
+    public String getInviteString() {
+        return this.inviteString;
     }
 
-    public void setInviteString(ANSIString inviteString) {
+    public void setInviteString(String inviteString) {
         this.inviteString = inviteString;
     }
 
@@ -110,10 +108,12 @@ public class InteractiveShell {
             try {
                 res = this.getCommandParser().parse(in);
                 this.out.print(Strings.nullToEmpty(res.getOutput()));
-            } catch (Exception e) {
-                StringWriter errors = new StringWriter();
-                e.printStackTrace(new PrintWriter(errors));
-                System.err.println(new ANSIString(errors.toString(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD));
+            } catch (CommandException e) {
+                System.err.println(new ANSIString(
+                    e.getClass().getName() + " : " +
+                        new ANSIString(e.getMessage(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD),
+                    ANSIAttribute.FG_RED
+                ));
             }
         }
 
@@ -124,27 +124,41 @@ public class InteractiveShell {
      * @see CommandParser#add(Command)
      */
     public void add(Command command) {
-        commandParser.add(command);
+        this.commandParser.add(command);
     }
 
     /**
      * @see CommandParser#get(String)
      */
     public Command get(String name) {
-        return commandParser.get(name);
+        return this.commandParser.get(name);
+    }
+
+    /**
+     * @see CommandParser#contains(String)
+     */
+    public boolean contains(String name) {
+        return this.commandParser.contains(name);
+    }
+
+    /**
+     * @see CommandParser#contains(Object)
+     */
+    public boolean contains(Object o) {
+        return this.commandParser.contains(o);
     }
 
     /**
      * @see CommandParser#remove(String)
      */
     public Command remove(String name) {
-        return commandParser.remove(name);
+        return this.commandParser.remove(name);
     }
 
     /**
      * @see CommandParser#remove(Object)
      */
     public boolean remove(Object o) {
-        return commandParser.remove(o);
+        return this.commandParser.remove(o);
     }
 }

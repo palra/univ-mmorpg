@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.bridge;
 
+import fr.univdevs.commander.ArgumentValidationCommandException;
+import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -29,12 +31,12 @@ public class StatsCommand extends GameManagerAwareCommand {
     }
 
     @Override
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         String playerName = null;
         if (args.length == 1)
             playerName = args[0];
         else if (args.length > 1)
-            throw new IllegalStateException("This command only accepts zero or one argument.");
+            throw new ArgumentValidationCommandException("This command only accepts zero or one argument.");
 
         Player p;
 
@@ -77,7 +79,7 @@ public class StatsCommand extends GameManagerAwareCommand {
      *
      * @author Loïc Payol
      */
-    public static class PlayerNotFoundException extends IllegalArgumentException {
+    public static class PlayerNotFoundException extends ArgumentValidationCommandException {
         public PlayerNotFoundException(String message) {
             super(message);
         }

@@ -1,10 +1,10 @@
 package fr.univdevs.mmorpg.game.action;
 
+import fr.univdevs.logger.ActionEvent;
+import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
-import fr.univdevs.mmorpg.engine.logger.ActionEvent;
-import fr.univdevs.mmorpg.engine.logger.Logger;
 
 import java.util.Date;
 
@@ -33,7 +33,7 @@ public class FightAction extends Action {
     @Override
     public void execute() throws Exception {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() + (getTarget().getCharacter().getHealth() * getTarget().getCharacter().getResistance()) - this.weapon.getPower()));
-        Logger l = this.getLogger();
+        LoggerInterface l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));
         this.weapon = null;
     }
