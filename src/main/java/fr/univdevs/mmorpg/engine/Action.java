@@ -72,7 +72,7 @@ public abstract class Action implements GameManagerAware {
 
     /**
      * Abstract method to execute the action
-     * Will describe the impact of the action on the targert
+     * Will describe the impact of the action on the target
      */
     public abstract void execute() throws Exception;
 }
