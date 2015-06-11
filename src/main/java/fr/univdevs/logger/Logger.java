@@ -36,7 +36,7 @@ public class Logger implements LoggerInterface {
      */
     public List<Event> getLastEvents(int number) {
         int size = this.events.size();
-        return this.events.subList(Math.min(size - number, 0), this.events.size());
+        return this.events.subList(Math.max(size - number, 0), size);
     }
 
     /**

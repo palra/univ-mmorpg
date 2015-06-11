@@ -58,4 +58,14 @@ public class LoggerCommandTest {
 
         assertEquals(LoggerCommand.NOT_FOUND_MSG, parser.parse("log").getOutput());
     }
+
+    @Test
+    public void testTail() throws Exception {
+        for (int i = 0; i < 20; i++) {
+            l.log(new NoOpAction.NoOpEvent(new Player("palra")));
+        }
+
+        assertEquals(LoggerCommand.DEFAULT_NB_LOGS, parser.parse("log tail").getOutput().split("\n").length);
+        assertEquals(5, parser.parse("log tail 5").getOutput().split("\n").length);
+    }
 }
