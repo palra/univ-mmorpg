@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * Events that reports an information about a given subject
- *
+ * TODO : remove on merge, and make sure that is not used anymore
  * @author Vincent Emile
  */
 
