@@ -28,7 +28,7 @@ public class Vector2D<T extends Number> {
      * @return the first element of the vector
      */
     public T getX() {
-        return x;
+        return this.x;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Vector2D<T extends Number> {
      * @return the second element of the vector
      */
     public T getY() {
-        return y;
+        return this.y;
     }
 
     @Override
@@ -47,13 +47,14 @@ public class Vector2D<T extends Number> {
 
         Vector2D<?> vector2D = (Vector2D<?>) o;
 
-        return !(x != null ? !x.equals(vector2D.x) : vector2D.x != null) && !(y != null ? !y.equals(vector2D.y) : vector2D.y != null);
+        return !(this.x != null ? !this.x.equals(vector2D.x) : vector2D.x != null) &&
+            !(y != null ? !this.y.equals(vector2D.y) : vector2D.y != null);
     }
 
     @Override
     public int hashCode() {
-        int result = x.hashCode();
-        result = 31 * result + y.hashCode();
+        int result = this.x.hashCode();
+        result = 31 * result + this.y.hashCode();
         return result;
     }
 }

@@ -20,7 +20,7 @@ public class Logger implements LoggerInterface {
      * {@inheritDoc}
      */
     public List<Event> getEvents() {
-        return events;
+        return this.events;
     }
 
 
