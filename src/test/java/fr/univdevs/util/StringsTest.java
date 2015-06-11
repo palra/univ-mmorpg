@@ -20,4 +20,10 @@ public class StringsTest {
         assertTrue(Strings.isNullOrEmpty(""));
         assertFalse(Strings.isNullOrEmpty("  "));
     }
+
+    @Test
+    public void testRandom() throws Exception {
+        assertEquals(8, Strings.random32().length());
+        assertEquals(16, Strings.random64().length());
+    }
 }

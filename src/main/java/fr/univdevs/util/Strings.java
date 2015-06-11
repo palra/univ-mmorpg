@@ -40,11 +40,20 @@ public class Strings {
     }
 
     /**
-     * Returns a random hexadecimal string.
+     * Returns a random 32 bit hexadecimal string.
      *
      * @return A random hexadecimal string
      */
-    public static String random() {
+    public static String random32() {
         return Integer.toHexString(random.nextInt());
+    }
+
+    /**
+     * Returns a random 64 bit hexadecimal string.
+     *
+     * @return A random hexadecimal string
+     */
+    public static String random64() {
+        return Long.toHexString(random.nextLong());
     }
 }

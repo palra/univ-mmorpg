@@ -42,7 +42,7 @@ public abstract class Item implements MovableEntity {
         this.category = itemCategory;
         this.cost = itemCost;
         do {
-            this.ID = Strings.random();
+            this.ID = Strings.random32();
             ids.add(this.ID);
         } while (!ids.contains(this.ID));
     }

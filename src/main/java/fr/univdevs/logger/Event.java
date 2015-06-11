@@ -1,8 +1,9 @@
 package fr.univdevs.logger;
 
+import fr.univdevs.util.Strings;
+
 import java.util.Comparator;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Represents an event in the game
@@ -27,7 +28,7 @@ public abstract class Event {
             return -SORT_BY_DATE_ASC.compare(e1, e2);
         }
     };
-    private UUID uuid;
+    private String id;
 
 
     /**
@@ -48,7 +49,7 @@ public abstract class Event {
      * @param date  The date of the event
      */
     public Event(String topic, String name, Date date) {
-        this.uuid = UUID.randomUUID();
+        this.id = Strings.random64();
         this.topic = topic;
         this.name = name;
         this.createdAt = date;
@@ -63,7 +64,7 @@ public abstract class Event {
         this.topic = other.topic;
         this.name = other.name;
         this.createdAt = other.createdAt;
-        this.uuid = other.uuid;
+        this.id = other.id;
     }
 
 
@@ -95,13 +96,21 @@ public abstract class Event {
     }
 
     /**
-     * Returns the UUID of the event
+     * Returns the ID of the event
      *
-     * @return The UUID of the event
+     * @return The ID of the event
      */
-    public UUID getUuid() {
-        return this.uuid;
+    public String getID() {
+        return this.id;
     }
+
+
+    /**
+     * Returns an human understandable description of the event.
+     *
+     * @return The description of the event.
+     */
+    public abstract String getDescription();
 
     @Override
     public boolean equals(Object o) {
@@ -113,14 +122,7 @@ public abstract class Event {
         if (this.topic != null ? !this.topic.equals(event.topic) : event.topic != null) return false;
         if (this.name != null ? !this.name.equals(event.name) : event.name != null) return false;
         if (this.createdAt != null ? !this.createdAt.equals(event.createdAt) : event.createdAt != null) return false;
-        return !(this.uuid != null ? !this.uuid.equals(event.uuid) : event.uuid != null);
+        return !(this.id != null ? !this.id.equals(event.id) : event.id != null);
 
     }
-
-    /**
-     * Returns an human understandable description of the event.
-     *
-     * @return The description of the event.
-     */
-    public abstract String getDescription();
 }
