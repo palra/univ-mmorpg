@@ -15,9 +15,9 @@ import java.util.Scanner;
  */
 public class InteractiveShell {
     private CommandParser commandParser;
-    private ANSIString inviteString = new ANSIString(
+    private String inviteString = new ANSIString(
         new ANSIString("msh", ANSIAttribute.FG_GREEN) + "> "
-    );
+    ) + "";
 
     private InputStream in = System.in;
     private PrintStream out = System.out;
@@ -81,11 +81,11 @@ public class InteractiveShell {
         return commandParser;
     }
 
-    public ANSIString getInviteString() {
+    public String getInviteString() {
         return inviteString;
     }
 
-    public void setInviteString(ANSIString inviteString) {
+    public void setInviteString(String inviteString) {
         this.inviteString = inviteString;
     }
 
