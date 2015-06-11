@@ -9,7 +9,7 @@ import fr.univdevs.util.Strings;
  */
 public abstract class Command implements CommandParserAware {
     private String name;
-    private CommandParser parser;
+    private CommandParserInterface parser;
 
     /**
      * Executes the command with the given arguments.
@@ -57,14 +57,14 @@ public abstract class Command implements CommandParserAware {
      *
      * @return The command parser
      */
-    public CommandParser getCommandParser() {
-        return parser;
+    public CommandParserInterface getCommandParser() {
+        return this.parser;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setCommandParser(CommandParser parser) {
+    public void setCommandParser(CommandParserInterface parser) {
         this.parser = parser;
     }
 
@@ -75,8 +75,8 @@ public abstract class Command implements CommandParserAware {
 
         Command command = (Command) o;
 
-        if (!name.equals(command.name)) return false;
-        return !(parser != null ? !parser.equals(command.parser) : command.parser != null);
+        if (!this.name.equals(command.name)) return false;
+        return !(this.parser != null ? !this.parser.equals(command.parser) : command.parser != null);
 
     }
 }

@@ -2,14 +2,12 @@ package fr.univdevs.commander;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Registers Command instances and parses an user input, in order to call a registered command.
- * TODO : create an interface for CommandParser
  * @author Loïc Payol
  */
-public class CommandParser {
+public class CommandParser implements CommandParserInterface {
     private ArrayList<Command> commands = new ArrayList<Command>();
 
     /**
@@ -42,9 +40,7 @@ public class CommandParser {
     }
 
     /**
-     * Registers a new command in the parser.
-     *
-     * @param command The instance of Command you want to add
+     * {@inheritDoc}
      */
     public void add(Command command) {
         if (this.contains(command.getName())) {
@@ -60,31 +56,21 @@ public class CommandParser {
     }
 
     /**
-     * Checks if the parser already have a given command name.
-     *
-     * @param command The name of the command you are looking for
-     * @return true if the parser already have registered the command, false
-     * otherwise
+     * {@inheritDoc}
      */
     public boolean contains(String command) {
         return this.indexOf(command) >= 0;
     }
 
     /**
-     * Indicates if a given object is contained in the collection of commands
-     *
-     * @param o The object to check
-     * @return true if exists, false otherwise
-     * @see List#contains(Object)
+     * {@inheritDoc}
      */
     public boolean contains(Object o) {
         return commands.contains(o);
     }
 
     /**
-     * Returns the index of the command with the given name
-     * @param name The name of the command we are looking for.
-     * @return The index of the command if found, -1 otherwise.
+     * {@inheritDoc}
      */
     public int indexOf(String name) {
         int i = 0;
@@ -102,11 +88,7 @@ public class CommandParser {
     }
 
     /**
-     * Parses an input, and returns the parsed command.
-     *
-     * @param input The user input
-     * @return the parsed command
-     * @throws CommandException
+     * {@inheritDoc}
      */
     public ParserResult parse(String input) throws CommandException {
         input = input.trim();
@@ -131,43 +113,28 @@ public class CommandParser {
     }
 
     /**
-     * Returns the command with the given name
-     *
-     * @param name The name of the command you are looking for
-     * @return The desired command, if exists
-     * @throws IndexOutOfBoundsException if the requested name does not exists
-     * @see CommandParser#contains(String) to check yourself if the requested command exists
+     * {@inheritDoc}
      */
     public Command get(String name) {
         return this.commands.get(this.indexOf(name));
     }
 
     /**
-     * Removes a given object from the collection.
-     *
-     * @param o The object to remove
-     * @return true if the object exists in the collection, false otherwise
+     * {@inheritDoc}
      */
     public boolean remove(Object o) {
         return this.commands.remove(o);
     }
 
     /**
-     * Removes a command, identified by its name.
-     *
-     * @param name The name of the command to remove
-     * @return The removed command, if any
-     * @throws IndexOutOfBoundsException if the requested command does not exists
-     * @see CommandParser#contains(String) to check yourself if the requested command exists
+     * {@inheritDoc}
      */
     public Command remove(String name) {
         return this.commands.remove(this.indexOf(name));
     }
 
     /**
-     * Returns all commands
-     *
-     * @return List of all registered commands
+     * {@inheritDoc}
      */
     public ArrayList<Command> getCommands() {
         return this.commands;

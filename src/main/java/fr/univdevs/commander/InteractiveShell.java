@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Loïc Payol
  */
 public class InteractiveShell {
-    private CommandParser commandParser;
+    private CommandParserInterface commandParser;
     private String inviteString = new ANSIString(
         new ANSIString("msh", ANSIAttribute.FG_GREEN) + "> "
     ) + "";
@@ -34,7 +34,7 @@ public class InteractiveShell {
      *
      * @param commandParser The command parser
      */
-    public InteractiveShell(CommandParser commandParser) {
+    public InteractiveShell(CommandParserInterface commandParser) {
         this.commandParser = commandParser;
     }
 
@@ -56,7 +56,7 @@ public class InteractiveShell {
      * @param in            The input stream
      * @param out           The printable output stream
      */
-    public InteractiveShell(CommandParser commandParser, InputStream in, PrintStream out) {
+    public InteractiveShell(CommandParserInterface commandParser, InputStream in, PrintStream out) {
         this(commandParser);
         this.in = in;
         this.out = out;
@@ -77,7 +77,7 @@ public class InteractiveShell {
      *
      * @return the command parser
      */
-    public CommandParser getCommandParser() {
+    public CommandParserInterface getCommandParser() {
         return this.commandParser;
     }
 
