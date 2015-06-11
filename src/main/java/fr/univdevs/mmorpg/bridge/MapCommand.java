@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.bridge;
 
+import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Entity;
@@ -23,7 +24,7 @@ public class MapCommand extends GameManagerAwareCommand {
     }
 
     @Override
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         boolean mapOnly = args.length >= 1 && args[0].equals(MAP_ONLY_OPT);
         World world = this.getGameManager().getWorld();
         Tilemap tilemap = world.getTilemap();

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Registers Command instances and parses an user input, in order to call a registered command.
- *
+ * TODO : create an interface for CommandParser
  * @author Loïc Payol
  */
 public class CommandParser {
@@ -106,9 +106,9 @@ public class CommandParser {
      *
      * @param input The user input
      * @return the parsed command
-     * @throws Exception
+     * @throws CommandException
      */
-    public ParserResult parse(String input) throws Exception {
+    public ParserResult parse(String input) throws CommandException {
         input = input.trim();
         String[] parsed = CommandParser.parseInputString(input);
         // Check if any command is passed

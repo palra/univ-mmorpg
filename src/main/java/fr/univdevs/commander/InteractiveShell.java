@@ -108,7 +108,7 @@ public class InteractiveShell {
             try {
                 res = this.getCommandParser().parse(in);
                 this.out.print(Strings.nullToEmpty(res.getOutput()));
-            } catch (Exception e) {
+            } catch (CommandException e) {
                 System.err.println(new ANSIString(
                     e.getClass().getName() + " : " +
                         new ANSIString(e.getMessage(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD),

@@ -5,7 +5,7 @@ package fr.univdevs.commander;
  *
  * @author Loïc Payol
  */
-public class EmptyCommandException extends Exception {
+public class EmptyCommandException extends CommandException {
     private static final long serialVersionUID = -6027865113095477502L;
 
     public EmptyCommandException() {

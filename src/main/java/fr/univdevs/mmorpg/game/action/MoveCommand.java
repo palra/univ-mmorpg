@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.game.action;
 
+import fr.univdevs.commander.ArgumentValidationCommandException;
+import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.bridge.ActionCommand;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.World;
@@ -17,9 +19,9 @@ public class MoveCommand extends ActionCommand {
     }
 
     @Override
-    public String execute(String[] args) throws Exception {
+    public String execute(String[] args) throws CommandException {
         if (args.length != 2)
-            throw new IllegalArgumentException("Invalid number of arguments");
+            throw new ArgumentValidationCommandException("Invalid number of arguments");
 
         World.Direction dir = World.Direction.valueOf(args[0].toUpperCase());
         int nbCases = Integer.parseInt(args[1]);

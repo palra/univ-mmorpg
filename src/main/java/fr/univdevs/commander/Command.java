@@ -17,7 +17,7 @@ public abstract class Command implements CommandParserAware {
      * @param args The arguments given to the method (`argv` like)
      * @return The output of the command, intended to be sent to an HMI
      */
-    public abstract String execute(String[] args) throws Exception;
+    public abstract String execute(String[] args) throws CommandException;
 
     /**
      * Returns a description of the correct way to call the command.
