@@ -69,7 +69,7 @@ public class InteractiveShell {
      */
     public InteractiveShell(String motd) {
         this();
-        out.println(motd);
+        this.out.println(motd);
     }
 
     /**
@@ -78,11 +78,11 @@ public class InteractiveShell {
      * @return the command parser
      */
     public CommandParser getCommandParser() {
-        return commandParser;
+        return this.commandParser;
     }
 
     public String getInviteString() {
-        return inviteString;
+        return this.inviteString;
     }
 
     public void setInviteString(String inviteString) {
@@ -124,27 +124,41 @@ public class InteractiveShell {
      * @see CommandParser#add(Command)
      */
     public void add(Command command) {
-        commandParser.add(command);
+        this.commandParser.add(command);
     }
 
     /**
      * @see CommandParser#get(String)
      */
     public Command get(String name) {
-        return commandParser.get(name);
+        return this.commandParser.get(name);
+    }
+
+    /**
+     * @see CommandParser#contains(String)
+     */
+    public boolean contains(String name) {
+        return this.commandParser.contains(name);
+    }
+
+    /**
+     * @see CommandParser#contains(Object)
+     */
+    public boolean contains(Object o) {
+        return this.commandParser.contains(o);
     }
 
     /**
      * @see CommandParser#remove(String)
      */
     public Command remove(String name) {
-        return commandParser.remove(name);
+        return this.commandParser.remove(name);
     }
 
     /**
      * @see CommandParser#remove(Object)
      */
     public boolean remove(Object o) {
-        return commandParser.remove(o);
+        return this.commandParser.remove(o);
     }
 }
