@@ -91,7 +91,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getMoney() {
-        return money;
+        return this.money;
     }
 
     /**
@@ -109,7 +109,7 @@ public abstract class Character implements MovableEntity {
      * @return String
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -118,7 +118,7 @@ public abstract class Character implements MovableEntity {
      * @return String
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -127,7 +127,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getExperience() {
-        return experience;
+        return this.experience;
     }
 
     /**
@@ -145,7 +145,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getActionPoints() {
-        return actionPoints;
+        return this.actionPoints;
     }
 
     /**
@@ -163,7 +163,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     /**
@@ -181,7 +181,7 @@ public abstract class Character implements MovableEntity {
      * @return double
      */
     public double getResistance() {
-        return resistance;
+        return this.resistance;
     }
 
     /**
@@ -198,7 +198,7 @@ public abstract class Character implements MovableEntity {
      * @return int
      */
     public int getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     /**
@@ -251,7 +251,7 @@ public abstract class Character implements MovableEntity {
      * {@inheritDoc}
      */
     public ANSIChar getDisplay() {
-        return display;
+        return this.display;
     }
 
     /**
