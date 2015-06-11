@@ -6,8 +6,6 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Scanner;
 
 /**
@@ -111,9 +109,11 @@ public class InteractiveShell {
                 res = this.getCommandParser().parse(in);
                 this.out.print(Strings.nullToEmpty(res.getOutput()));
             } catch (Exception e) {
-                StringWriter errors = new StringWriter();
-                e.printStackTrace(new PrintWriter(errors));
-                System.err.println(new ANSIString(errors.toString(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD));
+                System.err.println(new ANSIString(
+                    e.getClass().getName() + " : " +
+                        new ANSIString(e.getMessage(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD),
+                    ANSIAttribute.FG_RED
+                ));
             }
         }
 
