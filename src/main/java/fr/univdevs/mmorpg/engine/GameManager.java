@@ -156,7 +156,7 @@ public class GameManager {
     }
 
     public World getWorld() {
-        return world;
+        return this.world;
     }
 
     /**

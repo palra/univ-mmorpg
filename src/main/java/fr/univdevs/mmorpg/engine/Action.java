@@ -51,7 +51,7 @@ public abstract class Action implements GameManagerAware {
      * @return The logger
      */
     public Logger getLogger() {
-        return gameManager.getLogger();
+        return this.gameManager.getLogger();
     }
 
     /**
