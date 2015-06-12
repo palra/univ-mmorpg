@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
+import fr.univdevs.mmorpg.engine.event.remove.RemoveEvent;
 import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;
@@ -188,7 +189,7 @@ public class Inventory implements LoggerAwareInterface {
             i.onUnregister(this.getCharacter());
 
         if (logger != null) {
-            logger.log(new InventoryRemoveEvent(item, character));
+            logger.log(new RemoveEvent(item, character));
         }
 
         return i;
@@ -244,59 +245,7 @@ public class Inventory implements LoggerAwareInterface {
         }
     }
 
-    public static class InventoryRemoveEvent extends Event {
-        private static final String TOPIC = "inventory";
-        private static final String NAME = "remove";
-        private Item item;
-        private Character character;
 
-        public InventoryRemoveEvent(Item item, Character character) {
-            super(TOPIC, NAME);
-            this.item = item;
-            this.character = character;
-        }
-
-        public InventoryRemoveEvent(Date date, Item item, Character character) {
-            super(TOPIC, NAME, date);
-            this.item = item;
-            this.character = character;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
-                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
-        }
-    }
-
-    public static class InventoryNotEnoughMoneyEvent extends Event {
-        private static final String TOPIC = "inventory";
-        private static final String NAME = "not_enough_money";
-        private Item item;
-        private Character character;
-
-        public InventoryNotEnoughMoneyEvent(Item item, Character character) {
-            super(TOPIC, NAME);
-            this.item = item;
-            this.character = character;
-        }
-
-        public InventoryNotEnoughMoneyEvent(Date date, Item item, Character character) {
-            super(TOPIC, NAME, date);
-            this.item = item;
-            this.character = character;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
-                "assez d'argent (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") pour acquérir " +
-                new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
-                new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";
-        }
-    }
 
     public static class NotEnoughCashException extends Exception {
         public NotEnoughCashException(String message) {

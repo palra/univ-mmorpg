@@ -7,6 +7,7 @@ import fr.univdevs.mmorpg.engine.character.Inventory;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.mmorpg.engine.event.action.ActionEvent;
 import fr.univdevs.mmorpg.engine.event.move.MoveActionEvent;
+import fr.univdevs.mmorpg.engine.event.not_money.NotEnoughMoneyEvent;
 import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -48,31 +49,28 @@ public class MoveAction extends Action {
     public void execute() throws Exception {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
-        if (this.nbCases > 1 * c.getActionPoints())
-            throw new NotEnoughActionPointsException("Vous n'avez pas assez d'AP");
+        if (this.nbCases > 1 * c.getActionPoints()) {
+
+        }
+
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
         c.setActionPoints(c.getActionPoints() - 1 * res.getNbCases());
         this.getLogger().log(new MoveActionEvent(getSubject(), res, this.direction));
 
-        Inventory i = c.getInventory();
-        for (Entity e : res.getNonCollidableEntities()) {
-            if (e instanceof Item) {
-                Item item = (Item) e;
+        Inventory inventory = c.getInventory();
+        for (Entity entity : res.getNonCollidableEntities()) {
+            if (entity instanceof Item) {
+                Item item = (Item) entity;
                 try {
-                    i.add(item);
-                    w.removeEntity(e);
+                    inventory.add(item);
+                    w.removeEntity(entity);
                 } catch (Inventory.NotEnoughCashException exp) {
-                    getLogger().log(new Inventory.InventoryNotEnoughMoneyEvent(item, c));
+                    getLogger().log(new NotEnoughMoneyEvent(item, c));
                 }
             }
         }
     }
 
-    public static class NotEnoughActionPointsException extends Exception {
-        public NotEnoughActionPointsException(String message) {
-            super(message);
-        }
-    }
 
 }
 
