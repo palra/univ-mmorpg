@@ -4,6 +4,7 @@ import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
 import fr.univdevs.mmorpg.engine.event.action.CureEvent;
+import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughActionPointsEvent;
 
 /**
  * Public class CureAction
@@ -36,7 +37,9 @@ public class CureAction extends Action {
     public void execute() {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
         getSubject().getCharacter().getInventory().remove(this.cure);
-        getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - this.cure.getRestoredPoints() / 10);
+        if (getSubject().getCharacter().getActionPoints() >= this.cure.getRestoredPoints() / 10) {
+            getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - this.cure.getRestoredPoints() / 10);
+        } else this.getLogger().log(new NotEnoughActionPointsEvent(this.cure, getSubject().getCharacter()));
         LoggerInterface l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
         this.cure = null;
