@@ -100,4 +100,8 @@ public class Player {
         return this.action;
     }
 
+    public String toString() {
+        return "Nom : " + this.name + "\nPersonnage : " + this.getCharacter().toString();
+    }
+
 }

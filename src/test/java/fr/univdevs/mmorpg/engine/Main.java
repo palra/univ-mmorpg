@@ -5,20 +5,19 @@ import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
+import fr.univdevs.util.Strings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by drattak on 08/06/15.
  */
 public class Main {
     private static HashMap<String, Player> players = new HashMap<String, Player>();
+    private static String resumePlayers = new String();
     public static void main(String[] args) {
         init();
-        fight(players);
+        System.out.println(affichePlayer(players));
     }
 
     public static void init() {
@@ -38,20 +37,26 @@ public class Main {
         String name = new Scanner(System.in).nextLine();
         System.out.println("Quelle categorie ?\n1.Warrior\n2. Healer");
         int category = new Scanner(System.in).nextInt();
-        return players.put(playerName, new Player(playerName, determineCharacter(category, name)));
+        return players.put(Strings.toCamelCase(playerName), new Player(Strings.toCamelCase(playerName), determineCharacter(category, name)));
     }
 
     public static Character determineCharacter(int category, String name) {
         switch (category) {
             case 1:
-                return new Warrior(name);
+                return new Warrior(Strings.toCamelCase(name));
             case 2:
-                return new Healer(name);
+                return new Healer(Strings.toCamelCase(name));
         }
         return null;
     }
 
-    public static void fight(HashMap<String, Player> players) {
+    public static String affichePlayer(HashMap<String, Player> players) {
+
+        Iterator<Player> ite = players.values().iterator();
+        while (ite.hasNext()) {
+            resumePlayers += ite.next().toString();
+        }
+        return resumePlayers;
     }
 
 }
