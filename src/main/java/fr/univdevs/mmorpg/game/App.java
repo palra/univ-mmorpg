@@ -57,7 +57,6 @@ public class App {
             p.getCharacter().getDisplay()
                 .addAttribute(ANSIAttribute.ATTR_BLINK)
                 .addAttribute(ANSIAttribute.FG_RED);
-            p.getCharacter().setMoney(4000); // TODO : move to default ctor
         }
 
         // And put some items
