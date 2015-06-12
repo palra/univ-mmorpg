@@ -38,7 +38,7 @@ public class StatsCommandTest {
 
     @Test
     public void testStats() throws Exception {
-        assertEquals("Stats for player `" + new ANSIString("palra", ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) + "` : \n" +
+        assertEquals("Stats for player " + new ANSIString("palra", ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) + " : \n" +
             "-----------------------------\n" +
             " - Type : Warrior\n" +
             " - Vie : 100 HP\n" +

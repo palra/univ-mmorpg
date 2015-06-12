@@ -58,8 +58,8 @@ public class StatsCommand extends GameManagerAwareCommand {
             throw new NullPointerException("The player `" + playerName + "` is not binded to a character");
         }
 
-        return "Stats for player `" + new ANSIString(p.getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
-            "` : \n-----------------------------\n" +
+        return "Stats for player " + new ANSIString(p.getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
+            " : \n-----------------------------\n" +
             " - Type : " + c.getType() + "\n" +
             " - Vie : " + c.getHealth() + " HP\n" +
             " - Experience : " + c.getExperience() + " XP \n" +

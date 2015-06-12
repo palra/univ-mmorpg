@@ -63,7 +63,7 @@ public class InventoryCommand extends Command {
 
         String operand = args.length == 0 ? LIST_OP : args[0];
         if (operand.equals(LIST_OP)) {
-            String out = "Inventory of `" + new ANSIString(c.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + "`\n" +
+            String out = "Inventory of " + new ANSIString(c.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + "\n" +
                 "-----------------------------\n";
 
             Item[] items = c.getInventory().getItems();
