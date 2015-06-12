@@ -31,9 +31,8 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
     private LoggerInterface logger;
     private String dateFormat = "dd/MM/yy HH:mm:ss";
     private String logFormat = "" +
-        new ANSIString("[%s] ", ANSIAttribute.FG_CYAN) +
-        new ANSIString("<%s.%s>", ANSIAttribute.FG_YELLOW, ANSIAttribute.ATTR_UNDERSCORE) +
-        ": %s";
+        new ANSIString("[%s] #%s ", ANSIAttribute.FG_CYAN) +
+        new ANSIString("<%s.%s>", ANSIAttribute.FG_YELLOW, ANSIAttribute.ATTR_UNDERSCORE) + " : %s";
     private int lastIdx = 0;
 
     public LoggerCommand() {
@@ -116,6 +115,7 @@ public class LoggerCommand extends Command implements LoggerAwareInterface {
             out += String.format(
                 logFormat,
                 df.format(e.getCreatedAt()),
+                e.getID(),
                 e.getTopic(),
                 e.getName(),
                 e.getDescription()

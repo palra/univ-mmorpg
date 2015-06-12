@@ -22,7 +22,7 @@ public class LoggerCommandTest {
         l = new Logger();
         lc = new LoggerCommand();
         lc.setLogger(l);
-        lc.setLogFormat("<%2$s.%3$s>: %4$s");
+        lc.setLogFormat("<%3$s.%4$s>: %5$s");
 
         parser = new CommandParser(lc);
     }
