@@ -14,8 +14,8 @@ import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -25,12 +25,10 @@ import java.util.List;
  */
 public class App {
     private static GameManager gameManager;
-    private static List<Player> players = new ArrayList<Player>();
     private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
     private static StatsCommand stats;
     private static InventoryCommand items;
     private static ExitCommand exit;
-    private static LoggerCommand log;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -38,34 +36,41 @@ public class App {
             "Type `help` for help on the shell\n"
     );
 
-    private static void configureGame() throws Exception {
+    /**
+     * Initializes the game
+     *
+     * @throws IOException If the map was not found
+     */
+    private static void configureGame() throws IOException {
         Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
         World world = new World(tilemap);
         gameManager = new GameManager(world);
 
         // Registering players
-        players.add(new Player("palra", new Warrior("nom-super-agressif")));
+        gameManager.addPlayer(new Player("palra", new Warrior("nom-super-agressif")));
 
 
-        for (Player p : players) {
+        for (Player p : gameManager.getPlayers()) {
             Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
             p.getCharacter().setX(pos.x);
             p.getCharacter().setY(pos.y);
             p.getCharacter().getDisplay()
                 .addAttribute(ANSIAttribute.ATTR_BLINK)
                 .addAttribute(ANSIAttribute.FG_RED);
-            p.getCharacter().setMoney(4000);
-            gameManager.addPlayer(p);
+            p.getCharacter().setMoney(4000); // TODO : move to default ctor
         }
 
         // And put some items
         Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
         HealerCure healerCure = new HealerCure();
-        healerCure.setX(1);
-        healerCure.setY(1);
+        healerCure.setX(pos.x);
+        healerCure.setY(pos.y);
         world.addEntity(healerCure);
     }
 
+    /**
+     * Initializes commands
+     */
     private static void configureCommands() {
         // exit
         exit = new ExitCommand();
@@ -78,7 +83,7 @@ public class App {
         map.setGameManager(gameManager);
 
         // log
-        log = new LoggerCommand();
+        LoggerCommand log = new LoggerCommand();
         log.setLogger(gameManager.getLogger());
 
         // stats
@@ -109,6 +114,11 @@ public class App {
         }
     }
 
+    /**
+     * Registers the current player on the action commands and current player relative commands
+     *
+     * @param currentPlayer The current player to bind
+     */
     private static void registerPlayerCommands(Player currentPlayer) {
         for (ActionCommand command : actionCommands)
             command.setCurrentPlayer(currentPlayer);
@@ -117,44 +127,38 @@ public class App {
         items.setCurrentPlayer(currentPlayer);
     }
 
-    private static boolean actionRegistered() {
-        for (ActionCommand actionCommand : actionCommands)
-            if (actionCommand.hasAction())
-                return true;
-
-        return false;
-    }
-
-    private static void play() throws Exception {
-        boolean playTurn = false;
-        Iterator<Player> iPlayers = null;
-        Player currentPlayer = null;
-
+    /**
+     * Main loop of the application
+     */
+    private static void play() {
         // The main loop
+        Player oldPlayer = null;
         while (!exit.isClosed()) {
-            if (playTurn) {
+            Player currentPlayer = gameManager.getFirstPlayerWithoutAction();
+            if (currentPlayer == null) { // If no more players have to play
                 gameManager.playTurn();
-                playTurn = false; // Reset playTurn when executed.
-            } else { // Ask each player what he wants to do.
-                if (iPlayers == null)
-                    iPlayers = players.iterator();
+                oldPlayer = null;
+            } else {
+                // Sets the current player on the commands
+                registerPlayerCommands(currentPlayer);
 
-                if (currentPlayer == null) {
-                    currentPlayer = iPlayers.next();
+                // Highlight the player on the map
+                currentPlayer.getCharacter().getDisplay().addAttribute(ANSIAttribute.ATTR_BLINK).addAttribute(ANSIAttribute.ATTR_BOLD);
+
+                if (oldPlayer != currentPlayer) {
                     System.out.println(new ANSIString(currentPlayer.getName() + "'s turn : ", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_MAGENTA));
                 }
 
-                registerPlayerCommands(currentPlayer);
-                currentPlayer.getCharacter().getDisplay().addAttribute(ANSIAttribute.ATTR_BLINK).addAttribute(ANSIAttribute.ATTR_BOLD);
+                // Ask each player what he wants to do.
                 shell.nextResult();
 
-                if (actionRegistered()) {
+                // If an action was registered
+                if (gameManager.getFirstPlayerWithoutAction() != currentPlayer) {
+                    // Remove the highlight on the player
                     currentPlayer.getCharacter().getDisplay().removeAttribute(ANSIAttribute.ATTR_BLINK).removeAttribute(ANSIAttribute.ATTR_BOLD);
-                    currentPlayer = null;
-                    playTurn = !iPlayers.hasNext(); // Execute turns when every player played.
-                    if (playTurn)
-                        iPlayers = null; // Reset the iterator, if no more players are in the array
                 }
+
+                oldPlayer = currentPlayer;
             }
         }
     }

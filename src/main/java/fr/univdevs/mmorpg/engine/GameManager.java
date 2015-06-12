@@ -46,6 +46,25 @@ public class GameManager {
     }
 
     /**
+     * Returns the first player that does not have a next action (ie .getNextAction() == null)
+     *
+     * @return The first player without next action
+     */
+    public Player getFirstPlayerWithoutAction() {
+        Player p = null;
+        int i = 0;
+        while (i < this.players.size() && p == null) {
+            Player currentPlayer = this.players.get(i);
+            if (currentPlayer.getNextAction() == null) {
+                p = currentPlayer;
+            }
+            i++;
+        }
+
+        return p;
+    }
+
+    /**
      * Returns an instance of the requested player, if exists.
      *
      * @param name The name of the player
@@ -141,24 +160,21 @@ public class GameManager {
      */
     public void playTurn() {
         getLogger().log(new RoundStartEvent(this.roundNb));
+
+        // Sorting the collection first
         Collections.sort(this.players, this.playerComparator);
 
-        // Loading all the actions
-        List<Action> actions = new ArrayList<Action>();
-        for (Player p : this.players) {
-            Action a = p.getNextAction();
-            if (a == null)
-                throw new IllegalStateException("action of player " + p.getName() + " was not registered.");
-
-            actions.add(a);
-            p.setNextAction(null);
-        }
+        Player notRegisteredPlayer = this.getFirstPlayerWithoutAction();
+        if (notRegisteredPlayer != null)
+            throw new IllegalStateException("Action of player " + notRegisteredPlayer.getName() + " was not registered.");
 
         // And executing them
-        for (Action a : actions) {
-            this.getLogger().log(new TurnStartEvent(this, a.getSubject()));
-            a.setGameManager(this); // Injecting the logger
-            a.execute(); // Executing the action
+        for (Player player : this.players) {
+            Action nextAction = player.getNextAction();
+            this.getLogger().log(new TurnStartEvent(this, nextAction.getSubject()));
+            nextAction.setGameManager(this); // Injecting the logger
+            nextAction.execute(); // Executing the action
+            player.setNextAction(null);
         }
 
         getLogger().log(new RoundEndEvent(this.roundNb));
