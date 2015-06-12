@@ -4,6 +4,7 @@ import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -40,6 +41,12 @@ public class InventoryCommand extends Command {
     }
 
     public void setCurrentPlayer(Player currentPlayer) {
+        if (currentPlayer == null)
+            throw new NullPointerException("The given current player is null");
+
+        if (currentPlayer.getCharacter() == null)
+            throw new NullPointerException("The player `" + currentPlayer.getName() + "` is not binded to a character");
+
         this.currentPlayer = currentPlayer;
     }
 
@@ -48,11 +55,9 @@ public class InventoryCommand extends Command {
         if (args.length > 2)
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
-        if (currentPlayer == null)
-            throw new NullPointerException("The given current player is null");
-        fr.univdevs.mmorpg.engine.character.Character c = currentPlayer.getCharacter();
+        Character c = this.currentPlayer.getCharacter();
         if (c == null)
-            throw new NullPointerException("The player `" + currentPlayer.getName() + "` is not binded to a character");
+            throw new NullPointerException("The player `" + this.currentPlayer.getName() + "` is not binded to a character");
 
         String operand = args.length == 0 ? LIST_OP : args[0];
         if (operand.equals(LIST_OP)) {
