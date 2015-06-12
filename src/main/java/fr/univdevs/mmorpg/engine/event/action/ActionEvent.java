@@ -7,7 +7,7 @@ import fr.univdevs.mmorpg.engine.Player;
 import java.util.Date;
 
 /**
- * Events that reports an information about a given subject
+ * Events that reports an information about an action
  *
  * @author Vincent Emile
  */

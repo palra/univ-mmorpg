@@ -55,6 +55,8 @@ public class InventoryCommand extends Command {
         if (args.length > 2)
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
+        this.setCurrentPlayer(this.currentPlayer); // Do checks
+
         Character c = this.currentPlayer.getCharacter();
         if (c == null)
             throw new NullPointerException("The player `" + this.currentPlayer.getName() + "` is not binded to a character");

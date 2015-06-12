@@ -1,12 +1,11 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.logger.Event;
 import fr.univdevs.logger.Logger;
 import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.action.Action;
+import fr.univdevs.mmorpg.engine.event.game.RoundEndEvent;
+import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;
 import fr.univdevs.mmorpg.engine.world.World;
-import fr.univdevs.util.ansi.ANSIAttribute;
-import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.*;
 
@@ -139,9 +138,8 @@ public class GameManager {
      * computed order.
      * To see which actions were done, see the GameLog.
      */
-    public void playTurn() throws Exception {
-        getLogger().log(new GameRoundStartEvent(this.roundNb));
-
+    public void playTurn() {
+        getLogger().log(new RoundStartEvent(this.roundNb));
         Collections.sort(this.players, this.playerComparator);
 
         // Loading all the actions
@@ -161,8 +159,7 @@ public class GameManager {
             a.execute(); // Executing the action
         }
 
-        getLogger().log(new GameRoundEndEvent(this.roundNb));
-
+        getLogger().log(new RoundEndEvent(this.roundNb));
         this.roundNb++;
     }
 
@@ -170,93 +167,4 @@ public class GameManager {
         return this.world;
     }
 
-    /**
-     * Event thrown when a round starts.
-     */
-    public static class GameRoundStartEvent extends Event {
-        public static final String TOPIC = "game";
-        public static final String NAME = "round_start";
-
-        private int roundNb;
-
-        /**
-         * Constructs a GameRoundStartEvent
-         *
-         * @param roundNb The number of the round
-         */
-        public GameRoundStartEvent(int roundNb) {
-            super(TOPIC, NAME);
-            this.roundNb = roundNb;
-        }
-
-        /**
-         * Constructs a GameRoundStartEvent
-         *
-         * @param date    The date of the event creation
-         * @param roundNb The number of the round
-         */
-        public GameRoundStartEvent(Date date, int roundNb) {
-            super(TOPIC, NAME, date);
-            this.roundNb = roundNb;
-        }
-
-        /**
-         * Returns the round number
-         *
-         * @return The round number
-         */
-        public int getRoundNumber() {
-            return this.roundNb;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString("Début du tour n°" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
-        }
-    }
-
-    /**
-     * Event thrown when a round starts.
-     */
-    public static class GameRoundEndEvent extends Event {
-        public static final String TOPIC = "game";
-        public static final String NAME = "round_end";
-
-        private int roundNb;
-
-        /**
-         * Constructs a GameRoundStartEvent
-         *
-         * @param roundNb The number of the round
-         */
-        public GameRoundEndEvent(int roundNb) {
-            super(TOPIC, NAME);
-            this.roundNb = roundNb;
-        }
-
-        /**
-         * Constructs a GameRoundStartEvent
-         *
-         * @param date    The date of the event creation
-         * @param roundNb The number of the round
-         */
-        public GameRoundEndEvent(Date date, int roundNb) {
-            super(TOPIC, NAME, date);
-            this.roundNb = roundNb;
-        }
-
-        /**
-         * Returns the round number
-         *
-         * @return The round number
-         */
-        public int getRoundNumber() {
-            return roundNb;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString("Fin du tour n°" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
-        }
-    }
 }
