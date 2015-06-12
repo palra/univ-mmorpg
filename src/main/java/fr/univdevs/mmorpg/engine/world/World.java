@@ -83,13 +83,14 @@ public class World {
      * @return An instance of MoveResult, that sets nonCollidableEntities at null when no movment has been done.
      */
     public MoveResult move(MovableEntity e, Direction dir, int nb) {
-        if (nb <= 0)
+        if (nb == 0)
             return new MoveResult(null, false, 0);
 
         int i = 0;
         boolean collision = false;
-        int up_dir = (dir == Direction.UP) ? -1 : (dir == Direction.DOWN) ? 1 : 0;
-        int right_dir = (dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0;
+        int up_dir = ((nb < 0) ? -1 : 1) * ((dir == Direction.UP) ? -1 : (dir == Direction.DOWN) ? 1 : 0);
+        int right_dir = ((nb < 0) ? -1 : 1) * ((dir == Direction.RIGHT) ? 1 : (dir == Direction.LEFT) ? -1 : 0);
+        nb = Math.abs(nb);
         List<Entity> nonCollidableEntities = new ArrayList<Entity>();
 
         while (i < nb && !collision) {
