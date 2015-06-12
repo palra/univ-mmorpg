@@ -15,6 +15,10 @@ public class Sword extends Weapon {
         super("Sword", 200, 100, 100);
     }
 
+    public Sword(Sword other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u21fe', ANSIAttribute.FG_MAGENTA);
     }

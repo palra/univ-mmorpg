@@ -3,7 +3,7 @@ package fr.univdevs.mmorpg.bridge;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.logger.Logger;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.action.NoOpAction;
+import fr.univdevs.mmorpg.engine.event.action.NoOpEvent;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,25 +29,25 @@ public class LoggerCommandTest {
 
     @Test
     public void testAll() throws Exception {
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals(2, parser.parse("log " + LoggerCommand.ALL_OPT).getOutput().split("\n").length);
 
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals(3, parser.parse("log " + LoggerCommand.ALL_OPT).getOutput().split("\n").length);
     }
 
     @Test
     public void testSinceLast() throws Exception {
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
 
         assertEquals(2, parser.parse("log").getOutput().split("\n").length);
 
-        l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
-        l.log(new NoOpAction.NoOpEvent(new Player("palra")));
+        l.log(new NoOpEvent(new Player("drattak")));
+        l.log(new NoOpEvent(new Player("palra")));
 
         assertEquals(2, parser.parse("log").getOutput().split("\n").length);
 
@@ -57,7 +57,7 @@ public class LoggerCommandTest {
     @Test
     public void testTail() throws Exception {
         for (int i = 0; i < 20; i++) {
-            l.log(new NoOpAction.NoOpEvent(new Player("palra")));
+            l.log(new NoOpEvent(new Player("palra")));
         }
 
         assertEquals(LoggerCommand.DEFAULT_NB_LOGS, parser.parse("log tail").getOutput().split("\n").length);

@@ -11,6 +11,9 @@ public class Numbers {
 
     private static Random rand = new Random();
 
+    public Numbers() {
+    }
+
     /**
      * Method clamping val between min and max.
      * Consider the interval [min; max]. If val is out of the interval, the method wil return the closest value

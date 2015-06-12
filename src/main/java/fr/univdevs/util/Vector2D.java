@@ -22,6 +22,12 @@ public class Vector2D<T extends Number> {
         this.y = y;
     }
 
+    public Vector2D(Vector2D<T> other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
+
     /**
      * Returns the first element of the vector
      *

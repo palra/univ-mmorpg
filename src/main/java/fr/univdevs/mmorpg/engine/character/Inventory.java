@@ -3,6 +3,7 @@ package fr.univdevs.mmorpg.engine.character;
 import fr.univdevs.logger.Event;
 import fr.univdevs.logger.LoggerAwareInterface;
 import fr.univdevs.logger.LoggerInterface;
+import fr.univdevs.mmorpg.engine.event.inventory.RemoveEvent;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
@@ -127,7 +128,10 @@ public class Inventory implements LoggerAwareInterface {
         HashSet<String> types = new HashSet<String>(); //Hashset avoid doubles
         Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
-            types.add(value.getCategory());
+            String cat = value.getCategory();
+            if (!types.contains(cat)) {
+                types.add(cat);
+            }
         }
 
         return (String[]) types.toArray();
@@ -138,7 +142,6 @@ public class Inventory implements LoggerAwareInterface {
      */
     public int getWeight() {
         int totalWeight = 0;
-        Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
             totalWeight += value.getWeight();
         }
@@ -199,12 +202,11 @@ public class Inventory implements LoggerAwareInterface {
             i.onUnregister(this.getCharacter());
 
         if (logger != null) {
-            logger.log(new InventoryRemoveEvent(item, character));
+            logger.log(new RemoveEvent(item, character));
         }
 
         return i;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -260,59 +262,7 @@ public class Inventory implements LoggerAwareInterface {
         }
     }
 
-    public static class InventoryRemoveEvent extends Event {
-        private static final String TOPIC = "inventory";
-        private static final String NAME = "remove";
-        private Item item;
-        private Character character;
 
-        public InventoryRemoveEvent(Item item, Character character) {
-            super(TOPIC, NAME);
-            this.item = item;
-            this.character = character;
-        }
-
-        public InventoryRemoveEvent(Date date, Item item, Character character) {
-            super(TOPIC, NAME, date);
-            this.item = item;
-            this.character = character;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
-                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
-        }
-    }
-
-    public static class InventoryNotEnoughMoneyEvent extends Event {
-        private static final String TOPIC = "inventory";
-        private static final String NAME = "not_enough_money";
-        private Item item;
-        private Character character;
-
-        public InventoryNotEnoughMoneyEvent(Item item, Character character) {
-            super(TOPIC, NAME);
-            this.item = item;
-            this.character = character;
-        }
-
-        public InventoryNotEnoughMoneyEvent(Date date, Item item, Character character) {
-            super(TOPIC, NAME, date);
-            this.item = item;
-            this.character = character;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
-                "assez d'argent (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") pour acquérir " +
-                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
-                    new ANSIString(this.character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";
-        }
-    }
 
     /**
      * Exception created in case there's not enough money

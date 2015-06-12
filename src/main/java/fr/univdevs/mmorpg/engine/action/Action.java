@@ -29,6 +29,13 @@ public abstract class Action implements GameManagerAware {
         this.target = chosenTarget;
     }
 
+    public Action(Action other) {
+        this.subject = new Player(other.subject);
+        this.target = new Player(other.target);
+        this.gameManager = new GameManager(other.gameManager);
+    }
+
+
     /**
      * Public method to return the target of the Action
      *
@@ -77,5 +84,5 @@ public abstract class Action implements GameManagerAware {
      * Abstract method to execute the action
      * Will describe the impact of the action on the target
      */
-    public abstract void execute() throws Exception;
+    public abstract void execute();
 }

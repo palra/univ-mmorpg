@@ -20,6 +20,10 @@ public class Healer extends Character {
         super(chosenName, "Healer");
     }
 
+    public Healer(Healer other) {
+        super(other);
+    }
+
     public boolean canUse(Class<? extends Item> itemClass) {
         return !(itemClass.isAssignableFrom(Sword.class) && itemClass.isAssignableFrom(Bow.class)); // instanceof HealerCure
     }

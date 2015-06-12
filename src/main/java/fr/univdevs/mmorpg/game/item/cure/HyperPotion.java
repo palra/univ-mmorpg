@@ -14,6 +14,10 @@ public class HyperPotion extends Cure {
         super("HyperPotion", 300, 30);
     }
 
+    public HyperPotion(HyperPotion other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u25c9', ANSIAttribute.FG_YELLOW); // => ◉
     }

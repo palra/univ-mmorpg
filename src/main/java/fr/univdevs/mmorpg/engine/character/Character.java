@@ -61,6 +61,7 @@ public abstract class Character implements MovableEntity {
         this.setDisplay(chosenDisplay);
         this.money = Numbers.randomInt(100, 401);
         this.speed = 100;
+        this.actionPoints = 300;
     }
 
     public Character(Character other) {
@@ -250,7 +251,7 @@ public abstract class Character implements MovableEntity {
      * {@inheritDoc}
      */
     public ANSIChar getDisplay() {
-        return display;
+        return this.display;
     }
 
     /**

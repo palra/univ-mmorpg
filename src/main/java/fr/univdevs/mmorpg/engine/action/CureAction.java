@@ -1,11 +1,9 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.logger.ActionEvent;
 import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
-
-import java.util.Date;
+import fr.univdevs.mmorpg.engine.event.action.CureEvent;
 
 /**
  * Public class CureAction
@@ -28,8 +26,14 @@ public class CureAction extends Action {
             throw new IllegalArgumentException("N'est pas dans l'inventaire!");
     }
 
+    public CureAction(CureAction other) {
+        super(other);
+        this.cure = other.cure;
+    }
+
+
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
         getSubject().getCharacter().getInventory().remove(this.cure);
         LoggerInterface l = this.getLogger();
@@ -37,20 +41,6 @@ public class CureAction extends Action {
         this.cure = null;
     }
 
-    public static class CureEvent extends ActionEvent {
-        public CureEvent(Player subject, Player target) {
-            this(new Date(), subject, target);
-        }
 
-        public CureEvent(Date date, Player subject, Player target) {
-            super("action", "cure", date, subject, target);
-        }
-
-
-        @Override
-        public String getDescription() {
-            return this.getSubject() + " a soigné " + this.getTarget();
-        }
-    }
 
 }

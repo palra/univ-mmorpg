@@ -8,7 +8,11 @@ import java.util.Random;
  * @author Loïc Payol
  */
 public class Strings {
+
     private static Random random = new Random();
+
+    public Strings() {
+    }
 
     /**
      * Returns the random generator
@@ -77,4 +81,24 @@ public class Strings {
 
         return out + in;
     }
+
+
+    public static String toCamelCase(final String init) {
+        if (init == null)
+            return null;
+
+        final StringBuilder ret = new StringBuilder(init.length());
+
+        for (final String word : init.split(" ")) {
+            if (!word.isEmpty()) {
+                ret.append(word.substring(0, 1).toUpperCase());
+                ret.append(word.substring(1).toLowerCase());
+            }
+            if (!(ret.length() == init.length()))
+                ret.append(" ");
+        }
+
+        return ret.toString();
+    }
+
 }

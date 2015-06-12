@@ -18,6 +18,11 @@ public class Warrior extends Character {
         super(name, "Warrior");
     }
 
+    public Warrior(Warrior other) {
+        super(other);
+    }
+
+
     @Override
     public boolean canUse(Class<? extends Item> itemClass) {
         return !(itemClass.isAssignableFrom(HealerCure.class)); // instanceof HealerCure

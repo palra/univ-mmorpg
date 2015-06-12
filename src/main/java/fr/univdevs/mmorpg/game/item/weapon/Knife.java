@@ -14,6 +14,10 @@ public class Knife extends Weapon {
         super("Knife", 90, 30, 4);
     }
 
+    public Knife(Knife other) {
+        super(other);
+    }
+
     public ANSIChar getDisplay() {
         return new ANSIChar('\u21e8', ANSIAttribute.FG_MAGENTA); // => ⇨
     }

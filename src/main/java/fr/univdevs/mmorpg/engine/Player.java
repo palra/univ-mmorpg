@@ -44,6 +44,11 @@ public class Player {
         this.character = character;
     }
 
+    public Player(Player other) {
+        this.name = new String(other.name);
+        this.character = other.character;
+        this.action = other.action;
+    }
 
     /**
      * Protected method to get the name of the player
@@ -94,6 +99,10 @@ public class Player {
      */
     public Action getNextAction() {
         return this.action;
+    }
+
+    public String toString() {
+        return "Nom : " + this.name + "\n\nPersonnage : \n\n" + this.getCharacter().toString();
     }
 
 }

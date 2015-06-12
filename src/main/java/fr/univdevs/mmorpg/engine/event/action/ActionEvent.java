@@ -1,4 +1,5 @@
-package fr.univdevs.mmorpg.game.event;
+package fr.univdevs.mmorpg.engine.event.action;
+
 
 import fr.univdevs.logger.Event;
 import fr.univdevs.mmorpg.engine.Player;
@@ -6,13 +7,13 @@ import fr.univdevs.mmorpg.engine.Player;
 import java.util.Date;
 
 /**
- * Class representing an event triggered when an action is involved. Its topic is {@link ActionEvent#TOPIC}
+ * Events that reports an information about a given subject
  *
- * @author Loïc Payol
+ * @author Vincent Emile
  */
-public abstract class ActionEvent extends Event {
-    public static final String TOPIC = "action";
 
+public abstract class ActionEvent extends Event {
+    private static String TOPIC = "action";
     private Player subject;
     private Player target;
 
@@ -43,10 +44,27 @@ public abstract class ActionEvent extends Event {
         this.target = target;
     }
 
+    public ActionEvent(ActionEvent other) {
+        super(other);
+        this.subject = other.subject;
+        this.target = other.target;
+    }
+
+
+    /**
+     * public getter for Subject
+     *
+     * @return the subject of the event
+     */
     public Player getSubject() {
         return this.subject;
     }
 
+    /**
+     * public getter for Target
+     *
+     * @return the target of the event
+     */
     public Player getTarget() {
         return this.target;
     }

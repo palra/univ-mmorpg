@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.bridge;
 
-import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
@@ -34,7 +33,7 @@ public class StatsCommandTest {
 
         sc.setGameManager(gm);
 
-        parser = new CommandParser(new Command[]{sc});
+        parser = new CommandParser(sc);
     }
 
     @Test
@@ -44,7 +43,7 @@ public class StatsCommandTest {
             " - Type : Warrior\n" +
             " - Vie : 100 HP\n" +
             " - Experience : 0 XP \n" +
-            " - Points d'action : 0 AP \n" +
+            " - Points d'action : 300 AP \n" +
             " - Vitesse : 100\n" +
             " - Résistance : 0.0\n" +
             " - Argent : " + player.getCharacter().getMoney() + "£ \n", parser.parse("stats").getOutput());

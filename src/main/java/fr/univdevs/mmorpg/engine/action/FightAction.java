@@ -1,11 +1,9 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.logger.ActionEvent;
 import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
-
-import java.util.Date;
+import fr.univdevs.mmorpg.engine.event.action.FightEvent;
 
 /**
  * Public class FightAction
@@ -29,26 +27,18 @@ public class FightAction extends Action {
             throw new IllegalArgumentException("Pas dans l'inventaire!");
     }
 
+    public FightAction(FightAction other) {
+        super(other);
+        this.weapon = other.weapon;
+    }
+
+
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() + (getTarget().getCharacter().getHealth() * getTarget().getCharacter().getResistance()) - this.weapon.getPower()));
         LoggerInterface l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));
-        this.weapon = null;
     }
 
-    public static class FightEvent extends ActionEvent {
-        public FightEvent(Player subject, Player target) {
-            this(new Date(), subject, target);
-        }
 
-        public FightEvent(Date date, Player subject, Player target) {
-            super("action", "fight", date, subject, target);
-        }
-
-        @Override
-        public String getDescription() {
-            return this.getSubject().getName() + " a attaqué " + this.getTarget().getName();
-        }
-    }
 }

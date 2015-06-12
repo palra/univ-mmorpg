@@ -49,6 +49,13 @@ public class Tilemap {
         this.height = height;
     }
 
+    public Tilemap(Tilemap other) {
+        this.tiles = other.tiles;
+        this.width = other.width;
+        this.height = other.height;
+    }
+
+
     /**
      * Creates a new Tilemap from a resource file.
      * <p/>
