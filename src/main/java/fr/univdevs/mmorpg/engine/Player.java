@@ -101,7 +101,7 @@ public class Player {
     }
 
     public String toString() {
-        return "Nom : " + this.name + "\nPersonnage : " + this.getCharacter().toString();
+        return "Nom : " + this.name + "\n\nPersonnage : \n\n" + this.getCharacter().toString();
     }
 
 }

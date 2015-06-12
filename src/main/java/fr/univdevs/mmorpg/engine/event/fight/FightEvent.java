@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.event.FightEvent;
+package fr.univdevs.mmorpg.engine.event.fight;
 
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.event.action.ActionEvent;
