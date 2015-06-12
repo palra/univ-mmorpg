@@ -36,6 +36,7 @@ public class CureAction extends Action {
     public void execute() {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
         getSubject().getCharacter().getInventory().remove(this.cure);
+        getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - this.cure.getRestoredPoints() / 10);
         LoggerInterface l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
         this.cure = null;
