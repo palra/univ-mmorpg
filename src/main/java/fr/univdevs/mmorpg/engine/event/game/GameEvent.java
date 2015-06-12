@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Loïc Payol
  */
 public abstract class GameEvent extends Event implements GameManagerAware {
-    private static String TOPIC = "action";
+    protected static final String TOPIC = "action";
     private GameManager gameManager;
 
     /**

@@ -7,18 +7,18 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.Date;
 
-public class MoveActionEvent extends ActionEvent {
+public class MoveEvent extends ActionEvent {
     public static final String NAME = "move";
     private World.MoveResult res;
     private World.Direction dir;
 
-    public MoveActionEvent(Player subject, World.MoveResult res, World.Direction dir) {
+    public MoveEvent(Player subject, World.MoveResult res, World.Direction dir) {
         super(NAME, subject, null);
         this.res = res;
         this.dir = dir;
     }
 
-    public MoveActionEvent(Date date, Player subject, World.MoveResult res, World.Direction dir) {
+    public MoveEvent(Date date, Player subject, World.MoveResult res, World.Direction dir) {
         super(NAME, date, subject, null);
         this.res = res;
         this.dir = dir;

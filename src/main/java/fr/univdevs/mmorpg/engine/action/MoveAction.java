@@ -4,7 +4,7 @@ import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Inventory;
 import fr.univdevs.mmorpg.engine.character.Item;
-import fr.univdevs.mmorpg.engine.event.action.MoveActionEvent;
+import fr.univdevs.mmorpg.engine.event.action.MoveEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughMoneyEvent;
 import fr.univdevs.mmorpg.engine.world.Entity;
@@ -50,7 +50,7 @@ public class MoveAction extends Action {
 
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
         c.setActionPoints(c.getActionPoints() - res.getNbCases());
-        this.getLogger().log(new MoveActionEvent(getSubject(), res, this.direction));
+        this.getLogger().log(new MoveEvent(getSubject(), res, this.direction));
 
         Inventory inventory = c.getInventory();
         for (Entity entity : res.getNonCollidableEntities()) {

@@ -5,6 +5,7 @@ import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.event.game.RoundEndEvent;
 import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;
+import fr.univdevs.mmorpg.engine.event.game.TurnStartEvent;
 import fr.univdevs.mmorpg.engine.world.World;
 
 import java.util.*;
@@ -155,6 +156,7 @@ public class GameManager {
 
         // And executing them
         for (Action a : actions) {
+            this.getLogger().log(new TurnStartEvent(this, a.getSubject()));
             a.setGameManager(this); // Injecting the logger
             a.execute(); // Executing the action
         }
