@@ -46,7 +46,7 @@ public class MoveAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
         if (this.nbCases > 1 * c.getActionPoints()) {

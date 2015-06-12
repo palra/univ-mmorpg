@@ -37,7 +37,7 @@ public class CureAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         getTarget().getCharacter().setHealth(getTarget().getCharacter().getHealth() + this.cure.getRestoredPoints());
         getSubject().getCharacter().getInventory().remove(this.cure);
         Logger l = this.getLogger();

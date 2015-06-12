@@ -81,5 +81,5 @@ public abstract class Action implements GameManagerAware {
      * Abstract method to execute the action
      * Will describe the impact of the action on the targert
      */
-    public abstract void execute() throws Exception;
+    public abstract void execute();
 }

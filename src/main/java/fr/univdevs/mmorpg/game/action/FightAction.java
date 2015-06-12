@@ -35,7 +35,7 @@ public class FightAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() + (getTarget().getCharacter().getHealth() * getTarget().getCharacter().getResistance()) - this.weapon.getPower()));
         Logger l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));

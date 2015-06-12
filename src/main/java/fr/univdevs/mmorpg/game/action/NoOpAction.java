@@ -28,7 +28,7 @@ public class NoOpAction extends Action {
 
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         Logger l = this.getLogger();
         l.log(new NoOpEvent(this.getSubject()));
     }
