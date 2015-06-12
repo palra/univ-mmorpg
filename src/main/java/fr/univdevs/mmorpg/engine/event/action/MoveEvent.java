@@ -30,7 +30,7 @@ public class MoveEvent extends ActionEvent {
             " a déplacé " +
             new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
             " de " + res.getNbCases() + " case" +
-            ((res.getNbCases() > 1) ? "" : "s") + // Pluralize the string
+            ((res.getNbCases() <= 1) ? "" : "s") + // Pluralize the string
             " vers ";
 
         switch (dir) {

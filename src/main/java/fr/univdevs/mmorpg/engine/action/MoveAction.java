@@ -5,6 +5,7 @@ import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Inventory;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.mmorpg.engine.event.action.MoveEvent;
+import fr.univdevs.mmorpg.engine.event.action.MoveRejectEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughMoneyEvent;
 import fr.univdevs.mmorpg.engine.world.Entity;
@@ -39,17 +40,22 @@ public class MoveAction extends Action {
         this.nbCases = other.nbCases;
     }
 
-
     @Override
     public void execute() {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
-        if (this.nbCases > c.getActionPoints()) {
-            // TODO
-        }
 
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
         c.setActionPoints(c.getActionPoints() - res.getNbCases());
+
+        if (c.getActionPoints() < 0) {
+            int diff = 0 - c.getActionPoints();
+            w.move(c, this.direction, -diff); // Rewind move
+            c.setActionPoints(0);
+            this.getLogger().log(new MoveRejectEvent(getSubject(), res.getNbCases() - diff));
+            return;
+        }
+
         this.getLogger().log(new MoveEvent(getSubject(), res, this.direction));
 
         Inventory inventory = c.getInventory();
@@ -70,7 +76,4 @@ public class MoveAction extends Action {
             }
         }
     }
-
-
 }
-
