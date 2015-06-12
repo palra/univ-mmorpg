@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.event.remove;
+package fr.univdevs.mmorpg.engine.event.inventory;
 
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;
@@ -8,22 +8,21 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.Date;
 
-public class RemoveEvent extends Event {
+public class RemoveEvent extends InventoryEvent {
     private static final String TOPIC = "inventory";
     private static final String NAME = "remove";
     private Item item;
     private fr.univdevs.mmorpg.engine.character.Character character;
 
     public RemoveEvent(Item item, Character character) {
-        super(TOPIC, NAME);
+        super(NAME, character);
         this.item = item;
         this.character = character;
     }
 
     public RemoveEvent(Date date, Item item, Character character) {
-        super(TOPIC, NAME, date);
+        super(NAME, date, character);
         this.item = item;
-        this.character = character;
     }
 
     @Override

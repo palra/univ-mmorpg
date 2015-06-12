@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.event.move;
+package fr.univdevs.mmorpg.engine.event.action;
 
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.event.action.ActionEvent;

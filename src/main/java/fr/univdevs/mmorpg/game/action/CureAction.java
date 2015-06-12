@@ -3,11 +3,8 @@ package fr.univdevs.mmorpg.game.action;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
-import fr.univdevs.mmorpg.engine.event.action.ActionEvent;
-import fr.univdevs.mmorpg.engine.event.cure.CureEvent;
+import fr.univdevs.mmorpg.engine.event.action.CureEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
-
-import java.util.Date;
 
 /**
  * Public class CureAction

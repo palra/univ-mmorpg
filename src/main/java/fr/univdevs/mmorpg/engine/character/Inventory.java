@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.mmorpg.engine.event.remove.RemoveEvent;
+import fr.univdevs.mmorpg.engine.event.inventory.RemoveEvent;
 import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.logger.LoggerAwareInterface;

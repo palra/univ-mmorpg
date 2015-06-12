@@ -3,7 +3,7 @@ package fr.univdevs.mmorpg.game.action;
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
-import fr.univdevs.mmorpg.engine.event.fight.FightEvent;
+import fr.univdevs.mmorpg.engine.event.action.FightEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
 
 /**

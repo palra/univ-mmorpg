@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.engine.event.not_money;
+package fr.univdevs.mmorpg.engine.event.inventory;
 
 import fr.univdevs.mmorpg.engine.character.*;
 import fr.univdevs.mmorpg.engine.character.Character;

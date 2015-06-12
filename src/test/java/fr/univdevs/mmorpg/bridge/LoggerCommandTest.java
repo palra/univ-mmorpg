@@ -4,8 +4,7 @@ import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandParser;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.logger.Logger;
-import fr.univdevs.mmorpg.game.action.NoOpAction;
-import fr.univdevs.mmorpg.engine.event.noop.NoOpEvent;
+import fr.univdevs.mmorpg.engine.event.action.NoOpEvent;
 import org.junit.Before;
 import org.junit.Test;
 

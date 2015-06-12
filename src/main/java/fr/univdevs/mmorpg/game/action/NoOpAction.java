@@ -2,11 +2,8 @@ package fr.univdevs.mmorpg.game.action;
 
 import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.event.action.ActionEvent;
-import fr.univdevs.mmorpg.engine.event.noop.NoOpEvent;
+import fr.univdevs.mmorpg.engine.event.action.NoOpEvent;
 import fr.univdevs.mmorpg.engine.logger.Logger;
-
-import java.util.Date;
 
 /**
  * Actions that does nothing, neither on the subject nor the target.
