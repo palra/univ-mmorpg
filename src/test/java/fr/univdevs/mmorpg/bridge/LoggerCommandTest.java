@@ -32,14 +32,11 @@ public class LoggerCommandTest {
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
-        assertEquals("<action.noop>: palra passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n", parser.parse("log all").getOutput());
+        assertEquals(2, parser.parse("log " + LoggerCommand.ALL_OPT).getOutput().split("\n").length);
 
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
-        assertEquals("<action.noop>: palra passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n", parser.parse("log all").getOutput());
+        assertEquals(3, parser.parse("log " + LoggerCommand.ALL_OPT).getOutput().split("\n").length);
     }
 
     @Test
@@ -47,16 +44,14 @@ public class LoggerCommandTest {
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
 
-        assertEquals("<action.noop>: palra passe son tour\n" +
-            "<action.noop>: drattak passe son tour\n", parser.parse("log").getOutput());
+        assertEquals(2, parser.parse("log").getOutput().split("\n").length);
 
         l.log(new NoOpAction.NoOpEvent(new Player("drattak")));
         l.log(new NoOpAction.NoOpEvent(new Player("palra")));
 
-        assertEquals("<action.noop>: drattak passe son tour\n" +
-            "<action.noop>: palra passe son tour\n", parser.parse("log").getOutput());
+        assertEquals(2, parser.parse("log").getOutput().split("\n").length);
 
-        assertEquals(LoggerCommand.NOT_FOUND_MSG, parser.parse("log").getOutput());
+        assertEquals(LoggerCommand.NOT_FOUND_MSG, parser.parse("log " + LoggerCommand.SINCE_LAST_OPT).getOutput());
     }
 
     @Test

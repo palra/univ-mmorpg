@@ -7,7 +7,6 @@ import fr.univdevs.mmorpg.engine.world.World;
 
 /**
  * Command that moves a player's character on the world.
- * As for ActionCommand, you must instanciate this command each play turn.
  *
  * @author Loïc Payol
  */

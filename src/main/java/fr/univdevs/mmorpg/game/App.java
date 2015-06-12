@@ -89,8 +89,11 @@ public class App {
 
         // move
         MoveCommand move = new MoveCommand();
-        move.setGameManager(gameManager);
         actionCommands.add(move);
+
+        // noop
+        NoOpCommand noop = new NoOpCommand();
+        actionCommands.add(noop);
 
         shell.add(exit);
         shell.add(help);
@@ -99,9 +102,10 @@ public class App {
         shell.add(stats);
         shell.add(items);
 
-        for (ActionCommand command : actionCommands)
+        for (ActionCommand command : actionCommands) {
+            command.setGameManager(gameManager);
             shell.add(command);
-
+        }
     }
 
     private static void registerPlayerCommands(Player currentPlayer) {

@@ -3,6 +3,8 @@ package fr.univdevs.mmorpg.engine.action;
 import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.game.event.ActionEvent;
+import fr.univdevs.util.ansi.ANSIAttribute;
+import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.Date;
 
@@ -16,8 +18,8 @@ public class NoOpAction extends Action {
     /**
      * {@inheritDoc}
      */
-    public NoOpAction(Player chosenSubject, Player chosenTarget) {
-        super(chosenSubject, chosenTarget);
+    public NoOpAction(Player chosenSubject) {
+        super(chosenSubject, null);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class NoOpAction extends Action {
 
         @Override
         public String getDescription() {
-            return this.getSubject().getName() + " passe son tour";
+            return new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) + " passe son tour";
         }
     }
 }

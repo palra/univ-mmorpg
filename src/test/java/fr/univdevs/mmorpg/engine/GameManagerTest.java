@@ -28,9 +28,9 @@ public class GameManagerTest {
         gm.addPlayer(palra);
         gm.addPlayer(p3);
 
-        drattak.setNextAction(new NoOpAction(drattak, null));
-        palra.setNextAction(new NoOpAction(drattak, null));
-        p3.setNextAction(new NoOpAction(drattak, null));
+        drattak.setNextAction(new NoOpAction(drattak));
+        palra.setNextAction(new NoOpAction(drattak));
+        p3.setNextAction(new NoOpAction(drattak));
 
         gm.playTurn();
 
