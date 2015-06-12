@@ -4,10 +4,12 @@ import fr.univdevs.mmorpg.engine.world.MovableEntity;
 import fr.univdevs.util.Numbers;
 import fr.univdevs.util.ansi.ANSIChar;
 
+import java.io.Serializable;
+
 /**
  * The Character object. This is the character played by a player
  */
-public abstract class Character implements MovableEntity {
+public abstract class Character implements MovableEntity, Serializable {
     private final static int MAX_HEALTH = 100;
     private final static double MAX_RESISTANCE = 0.99;
     private String type;

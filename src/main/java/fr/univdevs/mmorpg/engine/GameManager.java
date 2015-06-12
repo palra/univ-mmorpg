@@ -8,12 +8,13 @@ import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;
 import fr.univdevs.mmorpg.engine.event.game.TurnStartEvent;
 import fr.univdevs.mmorpg.engine.world.World;
 
+import java.io.*;
 import java.util.*;
 
 /**
  * Manages a game instance.
  */
-public class GameManager {
+public class GameManager implements Serializable {
     private World world;
     private ArrayList<Player> players = new ArrayList<Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
@@ -35,6 +36,17 @@ public class GameManager {
         this.roundNb = other.roundNb;
     }
 
+    public static GameManager readFrom(String filename) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois;
+        ois = new ObjectInputStream(
+            new BufferedInputStream(
+                new FileInputStream(
+                    new File(filename))));
+
+        GameManager gameManager = (GameManager) ois.readObject();
+        ois.close();
+        return gameManager;
+    }
 
     /**
      * Returns an array of all the registered players.
@@ -105,7 +117,6 @@ public class GameManager {
     public boolean hasPlayerWithSameName(Player player) {
         return this.hasPlayerWithSameName(player.getName());
     }
-
 
     /**
      * Returns if there is a player with the same name in the collection.
@@ -181,8 +192,28 @@ public class GameManager {
         this.roundNb++;
     }
 
+    /**
+     * Returns the current round number
+     *
+     * @return The current round number
+     */
+    public int getRoundNb() {
+        return roundNb;
+    }
+
     public World getWorld() {
         return this.world;
+    }
+
+    public void saveTo(String filename) throws IOException {
+        ObjectOutputStream oos;
+        oos = new ObjectOutputStream(
+            new BufferedOutputStream(
+                new FileOutputStream(
+                    new File(filename))));
+
+        oos.writeObject(this);
+        oos.close();
     }
 
 }

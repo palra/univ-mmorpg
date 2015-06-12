@@ -14,6 +14,7 @@ import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +138,7 @@ public class App {
             if (currentPlayer == null) { // If no more players have to play
                 gameManager.playTurn();
                 oldPlayer = null;
+                System.out.println("Starting the round n°" + new ANSIString(gameManager.getRoundNb() + "", ANSIAttribute.ATTR_BOLD) + " :");
             } else {
                 // Sets the current player on the commands
                 registerPlayerCommands(currentPlayer);
@@ -163,8 +165,15 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        App.configureGame();
+        try {
+            gameManager = GameManager.readFrom("game.sav");
+        } catch (FileNotFoundException e) {
+            App.configureGame();
+        }
+
         App.configureCommands();
         App.play();
+
+        gameManager.saveTo("game.sav");
     }
 }

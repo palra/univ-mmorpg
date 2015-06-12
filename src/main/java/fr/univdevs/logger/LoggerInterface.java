@@ -1,5 +1,6 @@
 package fr.univdevs.logger;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  *
  * @author Loïc Payol
  */
-public interface LoggerInterface {
+public interface LoggerInterface extends Serializable {
 
     /**
      * Returns all the events

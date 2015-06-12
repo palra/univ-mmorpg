@@ -5,13 +5,14 @@ import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.RemoveEvent;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Inventory
  * The inventory containing items
  */
-public class Inventory implements LoggerAwareInterface {
+public class Inventory implements LoggerAwareInterface, Serializable {
     private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
     private Character character;
     private LoggerInterface logger;

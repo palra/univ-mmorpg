@@ -2,13 +2,15 @@ package fr.univdevs.logger;
 
 import fr.univdevs.util.Strings;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
 
 /**
  * Represents an event in the game
  */
-public abstract class Event {
+public abstract class Event implements Serializable {
+    private String id;
     private String topic;
     private String name;
     private Date createdAt;
@@ -28,7 +30,6 @@ public abstract class Event {
             return -SORT_BY_DATE_ASC.compare(e1, e2);
         }
     };
-    private String id;
 
 
     /**

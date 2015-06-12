@@ -5,12 +5,14 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.GameManagerAware;
 import fr.univdevs.mmorpg.engine.Player;
 
+import java.io.Serializable;
+
 /**
  * Public class Action
  * An action is any thing that can do the character
  * The action is done by a subject to a target
  */
-public abstract class Action implements GameManagerAware {
+public abstract class Action implements GameManagerAware, Serializable {
     private Player subject;
     private Player target;
     private GameManager gameManager;

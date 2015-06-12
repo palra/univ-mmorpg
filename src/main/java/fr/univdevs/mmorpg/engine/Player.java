@@ -3,23 +3,20 @@ package fr.univdevs.mmorpg.engine;
 import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.character.Character;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Public class player
  * Represets the human player
  */
-public class Player {
-    private String name;
-    private Character character = null;
+public class Player implements Serializable {
     /**
      * Compares two players according to their character's speed. The greatest speed is the greatest player.
      */
-    public static Comparator<Player> SORT_BY_SPEED_DESC = new Comparator<Player>() {
-        public int compare(Player p1, Player p2) {
-            return -Double.compare(p1.getCharacter().getSpeed(), p2.getCharacter().getSpeed());
-        }
-    };
+    public static final Comparator<Player> SORT_BY_SPEED_DESC = new DescSpeedPlayerComparator();
+    private String name;
+    private Character character = null;
     private Action action = null;
 
     /**
@@ -103,6 +100,12 @@ public class Player {
 
     public String toString() {
         return "Nom : " + this.name + "\n\nPersonnage : \n\n" + this.getCharacter().toString();
+    }
+
+    public static class DescSpeedPlayerComparator implements Comparator<Player>, Serializable {
+        public int compare(Player p1, Player p2) {
+            return -Double.compare(p1.getCharacter().getSpeed(), p2.getCharacter().getSpeed());
+        }
     }
 
 }
