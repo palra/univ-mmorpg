@@ -30,6 +30,8 @@ public class App {
     private static List<ActionCommand> actionCommands = new ArrayList<ActionCommand>();
     private static StatsCommand stats;
     private static InventoryCommand items;
+    private static ExitCommand exit;
+    private static LoggerCommand log;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -64,6 +66,37 @@ public class App {
         world.addEntity(healerCure);
     }
 
+    private static void configureCommands() {
+        // exit
+        exit = new ExitCommand();
+
+        // help
+        HelpCommand help = new HelpCommand();
+
+        // map
+        MapCommand map = new MapCommand();
+        map.setGameManager(gameManager);
+
+        // log
+        log = new LoggerCommand();
+        log.setLogger(gameManager.getLogger());
+
+        // stats
+        stats = new StatsCommand();
+        stats.setGameManager(gameManager);
+
+        // items
+        items = new InventoryCommand();
+
+        shell.add(exit);
+        shell.add(help);
+        shell.add(map);
+        shell.add(log);
+        shell.add(stats);
+        shell.add(items);
+
+    }
+
     private static void registerPlayerCommands(Player currentPlayer) {
         for (ActionCommand command : actionCommands)
             shell.remove(command);
@@ -89,51 +122,7 @@ public class App {
         return false;
     }
 
-    public static void main(String[] args) {
-        try {
-            App.configureGame();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        /*=======================
-                Commands
-         =======================*/
-
-        // exit
-        ExitCommand exit = new ExitCommand();
-
-        // help
-        HelpCommand help = new HelpCommand();
-
-        // map
-        MapCommand map = new MapCommand();
-        map.setGameManager(gameManager);
-
-        // log
-        LoggerCommand log = new LoggerCommand();
-        log.setLogger(gameManager.getLogger());
-
-        // stats
-        stats = new StatsCommand();
-        stats.setGameManager(gameManager);
-
-        // items
-        items = new InventoryCommand();
-
-
-        /*=======================
-                 Shell
-         =======================*/
-
-        shell.add(exit);
-        shell.add(help);
-        shell.add(map);
-        shell.add(log);
-        shell.add(stats);
-        shell.add(items);
-
+    private static void play() {
         boolean playTurn = false;
         Iterator<Player> iPlayers = null;
         Player currentPlayer = null;
@@ -176,7 +165,11 @@ public class App {
                 }
             }
         }
+    }
 
-        // Goodbye, main(String... args) :)
+    public static void main(String[] args) throws Exception {
+        App.configureGame();
+        App.configureCommands();
+        App.play();
     }
 }

@@ -49,10 +49,10 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
      * @return action != null
      */
     public boolean hasAction() {
-        return getAction() != null;
+        return this.getAction() != null;
     }
 
     public Player getCurrentPlayer() {
-        return currentPlayer;
+        return this.currentPlayer;
     }
 }
