@@ -134,11 +134,12 @@ public class App {
         // The main loop
         Player oldPlayer = null;
         while (!exit.isClosed()) {
+            if (oldPlayer == null) // If its the begining of a round
+                System.out.println("Starting the " + new ANSIString("round n°" + gameManager.getRoundNb() + "", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_CYAN) + " :");
             Player currentPlayer = gameManager.getFirstPlayerWithoutAction();
             if (currentPlayer == null) { // If no more players have to play
                 gameManager.playTurn();
                 oldPlayer = null;
-                System.out.println("Starting the round n°" + new ANSIString(gameManager.getRoundNb() + "", ANSIAttribute.ATTR_BOLD) + " :");
             } else {
                 // Sets the current player on the commands
                 registerPlayerCommands(currentPlayer);
@@ -147,7 +148,7 @@ public class App {
                 currentPlayer.getCharacter().getDisplay().addAttribute(ANSIAttribute.ATTR_BLINK).addAttribute(ANSIAttribute.ATTR_BOLD);
 
                 if (oldPlayer != currentPlayer) {
-                    System.out.println(new ANSIString(currentPlayer.getName() + "'s turn : ", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_MAGENTA));
+                    System.out.println(new ANSIString(currentPlayer.getName(), ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_MAGENTA) + "'s turn : ");
                 }
 
                 // Ask each player what he wants to do.
