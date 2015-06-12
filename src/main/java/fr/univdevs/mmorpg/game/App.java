@@ -8,7 +8,6 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
-import fr.univdevs.mmorpg.game.action.MoveCommand;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
 import fr.univdevs.util.Vector2D;
@@ -88,6 +87,11 @@ public class App {
         // items
         items = new InventoryCommand();
 
+        // move
+        MoveCommand move = new MoveCommand();
+        move.setGameManager(gameManager);
+        actionCommands.add(move);
+
         shell.add(exit);
         shell.add(help);
         shell.add(map);
@@ -95,20 +99,14 @@ public class App {
         shell.add(stats);
         shell.add(items);
 
+        for (ActionCommand command : actionCommands)
+            shell.add(command);
+
     }
 
     private static void registerPlayerCommands(Player currentPlayer) {
         for (ActionCommand command : actionCommands)
-            shell.remove(command);
-        actionCommands.clear();
-
-        // move
-        MoveCommand move = new MoveCommand(currentPlayer);
-        move.setGameManager(gameManager);
-        actionCommands.add(move);
-
-        for (ActionCommand command : actionCommands)
-            shell.add(command);
+            command.setCurrentPlayer(currentPlayer);
 
         stats.setCurrentPlayer(currentPlayer);
         items.setCurrentPlayer(currentPlayer);
@@ -122,7 +120,7 @@ public class App {
         return false;
     }
 
-    private static void play() {
+    private static void play() throws Exception {
         boolean playTurn = false;
         Iterator<Player> iPlayers = null;
         Player currentPlayer = null;
@@ -130,18 +128,7 @@ public class App {
         // The main loop
         while (!exit.isClosed()) {
             if (playTurn) {
-                try {
-                    gameManager.playTurn();
-                } catch (Exception e) {
-                    System.err.println(new ANSIString(
-                        e.getClass().getName() + " : " +
-                            new ANSIString(e.getMessage(), ANSIAttribute.FG_RED, ANSIAttribute.ATTR_BOLD),
-                        ANSIAttribute.FG_RED
-                    ));
-                }
-
-                System.out.print(log.execute(new String[0]));
-
+                gameManager.playTurn();
                 playTurn = false; // Reset playTurn when executed.
             } else { // Ask each player what he wants to do.
                 if (iPlayers == null)

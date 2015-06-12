@@ -1,7 +1,6 @@
-package fr.univdevs.mmorpg.game.action;
+package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.logger.LoggerInterface;
-import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.game.event.ActionEvent;
 

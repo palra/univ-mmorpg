@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.bridge;
 
-import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.action.Action;
 
 /**
  * Base command that creates an action.
@@ -15,14 +15,24 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
 
     /**
      * Default constructor
-     *
-     * @param currentPlayer The current player, subject of the action.
      */
-    public ActionCommand(Player currentPlayer) {
-        if (currentPlayer == null)
+    public ActionCommand() {
+
+    }
+
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player p) {
+        if (p == null)
             throw new NullPointerException("The current player can't be null");
 
-        this.currentPlayer = currentPlayer;
+        this.currentPlayer = p;
+    }
+
+    public boolean hasCurrentPlayer() {
+        return this.getCurrentPlayer() != null;
     }
 
     /**
@@ -30,8 +40,8 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
      *
      * @return The action, if built, null instead
      */
-    public Action getAction() {
-        return currentPlayer.getNextAction();
+    public Action getNextAction() {
+        return this.hasCurrentPlayer() ? this.getCurrentPlayer().getNextAction() : null;
     }
 
     /**
@@ -39,7 +49,10 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
      *
      * @param action The action
      */
-    public void setAction(Action action) {
+    public void setNextAction(Action action) {
+        if (!this.hasCurrentPlayer())
+            throw new NullPointerException("The current player is null");
+
         this.currentPlayer.setNextAction(action);
     }
 
@@ -49,10 +62,6 @@ public abstract class ActionCommand extends GameManagerAwareCommand {
      * @return action != null
      */
     public boolean hasAction() {
-        return this.getAction() != null;
-    }
-
-    public Player getCurrentPlayer() {
-        return this.currentPlayer;
+        return this.getNextAction() != null;
     }
 }

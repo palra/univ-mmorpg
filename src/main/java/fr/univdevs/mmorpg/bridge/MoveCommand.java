@@ -1,9 +1,8 @@
-package fr.univdevs.mmorpg.game.action;
+package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.CommandException;
-import fr.univdevs.mmorpg.bridge.ActionCommand;
-import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.action.MoveAction;
 import fr.univdevs.mmorpg.engine.world.World;
 
 /**
@@ -13,8 +12,7 @@ import fr.univdevs.mmorpg.engine.world.World;
  * @author Loïc Payol
  */
 public class MoveCommand extends ActionCommand {
-    public MoveCommand(Player currentPlayer) {
-        super(currentPlayer);
+    public MoveCommand() {
         this.setName("move");
     }
 
@@ -28,7 +26,7 @@ public class MoveCommand extends ActionCommand {
 
         MoveAction action = new MoveAction(this.getCurrentPlayer(), null, dir, nbCases);
         action.setGameManager(this.getGameManager());
-        this.setAction(action);
+        this.setNextAction(action);
 
         return null;
     }

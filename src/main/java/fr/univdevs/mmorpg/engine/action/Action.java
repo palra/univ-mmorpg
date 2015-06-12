@@ -1,6 +1,9 @@
-package fr.univdevs.mmorpg.engine;
+package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.logger.LoggerInterface;
+import fr.univdevs.mmorpg.engine.GameManager;
+import fr.univdevs.mmorpg.engine.GameManagerAware;
+import fr.univdevs.mmorpg.engine.Player;
 
 /**
  * Public class Action

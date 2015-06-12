@@ -1,4 +1,4 @@
-package fr.univdevs.mmorpg.game.action;
+package fr.univdevs.mmorpg.engine.action;
 
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;

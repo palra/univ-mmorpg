@@ -1,6 +1,5 @@
-package fr.univdevs.mmorpg.game.action;
+package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.Action;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Inventory;
