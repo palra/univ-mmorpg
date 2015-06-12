@@ -1,11 +1,9 @@
 package fr.univdevs.mmorpg.engine.character;
 
-import fr.univdevs.logger.Event;
 import fr.univdevs.logger.LoggerAwareInterface;
 import fr.univdevs.logger.LoggerInterface;
+import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.RemoveEvent;
-import fr.univdevs.util.ansi.ANSIAttribute;
-import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.*;
 
@@ -162,7 +160,7 @@ public class Inventory implements LoggerAwareInterface {
                 i.onUnregister(character);
 
             if (logger != null) {
-                logger.log(new InventoryAddEvent(item, character));
+                logger.log(new AddEvent(item, character));
             }
 
             this.character.setMoney(this.character.getMoney() - item.getCost());
@@ -235,33 +233,6 @@ public class Inventory implements LoggerAwareInterface {
         if (this.getByType(category).length == 1) return this.getByType(category)[0];
         return null;
     }
-
-    public static class InventoryAddEvent extends Event {
-        private static final String TOPIC = "inventory";
-        private static final String NAME = "add";
-        private Item item;
-        private Character character;
-
-        public InventoryAddEvent(Item item, Character character) {
-            super(TOPIC, NAME);
-            this.item = item;
-            this.character = character;
-        }
-
-        public InventoryAddEvent(Date date, Item item, Character character) {
-            super(TOPIC, NAME, date);
-            this.item = item;
-            this.character = character;
-        }
-
-        @Override
-        public String getDescription() {
-            return new ANSIString(this.character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " ramasse " +
-                    new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-                    new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
-        }
-    }
-
 
 
     /**

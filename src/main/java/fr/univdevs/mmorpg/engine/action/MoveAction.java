@@ -5,6 +5,7 @@ import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Inventory;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.mmorpg.engine.event.action.MoveActionEvent;
+import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughMoneyEvent;
 import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.World;
@@ -43,12 +44,12 @@ public class MoveAction extends Action {
     public void execute() {
         World w = this.getGameManager().getWorld();
         Character c = this.getSubject().getCharacter();
-        if (this.nbCases > 1 * c.getActionPoints()) {
-
+        if (this.nbCases > c.getActionPoints()) {
+            // TODO
         }
 
         World.MoveResult res = w.move(c, this.direction, this.nbCases);
-        c.setActionPoints(c.getActionPoints() - 1 * res.getNbCases());
+        c.setActionPoints(c.getActionPoints() - res.getNbCases());
         this.getLogger().log(new MoveActionEvent(getSubject(), res, this.direction));
 
         Inventory inventory = c.getInventory();
@@ -59,8 +60,13 @@ public class MoveAction extends Action {
                     inventory.add(item);
                     w.removeEntity(entity);
                 } catch (Inventory.NotEnoughCashException exp) {
-                    getLogger().log(new NotEnoughMoneyEvent(item, c));
+                    this.getLogger().log(new NotEnoughMoneyEvent(item, c));
+                    return;
                 }
+
+                this.getLogger().log(
+                    new AddEvent(item, this.getSubject().getCharacter())
+                );
             }
         }
     }
