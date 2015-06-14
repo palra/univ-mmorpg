@@ -28,5 +28,6 @@ public class InventoryTest {
         for (int i = 0; i < inventory.getByType("cure").length; i++) {
             System.out.println(inventory.getByType("cure")[i].getID());
         }
+        System.out.println(this.inventory.getById(bow.getID()).toString());
     }
 }

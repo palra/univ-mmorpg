@@ -2,7 +2,10 @@ package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.CommandException;
+import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.action.CureAction;
 import fr.univdevs.mmorpg.engine.action.MoveAction;
+import fr.univdevs.mmorpg.engine.character.item.Cure;
 import fr.univdevs.mmorpg.engine.world.World;
 
 /**
@@ -12,7 +15,7 @@ import fr.univdevs.mmorpg.engine.world.World;
  */
 public class CureCommand extends ActionCommand {
     public CureCommand() {
-        this.setName("move");
+        this.setName("cure");
     }
 
     @Override
@@ -21,18 +24,20 @@ public class CureCommand extends ActionCommand {
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
 
-        World.Direction dir = World.Direction.valueOf(args[0].toUpperCase());
-        int nbCases = Integer.parseInt(args[1]);
+        Player target = this.getGameManager().getPlayerByName(args[0]);
+        String id = args[1];
 
-        MoveAction action = new MoveAction(this.getCurrentPlayer(), null, dir, nbCases);
-        action.setGameManager(this.getGameManager());
-        this.setNextAction(action);
+        if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
+            CureAction action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
+            action.setGameManager(this.getGameManager());
+            this.setNextAction(action);
+        }
 
         return null;
     }
 
     @Override
     public String getSynopsis() {
-        return "{left|right|up|down} <nb_cases>";
+        return "<target><id>";
     }
 }

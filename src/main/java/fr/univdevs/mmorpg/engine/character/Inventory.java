@@ -12,7 +12,7 @@ import java.util.*;
  * The inventory containing items
  */
 public class Inventory implements LoggerAwareInterface {
-    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
+    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple String, Item
     private Character character;
     private LoggerInterface logger;
 
@@ -44,6 +44,10 @@ public class Inventory implements LoggerAwareInterface {
         this.items = other.items;
         this.character = other.character;
         this.logger = other.logger;
+    }
+
+    public Item getById(String chosenID) {
+        return this.items.get(chosenID);
     }
 
     /**
