@@ -2,12 +2,14 @@ package fr.univdevs.commander;
 
 import fr.univdevs.util.Strings;
 
+import java.io.Serializable;
+
 /**
  * Interface representing the behavior of a Command.
  *
  * @author Loïc Payol
  */
-public abstract class Command implements CommandParserAware {
+public abstract class Command implements CommandParserAware, Serializable {
     private String name;
     private CommandParserInterface parser;
 

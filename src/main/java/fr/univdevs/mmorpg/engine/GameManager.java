@@ -8,7 +8,7 @@ import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;
 import fr.univdevs.mmorpg.engine.event.game.TurnStartEvent;
 import fr.univdevs.mmorpg.engine.world.World;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -34,18 +34,6 @@ public class GameManager implements Serializable {
         this.playerComparator = other.playerComparator;
         this.logger = other.logger;
         this.roundNb = other.roundNb;
-    }
-
-    public static GameManager readFrom(String filename) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois;
-        ois = new ObjectInputStream(
-            new BufferedInputStream(
-                new FileInputStream(
-                    new File(filename))));
-
-        GameManager gameManager = (GameManager) ois.readObject();
-        ois.close();
-        return gameManager;
     }
 
     /**
@@ -204,16 +192,4 @@ public class GameManager implements Serializable {
     public World getWorld() {
         return this.world;
     }
-
-    public void saveTo(String filename) throws IOException {
-        ObjectOutputStream oos;
-        oos = new ObjectOutputStream(
-            new BufferedOutputStream(
-                new FileOutputStream(
-                    new File(filename))));
-
-        oos.writeObject(this);
-        oos.close();
-    }
-
 }

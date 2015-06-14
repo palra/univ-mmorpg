@@ -19,8 +19,8 @@ public class InteractiveShell {
         new ANSIString("msh", ANSIAttribute.FG_GREEN) + "> "
     ) + "";
 
-    private InputStream in = System.in;
-    private PrintStream out = System.out;
+    private transient InputStream in = System.in;
+    private transient PrintStream out = System.out;
 
     /**
      * Default constructor
