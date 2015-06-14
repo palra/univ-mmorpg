@@ -32,7 +32,7 @@ public abstract class Item implements MovableEntity {
         this.weight = itemWeight;
         do {
             this.ID = Strings.random32();
-        } while (!ids.contains(this.ID));
+        } while (ids.contains(this.ID));
         ids.add(this.ID);
     }
 

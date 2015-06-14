@@ -149,25 +149,26 @@ public class Inventory implements LoggerAwareInterface {
     /**
      * Adds the given item to the collection. If the item can't be added, returns it.
      *
-     * @param item idem to be added
+     * @param chosenItem idem to be added
+     *
+     * @return the result this.items.put
      */
-    public Item add(Item item) throws NotEnoughCashException {
-        if (this.character.getMoney() >= item.getCost()) {
-            item.onRegister(character);
-            Item i = this.items.put(item.getID(), item);
+    public Item add(Item chosenItem) throws NotEnoughCashException {
+        if (this.character.getMoney() >= chosenItem.getCost()) {
+            chosenItem.onRegister(character);
 
-            if (i != null)
-                i.onUnregister(character);
+            if (chosenItem != null)
+                chosenItem.onUnregister(character);
 
             if (logger != null) {
-                logger.log(new AddEvent(item, character));
+                logger.log(new AddEvent(chosenItem, character));
             }
 
-            this.character.setMoney(this.character.getMoney() - item.getCost());
+            this.character.setMoney(this.character.getMoney() - chosenItem.getCost());
 
         } else throw new NotEnoughCashException("Pas assez d'argent!");
 
-        return item;
+        return this.items.put(chosenItem.getID(), chosenItem);
     }
 
     /**
