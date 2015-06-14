@@ -27,26 +27,15 @@ public abstract class Item implements MovableEntity {
      * @param itemWeight   weight of the item, cannot be changed
      */
     public Item(String itemCategory, int itemCost, int itemWeight) {
-        this(itemCategory, itemCost);
-        this.weight = itemWeight;
-    }
-
-
-    /**
-     * Item Constructor
-     *
-     * @param itemCategory category of the item, cannot be changed
-     * @param itemCost     price of the item
-     */
-    public Item(String itemCategory, int itemCost) {
         this.category = itemCategory;
         this.cost = itemCost;
+        this.weight = itemWeight;
         do {
             this.ID = Strings.random32();
         } while (!ids.contains(this.ID));
         ids.add(this.ID);
-
     }
+
 
     /**
      * Item copy constructor
@@ -60,15 +49,6 @@ public abstract class Item implements MovableEntity {
         this.weight = other.weight;
         this.x = other.x;
         this.y = other.y;
-    }
-
-    /**
-     * Public method to get all the IDS already used
-     * Useful to check if randomly generated id does not exist already
-     * @return the ids
-     */
-    public static ArrayList<String> getIds() {
-        return ids;
     }
 
     /**
