@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.game;
 
+import com.sun.org.apache.xml.internal.security.Init;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
@@ -13,6 +14,7 @@ import fr.univdevs.mmorpg.game.item.cure.HealerCure;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
+import fr.univdevs.mmorpg.engine.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,6 +48,8 @@ public class App {
         gameManager = new GameManager(world);
 
         // Registering players
+
+        players = Debut.init();
         players.add(new Player("palra", new Warrior("nom-super-agressif")));
 
 
