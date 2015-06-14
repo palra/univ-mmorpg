@@ -29,8 +29,7 @@ public class CureCommand extends ActionCommand {
             CureAction action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
-        }
-
+        } else throw new ArgumentValidationCommandException("Vous avez entré une cure invalide");
         return null;
     }
 
