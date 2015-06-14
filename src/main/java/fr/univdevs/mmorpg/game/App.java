@@ -50,7 +50,6 @@ public class App {
         // Registering players
 
         players = Debut.init();
-        players.add(new Player("palra", new Warrior("nom-super-agressif")));
 
 
         for (Player p : players) {
