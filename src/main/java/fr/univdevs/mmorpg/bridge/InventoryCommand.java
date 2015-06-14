@@ -31,7 +31,7 @@ public class InventoryCommand extends Command {
     }
 
     public static String describe(Item i) {
-        return i.getDisplay() + " : " + new ANSIString(i.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) +
+        return i.getDisplay() + " : " + new ANSIString(i.getType(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) +
             " (" + new ANSIString(i.getID(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_UNDERSCORE) + ") : " +
             i.getCost() + "£, " + i.getWeight() + "g";
     }

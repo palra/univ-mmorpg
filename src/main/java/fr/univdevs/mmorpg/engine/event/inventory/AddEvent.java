@@ -29,7 +29,7 @@ public class AddEvent extends InventoryEvent {
     @Override
     public String getDescription() {
         return new ANSIString(this.getSubject().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " ramasse " +
-            new ANSIString(this.item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                new ANSIString(this.item.getType(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
             new ANSIString(this.item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
     }
 }

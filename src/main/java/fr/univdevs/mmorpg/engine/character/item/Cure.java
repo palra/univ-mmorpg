@@ -50,7 +50,7 @@ public abstract class Cure extends Item {
      * @return the generated String
      */
     public String toString() {
-        return "categorie = " + this.getCategory() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
+        return "categorie = " + this.getType() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
     }
 
     /**

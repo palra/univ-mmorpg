@@ -112,7 +112,7 @@ public class Inventory implements LoggerAwareInterface {
     public Item[] getByType(String category) {
         ArrayList<Item> selectedItems = new ArrayList<Item>();
         for (Item value : this.items.values()) {
-            if (value.getCategory().equals(category)) {
+            if (value.getType().equals(category)) {
                 selectedItems.add(value);
             }
         }
@@ -126,7 +126,7 @@ public class Inventory implements LoggerAwareInterface {
         HashSet<String> types = new HashSet<String>(); //Hashset avoid doubles
         Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
-            String cat = value.getCategory();
+            String cat = value.getType();
             if (!types.contains(cat)) {
                 types.add(cat);
             }
@@ -230,7 +230,7 @@ public class Inventory implements LoggerAwareInterface {
         return results;
     }
 
-    public Item getItemByCategory(String category) {
+    public Item getItemByType(String category) {
         if (this.getByType(category).length == 1) return this.getByType(category)[0];
         return null;
     }
