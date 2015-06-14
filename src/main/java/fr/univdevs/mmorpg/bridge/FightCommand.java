@@ -3,17 +3,20 @@ package fr.univdevs.mmorpg.bridge;
 import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.action.CureAction;
+
+import fr.univdevs.mmorpg.engine.action.FightAction;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
+import fr.univdevs.mmorpg.engine.character.item.Weapon;
+import fr.univdevs.mmorpg.engine.world.World;
 
 /**
  * Command that moves a player's character on the world.
  *
  * @author Loïc Payol
  */
-public class CureCommand extends ActionCommand {
-    public CureCommand() {
-        this.setName("cure");
+public class FightCommand extends ActionCommand {
+    public FightCommand() {
+        this.setName("fight");
     }
 
     @Override
@@ -25,8 +28,8 @@ public class CureCommand extends ActionCommand {
         Player target = this.getGameManager().getPlayerByName(args[0]);
         String id = args[1];
 
-        if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
-            CureAction action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
+        if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Weapon) {
+            FightAction action = new FightAction(this.getCurrentPlayer(), target, (Weapon) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
         }

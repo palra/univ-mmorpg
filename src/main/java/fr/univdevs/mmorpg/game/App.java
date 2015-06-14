@@ -32,6 +32,7 @@ public class App {
     private static ExitCommand exit;
     private static LoggerCommand log;
     private static CureCommand cure;
+    private static FightCommand fight;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -86,6 +87,10 @@ public class App {
         stats = new StatsCommand();
         stats.setGameManager(gameManager);
 
+        //fight
+        fight = new FightCommand();
+        actionCommands.add(fight);
+
         //cure
         cure = new CureCommand();
         actionCommands.add(cure);
@@ -121,6 +126,7 @@ public class App {
         stats.setCurrentPlayer(currentPlayer);
         items.setCurrentPlayer(currentPlayer);
         cure.setCurrentPlayer(currentPlayer);
+
     }
 
     private static boolean actionRegistered() {
