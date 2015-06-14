@@ -24,17 +24,9 @@ public abstract class Weapon extends Item {
 
 
     /**
-     * Weapon constructor
-     *
-     * @param weaponCategory category of the weapon, cannot be changed
-     * @param weaponCost     cost of the weapon
-     * @param weaponPower    power of the weapon
+     * Copy constructor of weapon
+     * @param other the weapon we want to copy
      */
-    public Weapon(String weaponCategory, int weaponCost, int weaponPower) {
-        super(weaponCategory, weaponCost);
-        this.power = weaponPower;
-    }
-
     public Weapon(Weapon other) {
         super(other);
         this.power = other.power;
