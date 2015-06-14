@@ -230,10 +230,6 @@ public class Inventory implements LoggerAwareInterface {
         return results;
     }
 
-    public Item getItemByType(String category) {
-        if (this.getByType(category).length == 1) return this.getByType(category)[0];
-        return null;
-    }
 
 
     /**
