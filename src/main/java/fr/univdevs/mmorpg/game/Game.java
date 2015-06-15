@@ -8,7 +8,6 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
-import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
@@ -33,6 +32,7 @@ public class Game implements Serializable {
     private FightCommand fight;
     private CureCommand cure;
     private LoggerCommand log;
+    private PlayersCommand players;
 
     public Game() throws IOException {
         this.actionCommands = new ArrayList<ActionCommand>();
@@ -118,24 +118,30 @@ public class Game implements Serializable {
 
         // map
         this.map = new MapCommand();
-        this.map.setGameManager(gameManager);
+        this.map.setGameManager(this.gameManager);
 
         // log
         this.log = new LoggerCommand();
-        this.log.setLogger(gameManager.getLogger());
+        this.log.setLogger(this.gameManager.getLogger());
 
         // stats
         this.stats = new StatsCommand();
-        this.stats.setGameManager(gameManager);
+        this.stats.setGameManager(this.gameManager);
 
         // items
         this.items = new InventoryCommand();
 
+        // players
+        this.players = new PlayersCommand();
+        this.players.setGameManager(this.gameManager);
+
         // fight
         this.fight = new FightCommand();
+        this.players.setGameManager(this.gameManager);
 
         // cure
         this.cure = new CureCommand();
+        this.players.setGameManager(this.gameManager);
 
         // move
         MoveCommand move = new MoveCommand();
@@ -156,6 +162,7 @@ public class Game implements Serializable {
         this.shell.add(this.items);
         this.shell.add(this.fight);
         this.shell.add(this.cure);
+        this.shell.add(this.players);
 
         for (ActionCommand command : this.actionCommands) {
             command.setGameManager(this.gameManager);
