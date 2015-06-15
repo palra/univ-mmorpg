@@ -5,6 +5,8 @@ import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.action.CureAction;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
+import fr.univdevs.mmorpg.game.item.cure.Potion;
+import fr.univdevs.util.Strings;
 
 /**
  * Command that moves a player's character on the world.
@@ -22,11 +24,12 @@ public class CureCommand extends ActionCommand {
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
 
-        Player target = this.getGameManager().getPlayerByName(args[0]);
+        Player target = this.getGameManager().getPlayerByName(Strings.toCamelCase(args[0]));
         String id = args[1];
+        Cure c = new Potion();
 
         if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
-            CureAction action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
+            CureAction action = new CureAction(this.getCurrentPlayer(), target, c/* (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id)*/);
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
         } else throw new ArgumentValidationCommandException("Vous avez entré une cure invalide");

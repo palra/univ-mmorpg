@@ -8,6 +8,7 @@ import fr.univdevs.mmorpg.engine.action.FightAction;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
 import fr.univdevs.mmorpg.engine.world.World;
+import fr.univdevs.util.Strings;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 /**
@@ -26,7 +27,7 @@ public class FightCommand extends ActionCommand {
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
 
-        Player target = this.getGameManager().getPlayerByName(args[0]);
+        Player target = this.getGameManager().getPlayerByName(Strings.toCamelCase(args[0]));
         String id = args[1];
 
         if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Weapon) {

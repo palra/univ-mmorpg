@@ -19,19 +19,18 @@ public class CureAction extends Action {
      * @param chosenSubject the Character who execute the action
      * @param chosenTarget  the Character targeted
      */
-    public CureAction(Player chosenSubject, Player chosenTarget, Cure chosenCure) throws IllegalArgumentException {
+    public CureAction(Player chosenSubject, Player chosenTarget, Cure chosenCure) throws NotInInventoryException {
         super(chosenSubject, chosenTarget);
         if (chosenSubject.getCharacter().getInventory().has(chosenCure))
             this.cure = chosenCure;
         else
-            throw new IllegalArgumentException("N'est pas dans l'inventaire!");
+            throw new NotInInventoryException("N'est pas dans l'inventaire!");
     }
 
     public CureAction(CureAction other) {
         super(other);
         this.cure = other.cure;
     }
-
 
     @Override
     public void execute() {
@@ -43,6 +42,12 @@ public class CureAction extends Action {
         LoggerInterface l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
         this.cure = null;
+    }
+
+    public static class NotInInventoryException extends Exception {
+        public NotInInventoryException(String message) {
+            super(message);
+        }
     }
 
 

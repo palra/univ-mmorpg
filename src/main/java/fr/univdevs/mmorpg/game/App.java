@@ -1,6 +1,5 @@
 package fr.univdevs.mmorpg.game;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
@@ -9,12 +8,11 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
-import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
+import fr.univdevs.mmorpg.game.item.weapon.Sword;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
-import fr.univdevs.mmorpg.engine.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -66,9 +64,14 @@ public class App {
         // And put some items
         Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
         HealerCure healerCure = new HealerCure();
+        Sword sword = new Sword();
         healerCure.setX(1);
         healerCure.setY(1);
+        sword.setX(9);
+        sword.setY(9);
         world.addEntity(healerCure);
+        world.addEntity(sword);
+
     }
 
     private static void configureCommands() {
