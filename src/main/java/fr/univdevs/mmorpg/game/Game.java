@@ -40,12 +40,12 @@ public class Game implements Serializable {
         this.configureShell();
     }
 
-    public static Game readFrom(String filename) throws IOException, ClassNotFoundException {
+    public static Game readFrom(File file) throws IOException, ClassNotFoundException {
         ObjectInputStream ois;
         ois = new ObjectInputStream(
             new BufferedInputStream(
                 new FileInputStream(
-                    new File(filename))));
+                    file)));
 
         Game game = (Game) ois.readObject();
         ois.close();
@@ -53,6 +53,10 @@ public class Game implements Serializable {
         game.initShell();
         game.configureShell();
         return game;
+    }
+
+    public static Game readFrom(String filename) throws IOException, ClassNotFoundException {
+        return readFrom(new File(filename));
     }
 
     private void initShell() {
@@ -199,11 +203,15 @@ public class Game implements Serializable {
 
 
     public void saveTo(String filename) throws IOException {
+        saveTo(new File(filename));
+    }
+
+    public void saveTo(File file) throws IOException {
         ObjectOutputStream oos;
         oos = new ObjectOutputStream(
             new BufferedOutputStream(
                 new FileOutputStream(
-                    new File(filename))));
+                    file)));
 
         oos.writeObject(this);
         oos.close();
