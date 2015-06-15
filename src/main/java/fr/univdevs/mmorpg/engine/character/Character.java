@@ -1,6 +1,8 @@
 package fr.univdevs.mmorpg.engine.character;
 
 import fr.univdevs.mmorpg.engine.world.MovableEntity;
+import fr.univdevs.mmorpg.game.item.protection.Helmet;
+import fr.univdevs.mmorpg.game.item.weapon.Knife;
 import fr.univdevs.util.Numbers;
 import fr.univdevs.util.ansi.ANSIChar;
 
@@ -58,10 +60,20 @@ public abstract class Character implements MovableEntity, Serializable {
         this.name = chosenName;
         this.type = chosenType;
         this.inventory = new Inventory(this);
+        this.money = 4000; //We set money before trying to add items
+        try {        //Because Inventory.add throws Exception, we have to try{}catch(){}
+            this.inventory.add(new Knife());
+        } catch (Inventory.NotEnoughCashException e) {
+            e.printStackTrace();
+        }
+        try {       //Because Inventory.add throws Exception, we have to try{}catch(){}
+            this.inventory.add(new Helmet());
+        } catch (Inventory.NotEnoughCashException e) {
+            e.printStackTrace();
+        }
         this.health = 100;
         this.resistance = 0.0;
         this.setDisplay(chosenDisplay);
-        this.money = 4000;
         this.speed = 100;
         this.actionPoints = 300;
     }
