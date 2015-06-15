@@ -29,7 +29,13 @@ public class CureCommand extends ActionCommand {
         Cure c = new Potion();
 
         if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
-            CureAction action = new CureAction(this.getCurrentPlayer(), target, c/* (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id)*/);
+
+            CureAction action = null;
+            try {
+                action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
+            } catch (CureAction.NotInInventoryException e) {
+                throw new ArgumentValidationCommandException("Objet non présent dans l'inventaire");
+            }
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
         } else throw new ArgumentValidationCommandException("Vous avez entré une cure invalide");

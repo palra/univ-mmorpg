@@ -181,7 +181,7 @@ public class Inventory implements LoggerAwareInterface {
      * @param item the item we want to check
      * @return true if the inventory contains the selected item
      */
-    public boolean has(Item item) {
+    public boolean has(Object item) {
         return this.items.containsValue(item);
     }
 
