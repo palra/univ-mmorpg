@@ -6,10 +6,7 @@ import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.util.Strings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Collection of methods that initializes a game.
@@ -25,9 +22,8 @@ public class AppInit {
         System.out.println(affichePlayer(players));
     }*/
 
-    public static List<Player> init() {
-        System.out.println("Combien de joueurs ?");
-        int number = new Scanner(System.in).nextInt();
+    public static List<Player> init() throws InputMismatchException {
+        int number = getNumberofPlayers();
         for (int i = 0; i < number; i++) {
             System.out.println("Joueur " + (i + 1));
             playerInit();
@@ -35,6 +31,14 @@ public class AppInit {
         return players;
     }
 
+    public static int getNumberofPlayers() throws InputMismatchException {
+        Scanner sc;
+        do {
+            System.out.println("Combien de joueurs ? Entrez un entier : ");
+            sc = new Scanner(System.in);
+        } while (!(sc.hasNextInt()));
+        return sc.nextInt();
+    }
 
     public static boolean playerInit() {
         System.out.println("Entrez le nom du joueur : ");
