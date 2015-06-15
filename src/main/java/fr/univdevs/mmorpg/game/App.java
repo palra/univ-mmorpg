@@ -1,5 +1,7 @@
 package fr.univdevs.mmorpg.game;
 
+import fr.univdevs.util.Strings;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -63,10 +65,15 @@ public class App {
         String name;
 
         do {
-            System.out.print("Enter the name of your save file [" + fileName + "]: ");
+            System.out.print("Enter the name of your save file ");
+            if (!Strings.isNullOrEmpty(fileName))
+                System.out.print("[" + fileName + "]");
+            System.out.print(" : ");
+
             name = sc.nextLine();
-            if (name.trim().isEmpty())
+            if (name.trim().isEmpty() && !Strings.isNullOrEmpty(fileName))
                 name = fileName;
+
             file = new File(name);
         } while (file.exists() && !file.isFile());
 
