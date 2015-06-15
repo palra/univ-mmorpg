@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.event.action;
 
 
-import fr.univdevs.logger.Event;
+import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.Player;
 
 import java.util.Date;

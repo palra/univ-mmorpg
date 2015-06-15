@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine;
 
-import fr.univdevs.logger.Logger;
-import fr.univdevs.logger.LoggerInterface;
+import fr.univdevs.mmorpg.engine.logger.Logger;
+import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.action.Action;
 import fr.univdevs.mmorpg.engine.event.game.RoundEndEvent;
 import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;

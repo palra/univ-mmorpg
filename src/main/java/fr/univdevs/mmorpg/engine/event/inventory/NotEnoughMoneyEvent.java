@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.event.inventory;
 
-import fr.univdevs.logger.Event;
+import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.util.ansi.ANSIAttribute;

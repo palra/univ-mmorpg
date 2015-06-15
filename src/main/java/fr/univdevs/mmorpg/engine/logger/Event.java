@@ -1,4 +1,4 @@
-package fr.univdevs.logger;
+package fr.univdevs.mmorpg.engine.logger;
 
 import fr.univdevs.util.Strings;
 
@@ -10,6 +10,14 @@ import java.util.Date;
  * Represents an event in the game
  */
 public abstract class Event implements Serializable {
+    /**
+     * Compares two events according to their creation date. The newer is the first.
+     */
+    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
+        public int compare(Event e1, Event e2) {
+            return -SORT_BY_DATE_ASC.compare(e1, e2);
+        }
+    };
     private String id;
     private String topic;
     private String name;
@@ -20,14 +28,6 @@ public abstract class Event implements Serializable {
     public static Comparator<Event> SORT_BY_DATE_ASC = new Comparator<Event>() {
         public int compare(Event e1, Event e2) {
             return e1.getCreatedAt().compareTo(e2.getCreatedAt());
-        }
-    };
-    /**
-     * Compares two events according to their creation date. The newer is the first.
-     */
-    public static Comparator<Event> SORT_BY_DATE_DESC = new Comparator<Event>() {
-        public int compare(Event e1, Event e2) {
-            return -SORT_BY_DATE_ASC.compare(e1, e2);
         }
     };
 

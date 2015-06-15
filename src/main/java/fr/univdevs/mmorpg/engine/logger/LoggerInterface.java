@@ -1,4 +1,4 @@
-package fr.univdevs.logger;
+package fr.univdevs.mmorpg.engine.logger;
 
 import java.io.Serializable;
 import java.util.List;

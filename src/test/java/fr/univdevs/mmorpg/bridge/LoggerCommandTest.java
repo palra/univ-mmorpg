@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.bridge;
 
 import fr.univdevs.commander.CommandParser;
-import fr.univdevs.logger.Logger;
+import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.event.action.NoOpEvent;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package fr.univdevs.logger;
+package fr.univdevs.mmorpg.engine.logger;
 
 import java.util.ArrayList;
 import java.util.List;

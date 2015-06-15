@@ -1,6 +1,6 @@
 package fr.univdevs.mmorpg.engine.event.game;
 
-import fr.univdevs.logger.Event;
+import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 

@@ -1,7 +1,7 @@
 package fr.univdevs.mmorpg.engine.event.inventory;
 
 
-import fr.univdevs.logger.Event;
+import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.character.Character;
 
 import java.util.Date;
