@@ -6,9 +6,19 @@ import fr.univdevs.commander.userworld.HelpCommand;
 import fr.univdevs.mmorpg.bridge.*;
 import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
+import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
+import fr.univdevs.mmorpg.game.item.cure.HyperPotion;
+import fr.univdevs.mmorpg.game.item.cure.Potion;
+import fr.univdevs.mmorpg.game.item.cure.SuperPotion;
+import fr.univdevs.mmorpg.game.item.protection.Armor;
+import fr.univdevs.mmorpg.game.item.protection.Helmet;
+import fr.univdevs.mmorpg.game.item.protection.Shield;
+import fr.univdevs.mmorpg.game.item.weapon.Bow;
+import fr.univdevs.mmorpg.game.item.weapon.Knife;
+import fr.univdevs.mmorpg.game.item.weapon.Sword;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -38,8 +48,6 @@ public class Game implements Serializable {
         this.actionCommands = new ArrayList<ActionCommand>();
         this.configureGame();
         this.configureCommands();
-        this.initShell();
-        this.configureShell();
     }
 
     public static Game readFrom(File file) throws IOException, ClassNotFoundException {
@@ -52,8 +60,6 @@ public class Game implements Serializable {
         Game game = (Game) ois.readObject();
         ois.close();
 
-        game.initShell();
-        game.configureShell();
         return game;
     }
 
@@ -65,15 +71,6 @@ public class Game implements Serializable {
         return gameManager;
     }
 
-    private void initShell() {
-        this.shell = new InteractiveShell(
-            new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
-                "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
-                " (" + System.getProperty("os.arch") + ")\n" +
-                "Type `help` for help on the shell\n"
-        );
-    }
-
     /**
      * Initializes the game
      *
@@ -83,13 +80,6 @@ public class Game implements Serializable {
         Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
         World world = new World(tilemap);
         this.gameManager = new GameManager(world);
-
-        // And put some items
-        Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
-        HealerCure healerCure = new HealerCure();
-        healerCure.setX(pos.x);
-        healerCure.setY(pos.y);
-        world.addEntity(healerCure);
     }
 
     /**
@@ -103,6 +93,32 @@ public class Game implements Serializable {
             p.getCharacter().setX(pos.x);
             p.getCharacter().setY(pos.y);
             p.getCharacter().getDisplay().addAttribute(ANSIAttribute.FG_RED);
+        }
+    }
+
+    /**
+     * Add random items on the world
+     */
+    public void addRandomItems() {
+        List<Item> items = new ArrayList<Item>();
+        items.add(new Sword());
+        items.add(new Knife());
+        items.add(new Bow());
+        items.add(new Helmet());
+        items.add(new Armor());
+        items.add(new Shield());
+        items.add(new HealerCure());
+        items.add(new Potion());
+        items.add(new SuperPotion());
+        items.add(new HyperPotion());
+
+        GameManager gm = this.getGameManager();
+        Tilemap tilemap = gm.getWorld().getTilemap();
+        for (Item i : items) {
+            Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
+            i.setX(pos.x);
+            i.setY(pos.y);
+            gm.getWorld().addEntity(i);
         }
     }
 
@@ -152,7 +168,16 @@ public class Game implements Serializable {
         this.actionCommands.add(noop);
     }
 
-    private void configureShell() {
+    /**
+     * Starts the shell
+     */
+    private void launchShell() {
+        this.shell = new InteractiveShell(
+            new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
+                "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
+                " (" + System.getProperty("os.arch") + ")\n" +
+                "Type `help` for help on the shell\n"
+        );
 
         this.shell.add(this.exit);
         this.shell.add(this.help);
@@ -187,6 +212,9 @@ public class Game implements Serializable {
      * Main loop of the application
      */
     public void play() {
+        // Launch the shell
+        this.launchShell();
+
         // The main loop
         Player oldPlayer = null;
         while (!this.exit.isClosed()) {
@@ -224,10 +252,22 @@ public class Game implements Serializable {
     }
 
 
+    /**
+     * Saves the game in the given file. Will overwrite any existing file.
+     *
+     * @param filename The name of the file
+     * @throws IOException
+     */
     public void saveTo(String filename) throws IOException {
         saveTo(new File(filename));
     }
 
+    /**
+     * Saves the game in the given file. Will overwrite any existing file.
+     *
+     * @param file The file
+     * @throws IOException
+     */
     public void saveTo(File file) throws IOException {
         ObjectOutputStream oos;
         oos = new ObjectOutputStream(

@@ -33,6 +33,7 @@ public class App {
             game = new Game();
             game.getGameManager().getPlayers().addAll(AppInit.init());
             game.randomizePlayersPosition();
+            game.addRandomItems();
         } else {
             game = loadFromFile();
         }
