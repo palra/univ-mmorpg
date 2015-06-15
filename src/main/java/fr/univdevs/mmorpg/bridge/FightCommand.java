@@ -41,6 +41,6 @@ public class FightCommand extends ActionCommand {
 
     @Override
     public String getSynopsis() {
-        return "<target><id>";
+        return "<target> <id>";
     }
 }

@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created by drattak on 08/06/15.
+ * Collection of methods that initializes a game.
+ *
+ * @author Vincent Emile
  */
-public class Debut {
+public class AppInit {
     private static List<Player> players = new ArrayList<Player>();
     private static String resumePlayers = "";
 
@@ -27,7 +29,7 @@ public class Debut {
         System.out.println("Combien de joueurs ?");
         int number = new Scanner(System.in).nextInt();
         for (int i = 0; i < number; i++) {
-            System.out.println("JOUEUR " + (i + 1));
+            System.out.println("Joueur " + (i + 1));
             playerInit();
         }
         return players;
@@ -39,7 +41,10 @@ public class Debut {
         String playerName = new Scanner(System.in).nextLine();
         System.out.println("Entrez le nom du personnage : ");
         String name = new Scanner(System.in).nextLine();
-        System.out.println("Quelle categorie ?\n1.Warrior\n2. Healer");
+        System.out.println("Quelle categorie ?\n" +
+            "1. Warrior\n" +
+            "2. Healer"
+        );
         int category = new Scanner(System.in).nextInt();
         return players.add(new Player(Strings.toCamelCase(playerName), determineCharacter(category, name)));
     }

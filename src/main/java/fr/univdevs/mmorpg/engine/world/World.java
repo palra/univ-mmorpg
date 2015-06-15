@@ -2,6 +2,7 @@ package fr.univdevs.mmorpg.engine.world;
 
 import fr.univdevs.util.Vector2D;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Public class world
  * It represents the world of the game
  */
-public class World {
+public class World implements Serializable {
     private HashMap<Vector2D<Integer>, Entity> entities;
     private Tilemap tilemap;
 
@@ -133,7 +134,7 @@ public class World {
         DOWN
     }
 
-    public static class MoveResult {
+    public static class MoveResult implements Serializable {
         private final List<Entity> nonCollidableEntities;
         private final boolean collision;
         private final int nbCases;

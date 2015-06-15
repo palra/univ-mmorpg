@@ -1,5 +1,6 @@
 package fr.univdevs.util.ansi;
 
+import java.io.Serializable;
 import java.util.EnumSet;
 
 /**
@@ -7,7 +8,7 @@ import java.util.EnumSet;
  *
  * @author Loic Payol
  */
-public class ANSIDisplayableObject<T> {
+public class ANSIDisplayableObject<T extends Serializable> implements Serializable {
     public static final String SEQ_START = "\u001B[";
     public static final String SEQ_END = "m";
 

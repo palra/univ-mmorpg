@@ -26,7 +26,6 @@ public class CureCommand extends ActionCommand {
 
         Player target = this.getGameManager().getPlayerByName(Strings.toCamelCase(args[0]));
         String id = args[1];
-        Cure c = new Potion();
 
         if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
 
@@ -44,6 +43,6 @@ public class CureCommand extends ActionCommand {
 
     @Override
     public String getSynopsis() {
-        return "<target><id>";
+        return "<target> <id>";
     }
 }

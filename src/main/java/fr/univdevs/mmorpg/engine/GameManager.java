@@ -8,12 +8,13 @@ import fr.univdevs.mmorpg.engine.event.game.RoundStartEvent;
 import fr.univdevs.mmorpg.engine.event.game.TurnStartEvent;
 import fr.univdevs.mmorpg.engine.world.World;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Manages a game instance.
  */
-public class GameManager {
+public class GameManager implements Serializable {
     private World world;
     private ArrayList<Player> players = new ArrayList<Player>();
     private Comparator<Player> playerComparator = Player.SORT_BY_SPEED_DESC;
@@ -34,7 +35,6 @@ public class GameManager {
         this.logger = other.logger;
         this.roundNb = other.roundNb;
     }
-
 
     /**
      * Returns an array of all the registered players.
@@ -105,7 +105,6 @@ public class GameManager {
     public boolean hasPlayerWithSameName(Player player) {
         return this.hasPlayerWithSameName(player.getName());
     }
-
 
     /**
      * Returns if there is a player with the same name in the collection.
@@ -181,8 +180,16 @@ public class GameManager {
         this.roundNb++;
     }
 
+    /**
+     * Returns the current round number
+     *
+     * @return The current round number
+     */
+    public int getRoundNb() {
+        return roundNb;
+    }
+
     public World getWorld() {
         return this.world;
     }
-
 }

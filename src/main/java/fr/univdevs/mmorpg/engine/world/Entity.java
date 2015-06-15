@@ -2,10 +2,12 @@ package fr.univdevs.mmorpg.engine.world;
 
 import fr.univdevs.util.ansi.ANSIChar;
 
+import java.io.Serializable;
+
 /**
  * Public interface Entity, declare any object to an entity, that can be displayed in the map
  */
-public interface Entity {
+public interface Entity extends Serializable {
 
     /**
      * Returns the horizontal position of the entity

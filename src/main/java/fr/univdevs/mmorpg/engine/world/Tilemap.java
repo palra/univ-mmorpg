@@ -4,6 +4,7 @@ import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIChar;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +17,7 @@ import static fr.univdevs.util.Numbers.randomInt;
  *
  * @author Vincent Emile
  */
-public class Tilemap {
+public class Tilemap implements Serializable {
 
     private static char EMPTY_CHAR = ' ';
     private char[] tiles;

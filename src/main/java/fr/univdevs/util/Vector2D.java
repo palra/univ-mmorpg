@@ -1,12 +1,14 @@
 package fr.univdevs.util;
 
+import java.io.Serializable;
+
 /**
  * Class Vector2D to represent a two dimenstionnal math vector.
  *
  * @author Vincent Emile
  * @author Loïc Payol
  */
-public class Vector2D<T extends Number> {
+public class Vector2D<T extends Number> implements Serializable {
     /**
      * First element of the vector
      */

@@ -5,14 +5,15 @@ import fr.univdevs.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.RemoveEvent;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Inventory
  * The inventory containing items
  */
-public class Inventory implements LoggerAwareInterface {
-    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple String, Item
+public class Inventory implements LoggerAwareInterface, Serializable {
+    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
     private Character character;
     private LoggerInterface logger;
 
@@ -159,20 +160,20 @@ public class Inventory implements LoggerAwareInterface {
      */
     public Item add(Item chosenItem) throws NotEnoughCashException {
         if (this.character.getMoney() >= chosenItem.getCost()) {
-            chosenItem.onRegister(character);
+            Item ret = this.items.put(chosenItem.getID(), chosenItem);
 
-            if (chosenItem != null)
-                chosenItem.onUnregister(character);
+            this.character.setMoney(this.character.getMoney() - chosenItem.getCost());
+            chosenItem.onRegister(character);
 
             if (logger != null) {
                 logger.log(new AddEvent(chosenItem, character));
             }
+            
+            return ret;
+        }
+        
+        throw new NotEnoughCashException("Pas assez d'argent!");
 
-            this.character.setMoney(this.character.getMoney() - chosenItem.getCost());
-
-        } else throw new NotEnoughCashException("Pas assez d'argent!");
-
-        return this.items.put(chosenItem.getID(), chosenItem);
     }
 
     /**

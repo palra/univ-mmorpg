@@ -1,5 +1,6 @@
 package fr.univdevs.commander;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,7 +8,7 @@ import java.util.Arrays;
  * Registers Command instances and parses an user input, in order to call a registered command.
  * @author Loïc Payol
  */
-public class CommandParser implements CommandParserInterface {
+public class CommandParser implements CommandParserInterface, Serializable {
     private ArrayList<Command> commands = new ArrayList<Command>();
 
     /**

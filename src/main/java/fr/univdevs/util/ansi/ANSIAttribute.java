@@ -1,11 +1,13 @@
 package fr.univdevs.util.ansi;
 
+import java.io.Serializable;
+
 /**
  * Utility class listing all the ansi special sequences.
  *
  * @author Loïc Payol
  */
-public enum ANSIAttribute {
+public enum ANSIAttribute implements Serializable {
     ATTR_RESET("0"),
     ATTR_BOLD("1"),
     ATTR_UNDERSCORE("4"),
