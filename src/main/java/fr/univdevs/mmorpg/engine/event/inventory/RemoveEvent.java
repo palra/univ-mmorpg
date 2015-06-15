@@ -27,7 +27,7 @@ public class RemoveEvent extends InventoryEvent {
     @Override
     public String getDescription() {
         return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " relâche " +
-            new ANSIString(item.getCategory(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
+                new ANSIString(item.getType(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
             new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ")";
     }
 }

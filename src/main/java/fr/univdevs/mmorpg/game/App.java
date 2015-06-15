@@ -8,8 +8,8 @@ import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.world.Tilemap;
 import fr.univdevs.mmorpg.engine.world.World;
-import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.mmorpg.game.item.cure.HealerCure;
+import fr.univdevs.mmorpg.game.item.weapon.Sword;
 import fr.univdevs.util.Vector2D;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
@@ -29,6 +29,9 @@ public class App {
     private static StatsCommand stats;
     private static InventoryCommand items;
     private static ExitCommand exit;
+    private static LoggerCommand log;
+    private static CureCommand cure;
+    private static FightCommand fight;
     private static InteractiveShell shell = new InteractiveShell(
         new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
             "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
@@ -46,9 +49,9 @@ public class App {
         World world = new World(tilemap);
         gameManager = new GameManager(world);
 
-        // Registering players
-        gameManager.addPlayer(new Player("palra", new Warrior("nom-super-agressif")));
-
+        for(Player p : Debut.init()) {
+            gameManager.addPlayer(p);
+        }
 
         for (Player p : gameManager.getPlayers()) {
             Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
@@ -62,9 +65,14 @@ public class App {
         // And put some items
         Vector2D<Integer> pos = tilemap.getEmptyRandomPosition();
         HealerCure healerCure = new HealerCure();
-        healerCure.setX(pos.x);
-        healerCure.setY(pos.y);
+        Sword sword = new Sword();
+        healerCure.setX(1);
+        healerCure.setY(1);
+        sword.setX(9);
+        sword.setY(9);
         world.addEntity(healerCure);
+        world.addEntity(sword);
+
     }
 
     /**
@@ -82,12 +90,20 @@ public class App {
         map.setGameManager(gameManager);
 
         // log
-        LoggerCommand log = new LoggerCommand();
+        log = new LoggerCommand();
         log.setLogger(gameManager.getLogger());
 
         // stats
         stats = new StatsCommand();
         stats.setGameManager(gameManager);
+
+        //fight
+        fight = new FightCommand();
+        actionCommands.add(fight);
+
+        //cure
+        cure = new CureCommand();
+        actionCommands.add(cure);
 
         // items
         items = new InventoryCommand();
@@ -124,6 +140,8 @@ public class App {
 
         stats.setCurrentPlayer(currentPlayer);
         items.setCurrentPlayer(currentPlayer);
+        cure.setCurrentPlayer(currentPlayer);
+
     }
 
     /**

@@ -11,7 +11,7 @@ import fr.univdevs.util.ansi.ANSIChar;
 public class SuperPotion extends Cure {
 
     public SuperPotion() {
-        super("SuperPotion", 200, 20);
+        super("SuperPotion", 200, 20, 20);
     }
 
     public SuperPotion(SuperPotion other) {

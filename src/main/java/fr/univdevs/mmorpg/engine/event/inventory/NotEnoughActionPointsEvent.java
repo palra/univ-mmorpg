@@ -8,19 +8,19 @@ import fr.univdevs.util.ansi.ANSIString;
 
 import java.util.Date;
 
-public class NotEnoughMoneyEvent extends Event {
+public class NotEnoughActionPointsEvent extends Event {
     private static final String TOPIC = "inventory";
-    private static final String NAME = "not_enough_money";
+    private static final String NAME = "not_enough_action_points";
     private Item item;
     private fr.univdevs.mmorpg.engine.character.Character character;
 
-    public NotEnoughMoneyEvent(Item item, Character character) {
+    public NotEnoughActionPointsEvent(Item item, Character character) {
         super(TOPIC, NAME);
         this.item = item;
         this.character = character;
     }
 
-    public NotEnoughMoneyEvent(Date date, Item item, Character character) {
+    public NotEnoughActionPointsEvent(Date date, Item item, Character character) {
         super(TOPIC, NAME, date);
         this.item = item;
         this.character = character;
@@ -29,9 +29,7 @@ public class NotEnoughMoneyEvent extends Event {
     @Override
     public String getDescription() {
         return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
-            "assez d'argent (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") pour acquérir " +
-                new ANSIString(item.getType(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
-            new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
-            new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";
+                "assez de points d'action (" + new ANSIString(character.getActionPoints() + "£", ANSIAttribute.FG_GREEN) + ") pour faire cela " +
+                new ANSIString(String.valueOf(character.getActionPoints()), ANSIAttribute.FG_GREEN) + ")";
     }
 }

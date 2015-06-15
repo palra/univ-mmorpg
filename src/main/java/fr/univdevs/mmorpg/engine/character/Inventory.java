@@ -12,7 +12,7 @@ import java.util.*;
  * The inventory containing items
  */
 public class Inventory implements LoggerAwareInterface {
-    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
+    private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple String, Item
     private Character character;
     private LoggerInterface logger;
 
@@ -44,6 +44,10 @@ public class Inventory implements LoggerAwareInterface {
         this.items = other.items;
         this.character = other.character;
         this.logger = other.logger;
+    }
+
+    public Item getById(String chosenID) {
+        return this.items.get(chosenID);
     }
 
     /**
@@ -112,7 +116,7 @@ public class Inventory implements LoggerAwareInterface {
     public Item[] getByType(String category) {
         ArrayList<Item> selectedItems = new ArrayList<Item>();
         for (Item value : this.items.values()) {
-            if (value.getCategory().equals(category)) {
+            if (value.getType().equals(category)) {
                 selectedItems.add(value);
             }
         }
@@ -126,7 +130,7 @@ public class Inventory implements LoggerAwareInterface {
         HashSet<String> types = new HashSet<String>(); //Hashset avoid doubles
         Iterator i = this.items.entrySet().iterator();
         for (Item value : this.items.values()) {
-            String cat = value.getCategory();
+            String cat = value.getType();
             if (!types.contains(cat)) {
                 types.add(cat);
             }
@@ -149,25 +153,26 @@ public class Inventory implements LoggerAwareInterface {
     /**
      * Adds the given item to the collection. If the item can't be added, returns it.
      *
-     * @param item idem to be added
+     * @param chosenItem idem to be added
+     *
+     * @return the result this.items.put
      */
-    public Item add(Item item) throws NotEnoughCashException {
-        if (this.character.getMoney() >= item.getCost()) {
-            item.onRegister(character);
-            Item i = this.items.put(item.getID(), item);
+    public Item add(Item chosenItem) throws NotEnoughCashException {
+        if (this.character.getMoney() >= chosenItem.getCost()) {
+            chosenItem.onRegister(character);
 
-            if (i != null)
-                i.onUnregister(character);
+            if (chosenItem != null)
+                chosenItem.onUnregister(character);
 
             if (logger != null) {
-                logger.log(new AddEvent(item, character));
+                logger.log(new AddEvent(chosenItem, character));
             }
 
-            this.character.setMoney(this.character.getMoney() - item.getCost());
+            this.character.setMoney(this.character.getMoney() - chosenItem.getCost());
 
         } else throw new NotEnoughCashException("Pas assez d'argent!");
 
-        return item;
+        return this.items.put(chosenItem.getID(), chosenItem);
     }
 
     /**
@@ -176,7 +181,7 @@ public class Inventory implements LoggerAwareInterface {
      * @param item the item we want to check
      * @return true if the inventory contains the selected item
      */
-    public boolean has(Item item) {
+    public boolean has(Object item) {
         return this.items.containsValue(item);
     }
 
@@ -229,10 +234,6 @@ public class Inventory implements LoggerAwareInterface {
         return results;
     }
 
-    public Item getItemByCategory(String category) {
-        if (this.getByType(category).length == 1) return this.getByType(category)[0];
-        return null;
-    }
 
 
     /**

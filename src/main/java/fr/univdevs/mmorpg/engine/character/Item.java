@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public abstract class Item implements MovableEntity {
     private static ArrayList<String> ids = new ArrayList<String>();
     private String ID;
-    private String category;
+    private String type;
     private int cost;
     private int weight;
 
@@ -22,30 +22,20 @@ public abstract class Item implements MovableEntity {
     /**
      * Item Constructor
      *
-     * @param itemCategory category of the item, cannot be changed
+     * @param itemType category of the item, cannot be changed
      * @param itemCost     price of the item
      * @param itemWeight   weight of the item, cannot be changed
      */
-    public Item(String itemCategory, int itemCost, int itemWeight) {
-        this(itemCategory, itemCost);
-        this.weight = itemWeight;
-    }
-
-
-    /**
-     * Item Constructor
-     *
-     * @param itemCategory category of the item, cannot be changed
-     * @param itemCost     price of the item
-     */
-    public Item(String itemCategory, int itemCost) {
-        this.category = itemCategory;
+    public Item(String itemType, int itemCost, int itemWeight) {
+        this.type = itemType;
         this.cost = itemCost;
+        this.weight = itemWeight;
         do {
             this.ID = Strings.random32();
-            ids.add(this.ID);
-        } while (!ids.contains(this.ID));
+        } while (ids.contains(this.ID));
+        ids.add(this.ID);
     }
+
 
     /**
      * Item copy constructor
@@ -54,7 +44,7 @@ public abstract class Item implements MovableEntity {
      */
     public Item(Item other) {
         this.ID = other.ID;
-        this.category = other.category;
+        this.type = other.type;
         this.cost = other.cost;
         this.weight = other.weight;
         this.x = other.x;
@@ -62,20 +52,11 @@ public abstract class Item implements MovableEntity {
     }
 
     /**
-     * Public method to get all the IDS already used
-     * Useful to check if randomly generated id does not exist already
-     * @return the ids
-     */
-    public static ArrayList<String> getIds() {
-        return ids;
-    }
-
-    /**
      * Redefinition of toString
      * @return the generated string
      */
     public String toString() {
-        return "id = " + this.getID() + "\ncategory = " + this.getCategory() + "\ncost = " + this.getCost() + "\n";
+        return "id = " + this.getID() + "\ncategory = " + this.getType() + "\ncost = " + this.getCost() + "\n";
     }
 
     /**
@@ -83,8 +64,8 @@ public abstract class Item implements MovableEntity {
      *
      * @return The category
      */
-    public String getCategory() {
-        return this.category;
+    public String getType() {
+        return this.type;
     }
 
     /**
@@ -174,7 +155,7 @@ public abstract class Item implements MovableEntity {
 
         if (this.cost != item.cost) return false;
         if (this.weight != item.weight) return false;
-        return this.category.equals(item.category);
+        return this.type.equals(item.type);
 
     }
 }

@@ -25,19 +25,10 @@ public abstract class Cure extends Item {
         this.restoredPoints = restoredPoints;
     }
 
-
     /**
-     * cure constructor
-     *
-     * @param cureCategory   the category of the cure, can't be changed
-     * @param cureCost       the cost of the cure
-     * @param restoredPoints amounts of points restored by the cure
+     * Cure copy constructor
+     * @param other the cure we want to copy
      */
-    public Cure(String cureCategory, int cureCost, int restoredPoints) {
-        super(cureCategory, cureCost);
-        this.restoredPoints = restoredPoints;
-    }
-
     public Cure(Cure other) {
         super(other);
         this.restoredPoints = other.restoredPoints;
@@ -59,7 +50,7 @@ public abstract class Cure extends Item {
      * @return the generated String
      */
     public String toString() {
-        return "categorie = " + this.getCategory() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
+        return "categorie = " + this.getType() + '\n' + "coût = " + this.getCost() + '\n' + "Points restaurés = " + this.restoredPoints + '\n';
     }
 
     /**

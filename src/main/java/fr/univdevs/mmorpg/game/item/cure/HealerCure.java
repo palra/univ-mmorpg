@@ -14,7 +14,7 @@ import fr.univdevs.util.ansi.ANSIChar;
 public class HealerCure extends Cure {
 
     public HealerCure() {
-        super("HealerCure", 1000, 90);
+        super("HealerCure", 1000, 90, 0);
     }
 
     public HealerCure(HealerCure other) {

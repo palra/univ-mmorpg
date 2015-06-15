@@ -1,44 +1,49 @@
-package fr.univdevs.mmorpg.engine;
+package fr.univdevs.mmorpg.game;
 
+import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.game.character.Healer;
 import fr.univdevs.mmorpg.game.character.Warrior;
 import fr.univdevs.util.Strings;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * Created by drattak on 08/06/15.
  */
-public class Main {
-    private static HashMap<String, Player> players = new HashMap<String, Player>();
+public class Debut {
+    private static List<Player> players = new ArrayList<Player>();
     private static String resumePlayers = "";
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         init();
         System.out.println(affichePlayer(players));
-    }
+    }*/
 
-    public static void init() {
+    public static List<Player> init() {
         System.out.println("Combien de joueurs ?");
         int number = new Scanner(System.in).nextInt();
         for (int i = 0; i < number; i++) {
             System.out.println("JOUEUR " + (i + 1));
             playerInit();
         }
+        return players;
     }
 
 
-    public static Player playerInit() {
+    public static boolean playerInit() {
         System.out.println("Entrez le nom du joueur : ");
         String playerName = new Scanner(System.in).nextLine();
         System.out.println("Entrez le nom du personnage : ");
         String name = new Scanner(System.in).nextLine();
         System.out.println("Quelle categorie ?\n1.Warrior\n2. Healer");
         int category = new Scanner(System.in).nextInt();
-        return players.put(Strings.toCamelCase(playerName), new Player(Strings.toCamelCase(playerName), determineCharacter(category, name)));
+        return players.add(new Player(Strings.toCamelCase(playerName), determineCharacter(category, name)));
     }
+
 
     public static Character determineCharacter(int category, String name) {
         switch (category) {
