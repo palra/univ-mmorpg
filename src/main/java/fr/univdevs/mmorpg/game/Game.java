@@ -43,6 +43,7 @@ public class Game implements Serializable {
     private CureCommand cure;
     private LoggerCommand log;
     private PlayersCommand players;
+    private DropCommand drop;
 
     public Game() throws IOException {
         this.actionCommands = new ArrayList<ActionCommand>();
@@ -136,6 +137,10 @@ public class Game implements Serializable {
         this.map = new MapCommand();
         this.map.setGameManager(this.gameManager);
 
+        //drop
+        this.drop = new DropCommand();
+        this.drop.setGameManager(this.gameManager);
+
         // log
         this.log = new LoggerCommand();
         this.log.setLogger(this.gameManager.getLogger());
@@ -153,11 +158,11 @@ public class Game implements Serializable {
 
         // fight
         this.fight = new FightCommand();
-        this.players.setGameManager(this.gameManager);
+        this.fight.setGameManager(this.gameManager);
 
         // cure
         this.cure = new CureCommand();
-        this.players.setGameManager(this.gameManager);
+        this.cure.setGameManager(this.gameManager);
 
         // move
         MoveCommand move = new MoveCommand();
@@ -188,6 +193,7 @@ public class Game implements Serializable {
         this.shell.add(this.fight);
         this.shell.add(this.cure);
         this.shell.add(this.players);
+        this.shell.add(this.drop);
 
         for (ActionCommand command : this.actionCommands) {
             command.setGameManager(this.gameManager);
@@ -206,6 +212,9 @@ public class Game implements Serializable {
 
         stats.setCurrentPlayer(currentPlayer);
         items.setCurrentPlayer(currentPlayer);
+        drop.setCurrentPlayer(currentPlayer);
+        fight.setCurrentPlayer(currentPlayer);
+        cure.setCurrentPlayer(currentPlayer);
     }
 
     /**

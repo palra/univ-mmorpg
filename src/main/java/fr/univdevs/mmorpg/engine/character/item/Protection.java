@@ -57,4 +57,5 @@ public abstract class Protection extends Item {
         c.setSpeed(c.getSpeed() + this.getWeight() / 20);
     }
 
+
 }

@@ -151,6 +151,19 @@ public class GameManager implements Serializable {
         return this.logger;
     }
 
+    public boolean AtLeastTwoPlayers(){
+        Player current;
+        int nb_dead = 0;
+        ListIterator li = players.listIterator();
+        while (li.hasNext()){
+            current = (Player)li.next();
+            if (current.getCharacter().getHealth() == 0){
+                nb_dead += 1;
+            }
+        }
+        return nb_dead < players.size()-1;
+    }
+
     /**
      * Plays a turn of the game. Each player has a nextAction field, so the GameManager will look if an action is
      * registered for each player, will order the actions with a given strategy, and then will execute each action in the
@@ -158,26 +171,28 @@ public class GameManager implements Serializable {
      * To see which actions were done, see the GameLog.
      */
     public void playTurn() {
-        getLogger().log(new RoundStartEvent(this.roundNb));
+        do {
+            getLogger().log(new RoundStartEvent(this.roundNb));
 
-        // Sorting the collection first
-        Collections.sort(this.players, this.playerComparator);
+            // Sorting the collection first
+            Collections.sort(this.players, this.playerComparator);
 
-        Player notRegisteredPlayer = this.getFirstPlayerWithoutAction();
-        if (notRegisteredPlayer != null)
-            throw new IllegalStateException("Action of player " + notRegisteredPlayer.getName() + " was not registered.");
+            Player notRegisteredPlayer = this.getFirstPlayerWithoutAction();
+            if (notRegisteredPlayer != null)
+                throw new IllegalStateException("Action of player " + notRegisteredPlayer.getName() + " was not registered.");
 
-        // And executing them
-        for (Player player : this.players) {
-            Action nextAction = player.getNextAction();
-            this.getLogger().log(new TurnStartEvent(this, nextAction.getSubject()));
-            nextAction.setGameManager(this); // Injecting the logger
-            nextAction.execute(); // Executing the action
-            player.setNextAction(null);
-        }
+            // And executing them
+            for (Player player : this.players) {
+                Action nextAction = player.getNextAction();
+                this.getLogger().log(new TurnStartEvent(this, nextAction.getSubject()));
+                nextAction.setGameManager(this); // Injecting the logger
+                nextAction.execute(); // Executing the action
+                player.setNextAction(null);
+            }
 
-        getLogger().log(new RoundEndEvent(this.roundNb));
-        this.roundNb++;
+            getLogger().log(new RoundEndEvent(this.roundNb));
+            this.roundNb++;
+        } while (AtLeastTwoPlayers());
     }
 
     /**

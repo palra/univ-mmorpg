@@ -12,10 +12,9 @@ import java.util.*;
  * Inventory
  * The inventory containing items
  */
-public class Inventory implements LoggerAwareInterface, Serializable {
+public class Inventory implements Serializable {
     private HashMap<String, Item> items; // A HashMap is a couple of Objects, here a couple Integer, Item
     private Character character;
-    private LoggerInterface logger;
 
     /**
      * Empty inventory constructor
@@ -44,7 +43,6 @@ public class Inventory implements LoggerAwareInterface, Serializable {
     public Inventory(Inventory other) {
         this.items = other.items;
         this.character = other.character;
-        this.logger = other.logger;
     }
 
     public Item getById(String chosenID) {
@@ -58,22 +56,6 @@ public class Inventory implements LoggerAwareInterface, Serializable {
      */
     public Character getCharacter() {
         return this.character;
-    }
-
-    /**
-     * Returns the logger
-     *
-     * @return The logger
-     */
-    public LoggerInterface getLogger() {
-        return this.logger;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setLogger(LoggerInterface logger) {
-        this.logger = logger;
     }
 
     /**
@@ -165,9 +147,6 @@ public class Inventory implements LoggerAwareInterface, Serializable {
             this.character.setMoney(this.character.getMoney() - chosenItem.getCost());
             chosenItem.onRegister(character);
 
-            if (logger != null) {
-                logger.log(new AddEvent(chosenItem, character));
-            }
             
             return ret;
         }
@@ -205,9 +184,6 @@ public class Inventory implements LoggerAwareInterface, Serializable {
         if (i != null)
             i.onUnregister(this.getCharacter());
 
-        if (logger != null) {
-            logger.log(new RemoveEvent(item, character));
-        }
 
         return i;
     }

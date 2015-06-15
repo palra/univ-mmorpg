@@ -8,6 +8,7 @@ import fr.univdevs.mmorpg.engine.event.action.MoveEvent;
 import fr.univdevs.mmorpg.engine.event.action.MoveRejectEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.AddEvent;
 import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughMoneyEvent;
+import fr.univdevs.mmorpg.engine.logger.Logger;
 import fr.univdevs.mmorpg.engine.world.Entity;
 import fr.univdevs.mmorpg.engine.world.World;
 
@@ -65,6 +66,7 @@ public class MoveAction extends Action {
                 try {
                     inventory.add(item);
                     w.removeEntity(entity);
+                    this.getLogger().log(new AddEvent(item, c));
                 } catch (Inventory.NotEnoughCashException exp) {
                     this.getLogger().log(new NotEnoughMoneyEvent(item, c));
                     return;
