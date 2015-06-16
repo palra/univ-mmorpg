@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.game;
 
+import fr.univdevs.mmorpg.engine.GameManager;
 import fr.univdevs.util.Strings;
 
 import java.io.File;
@@ -39,7 +40,6 @@ public class App {
         }
 
         game.play();
-
         System.out.print("Do you want to save your game ? (y/N) : ");
         String save = sc.nextLine();
         if (save.trim().toUpperCase().equals("Y"))

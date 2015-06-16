@@ -151,18 +151,6 @@ public class GameManager implements Serializable {
         return this.logger;
     }
 
-    public boolean AtLeastTwoPlayers(){
-        Player current;
-        int nb_dead = 0;
-        ListIterator li = players.listIterator();
-        while (li.hasNext()){
-            current = (Player)li.next();
-            if (current.getCharacter().getHealth() == 0){
-                nb_dead += 1;
-            }
-        }
-        return nb_dead < players.size()-1;
-    }
 
     /**
      * Plays a turn of the game. Each player has a nextAction field, so the GameManager will look if an action is
@@ -171,7 +159,6 @@ public class GameManager implements Serializable {
      * To see which actions were done, see the GameLog.
      */
     public void playTurn() {
-        do {
             getLogger().log(new RoundStartEvent(this.roundNb));
 
             // Sorting the collection first
@@ -192,7 +179,7 @@ public class GameManager implements Serializable {
 
             getLogger().log(new RoundEndEvent(this.roundNb));
             this.roundNb++;
-        } while (AtLeastTwoPlayers());
+
     }
 
     /**
