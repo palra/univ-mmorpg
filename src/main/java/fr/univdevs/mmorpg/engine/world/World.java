@@ -1,18 +1,16 @@
 package fr.univdevs.mmorpg.engine.world;
 
-import fr.univdevs.util.Vector2D;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Public class world
  * It represents the world of the game
  */
 public class World implements Serializable {
-    private HashMap<Vector2D<Integer>, Entity> entities;
+    private ArrayList<Entity> entities;
     private Tilemap tilemap;
 
     /**
@@ -21,15 +19,14 @@ public class World implements Serializable {
      * @param tilemap The tilemap
      */
     public World(Tilemap tilemap) {
-        this.entities = new HashMap<Vector2D<Integer>, Entity>();
+        this.entities = new ArrayList<Entity>();
         this.tilemap = tilemap;
     }
 
     public World(World other) {
-        this.entities = new HashMap<Vector2D<Integer>, Entity>(other.entities);
+        this.entities = new ArrayList<Entity>(other.entities);
         this.tilemap = new Tilemap(other.tilemap);
     }
-
 
     /**
      * Returns the tilemap
@@ -44,20 +41,20 @@ public class World implements Serializable {
      * Public method addEntity to add an Entity to the world
      *
      * @param e the Entity we want to add
-     * @return null if no entity was at this place, the old entity otherwise
+     * @return true
      */
-    public Entity addEntity(Entity e) {
-        return this.entities.put(new Vector2D<Integer>(e.getX(), e.getY()), e);
+    public boolean addEntity(Entity e) {
+        return this.entities.add(e);
     }
 
     /**
      * Removes the entity passed in parameter from the world
      *
      * @param e The entity we want to remove
-     * @return null if the given entity is not on the map, the Entity otherwise
+     * @return true if the entity was removed, false otherwise
      */
-    public Entity removeEntity(Entity e) {
-        return this.entities.remove(new Vector2D<Integer>(e.getX(), e.getY()));
+    public boolean removeEntity(Entity e) {
+        return this.entities.remove(e);
     }
 
     /**
@@ -68,13 +65,20 @@ public class World implements Serializable {
      * @return the entity, if exists
      */
     public Entity getEntity(int x, int y) {
-        return this.entities.get(new Vector2D<Integer>(x, y));
+        ListIterator<Entity> it = this.entities.listIterator();
+        Entity entity = null;
+        while (it.hasNext() && entity == null) {
+            Entity e = it.next();
+            if (e.getX() == x && e.getY() == y)
+                entity = e;
+        }
+
+        return entity;
     }
 
     public List<Entity> getEntities() {
-        return new ArrayList<Entity>(this.entities.values());
+        return entities;
     }
-
 
     /**
      * Moves a given entity to nb cases from `dir` direction
@@ -95,27 +99,23 @@ public class World implements Serializable {
         List<Entity> nonCollidableEntities = new ArrayList<Entity>();
 
         while (i < nb && !collision) {
-            // Moving the entity
-            e.setX(e.getX() + right_dir);
-            e.setY(e.getY() + up_dir);
-
-            // Query the entity that is in that place
-            Entity inplace = getEntity(e.getX(), e.getY());
+            int newX = e.getX() + right_dir;
+            int newY = e.getY() + up_dir;
+            // Query the entity that is at the next position
+            Entity inplace = getEntity(newX, newY);
             if (inplace != null && !inplace.isCollidable()) {
                 nonCollidableEntities.add(inplace);
             }
 
             // Checking if any collision
-            collision = isCollidableAt(e.getX(), e.getY());
+            collision = isCollidableAt(newX, newY);
 
-            // And rewing if any
-            if (collision) {
-                e.setX(e.getX() - right_dir);
-                e.setY(e.getY() - up_dir);
-                i--;
+            if (!collision) {
+                // Move the entity
+                e.setX(newX);
+                e.setY(newY);
+                i++;
             }
-
-            i++;
         }
 
         return new MoveResult(nonCollidableEntities, collision, i);
