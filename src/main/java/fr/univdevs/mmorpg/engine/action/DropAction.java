@@ -1,11 +1,9 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.character.Item;
-import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
-import fr.univdevs.mmorpg.engine.character.item.Cure;
+import fr.univdevs.mmorpg.engine.character.Item;
 import fr.univdevs.mmorpg.engine.event.action.CureEvent;
-import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughActionPointsEvent;
+import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 
 /**
  * Public class CureAction
@@ -24,7 +22,7 @@ public class DropAction extends Action {
         super(chosenSubject, chosenSubject);
         if (chosenSubject.getCharacter().getInventory().has(chosenItem))
             this.item = chosenItem;
-        else throw new NotInInventoryException("Ce n'est pas dans l'inventaire!");
+        else throw new NotInInventoryException("This item is not in the inventory");
 
     }
 

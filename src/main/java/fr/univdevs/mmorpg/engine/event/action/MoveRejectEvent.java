@@ -22,11 +22,11 @@ public class MoveRejectEvent extends ActionEvent {
     @Override
     public String getDescription() {
         return new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
-            " ne peut pas déplacer " +
+            " can't move " +
             new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
-            " de " + this.nbCases + " case" +
+            " of " + this.nbCases + " case" +
             ((this.nbCases <= 1) ? "" : "s") + // Pluralize the string
-            " (manque de points d'action : " +
+            " (not enough action points : " +
             new ANSIString(getSubject().getCharacter().getActionPoints() + "", ANSIAttribute.FG_GREEN) + ")";
     }
 }

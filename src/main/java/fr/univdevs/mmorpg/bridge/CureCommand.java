@@ -5,7 +5,6 @@ import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.action.CureAction;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
-import fr.univdevs.mmorpg.game.item.cure.Potion;
 import fr.univdevs.util.Strings;
 
 /**
@@ -29,15 +28,15 @@ public class CureCommand extends ActionCommand {
 
         if (this.getCurrentPlayer().getCharacter().getInventory().getById(id) instanceof Cure) {
 
-            CureAction action = null;
+            CureAction action;
             try {
                 action = new CureAction(this.getCurrentPlayer(), target, (Cure) this.getCurrentPlayer().getCharacter().getInventory().getById(id));
             } catch (CureAction.NotInInventoryException e) {
-                throw new ArgumentValidationCommandException("Objet non présent dans l'inventaire");
+                throw new ArgumentValidationCommandException("Object not in the inventory");
             }
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
-        } else throw new ArgumentValidationCommandException("Vous avez entré une cure invalide");
+        } else throw new ArgumentValidationCommandException("Invalid cure name");
         return null;
     }
 

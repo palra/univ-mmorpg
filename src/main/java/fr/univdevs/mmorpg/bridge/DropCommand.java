@@ -3,9 +3,7 @@ package fr.univdevs.mmorpg.bridge;
 import fr.univdevs.commander.ArgumentValidationCommandException;
 import fr.univdevs.commander.CommandException;
 import fr.univdevs.mmorpg.engine.action.DropAction;
-import fr.univdevs.mmorpg.engine.action.MoveAction;
 import fr.univdevs.mmorpg.engine.character.Item;
-import fr.univdevs.mmorpg.engine.world.World;
 
 /**
  * Command that moves a player's character on the world.
@@ -22,14 +20,14 @@ public class DropCommand extends ActionCommand {
         if (args.length != 1)
             throw new ArgumentValidationCommandException("Invalid number of arguments");
 
-        DropAction action = null;
+        DropAction action;
         Item itemToRemove = this.getCurrentPlayer().getCharacter().getInventory().getById(args[0]);
         try {
             action = new DropAction(this.getCurrentPlayer(), itemToRemove);
             action.setGameManager(this.getGameManager());
             this.setNextAction(action);
         } catch (DropAction.NotInInventoryException e) {
-            System.out.println("Ce n'est pas dans l'inventaire!");
+            System.out.println("The item is not in the inventory");
         }
 
         return null;

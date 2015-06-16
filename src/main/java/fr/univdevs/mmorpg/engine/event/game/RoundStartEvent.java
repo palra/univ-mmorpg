@@ -47,6 +47,6 @@ public class RoundStartEvent extends Event {
 
     @Override
     public String getDescription() {
-        return new ANSIString("Début du tour n°" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
+        return new ANSIString("Starting turn #" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
     }
 }

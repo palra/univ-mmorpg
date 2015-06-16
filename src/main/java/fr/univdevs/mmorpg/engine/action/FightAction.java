@@ -26,7 +26,7 @@ public class FightAction extends Action {
         if (chosenSubject.getCharacter().getInventory().has(chosenWeapon))
             this.weapon = chosenWeapon;
         else
-            throw new IllegalArgumentException("Pas dans l'inventaire!");
+            throw new IllegalArgumentException("This weapon is not in the inventory");
     }
 
     public FightAction(FightAction other) {
@@ -46,7 +46,7 @@ public class FightAction extends Action {
             this.getGameManager().getPlayers().remove(getTarget());
         }
         LoggerInterface l = this.getLogger();
-        l.log(new FightEvent(this.getSubject(), this.getTarget()));
+        l.log(new FightEvent(this.getSubject(), this.getTarget(), this.weapon));
     }
 
 

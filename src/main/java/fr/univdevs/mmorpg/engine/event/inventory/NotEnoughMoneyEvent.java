@@ -1,8 +1,8 @@
 package fr.univdevs.mmorpg.engine.event.inventory;
 
-import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.mmorpg.engine.character.Character;
 import fr.univdevs.mmorpg.engine.character.Item;
+import fr.univdevs.mmorpg.engine.logger.Event;
 import fr.univdevs.util.ansi.ANSIAttribute;
 import fr.univdevs.util.ansi.ANSIString;
 
@@ -28,8 +28,8 @@ public class NotEnoughMoneyEvent extends Event {
 
     @Override
     public String getDescription() {
-        return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " n'a pas " +
-            "assez d'argent (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") pour acquérir " +
+        return new ANSIString(character.getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) + " does not " +
+            "have enough money (" + new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ") to buy " +
                 new ANSIString(item.getType(), ANSIAttribute.FG_CYAN, ANSIAttribute.ATTR_BOLD) + " (" +
             new ANSIString(item.getID() + "", ANSIAttribute.ATTR_UNDERSCORE, ANSIAttribute.FG_CYAN) + ", " +
             new ANSIString(character.getMoney() + "£", ANSIAttribute.FG_GREEN) + ")";

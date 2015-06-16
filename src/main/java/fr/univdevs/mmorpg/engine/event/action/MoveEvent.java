@@ -27,24 +27,22 @@ public class MoveEvent extends ActionEvent {
     @Override
     public String getDescription() {
         String out = new ANSIString(getSubject().getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
-            " a déplacé " +
+            " moved " +
             new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
-            " de " + res.getNbCases() + " case" +
-            ((res.getNbCases() <= 1) ? "" : "s") + // Pluralize the string
-            " vers ";
-
+            " of " + res.getNbCases() + " case" +
+            ((res.getNbCases() <= 1) ? "" : "s"); // Pluralize the string
         switch (dir) {
             case LEFT:
-                out += "la gauche";
+                out += "to the left";
                 break;
             case RIGHT:
-                out += "la droite";
+                out += "to the right";
                 break;
             case UP:
-                out += "le haut";
+                out += "upside";
                 break;
             case DOWN:
-                out += "le bas";
+                out += "downside";
                 break;
         }
 
