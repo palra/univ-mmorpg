@@ -65,7 +65,7 @@ public class StatsCommand extends GameManagerAwareCommand {
             " - Experience : " + c.getExperience() + " XP \n" +
             " - Points d'action : " + c.getActionPoints() + " AP \n" +
             " - Vitesse : " + c.getSpeed() + "\n" +
-            " - Résistance : " + c.getResistance() * 100 + "\n" +
+            " - Résistance : " + (int) (c.getResistance() * 100) + "%\n" +
             " - Argent : " + c.getMoney() + "£ \n";
     }
 

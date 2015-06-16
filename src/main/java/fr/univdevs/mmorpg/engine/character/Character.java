@@ -66,6 +66,7 @@ public abstract class Character implements MovableEntity, Serializable {
         this.setDisplay(chosenDisplay);
         this.speed = 100;
         this.actionPoints = 300;
+
         try {        //Because Inventory.add throws Exception, we have to try{}catch(){}
             this.inventory.add(new Knife());
         } catch (Inventory.NotEnoughCashException e) {

@@ -43,18 +43,18 @@ public abstract class Protection extends Item {
 
     @Override
     public void onRegister(Character c) {
+        super.onRegister(c);
         c.setResistance(
             c.getResistance() + this.robustness);
-        c.setSpeed(c.getSpeed() - this.getWeight() / 20);
 
     }
 
     @Override
     public void onUnregister(Character c) {
+        super.onRegister(c);
         c.setResistance(
             c.getResistance() - this.robustness
         );
-        c.setSpeed(c.getSpeed() + this.getWeight() / 20);
     }
 
 
