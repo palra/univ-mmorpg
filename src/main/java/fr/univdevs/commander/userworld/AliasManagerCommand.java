@@ -18,6 +18,7 @@ public class AliasManagerCommand extends Command {
     protected static final String NAME = "aliases";
     protected static final String LIST_OPT = "list";
     protected static final String CREATE_OPT = "create";
+    protected static final String DROP_OPT = "drop";
 
     /**
      * Default constructor
@@ -61,11 +62,34 @@ public class AliasManagerCommand extends Command {
                     fullCommand += s + " ";
                 }
 
-                this.getCommandParser().add(new AliasCommand(alias, fullCommand));
+                try {
+                    this.getCommandParser().add(new AliasCommand(alias, fullCommand));
+                } catch (IllegalStateException e) {
+                    throw new ArgumentValidationCommandException("A command exists with the name `" + alias + "`");
+                }
+
                 return null;
             }
 
             throw new ArgumentValidationCommandException("The alias or the full command is missing");
+        }
+
+        if (operand.equals(DROP_OPT)) {
+            if (args.length == 2) {
+                String alias = args[1];
+
+                if (!this.getCommandParser().contains(alias))
+                    throw new ArgumentValidationCommandException("The alias command `" + alias + "` does not exists");
+
+                Command c = this.getCommandParser().get(alias);
+                if (!(c instanceof AliasCommand))
+                    throw new ArgumentValidationCommandException("The command `" + alias + "` is not an alias");
+
+                this.getCommandParser().remove(alias);
+                return null;
+            }
+
+            throw new ArgumentValidationCommandException("The alias is missing");
         }
 
         throw new ArgumentValidationCommandException("Invalid operand");
@@ -73,6 +97,6 @@ public class AliasManagerCommand extends Command {
 
     @Override
     public String getSynopsis() {
-        return "[{" + LIST_OPT + " [" + WITHOUT_DESC_OPT + "]|" + CREATE_OPT + " <alias> <full_command>}]";
+        return "[{" + LIST_OPT + " [" + WITHOUT_DESC_OPT + "]|" + CREATE_OPT + " <alias> <full_command>|" + DROP_OPT + " <alias>}]";
     }
 }
