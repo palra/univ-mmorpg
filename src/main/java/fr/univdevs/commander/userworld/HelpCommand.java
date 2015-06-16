@@ -4,6 +4,8 @@ import fr.univdevs.commander.Command;
 import fr.univdevs.commander.CommandException;
 import fr.univdevs.util.Strings;
 
+import java.util.List;
+
 /**
  * Command that lists all the commands in a given CommandParser
  *
@@ -30,14 +32,16 @@ public class HelpCommand extends Command {
         this.cmdName = cmdName;
     }
 
-
     /**
-     * {@inheritDoc}
+     * Returns a string describing the commands passed in parameter
+     *
+     * @param list        The list of commands
+     * @param withoutDesc Do we include the description ?
+     * @return The string describing the commands passed.
      */
-    public String execute(String[] args) throws CommandException {
-        boolean withoutDesc = args.length >= 1 && args[0].equals(WITHOUT_DESC_OPT);
+    public static String commandListToString(List<? extends Command> list, boolean withoutDesc) {
         String out = "";
-        for (Command c : this.getCommandParser().getCommands()) {
+        for (Command c : list) {
             out += c.getName();
             String desc = c.getSynopsis();
             if (!withoutDesc && !Strings.isNullOrEmpty(desc))
@@ -47,6 +51,14 @@ public class HelpCommand extends Command {
         }
 
         return out;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String execute(String[] args) throws CommandException {
+        boolean withoutDesc = args.length >= 1 && args[0].equals(WITHOUT_DESC_OPT);
+        return commandListToString(this.getCommandParser().getCommands(), withoutDesc);
     }
 
     /**

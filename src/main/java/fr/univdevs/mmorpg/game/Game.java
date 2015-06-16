@@ -1,6 +1,7 @@
 package fr.univdevs.mmorpg.game;
 
 import fr.univdevs.commander.InteractiveShell;
+import fr.univdevs.commander.userworld.AliasManagerCommand;
 import fr.univdevs.commander.userworld.ExitCommand;
 import fr.univdevs.commander.userworld.HelpCommand;
 import fr.univdevs.mmorpg.bridge.*;
@@ -36,6 +37,7 @@ public class Game implements Serializable {
     private transient InteractiveShell shell;
     private StatsCommand stats;
     private InventoryCommand items;
+    private AliasManagerCommand aliases;
     private ExitCommand exit;
     private HelpCommand help;
     private MapCommand map;
@@ -133,6 +135,9 @@ public class Game implements Serializable {
         // help
         this.help = new HelpCommand();
 
+        // aliases
+        this.aliases = new AliasManagerCommand();
+
         // map
         this.map = new MapCommand();
         this.map.setGameManager(this.gameManager);
@@ -186,6 +191,7 @@ public class Game implements Serializable {
 
         this.shell.add(this.exit);
         this.shell.add(this.help);
+        this.shell.add(this.aliases);
         this.shell.add(this.map);
         this.shell.add(this.log);
         this.shell.add(this.stats);
