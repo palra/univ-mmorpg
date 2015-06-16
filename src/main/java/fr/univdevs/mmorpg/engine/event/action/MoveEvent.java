@@ -30,7 +30,7 @@ public class MoveEvent extends ActionEvent {
             " moved " +
             new ANSIString(getSubject().getCharacter().getName(), ANSIAttribute.FG_BLUE, ANSIAttribute.ATTR_BOLD) +
             " of " + res.getNbCases() + " case" +
-            ((res.getNbCases() <= 1) ? "" : "s"); // Pluralize the string
+            ((res.getNbCases() <= 1) ? "" : "s") + " "; // Pluralize the string
         switch (dir) {
             case LEFT:
                 out += "to the left";
