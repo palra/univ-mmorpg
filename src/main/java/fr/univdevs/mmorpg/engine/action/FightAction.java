@@ -11,6 +11,7 @@ import fr.univdevs.mmorpg.engine.event.action.FightEvent;
  * A character use a fightAction on a target
  */
 public class FightAction extends Action {
+    public int NB_DEAD;
     private Weapon weapon;
 
     /**
@@ -37,8 +38,10 @@ public class FightAction extends Action {
     public void execute() {
         getTarget().getCharacter().setHealth((int) (getTarget().getCharacter().getHealth() + (getTarget().getCharacter().getHealth() * getTarget().getCharacter().getResistance()) - this.weapon.getPower()));
         getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - 2);
-        if (this.getTarget().getCharacter().getHealth() <= 0)
+        if (this.getTarget().getCharacter().getHealth() <= 0) {
             this.getSubject().getCharacter().setActionPoints(this.getSubject().getCharacter().getActionPoints() + 20);
+            System.out.println(this.getTarget().getCharacter().getName() + " est mort!");
+        }
         LoggerInterface l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));
     }
