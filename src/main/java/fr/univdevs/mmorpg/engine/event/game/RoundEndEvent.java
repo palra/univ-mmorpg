@@ -47,6 +47,6 @@ public class RoundEndEvent extends Event {
 
     @Override
     public String getDescription() {
-        return new ANSIString("Fin du tour n°" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
+        return new ANSIString("End of turn #" + roundNb, ANSIAttribute.ATTR_BOLD) + "";
     }
 }

@@ -1,9 +1,9 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
 import fr.univdevs.mmorpg.engine.event.action.FightEvent;
+import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 
 /**
  * Public class FightAction
@@ -25,7 +25,7 @@ public class FightAction extends Action {
         if (chosenSubject.getCharacter().getInventory().has(chosenWeapon))
             this.weapon = chosenWeapon;
         else
-            throw new IllegalArgumentException("Pas dans l'inventaire!");
+            throw new IllegalArgumentException("This weapon is not in the inventory");
     }
 
     public FightAction(FightAction other) {
@@ -43,7 +43,7 @@ public class FightAction extends Action {
             System.out.println(this.getTarget().getCharacter().getName() + " est mort!");
         }
         LoggerInterface l = this.getLogger();
-        l.log(new FightEvent(this.getSubject(), this.getTarget()));
+        l.log(new FightEvent(this.getSubject(), this.getTarget(), this.weapon));
     }
 
 

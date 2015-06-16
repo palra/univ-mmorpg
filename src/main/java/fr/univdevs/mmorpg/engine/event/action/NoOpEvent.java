@@ -17,6 +17,6 @@ public class NoOpEvent extends ActionEvent {
 
     @Override
     public String getDescription() {
-        return this.getSubject().getName() + " passe son tour";
+        return this.getSubject().getName() + " skips his turn";
     }
 }

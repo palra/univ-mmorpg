@@ -1,10 +1,10 @@
 package fr.univdevs.mmorpg.engine.action;
 
-import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Cure;
 import fr.univdevs.mmorpg.engine.event.action.CureEvent;
-import fr.univdevs.mmorpg.engine.event.inventory.NotEnoughActionPointsEvent;
+import fr.univdevs.mmorpg.engine.event.action.CureRejectEvent;
+import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 
 /**
  * Public class CureAction
@@ -24,7 +24,7 @@ public class CureAction extends Action {
         if (chosenSubject.getCharacter().getInventory().has(chosenCure))
             this.cure = chosenCure;
         else
-            throw new NotInInventoryException("N'est pas dans l'inventaire!");
+            throw new NotInInventoryException("The cure is not in the inventory");
     }
 
     public CureAction(CureAction other) {
@@ -38,7 +38,7 @@ public class CureAction extends Action {
         getSubject().getCharacter().getInventory().remove(this.cure);
         if (getSubject().getCharacter().getActionPoints() >= this.cure.getRestoredPoints() / 10) {
             getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - this.cure.getRestoredPoints() / 10);
-        } else this.getLogger().log(new NotEnoughActionPointsEvent(this.cure, getSubject().getCharacter()));
+        } else this.getLogger().log(new CureRejectEvent(getSubject(), getTarget(), this.cure));
         LoggerInterface l = this.getLogger();
         l.log(new CureEvent(this.getSubject(), this.getTarget()));
         this.cure = null;

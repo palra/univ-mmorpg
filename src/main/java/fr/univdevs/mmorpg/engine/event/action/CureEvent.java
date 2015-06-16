@@ -16,6 +16,6 @@ public class CureEvent extends ActionEvent {
 
     @Override
     public String getDescription() {
-        return this.getSubject() + " a soigné " + this.getTarget();
+        return this.getSubject() + " cured " + this.getTarget();
     }
 }

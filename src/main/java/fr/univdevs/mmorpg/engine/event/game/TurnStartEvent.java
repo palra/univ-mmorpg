@@ -39,8 +39,7 @@ public class TurnStartEvent extends GameEvent {
     @Override
     public String getDescription() {
         return
-            "Au tour de " +
-                new ANSIString(this.subject.getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
-                " de jouer";
+            new ANSIString(this.subject.getName(), ANSIAttribute.FG_MAGENTA, ANSIAttribute.ATTR_BOLD) +
+                "'s turn";
     }
 }

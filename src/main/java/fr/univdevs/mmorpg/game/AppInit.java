@@ -25,7 +25,7 @@ public class AppInit {
     public static List<Player> init() throws InputMismatchException {
         int number = getNumberofPlayers();
         for (int i = 0; i < number; i++) {
-            System.out.println("Joueur " + (i + 1));
+            System.out.println("Player " + (i + 1) + " :");
             playerInit();
         }
         return players;
@@ -34,18 +34,18 @@ public class AppInit {
     public static int getNumberofPlayers() throws InputMismatchException {
         Scanner sc;
         do {
-            System.out.println("Combien de joueurs ? Entrez un entier : ");
+            System.out.print("How many players do you want to create ? ");
             sc = new Scanner(System.in);
         } while (!(sc.hasNextInt()));
         return sc.nextInt();
     }
 
     public static boolean playerInit() {
-        System.out.println("Entrez le nom du joueur : ");
+        System.out.print("Enter the name of the player : ");
         String playerName = new Scanner(System.in).nextLine();
-        System.out.println("Entrez le nom du personnage : ");
+        System.out.print("Enter the name of his character : ");
         String name = new Scanner(System.in).nextLine();
-        System.out.println("Quelle categorie ?\n" +
+        System.out.println("What category of character do you want ?\n" +
             "1. Warrior\n" +
             "2. Healer"
         );
