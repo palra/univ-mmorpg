@@ -60,6 +60,12 @@ public abstract class Character implements MovableEntity, Serializable {
         this.type = chosenType;
         this.inventory = new Inventory(this);
         this.money = 4000; //We set money before trying to add items
+
+        this.health = 100;
+        this.resistance = 0.0;
+        this.setDisplay(chosenDisplay);
+        this.speed = 100;
+        this.actionPoints = 300;
         try {        //Because Inventory.add throws Exception, we have to try{}catch(){}
             this.inventory.add(new Knife());
         } catch (Inventory.NotEnoughCashException e) {
@@ -70,11 +76,6 @@ public abstract class Character implements MovableEntity, Serializable {
         } catch (Inventory.NotEnoughCashException e) {
             e.printStackTrace();
         }
-        this.health = 100;
-        this.resistance = 0.0;
-        this.setDisplay(chosenDisplay);
-        this.speed = 100;
-        this.actionPoints = 300;
     }
 
     public Character(Character other) {

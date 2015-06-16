@@ -240,7 +240,7 @@ public class Game implements Serializable {
     public boolean isFinished() {
         if (this.getGameManager().getPlayers().size() == 1 && this.getGameManager().getPlayers().get(0).getCharacter().getHealth() <= 0)
             return true;
-        if (areDead() >= this.getGameManager().getPlayers().size() - 1 && this.getGameManager().getPlayers().size() > 1)
+        if (areDead() >= this.getGameManager().getPlayers().size() && this.getGameManager().getPlayers().size() > 1)
             return true;
         return false;
     }
