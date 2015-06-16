@@ -12,8 +12,7 @@ import java.io.Serializable;
  * The Character object. This is the character played by a player
  */
 public abstract class Character implements MovableEntity, Serializable {
-    private final static int MAX_HEALTH = 100;
-    private final static double MAX_RESISTANCE = 0.99;
+
     private String type;
     private String name;
     private int experience;
@@ -186,7 +185,7 @@ public abstract class Character implements MovableEntity, Serializable {
      * @param chosenHealth The new healh point value
      */
     public void setHealth(int chosenHealth) {
-        this.health = Numbers.clamp(chosenHealth, 0, MAX_HEALTH);
+        this.health = Numbers.clamp(chosenHealth, 0, fr.univdevs.mmorpg.game.character.Character.getMaxHealth());
     }
 
     /**
@@ -203,7 +202,7 @@ public abstract class Character implements MovableEntity, Serializable {
      * @param resistance    coefficient to set, must be in [0;1)
      */
     public void setResistance(double resistance) {
-        this.resistance = Numbers.clamp(resistance, 0, MAX_RESISTANCE);
+        this.resistance = Numbers.clamp(resistance, 0, fr.univdevs.mmorpg.game.character.Character.getMaxResistance());
     }
 
     /**
