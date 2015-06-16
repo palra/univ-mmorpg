@@ -132,7 +132,7 @@ public abstract class Item implements MovableEntity {
      * @param c The owner of this item
      */
     public void onRegister(Character c) {
-
+        c.setSpeed(c.getSpeed() - this.getWeight() / 20);
     }
 
     /**
@@ -143,6 +143,7 @@ public abstract class Item implements MovableEntity {
      * @param c The owner of this item
      */
     public void onUnregister(Character c) {
+        c.setSpeed(c.getSpeed() + this.getWeight() / 20);
 
     }
 
