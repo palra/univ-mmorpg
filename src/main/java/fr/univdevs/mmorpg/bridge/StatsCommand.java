@@ -71,7 +71,7 @@ public class StatsCommand extends GameManagerAwareCommand {
 
     @Override
     public String getSynopsis() {
-        return "<player_name>";
+        return "[<player_name>]";
     }
 
     /**
