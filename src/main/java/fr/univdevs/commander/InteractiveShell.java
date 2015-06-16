@@ -72,6 +72,11 @@ public class InteractiveShell {
         this.out.println(motd);
     }
 
+    public InteractiveShell(CommandParser parser, String motd) {
+        this.commandParser = parser;
+        this.out.println(motd);
+    }
+
     /**
      * Returns the command parser
      *

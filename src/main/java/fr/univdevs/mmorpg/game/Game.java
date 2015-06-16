@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.game;
 
+import fr.univdevs.commander.CommandParser;
 import fr.univdevs.commander.InteractiveShell;
 import fr.univdevs.commander.userworld.AliasManagerCommand;
 import fr.univdevs.commander.userworld.ExitCommand;
@@ -35,6 +36,7 @@ public class Game implements Serializable {
     private GameManager gameManager;
     private List<ActionCommand> actionCommands;
     private transient InteractiveShell shell;
+    private CommandParser parser;
     private StatsCommand stats;
     private InventoryCommand items;
     private AliasManagerCommand aliases;
@@ -49,6 +51,7 @@ public class Game implements Serializable {
 
     public Game() throws IOException {
         this.actionCommands = new ArrayList<ActionCommand>();
+        this.parser = new CommandParser();
         this.configureGame();
         this.configureCommands();
     }
@@ -176,35 +179,36 @@ public class Game implements Serializable {
         // noop
         NoOpCommand noop = new NoOpCommand();
         this.actionCommands.add(noop);
+
+
+        this.parser.add(this.exit);
+        this.parser.add(this.help);
+        this.parser.add(this.aliases);
+        this.parser.add(this.map);
+        this.parser.add(this.log);
+        this.parser.add(this.stats);
+        this.parser.add(this.items);
+        this.parser.add(this.fight);
+        this.parser.add(this.cure);
+        this.parser.add(this.players);
+        this.parser.add(this.drop);
+
+        for (ActionCommand command : this.actionCommands) {
+            command.setGameManager(this.gameManager);
+            this.parser.add(command);
+        }
     }
 
     /**
      * Starts the shell
      */
     private void launchShell() {
-        this.shell = new InteractiveShell(
+        this.shell = new InteractiveShell(parser,
             new ANSIString("Welcome to MMORPG Shell [version " + App.class.getPackage().getImplementationVersion() + "]\n", ANSIAttribute.ATTR_BOLD) +
                 "Running JVM " + System.getProperty("java.version") + " on " + System.getProperty("os.name") +
                 " (" + System.getProperty("os.arch") + ")\n" +
                 "Type `help` for help on the shell\n"
         );
-
-        this.shell.add(this.exit);
-        this.shell.add(this.help);
-        this.shell.add(this.aliases);
-        this.shell.add(this.map);
-        this.shell.add(this.log);
-        this.shell.add(this.stats);
-        this.shell.add(this.items);
-        this.shell.add(this.fight);
-        this.shell.add(this.cure);
-        this.shell.add(this.players);
-        this.shell.add(this.drop);
-
-        for (ActionCommand command : this.actionCommands) {
-            command.setGameManager(this.gameManager);
-            this.shell.add(command);
-        }
     }
 
     /**
