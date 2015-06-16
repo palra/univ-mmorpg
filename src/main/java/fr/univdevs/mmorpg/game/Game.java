@@ -230,7 +230,9 @@ public class Game implements Serializable {
     public int areDead() {
         int deads = 0;
         for (int i = 0; i < this.getGameManager().getPlayers().size(); i++) {
-            if (this.getGameManager().getPlayers().get(i).getCharacter().getHealth() <= 0) deads += 1;
+            if (this.getGameManager().getPlayers().get(i).getCharacter().getHealth() <= 0) {
+                deads += 1;
+            }
         }
         return deads;
     }
@@ -252,8 +254,7 @@ public class Game implements Serializable {
 
         // The main loop
         Player oldPlayer = null;
-        while (!this.exit.isClosed()) {
-            if (this.isFinished()) break;
+        while (!this.exit.isClosed() && !this.isFinished()) {
             if (oldPlayer == null) // If its the begining of a round
                 System.out.println("Starting the " + new ANSIString("round n°" + this.gameManager.getRoundNb() + "", ANSIAttribute.ATTR_BOLD, ANSIAttribute.FG_CYAN) + " :");
             Player currentPlayer = this.gameManager.getFirstPlayerWithoutAction();

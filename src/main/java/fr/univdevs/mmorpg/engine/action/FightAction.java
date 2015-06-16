@@ -1,5 +1,6 @@
 package fr.univdevs.mmorpg.engine.action;
 
+import fr.univdevs.mmorpg.engine.event.game.DeathEvent;
 import fr.univdevs.mmorpg.engine.logger.LoggerInterface;
 import fr.univdevs.mmorpg.engine.Player;
 import fr.univdevs.mmorpg.engine.character.item.Weapon;
@@ -40,7 +41,9 @@ public class FightAction extends Action {
         getSubject().getCharacter().setActionPoints(getSubject().getCharacter().getActionPoints() - 2);
         if (this.getTarget().getCharacter().getHealth() <= 0) {
             this.getSubject().getCharacter().setActionPoints(this.getSubject().getCharacter().getActionPoints() + 20);
-            System.out.println(this.getTarget().getCharacter().getName() + " est mort!");
+            LoggerInterface l = this.getLogger();
+            l.log(new DeathEvent(this.getTarget()));
+            this.getGameManager().getPlayers().remove(getTarget());
         }
         LoggerInterface l = this.getLogger();
         l.log(new FightEvent(this.getSubject(), this.getTarget()));

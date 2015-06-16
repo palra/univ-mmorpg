@@ -16,7 +16,7 @@ public class RoundEndEvent extends Event {
     private int roundNb;
 
     /**
-     * Constructs a GameRoundStartEvent
+     * Constructs a GameRoundEndEvent
      *
      * @param roundNb The number of the round
      */
