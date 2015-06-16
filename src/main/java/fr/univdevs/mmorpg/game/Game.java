@@ -83,7 +83,7 @@ public class Game implements Serializable {
      * @throws IOException If the map was not found
      */
     private void configureGame() throws IOException {
-        Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-01.txt");
+        Tilemap tilemap = Tilemap.newFromFilename("/game/maps/lvl-02.txt");
         World world = new World(tilemap);
         this.gameManager = new GameManager(world);
     }
@@ -240,9 +240,7 @@ public class Game implements Serializable {
     public boolean isFinished() {
         if (this.getGameManager().getPlayers().size() == 1 && this.getGameManager().getPlayers().get(0).getCharacter().getHealth() <= 0)
             return true;
-        if (areDead() >= this.getGameManager().getPlayers().size() && this.getGameManager().getPlayers().size() > 1)
-            return true;
-        return false;
+        return areDead() >= this.getGameManager().getPlayers().size() && this.getGameManager().getPlayers().size() > 1;
     }
 
     /**
